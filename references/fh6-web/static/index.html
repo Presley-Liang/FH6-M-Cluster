@@ -1,0 +1,3149 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
+        <title>FH6 Dashboard</title>
+        <!-- PWA -->
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#030712" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="FH6" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        />
+        <style>
+            /* ── Reset ──────────────────────────────────────────────────────────── */
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* ── Theme variables ─────────────────────────────────────────────────
+       Mirror the fh6-tel dark theme so the web view feels at home.         */
+            :root {
+                --bg: #030712;
+                --bg-panel: #060c14;
+                --bg-card: #0a1628;
+                --bg-elevated: #0f1e35;
+                --bd: #1a2d47;
+                --bd-subtle: #142238;
+                --tx: #e2e8f0;
+                --tx-dim: #7a9ab5;
+                --tx-xdim: #3d5a78;
+                --ac: #3b82f6;
+                --header-h: 46px;
+            }
+
+            html,
+            body {
+                height: 100%;
+                overflow: hidden;
+                background: var(--bg);
+                color: var(--tx);
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    sans-serif;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            /* ── Header ──────────────────────────────────────────────────────────── */
+            #header {
+                height: var(--header-h);
+                background: var(--bg-panel);
+                border-bottom: 1px solid var(--bd);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 16px;
+                flex-shrink: 0;
+                z-index: 1000;
+                position: relative;
+            }
+
+            .header-title {
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                color: var(--tx);
+                text-transform: uppercase;
+            }
+            .header-title span {
+                color: var(--ac);
+            }
+
+            .conn-status {
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.04em;
+                font-family: "Courier New", monospace;
+                transition: color 0.3s;
+            }
+            .conn-status.connected {
+                color: #22c55e;
+            }
+            .conn-status.disconnected {
+                color: var(--tx-xdim);
+            }
+            .conn-status.reconnecting {
+                color: #f59e0b;
+            }
+
+            /* ── Tab navigation ──────────────────────────────────────────────────── */
+            .tab-nav {
+                display: flex;
+                gap: 2px;
+                background: var(--bg);
+                border-radius: 6px;
+                padding: 3px;
+            }
+            .tab-btn {
+                background: transparent;
+                border: none;
+                color: var(--tx-dim);
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                padding: 5px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition:
+                    background 0.15s,
+                    color 0.15s;
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    sans-serif;
+            }
+            .tab-btn:hover {
+                background: var(--bg-elevated);
+                color: var(--tx);
+            }
+            .tab-btn.active {
+                background: var(--bg-elevated);
+                color: var(--ac);
+            }
+
+            /* ── Main layout ─────────────────────────────────────────────────────── */
+            #main-layout {
+                display: flex;
+                height: calc(100vh - var(--header-h));
+                overflow: hidden;
+            }
+
+            /* ── Resizer handle ──────────────────────────────────────────────────── */
+            #resizer {
+                flex-shrink: 0;
+                background: var(--bd);
+                position: relative;
+                z-index: 100;
+                transition: background 0.15s;
+                /* prevent scroll on touch while dragging */
+                touch-action: none;
+            }
+            /* Drag-indicator pip */
+            #resizer::after {
+                content: "";
+                position: absolute;
+                background: var(--tx-xdim);
+                border-radius: 2px;
+                transition: background 0.15s;
+            }
+            #resizer:hover,
+            #resizer.dragging {
+                background: var(--bg-elevated);
+            }
+            #resizer:hover::after,
+            #resizer.dragging::after {
+                background: var(--ac);
+            }
+            /* Horizontal (row) split – desktop / landscape */
+            #main-layout.split-row > #resizer {
+                width: 5px;
+                height: 100%;
+                cursor: col-resize;
+            }
+            #main-layout.split-row > #resizer::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 2px;
+                height: 48px;
+            }
+            /* Vertical (column) split – portrait mobile */
+            #main-layout.split-col {
+                flex-direction: column;
+            }
+            #main-layout.split-col > #resizer {
+                width: 100%;
+                height: 5px;
+                cursor: row-resize;
+            }
+            #main-layout.split-col > #resizer::after {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 2px;
+                width: 48px;
+            }
+            /* Guarantee full width for both panels in column mode. */
+            #main-layout.split-col > #map-panel,
+            #main-layout.split-col > #cards-panel {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* ── Map panel ───────────────────────────────────────────────────────── */
+            #map-panel {
+                flex: 0 0 65%; /* overridden by JS resizer once loaded */
+                position: relative;
+                background: var(--bg-panel);
+                min-width: 0;
+                min-height: 0;
+            }
+            /* Separator border follows split direction */
+            #main-layout.split-row > #map-panel {
+                border-right: 1px solid var(--bd);
+            }
+            #main-layout.split-col > #map-panel {
+                border-bottom: 1px solid var(--bd);
+            }
+
+            #map {
+                width: 100%;
+                height: 100%;
+            }
+
+            /* ── Cards panel ─────────────────────────────────────────────────────── */
+            #cards-panel {
+                flex: 0 0 35%; /* overridden by JS resizer once loaded */
+                overflow-y: auto;
+                overflow-x: hidden;
+                background: var(--bg);
+                padding: 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                min-height: 0;
+                min-width: 0;
+                container-type: inline-size;
+                container-name: cards;
+            }
+            #cards-panel::-webkit-scrollbar {
+                width: 5px;
+            }
+            #cards-panel::-webkit-scrollbar-track {
+                background: var(--bg);
+            }
+            #cards-panel::-webkit-scrollbar-thumb {
+                background: var(--bd);
+                border-radius: 3px;
+            }
+            #cards-panel::-webkit-scrollbar-thumb:hover {
+                background: var(--bd-subtle);
+            }
+
+            #empty-state {
+                color: var(--tx-xdim);
+                font-size: 12px;
+                text-align: center;
+                padding: 32px 16px;
+                letter-spacing: 0.04em;
+            }
+
+            /* ── Dashboard view (landscape-first) ──────────────────────────────────── */
+            body[data-tab="dashboard"] #main-layout {
+                display: none !important;
+            }
+            #dashboard-view {
+                display: none;
+                flex-direction: column;
+                height: calc(100vh - var(--header-h));
+                overflow: hidden;
+                background: var(--bg);
+            }
+            body[data-tab="dashboard"] #dashboard-view {
+                display: flex;
+            }
+
+            /* picker */
+            #dash-picker {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                padding: 24px;
+            }
+            #dash-picker > h2 {
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--tx-dim);
+            }
+            #dash-picker-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px;
+                justify-content: center;
+            }
+            .dpk-card {
+                background: var(--bg-card);
+                border: 2px solid var(--bd);
+                border-radius: 10px;
+                padding: 18px 24px;
+                cursor: pointer;
+                min-width: 200px;
+                max-width: 320px;
+                flex: 1 1 200px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                text-align: left;
+                transition:
+                    background 0.15s,
+                    transform 0.1s;
+            }
+            .dpk-card:hover {
+                background: var(--bg-elevated);
+                transform: translateY(-2px);
+            }
+            .dpk-name {
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--tx);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .dpk-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            .dpk-car {
+                font-size: 11px;
+                color: var(--tx-dim);
+            }
+            .dpk-stats {
+                display: flex;
+                gap: 18px;
+                font-size: 11px;
+                color: var(--tx-dim);
+            }
+            .dpk-stat-val {
+                font-family: "Courier New", monospace;
+                font-size: 16px;
+                font-weight: 700;
+                color: var(--tx);
+                line-height: 1.1;
+            }
+
+            /* ── Telemetry view ──────────────────────────────────────────────────── */
+            #dash-telem {
+                display: none;
+                flex-direction: column;
+                flex: 1;
+                min-height: 0;
+                contain: layout;
+            }
+
+            /* Info bar */
+            #dt-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 0 12px;
+                height: 32px;
+                background: var(--bg-panel);
+                border-bottom: 1px solid var(--bd);
+                flex-shrink: 0;
+                font-size: 11px;
+                overflow: hidden;
+            }
+            .dh-dot {
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            #dh-name {
+                font-weight: 700;
+                color: var(--tx);
+                flex-shrink: 0;
+            }
+            #dh-car {
+                color: var(--tx-dim);
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                flex: 1;
+            }
+            #dh-pos {
+                background: var(--ac);
+                color: #fff;
+                font-weight: 800;
+                font-size: 11px;
+                padding: 1px 8px;
+                border-radius: 4px;
+                display: none;
+                flex-shrink: 0;
+            }
+            #dh-lap {
+                font-family: "Courier New", monospace;
+                color: var(--tx-dim);
+                flex-shrink: 0;
+            }
+
+            /* Rev bar */
+            canvas#dash-rev {
+                width: 100%;
+                height: 20px;
+                display: block;
+                background: #020609;
+                flex-shrink: 0;
+            }
+
+            /* Main mid area — 3-column landscape grid */
+            #dt-mid {
+                flex: 1;
+                display: flex;
+                min-height: 0;
+                overflow: hidden;
+            }
+
+            /* ── Gear column ── */
+            #dt-gear-col {
+                width: 120px;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-right: 1px solid var(--bd-subtle);
+                gap: 10px;
+                padding: 8px 4px;
+            }
+            #d-gear {
+                font-family: "Courier New", monospace;
+                font-size: clamp(4rem, 13vw, 9rem);
+                font-weight: 900;
+                line-height: 1;
+                color: #fff;
+                text-shadow:
+                    0 0 30px rgba(59, 130, 246, 0.5),
+                    0 0 70px rgba(59, 130, 246, 0.15);
+                transition:
+                    color 0.05s,
+                    text-shadow 0.05s;
+            }
+            #dt-steer-wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+            }
+            #dt-steer-lbl {
+                font-size: 8px;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                color: var(--tx-xdim);
+                text-transform: uppercase;
+            }
+            #dt-steer-track {
+                width: 84px;
+                height: 6px;
+                background: var(--bg-elevated);
+                border: 1px solid var(--bd);
+                border-radius: 3px;
+                position: relative;
+                overflow: visible;
+            }
+            #dt-steer-center {
+                position: absolute;
+                width: 1px;
+                height: 10px;
+                background: var(--tx-xdim);
+                top: -2px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            #dt-steer-needle {
+                position: absolute;
+                width: 4px;
+                height: 10px;
+                background: var(--ac);
+                border-radius: 2px;
+                top: -2px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* ── Speed / info column ── */
+            #dt-speed-col {
+                width: 140px;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-right: 1px solid var(--bd-subtle);
+                gap: 2px;
+                padding: 8px;
+            }
+            #d-spd {
+                font-family: "Courier New", monospace;
+                font-size: clamp(2.5rem, 7vw, 5rem);
+                font-weight: 900;
+                color: var(--tx);
+                line-height: 1;
+                font-variant-numeric: tabular-nums;
+            }
+            .d-spd-unit {
+                font-size: 0.75rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                color: var(--tx-dim);
+                text-transform: uppercase;
+            }
+            #dt-rpm-val {
+                font-family: "Courier New", monospace;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: var(--tx-dim);
+                font-variant-numeric: tabular-nums;
+                letter-spacing: 0.03em;
+                margin-top: 5px;
+            }
+            #dt-boost-row {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+                margin-top: 6px;
+                width: 100%;
+            }
+            .dt-boost-label {
+                font-size: 8px;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                color: var(--tx-xdim);
+                text-transform: uppercase;
+            }
+            #dt-boost-val {
+                font-family: "Courier New", monospace;
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: var(--tx);
+                font-variant-numeric: tabular-nums;
+            }
+            .dt-boost-bar-track {
+                width: 70%;
+                height: 3px;
+                background: var(--bg-elevated);
+                border-radius: 2px;
+                overflow: hidden;
+            }
+            #dt-boost-fill {
+                height: 100%;
+                width: 0%;
+                background: var(--ac);
+                border-radius: 2px;
+            }
+
+            /* ── Pedals + tires column ── */
+            #dt-right-col {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                overflow: hidden;
+            }
+            #dt-pedals {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 7px;
+                padding: 10px 16px 8px;
+                min-height: 0;
+            }
+            .dtp-row {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                min-width: 0;
+            }
+            .dtp-lbl {
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                width: 12px;
+                flex-shrink: 0;
+                text-align: center;
+            }
+            .dtp-track {
+                flex: 1;
+                height: 14px;
+                background: var(--bg-elevated);
+                border: 1px solid var(--bd);
+                border-radius: 3px;
+                overflow: hidden;
+                min-width: 0;
+            }
+            /* No transition — updates at 20 Hz via rAF */
+            .dtp-fill {
+                height: 100%;
+                width: 0%;
+                border-radius: 3px;
+            }
+            .dtp-pct {
+                font-family: "Courier New", monospace;
+                font-size: 10px;
+                color: var(--tx-dim);
+                width: 32px;
+                text-align: right;
+                flex-shrink: 0;
+            }
+            #dt-tires {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 4px;
+                padding: 6px 16px;
+                background: var(--bg-panel);
+                border-top: 1px solid var(--bd-subtle);
+                flex-shrink: 0;
+            }
+            .dtt-cell {
+                background: var(--bg-elevated);
+                border: 1px solid var(--bd);
+                border-radius: 4px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 3px 5px;
+                gap: 1px;
+            }
+            .dtt-pos {
+                font-size: 8px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                opacity: 0.6;
+            }
+            .dtt-temp {
+                font-family: "Courier New", monospace;
+                font-size: 13px;
+                font-weight: 700;
+                font-variant-numeric: tabular-nums;
+            }
+            .dtt-wear-bar {
+                width: 100%;
+                height: 2px;
+                background: var(--bg-elevated);
+                border-radius: 1px;
+                overflow: hidden;
+                margin-top: 1px;
+            }
+            .dtt-wear-fill {
+                height: 100%;
+                border-radius: 1px;
+                background: #22c55e;
+            }
+
+            /* ── Bottom stats bar ── */
+            #dt-bot {
+                display: flex;
+                align-items: center;
+                padding: 0 8px;
+                height: 36px;
+                background: var(--bg-panel);
+                border-top: 1px solid var(--bd);
+                flex-shrink: 0;
+                overflow: hidden;
+            }
+            .dtb-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 9px;
+                flex-shrink: 0;
+            }
+            .dtb-lbl {
+                font-size: 7px;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                color: var(--tx-xdim);
+                text-transform: uppercase;
+                line-height: 1;
+            }
+            .dtb-val {
+                font-family: "Courier New", monospace;
+                font-size: 13px;
+                font-weight: 700;
+                color: var(--tx);
+                font-variant-numeric: tabular-nums;
+                line-height: 1.2;
+                white-space: nowrap;
+            }
+            .dtb-val.best {
+                color: #a855f7;
+            }
+            .dtb-val.dim {
+                color: var(--tx-dim);
+            }
+            .dtb-sep {
+                width: 1px;
+                height: 20px;
+                background: var(--bd-subtle);
+                flex-shrink: 0;
+            }
+            #dt-fuel-bar {
+                width: 38px;
+                height: 2px;
+                background: var(--bg-elevated);
+                border-radius: 1px;
+                overflow: hidden;
+                margin-top: 2px;
+            }
+            #dt-fuel-fill {
+                height: 100%;
+                width: 100%;
+                background: #22c55e;
+                border-radius: 1px;
+            }
+            /* Handbrake */
+            #d-hb {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1px;
+                padding: 0 8px;
+                flex-shrink: 0;
+                color: var(--tx-xdim);
+                transition:
+                    color 0.1s,
+                    filter 0.1s;
+            }
+            #d-hb.active {
+                color: #ef4444;
+                filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.8));
+            }
+            #d-hb .dtb-lbl {
+                color: inherit;
+            }
+
+            /* ── Dashboard in-menu overlay ───────────────────────────────────────── */
+            #dash-telem[data-in-menu] canvas#dash-rev,
+            #dash-telem[data-in-menu] #dt-mid {
+                opacity: 0.12;
+                pointer-events: none;
+            }
+            #dh-in-menu {
+                display: none;
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--tx-xdim);
+                background: var(--bg-elevated);
+                border: 1px solid var(--bd);
+                padding: 1px 7px;
+                border-radius: 3px;
+                flex-shrink: 0;
+            }
+            #dash-telem[data-in-menu] #dh-in-menu {
+                display: inline;
+            }
+            #dash-telem[data-in-menu] #dh-class,
+            #dash-telem[data-in-menu] #dh-car {
+                opacity: 0.35;
+            }
+
+            /* ── Player card ─────────────────────────────────────────────────────── */
+            .player-card {
+                background: var(--bg-card);
+                border: 1px solid var(--bd);
+                border-radius: 8px;
+                border-left-width: 3px; /* player colour accent set via style attr */
+                padding: 10px 10px 10px 11px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 7px;
+                min-width: 0; /* prevent card expanding beyond its flex container */
+            }
+
+            /* header row: name + race position badge */
+            .card-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .card-label-row {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                min-width: 0;
+            }
+            .color-dot {
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                cursor: pointer;
+                box-shadow: 0 0 0 0 transparent;
+                transition: box-shadow 0.15s;
+            }
+            .color-dot:hover {
+                box-shadow: 0 0 0 3px
+                    color-mix(in srgb, var(--dot-color) 45%, transparent);
+            }
+            .color-dot.following {
+                box-shadow:
+                    0 0 0 3px
+                        color-mix(in srgb, var(--dot-color) 60%, transparent),
+                    0 0 0 6px
+                        color-mix(in srgb, var(--dot-color) 22%, transparent);
+                animation: dot-follow-pulse 1.4s ease-in-out infinite;
+            }
+            @keyframes dot-follow-pulse {
+                0%,
+                100% {
+                    box-shadow:
+                        0 0 0 3px
+                            color-mix(
+                                in srgb,
+                                var(--dot-color) 60%,
+                                transparent
+                            ),
+                        0 0 0 6px
+                            color-mix(
+                                in srgb,
+                                var(--dot-color) 22%,
+                                transparent
+                            );
+                }
+                50% {
+                    box-shadow:
+                        0 0 0 4px
+                            color-mix(
+                                in srgb,
+                                var(--dot-color) 75%,
+                                transparent
+                            ),
+                        0 0 0 9px
+                            color-mix(
+                                in srgb,
+                                var(--dot-color) 28%,
+                                transparent
+                            );
+                }
+            }
+            /* right side of header: class badge + race position */
+            .card-hdr-right {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                flex-shrink: 0;
+            }
+            .player-name {
+                font-weight: 700;
+                font-size: 13px;
+                color: var(--tx);
+                letter-spacing: 0.03em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                min-width: 0;
+                cursor: pointer;
+                border-bottom: 1px dashed transparent;
+                transition:
+                    color 0.15s,
+                    border-color 0.15s;
+            }
+            .player-name:hover {
+                color: var(--ac);
+                border-bottom-color: var(--ac);
+            }
+            .player-name-input {
+                background: var(--bg-elevated);
+                border: 1px solid var(--ac);
+                border-radius: 3px;
+                color: var(--tx);
+                font-weight: 700;
+                font-size: 13px;
+                letter-spacing: 0.03em;
+                padding: 0 4px;
+                width: 100%;
+                outline: none;
+                font-family: inherit;
+            }
+            /* ── Car class badge (Forza-style coloured box + PI) ── */
+            .car-class-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                flex-shrink: 0;
+            }
+            .car-class-letter {
+                display: inline-block;
+                color: #fff;
+                font-size: 10px;
+                font-weight: 900;
+                font-family: "Segoe UI", system-ui, sans-serif;
+                letter-spacing: 0.04em;
+                padding: 1px 6px 2px;
+                border-radius: 2px;
+                min-width: 20px;
+                text-align: center;
+                line-height: 1.4;
+            }
+            .car-pi-val {
+                font-family: "Courier New", monospace;
+                font-size: 11px;
+                font-weight: 700;
+                color: var(--tx);
+                letter-spacing: 0.02em;
+            }
+            .car-detail {
+                font-size: 10px;
+                color: var(--tx-dim);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .car-ordinal {
+                color: var(--tx-xdim);
+                font-family: "Courier New", monospace;
+                font-size: 9px;
+            }
+            .race-pos-badge {
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                color: var(--tx-xdim);
+                background: var(--bg-elevated);
+                padding: 1px 5px;
+                border-radius: 3px;
+                white-space: nowrap;
+            }
+
+            /* in-menu state */
+            .in-menu-badge {
+                display: inline-block;
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--tx-xdim);
+                background: var(--bg-elevated);
+                border: 1px solid var(--bd);
+                padding: 1px 6px;
+                border-radius: 3px;
+            }
+            .player-card[data-in-menu] .card-mid,
+            .player-card[data-in-menu] .bar-row,
+            .player-card[data-in-menu] .tire-row,
+            .player-card[data-in-menu] .lap-row {
+                opacity: 0.2;
+                pointer-events: none;
+            }
+
+            /* mid row: speed+gear (left) | pedals (right) */
+            .card-mid {
+                display: flex;
+                align-items: center;
+                min-width: 0;
+            }
+            .card-speed-gear {
+                display: flex;
+                align-items: baseline;
+                gap: 5px;
+                flex-shrink: 0;
+                padding-right: 8px;
+            }
+            .card-pedals {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+                padding-left: 8px;
+                border-left: 1px solid var(--bd);
+                min-width: 0;
+            }
+            .speed-val {
+                font-family: "Courier New", Courier, monospace;
+                font-size: 22px;
+                font-weight: 700;
+                font-variant-numeric: tabular-nums;
+                color: var(--tx);
+                line-height: 1;
+            }
+            .speed-val .speed-unit {
+                font-size: 11px;
+                color: var(--tx-dim);
+                margin-left: 3px;
+            }
+            .gear-box {
+                font-family: "Courier New", Courier, monospace;
+                font-size: 20px;
+                font-weight: 700;
+                font-variant-numeric: tabular-nums;
+                color: var(--tx-dim);
+                background: var(--bg-elevated);
+                border: 1px solid var(--bd);
+                padding: 2px 7px;
+                border-radius: 5px;
+                line-height: 1.3;
+                min-width: 38px;
+                text-align: center;
+            }
+
+            /* generic labelled bar row (RPM) */
+            .bar-row {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            .bar-row-label {
+                font-size: 9px;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                color: var(--tx-xdim);
+                width: 30px;
+                flex-shrink: 0;
+            }
+            .bar-track {
+                flex: 1;
+                height: 7px;
+                background: var(--bg-elevated);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            .bar-fill {
+                height: 100%;
+                border-radius: 4px;
+                transition: width 80ms linear;
+            }
+            .bar-row-end {
+                font-family: "Courier New", monospace;
+                font-size: 9px;
+                color: var(--tx-dim);
+                width: 38px;
+                text-align: right;
+                flex-shrink: 0;
+            }
+
+            /* pedal rows */
+            .pedal-row {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            .pedal-lbl {
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                width: 10px;
+                flex-shrink: 0;
+                text-align: center;
+            }
+            .t-lbl {
+                color: #22c55e;
+            }
+            .b-lbl {
+                color: #ef4444;
+            }
+            .c-lbl {
+                color: #6b7280;
+            }
+            .t-fill {
+                background: #22c55e;
+                transition: width 80ms linear;
+            }
+            .b-fill {
+                background: #ef4444;
+                transition: width 80ms linear;
+            }
+            .c-fill {
+                background: #6b7280;
+                transition: width 80ms linear;
+            }
+            .pedal-pct {
+                font-family: "Courier New", monospace;
+                font-size: 9px;
+                color: var(--tx-dim);
+                width: 28px;
+                text-align: right;
+                flex-shrink: 0;
+            }
+
+            /* tire row: all 4 in one line */
+            .tire-row {
+                display: flex;
+                gap: 3px;
+                min-width: 0;
+            }
+            .tire-row .tire-cell {
+                flex: 1;
+                min-width: 0;
+            }
+            .tire-cell {
+                background: var(--bg-elevated);
+                border: 1px solid var(--bd);
+                border-radius: 5px;
+                padding: 3px 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition:
+                    background 0.25s,
+                    border-color 0.25s,
+                    color 0.25s;
+            }
+            .tire-pos {
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                opacity: 0.65;
+            }
+            .tire-temp-val {
+                font-family: "Courier New", monospace;
+                font-size: 11px;
+                font-weight: 700;
+                font-variant-numeric: tabular-nums;
+            }
+
+            /* lap info */
+            .lap-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 4px;
+            }
+            .lap-num {
+                font-size: 10px;
+                color: var(--tx-xdim);
+            }
+            .lap-cur {
+                font-family: "Courier New", monospace;
+                font-size: 14px;
+                font-weight: 700;
+                color: var(--tx);
+                font-variant-numeric: tabular-nums;
+            }
+            .lap-best {
+                font-family: "Courier New", monospace;
+                font-size: 10px;
+                color: var(--tx-dim);
+                font-variant-numeric: tabular-nums;
+            }
+
+            /* offline overlay */
+            .offline-overlay {
+                position: absolute;
+                inset: 0;
+                background: rgba(3, 7, 18, 0.78);
+                backdrop-filter: blur(3px);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                font-weight: 800;
+                letter-spacing: 0.2em;
+                color: #4b5563;
+                border-radius: 8px;
+            }
+
+            /* ── Leaflet overrides ───────────────────────────────────────────────── */
+            /* ── Narrow-card responsive fixes (container query) ─────────────────── */
+            @container cards (max-width: 200px) {
+                /* stack the mid-row vertically on very narrow panels */
+                .card-mid {
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 5px;
+                }
+                .card-speed-gear {
+                    padding-right: 0;
+                }
+                .card-pedals {
+                    border-left: none;
+                    border-top: 1px solid var(--bd);
+                    padding-left: 0;
+                    padding-top: 5px;
+                }
+                /* tire row falls back to 2×2 grid */
+                .tire-row {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 3px;
+                }
+                .tire-row .tire-cell {
+                    flex: unset;
+                }
+                .speed-val {
+                    font-size: 18px;
+                }
+                .gear-box {
+                    font-size: 17px;
+                    min-width: 32px;
+                    padding: 2px 5px;
+                }
+                .bar-row-label {
+                    width: 24px;
+                }
+                .bar-row-end {
+                    width: 32px;
+                }
+                .lap-row {
+                    flex-wrap: wrap;
+                    row-gap: 2px;
+                }
+                .lap-cur {
+                    font-size: 12px;
+                }
+                .lap-best {
+                    font-size: 8px;
+                    width: 100%;
+                    text-align: right;
+                }
+            }
+
+            .leaflet-container {
+                background: #030712 !important;
+                font-family: system-ui, sans-serif !important;
+            }
+            .leaflet-tile {
+                /* slight border-radius softens the tile grid seams at low zoom */
+                image-rendering: auto;
+            }
+            /* Strip Leaflet's default divIcon box so the SVG arrow shows cleanly */
+            .player-arrow-icon {
+                background: none !important;
+                border: none !important;
+            }
+
+            /* Arrow marker inner elements */
+            .pm-wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                pointer-events: none;
+                user-select: none;
+                width: 80px;
+            }
+            .pm-label {
+                background: rgba(3, 7, 18, 0.88);
+                color: #e2e8f0;
+                font-size: 10px;
+                font-weight: 700;
+                padding: 1px 5px;
+                border-radius: 3px;
+                white-space: nowrap;
+                max-width: 78px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 2px;
+                letter-spacing: 0.04em;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- ── Header ─────────────────────────────────────────────────── -->
+        <header id="header">
+            <a
+                class="header-title"
+                href="https://github.com/potchin/fh6-web"
+                target="_blank"
+                rel="noopener"
+                style="text-decoration: none"
+                >FH6 <span>Dashboard</span></a
+            >
+            <nav class="tab-nav" id="tab-nav">
+                <button class="tab-btn" data-tab="map">Map</button>
+                <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+            </nav>
+            <span class="conn-status disconnected" id="conn-status"
+                >● DISCONNECTED</span
+            >
+        </header>
+
+        <!-- ── Main layout ────────────────────────────────────────────── -->
+        <div id="main-layout" class="split-row">
+            <div id="map-panel">
+                <div id="map"></div>
+            </div>
+            <div id="resizer" aria-hidden="true"></div>
+            <div id="cards-panel">
+                <p id="empty-state">Waiting for players…</p>
+            </div>
+        </div>
+
+        <!-- ── Dashboard view ──────────────────────────────────────────── -->
+        <div id="dashboard-view">
+            <!-- Player picker -->
+            <div id="dash-picker">
+                <h2>Select Player</h2>
+                <div id="dash-picker-list"></div>
+            </div>
+
+            <!-- Landscape telemetry view -->
+            <div id="dash-telem">
+                <!-- Info bar -->
+                <div id="dt-info">
+                    <span class="dh-dot" id="dh-dot"></span>
+                    <span id="dh-name"></span>
+                    <span id="dh-class"></span>
+                    <span id="dh-car"></span>
+                    <span id="dh-in-menu">IN MENU</span>
+                    <span id="dh-pos"></span>
+                    <span id="dh-lap"></span>
+                </div>
+
+                <!-- Rev lights -->
+                <canvas id="dash-rev"></canvas>
+
+                <!-- Main 3-column area -->
+                <div id="dt-mid">
+                    <!-- Col 1: Gear + steer -->
+                    <div id="dt-gear-col">
+                        <span id="d-gear">&mdash;</span>
+                        <div id="dt-steer-wrap">
+                            <span id="dt-steer-lbl">Steer</span>
+                            <div id="dt-steer-track">
+                                <div id="dt-steer-center"></div>
+                                <div id="dt-steer-needle"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Speed, RPM, boost -->
+                    <div id="dt-speed-col">
+                        <span id="d-spd">0</span>
+                        <span class="d-spd-unit">mph</span>
+                        <span id="dt-rpm-val">0 rpm</span>
+                        <div id="dt-boost-row">
+                            <span class="dt-boost-label">Boost</span>
+                            <span id="dt-boost-val">0.00</span>
+                            <div class="dt-boost-bar-track">
+                                <div id="dt-boost-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Col 3: Pedals + tire temps -->
+                    <div id="dt-right-col">
+                        <div id="dt-pedals">
+                            <div class="dtp-row">
+                                <span class="dtp-lbl t-lbl">T</span>
+                                <div class="dtp-track">
+                                    <div
+                                        class="dtp-fill"
+                                        id="dp-t"
+                                        style="background: #22c55e"
+                                    ></div>
+                                </div>
+                                <span class="dtp-pct" id="dp-tp">0%</span>
+                            </div>
+                            <div class="dtp-row">
+                                <span class="dtp-lbl b-lbl">B</span>
+                                <div class="dtp-track">
+                                    <div
+                                        class="dtp-fill"
+                                        id="dp-b"
+                                        style="background: #ef4444"
+                                    ></div>
+                                </div>
+                                <span class="dtp-pct" id="dp-bp">0%</span>
+                            </div>
+                            <div class="dtp-row">
+                                <span class="dtp-lbl c-lbl">C</span>
+                                <div class="dtp-track">
+                                    <div
+                                        class="dtp-fill"
+                                        id="dp-c"
+                                        style="background: #6b7280"
+                                    ></div>
+                                </div>
+                                <span class="dtp-pct" id="dp-cp">0%</span>
+                            </div>
+                        </div>
+                        <div id="dt-tires">
+                            <div class="dtt-cell" id="dt-fl">
+                                <span class="dtt-pos">FL</span>
+                                <span class="dtt-temp">&mdash;&deg;</span>
+                                <div
+                                    class="dtt-wear-bar"
+                                    id="dtw-fl"
+                                    style="display: none"
+                                >
+                                    <div
+                                        class="dtt-wear-fill"
+                                        id="dtwf-fl"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="dtt-cell" id="dt-fr">
+                                <span class="dtt-pos">FR</span>
+                                <span class="dtt-temp">&mdash;&deg;</span>
+                                <div
+                                    class="dtt-wear-bar"
+                                    id="dtw-fr"
+                                    style="display: none"
+                                >
+                                    <div
+                                        class="dtt-wear-fill"
+                                        id="dtwf-fr"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="dtt-cell" id="dt-rl">
+                                <span class="dtt-pos">RL</span>
+                                <span class="dtt-temp">&mdash;&deg;</span>
+                                <div
+                                    class="dtt-wear-bar"
+                                    id="dtw-rl"
+                                    style="display: none"
+                                >
+                                    <div
+                                        class="dtt-wear-fill"
+                                        id="dtwf-rl"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="dtt-cell" id="dt-rr">
+                                <span class="dtt-pos">RR</span>
+                                <span class="dtt-temp">&mdash;&deg;</span>
+                                <div
+                                    class="dtt-wear-bar"
+                                    id="dtw-rr"
+                                    style="display: none"
+                                >
+                                    <div
+                                        class="dtt-wear-fill"
+                                        id="dtwf-rr"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom stats bar -->
+                <div id="dt-bot">
+                    <div class="dtb-item">
+                        <span class="dtb-lbl">Lap</span>
+                        <span class="dtb-val" id="d-lapnum">&mdash;</span>
+                    </div>
+                    <div class="dtb-sep"></div>
+                    <div class="dtb-item">
+                        <span class="dtb-lbl">Current</span>
+                        <span class="dtb-val" id="d-cur">--:--.---</span>
+                    </div>
+                    <div class="dtb-sep"></div>
+                    <div class="dtb-item">
+                        <span class="dtb-lbl">Best</span>
+                        <span class="dtb-val best" id="d-best">--:--.---</span>
+                    </div>
+                    <div class="dtb-sep"></div>
+                    <div class="dtb-item">
+                        <span class="dtb-lbl">Last</span>
+                        <span class="dtb-val dim" id="d-last">--:--.---</span>
+                    </div>
+                    <div class="dtb-sep"></div>
+                    <div class="dtb-item">
+                        <span class="dtb-lbl">Fuel</span>
+                        <span class="dtb-val" id="d-fuel">--%</span>
+                        <div id="dt-fuel-bar">
+                            <div id="dt-fuel-fill"></div>
+                        </div>
+                    </div>
+                    <div class="dtb-sep"></div>
+                    <div class="dtb-item">
+                        <span class="dtb-lbl">Power</span>
+                        <span class="dtb-val" id="d-pwr">-- hp</span>
+                    </div>
+                    <div class="dtb-sep"></div>
+                    <div id="d-hb">
+                        <svg
+                            viewBox="0 0 20 20"
+                            width="18"
+                            height="18"
+                            aria-hidden="true"
+                        >
+                            <circle
+                                cx="10"
+                                cy="10"
+                                r="8.5"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                fill="none"
+                            />
+                            <text
+                                x="10"
+                                y="14.2"
+                                text-anchor="middle"
+                                font-size="9.5"
+                                font-weight="900"
+                                font-family="system-ui,sans-serif"
+                                fill="currentColor"
+                            >
+                                P
+                            </text>
+                        </svg>
+                        <span class="dtb-lbl">HB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="/car_names.js"></script>
+        <script>
+            "use strict";
+
+            /* ═══════════════════════════════════════════════════════════════════
+             CONFIG & CALIBRATION
+             World (positionX, positionZ) → full-res pixel (X, Y) via two
+             reference points. Per-axis linear fit handles axis reflection.
+             ═══════════════════════════════════════════════════════════════════ */
+            const CAL_A_WORLD = [-119.49154, 3888.595];
+            const CAL_A_PIX = [2089486, 2087415];
+            const CAL_B_WORLD = [-7104.7695, -1863.08];
+            const CAL_B_PIX = [2086885, 2089556];
+
+            const TILE_ZOOM = 14; // native tile max zoom
+            const VIEW_MAX = 15; // allow zooming past tiles (upscale)
+            const VIEW_MIN = 9;
+            const DEFAULT_ZOOM = 14;
+            const DEFAULT_CENTER_PIX = [
+                (8128 * 256 + 8192 * 256) / 2, // = 2088960
+                (8128 * 256 + 8192 * 256) / 2,
+            ];
+
+            // Pre-compute slope + intercept for each axis once.
+            const _mX =
+                (CAL_B_PIX[0] - CAL_A_PIX[0]) /
+                (CAL_B_WORLD[0] - CAL_A_WORLD[0]);
+            const _mZ =
+                (CAL_B_PIX[1] - CAL_A_PIX[1]) /
+                (CAL_B_WORLD[1] - CAL_A_WORLD[1]);
+            const _bX = CAL_A_PIX[0] - _mX * CAL_A_WORLD[0];
+            const _bY = CAL_A_PIX[1] - _mZ * CAL_A_WORLD[1];
+
+            // Maximum trace points kept in memory per player before oldest are pruned.
+            const MAX_TRACE_PTS = 3000;
+
+            /* ═══════════════════════════════════════════════════════════════════
+             LEAFLET MAP SETUP
+             ═══════════════════════════════════════════════════════════════════ */
+
+            // XYZ tile pyramid uses Y-down pixel space. Extend L.CRS.Simple with
+            // a neutral transformation (Y NOT flipped) so tile row ordering and
+            // unproject() both operate in the same coordinate frame.
+            const FH6CRS = L.Util.extend({}, L.CRS.Simple, {
+                transformation: new L.Transformation(1, 0, 1, 0),
+            });
+
+            const map = L.map("map", {
+                crs: FH6CRS,
+                attributionControl: false,
+                zoomControl: true,
+                minZoom: VIEW_MIN,
+                maxZoom: VIEW_MAX,
+                // Prevent pinch-to-zoom from temporarily exceeding min/maxZoom.
+                bounceAtZoomLimits: false,
+            });
+
+            L.tileLayer("/maptiles/{z}/{y}/{x}.jpg", {
+                minZoom: VIEW_MIN,
+                maxZoom: VIEW_MAX,
+                maxNativeZoom: TILE_ZOOM,
+                tileSize: 256,
+                noWrap: true,
+                keepBuffer: 2,
+            }).addTo(map);
+
+            // Separate layer groups so traces always render below markers.
+            const traceGroup = L.layerGroup().addTo(map);
+            const markerGroup = L.layerGroup().addTo(map);
+
+            // Position the initial view at the centre of the Japan tile extent.
+            map.setView(
+                map.unproject(
+                    L.point(DEFAULT_CENTER_PIX[0], DEFAULT_CENTER_PIX[1]),
+                    TILE_ZOOM,
+                ),
+                DEFAULT_ZOOM,
+            );
+
+            /* ═══════════════════════════════════════════════════════════════════
+             COORDINATE CONVERSION
+             ═══════════════════════════════════════════════════════════════════ */
+
+            /**
+             * Convert a FH6 world position to a Leaflet LatLng via pixel calibration.
+             * @param {number} worldX  – packet positionX
+             * @param {number} worldZ  – packet positionZ
+             * @returns {L.LatLng}
+             */
+            function worldToLatLng(worldX, worldZ) {
+                const pixX = _mX * worldX + _bX;
+                const pixY = _mZ * worldZ + _bY;
+                return map.unproject(L.point(pixX, pixY), TILE_ZOOM);
+            }
+
+            /* ═══════════════════════════════════════════════════════════════════
+             HELPERS
+             ═══════════════════════════════════════════════════════════════════ */
+
+            /**
+             * Returns a CSS colour for a tyre temperature (°C).
+             * Thresholds match fh6-tel defaults: cold 60, hot 110, overheated 130.
+             */
+            function tireTempColor(t) {
+                if (t < 60) return "#3b82f6"; // blue  – cold
+                if (t < 110) return "#22c55e"; // green – optimal
+                if (t < 130) return "#f59e0b"; // amber – hot
+                return "#ef4444"; // red   – overheated
+            }
+
+            /**
+             * Format a lap time given in seconds as  M:SS.mmm
+             * Returns '--:--.---' when the value is absent or non-positive.
+             */
+            function fmtTime(secs) {
+                if (!secs || secs <= 0) return "--:--.---";
+                const m = Math.floor(secs / 60);
+                const s = secs % 60;
+                const ss = Math.floor(s);
+                const ms = Math.round((s - ss) * 1000);
+                return `${m}:${String(ss).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
+            }
+
+            /** Minimal HTML entity escaping for user-controlled strings. */
+            function escHtml(s) {
+                return String(s)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;");
+            }
+
+            /**
+             * Produce a DOM-safe id fragment from an arbitrary player id string.
+             * Leaflet & querySelector are fine with hyphens/underscores.
+             */
+            function safeId(id) {
+                return String(id).replace(/[^a-zA-Z0-9_\-]/g, "_");
+            }
+
+            /** Set innerHTML of an element by id (no-op if element not found). */
+            function setHtml(elId, html) {
+                const el = document.getElementById(elId);
+                if (el) el.innerHTML = html;
+            }
+
+            /** Set width% of a bar-fill element. Clamped to [0, 100]. */
+            function setBarPct(elId, pct) {
+                const el = document.getElementById(elId);
+                if (el)
+                    el.style.width = `${Math.max(0, Math.min(100, pct)).toFixed(1)}%`;
+            }
+
+            /* ═══════════════════════════════════════════════════════════════════
+             MAP MARKER  – SVG arrow pointing north, rotated by yaw
+             ═══════════════════════════════════════════════════════════════════ */
+
+            /**
+             * Create a Leaflet divIcon containing a player name label above a
+             * north-pointing SVG arrow, rotated clockwise by headingDeg.
+             *
+             * Layout (fixed 80 px wide container):
+             *   [  pm-label  ]   ← ~16 px tall + 2 px margin
+             *   [  28×28 SVG ]   ← arrow centred
+             *
+             * iconAnchor = [40, 32] pins the SVG centre to the geo position:
+             *   x: 80/2  = 40
+             *   y: 16+2+14 = 32
+             */
+            function makeArrowIcon(color, label, headingDeg) {
+                const sz = 28;
+                // Normalise heading to avoid accumulating huge rotation values.
+                const deg = ((headingDeg % 360) + 360) % 360;
+                const html =
+                    `<div class="pm-wrap">` +
+                    `<div class="pm-label">${escHtml(label)}</div>` +
+                    `<svg width="${sz}" height="${sz}" viewBox="0 0 24 24">` +
+                    `<path transform="rotate(${deg.toFixed(2)},12,12)" ` +
+                    `d="M12 2 L20 21 L12 16 L4 21 Z" ` +
+                    `fill="${color}" stroke="#000" ` +
+                    `stroke-width="1.5" stroke-linejoin="round"/>` +
+                    `</svg>` +
+                    `</div>`;
+                return L.divIcon({
+                    className: "player-arrow-icon",
+                    html,
+                    iconSize: [80, sz + 18],
+                    iconAnchor: [40, 32],
+                });
+            }
+
+            /* ═══════════════════════════════════════════════════════════════════
+             CARD DOM  – create once per player, then patch individual elements
+             ═══════════════════════════════════════════════════════════════════ */
+
+            /**
+             * Build and return the HTML element for a new player card.
+             * All value-holding elements carry predictable ids derived from
+             * the player's safe id so updateCard() can target them cheaply.
+             */
+            function createCard(id, label, color) {
+                const sid = safeId(id);
+                const card = document.createElement("div");
+                card.className = "player-card";
+                card.id = `card-${sid}`;
+                // Coloured left border accent
+                card.style.borderLeftColor = color;
+
+                card.innerHTML = `
+              <div class="card-header">
+                <div class="card-label-row">
+                  <span class="color-dot" style="background:${color};--dot-color:${color}" title="Center on map · Double-click to follow" data-center-player="${escHtml(id)}"></span>
+                  <span class="player-name" id="pname-${sid}" title="Click to rename" data-player-id="${escHtml(id)}">${escHtml(label)}</span>
+                </div>
+                <div class="card-hdr-right">
+                  <span class="car-class-badge" id="car-class-${sid}">—</span>
+                  <span class="race-pos-badge" id="rpos-${sid}" style="display:none"></span>
+                </div>
+              </div>
+
+              <span class="car-detail" id="car-detail-${sid}"></span>
+
+              <div class="card-mid">
+                <div class="card-speed-gear">
+                  <span class="speed-val" id="speed-${sid}"><span class="speed-num">—</span><span class="speed-unit">mph</span></span>
+                  <span class="gear-box" id="gear-${sid}">—</span>
+                </div>
+                <div class="card-pedals">
+                  <div class="pedal-row">
+                    <span class="pedal-lbl t-lbl">T</span>
+                    <div class="bar-track"><div class="bar-fill t-fill" id="t-fill-${sid}" style="width:0%"></div></div>
+                    <span class="pedal-pct" id="t-pct-${sid}">0%</span>
+                  </div>
+                  <div class="pedal-row">
+                    <span class="pedal-lbl b-lbl">B</span>
+                    <div class="bar-track"><div class="bar-fill b-fill" id="b-fill-${sid}" style="width:0%"></div></div>
+                    <span class="pedal-pct" id="b-pct-${sid}">0%</span>
+                  </div>
+                  <div class="pedal-row">
+                    <span class="pedal-lbl c-lbl">C</span>
+                    <div class="bar-track"><div class="bar-fill c-fill" id="c-fill-${sid}" style="width:0%"></div></div>
+                    <span class="pedal-pct" id="c-pct-${sid}">0%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bar-row">
+                <span class="bar-row-label">RPM</span>
+                <div class="bar-track"><div class="bar-fill" id="rpm-fill-${sid}" style="width:0%;background:${color}"></div></div>
+                <span class="bar-row-end" id="rpm-val-${sid}">0</span>
+              </div>
+
+              <div class="tire-row">
+                <div class="tire-cell" id="tfl-${sid}"><span class="tire-pos">FL</span><span class="tire-temp-val">—°</span></div>
+                <div class="tire-cell" id="tfr-${sid}"><span class="tire-pos">FR</span><span class="tire-temp-val">—°</span></div>
+                <div class="tire-cell" id="trl-${sid}"><span class="tire-pos">RL</span><span class="tire-temp-val">—°</span></div>
+                <div class="tire-cell" id="trr-${sid}"><span class="tire-pos">RR</span><span class="tire-temp-val">—°</span></div>
+              </div>
+
+              <div class="lap-row">
+                <span class="lap-num">Lap <span id="lapn-${sid}">—</span></span>
+                <span class="lap-cur" id="lapc-${sid}">--:--.---</span>
+                <span class="lap-best">Best <span id="lapb-${sid}">--:--.---</span></span>
+              </div>
+
+              <div class="offline-overlay" id="offline-${sid}">OFFLINE</div>
+            `;
+
+                return card;
+            }
+
+            /**
+             * Patch every value-holding element in an existing player card to
+             * reflect the latest telemetry packet.  Called on every update.
+             *
+             * All arithmetic is kept local so the function is self-contained;
+             * no shared mutable state outside the player object.
+             */
+            function updateCard(player) {
+                const { packet: p, color } = player;
+                if (!p) return;
+                const sid = safeId(player.id);
+
+                /* Speed + Gear */
+                const speedMph = Math.round(p.speedMs * 2.23694);
+                const speedEl = document.getElementById(`speed-${sid}`);
+                if (speedEl) {
+                    speedEl.innerHTML = `<span class="speed-num">${speedMph}</span><span class="speed-unit">mph</span>`;
+                }
+                const gearStr =
+                    p.gear === 0 ? "R" : p.gear === 11 ? "N" : String(p.gear);
+                setHtml(`gear-${sid}`, gearStr);
+
+                /* RPM bar — colour shifts through player colour → amber → red near limit */
+                const rpmPct =
+                    p.engineMaxRpm > 0
+                        ? Math.min(
+                              100,
+                              (p.currentEngineRpm / p.engineMaxRpm) * 100,
+                          )
+                        : 0;
+                const rpmFill = document.getElementById(`rpm-fill-${sid}`);
+                if (rpmFill) {
+                    rpmFill.style.width = `${rpmPct.toFixed(1)}%`;
+                    rpmFill.style.background =
+                        rpmPct > 90
+                            ? "#ef4444"
+                            : rpmPct > 78
+                              ? "#f59e0b"
+                              : color;
+                }
+                setHtml(
+                    `rpm-val-${sid}`,
+                    Math.round(p.currentEngineRpm).toLocaleString(),
+                );
+
+                /* Pedals – raw 0-255 values → 0-100% */
+                const tPct = Math.round((p.throttle / 255) * 100);
+                const bPct = Math.round((p.brake / 255) * 100);
+                const cPct = Math.round((p.clutch / 255) * 100);
+                setBarPct(`t-fill-${sid}`, tPct);
+                setBarPct(`b-fill-${sid}`, bPct);
+                setBarPct(`c-fill-${sid}`, cPct);
+                setHtml(`t-pct-${sid}`, `${tPct}%`);
+                setHtml(`b-pct-${sid}`, `${bPct}%`);
+                setHtml(`c-pct-${sid}`, `${cPct}%`);
+
+                /* Tyre temperatures */
+                updateTireCell(`tfl-${sid}`, "FL", p.tireTempFl);
+                updateTireCell(`tfr-${sid}`, "FR", p.tireTempFr);
+                updateTireCell(`trl-${sid}`, "RL", p.tireTempRl);
+                updateTireCell(`trr-${sid}`, "RR", p.tireTempRr);
+
+                /* Lap info */
+                const lapNum = p.lapNumber > 0 ? String(p.lapNumber) : "—";
+                setHtml(`lapn-${sid}`, lapNum);
+                setHtml(`lapc-${sid}`, fmtTime(p.currentLap));
+                setHtml(`lapb-${sid}`, fmtTime(p.bestLap));
+
+                /* In-menu detection: carPi === 0 means no car is loaded */
+                const cardEl = document.getElementById(`card-${sid}`);
+                const isInMenu = p.carPi === 0;
+                if (cardEl) {
+                    if (isInMenu) cardEl.dataset.inMenu = "";
+                    else delete cardEl.dataset.inMenu;
+                }
+
+                /* Car class badge – Forza-style, or IN MENU indicator */
+                if (isInMenu) {
+                    setHtml(
+                        `car-class-${sid}`,
+                        `<span class="in-menu-badge">IN MENU</span>`,
+                    );
+                    setHtml(`car-detail-${sid}`, "");
+                } else {
+                    const cls = CAR_CLASSES[p.carClass] ?? "?";
+                    const clsColor = CAR_CLASS_COLORS[p.carClass] ?? "#6b7280";
+                    setHtml(
+                        `car-class-${sid}`,
+                        `<span class="car-class-letter" style="background:${clsColor}">${cls}</span>` +
+                            `<span class="car-pi-val">${p.carPi}</span>`,
+                    );
+
+                    /* Car name or debug ordinal */
+                    const carName =
+                        typeof CAR_NAMES !== "undefined" &&
+                        CAR_NAMES[p.carOrdinal];
+                    if (carName) {
+                        setHtml(`car-detail-${sid}`, escHtml(carName));
+                    } else {
+                        setHtml(
+                            `car-detail-${sid}`,
+                            `<span class="car-ordinal">#${p.carOrdinal}</span>`,
+                        );
+                    }
+                }
+
+                /* Race position badge (hide when 0) */
+                const rposEl = document.getElementById(`rpos-${sid}`);
+                if (rposEl) {
+                    if (p.racePosition > 0) {
+                        rposEl.textContent = `P${p.racePosition}`;
+                        rposEl.style.display = "";
+                    } else {
+                        rposEl.style.display = "none";
+                    }
+                }
+            }
+
+            /**
+             * Style a single tyre cell with temperature-appropriate background/border.
+             */
+            function updateTireCell(elId, pos, temp) {
+                const el = document.getElementById(elId);
+                if (!el) return;
+                const col = tireTempColor(temp);
+                // Use the colour at ~20% opacity as background tint
+                el.style.background = col + "28";
+                el.style.borderColor = col + "80";
+                el.style.color = col;
+                el.innerHTML =
+                    `<span class="tire-pos">${pos}</span>` +
+                    `<span class="tire-temp-val">${Math.round(temp)}°</span>`;
+            }
+
+            /* ═══════════════════════════════════════════════════════════════════
+             PLAYER STATE MANAGEMENT
+             ═══════════════════════════════════════════════════════════════════
+
+             Each player entry:
+               id          – string identifier from server
+               label       – display name
+               color       – CSS colour string (from server)
+               packet      – latest TelemetryPacket | null
+               online      – true while active
+               polyline    – L.Polyline for the driven trace
+               marker      – L.Marker for the current position arrow
+               tracePoints – L.LatLng[] accumulated route points
+               cardEl      – HTMLElement card in #cards-panel
+             ═══════════════════════════════════════════════════════════════════ */
+
+            /** @type {Map<string, object>} */
+            const players = new Map();
+
+            /* ── Follow mode ────────────────────────────────────────────────────────
+             Tracks which player_id (if any) the map should pan to on each update.
+             ─────────────────────────────────────────────────────────────────────── */
+            let followedPlayerId = null;
+
+            function toggleFollow(id) {
+                const panel = document.getElementById("cards-panel");
+                // Remove visual from previously-followed dot (if any)
+                if (followedPlayerId) {
+                    const oldDot = panel.querySelector(
+                        `[data-center-player="${followedPlayerId}"]`,
+                    );
+                    if (oldDot) oldDot.classList.remove("following");
+                }
+                if (followedPlayerId === id) {
+                    // Already following this player — turn off
+                    followedPlayerId = null;
+                } else {
+                    // Start following new player
+                    followedPlayerId = id;
+                    const dot = panel.querySelector(
+                        `[data-center-player="${id}"]`,
+                    );
+                    if (dot) dot.classList.add("following");
+                    centerOnPlayer(id);
+                }
+            }
+
+            /** FH6 car class index → display label. */
+            const CAR_CLASSES = ["D", "C", "B", "A", "S1", "S2", "R"];
+
+            /** Forza-style background colours for each class (matches in-game PI badges). */
+            const CAR_CLASS_COLORS = [
+                "#6b7280", // D – grey
+                "#ca8a04", // C – gold
+                "#16a34a", // B – green
+                "#2563eb", // A – blue
+                "#7c3aed", // S1 – purple
+                "#db2777", // S2 – pink
+                "#dc2626", // R  – red
+            ];
+
+            /**
+             * Allocate map layers, DOM card, and bookkeeping for a brand-new player.
+             */
+            /* ═══════════════════════════════════════════════════════════════════
+             PLAYER RENAME  – persisted in localStorage, no server involvement
+             ═══════════════════════════════════════════════════════════════════ */
+
+            function lsKey(id) {
+                return `fh6.name.${id}`;
+            }
+
+            /** Return the user-set display name for a player, or null if none. */
+            function customName(id) {
+                return localStorage.getItem(lsKey(id)) || null;
+            }
+
+            /** Resolve the label to show: custom name beats server-provided label. */
+            function displayLabel(id, serverLabel) {
+                return customName(id) || serverLabel || id;
+            }
+
+            /**
+             * Persist a new name, update the card DOM and the map marker label.
+             * Pass an empty string to clear the override and revert to the server label.
+             */
+            function renamePlayer(id, newName) {
+                console.log("[rename] renamePlayer called", { id, newName });
+                const player = players.get(id);
+                if (!player) {
+                    console.warn("[rename] player not found", id);
+                    return;
+                }
+
+                const trimmed = newName.trim();
+                if (trimmed) {
+                    localStorage.setItem(lsKey(id), trimmed);
+                    player.displayName = trimmed;
+                } else {
+                    localStorage.removeItem(lsKey(id));
+                    player.displayName = player.label;
+                }
+
+                // Restore / update the name element (may currently be an <input> during edit)
+                const sid = safeId(id);
+                const nameEl = document.getElementById(`pname-${sid}`);
+                console.log(
+                    "[rename] nameEl found:",
+                    nameEl,
+                    "tag:",
+                    nameEl?.tagName,
+                );
+                if (nameEl) {
+                    if (nameEl.tagName === "INPUT") {
+                        // Replace the input with a fresh span
+                        const span = document.createElement("span");
+                        span.className = "player-name";
+                        span.id = `pname-${sid}`;
+                        span.title = "Click to rename";
+                        span.setAttribute("data-player-id", id);
+                        span.textContent = player.displayName;
+                        nameEl.replaceWith(span);
+                        console.log("[rename] input replaced with span");
+                    } else {
+                        nameEl.textContent = player.displayName;
+                        console.log("[rename] span textContent updated");
+                    }
+                } else {
+                    console.warn(
+                        "[rename] pname element not found for sid:",
+                        sid,
+                    );
+                }
+
+                // Keep the map marker in sync
+                if (player.packet && player.markerOnMap) {
+                    const { yaw } = player.packet;
+                    player.marker.setIcon(
+                        makeArrowIcon(
+                            player.color,
+                            player.displayName,
+                            (yaw * 180) / Math.PI,
+                        ),
+                    );
+                }
+            }
+
+            /**
+             * Swap the player-name span for an <input>, focus it, and wire
+             * blur/Enter/Escape to commit or cancel.
+             */
+            function beginRename(id) {
+                console.log("[rename] beginRename called", id);
+                const player = players.get(id);
+                if (!player) {
+                    console.warn("[rename] player not found", id);
+                    return;
+                }
+                const sid = safeId(id);
+                const nameEl = document.getElementById(`pname-${sid}`);
+                console.log(
+                    "[rename] nameEl:",
+                    nameEl,
+                    "tag:",
+                    nameEl?.tagName,
+                );
+                if (!nameEl || nameEl.tagName === "INPUT") return; // already editing
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.id = `pname-${sid}`; // keep same id so renamePlayer can find it
+                input.className = "player-name-input";
+                input.value = player.displayName;
+                input.setAttribute("data-player-id", id);
+
+                nameEl.replaceWith(input);
+                input.focus();
+                input.select();
+                console.log(
+                    "[rename] input shown, active element:",
+                    document.activeElement?.tagName,
+                );
+
+                function commit() {
+                    console.log("[rename] commit fired, value:", input.value);
+                    renamePlayer(id, input.value);
+                }
+                function cancel() {
+                    console.log("[rename] cancel fired");
+                    const span = document.createElement("span");
+                    span.className = "player-name";
+                    span.id = `pname-${sid}`;
+                    span.title = "Click to rename";
+                    span.setAttribute("data-player-id", id);
+                    span.textContent = player.displayName;
+                    input.replaceWith(span);
+                }
+
+                input.addEventListener(
+                    "blur",
+                    (e) => {
+                        console.log(
+                            "[rename] blur fired, relatedTarget:",
+                            e.relatedTarget,
+                        );
+                        commit();
+                    },
+                    { once: true },
+                );
+                input.addEventListener("keydown", (e) => {
+                    console.log("[rename] keydown:", e.key);
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        input.blur();
+                    } else if (e.key === "Escape") {
+                        e.preventDefault();
+                        input.removeEventListener("blur", commit);
+                        cancel();
+                    }
+                });
+            }
+
+            function centerOnPlayer(id) {
+                console.log("[center] centerOnPlayer called", id);
+                const player = players.get(id);
+                console.log(
+                    "[center] player:",
+                    player,
+                    "markerOnMap:",
+                    player?.markerOnMap,
+                );
+                if (!player || !player.markerOnMap) {
+                    console.warn(
+                        "[center] skipped – player missing or no marker",
+                    );
+                    return;
+                }
+                map.panTo(player.marker.getLatLng(), {
+                    animate: true,
+                    duration: 0.4,
+                });
+            }
+
+            // Delegated listeners – handle clicks on player name spans and color dots.
+            // Single click on dot  → center map on player
+            // Double click on dot  → toggle follow mode (map pans with player)
+            let _dotClickTimer = null;
+            document
+                .getElementById("cards-panel")
+                .addEventListener("click", (e) => {
+                    const nameTarget = e.target.closest(
+                        ".player-name[data-player-id]",
+                    );
+                    if (nameTarget) {
+                        beginRename(nameTarget.dataset.playerId);
+                        return;
+                    }
+                    const dotTarget = e.target.closest("[data-center-player]");
+                    if (!dotTarget) return;
+                    const id = dotTarget.dataset.centerPlayer;
+                    // Distinguish single vs double click with a short timer
+                    if (_dotClickTimer !== null) {
+                        clearTimeout(_dotClickTimer);
+                        _dotClickTimer = null;
+                        toggleFollow(id);
+                    } else {
+                        _dotClickTimer = setTimeout(() => {
+                            _dotClickTimer = null;
+                            centerOnPlayer(id);
+                        }, 500);
+                    }
+                });
+
+            /* Max world-unit delta between consecutive positions before we treat it as
+               a fast-travel (teleport). World units ≈ metres in FH6, so 200 = 200 m.
+               Top road-speed is ~83 m/s → ~4 m per packet at 20 Hz.  Safe margin. */
+            const FAST_TRAVEL_THRESHOLD_SQ = 200 * 200;
+
+            function _makePolyline(color) {
+                return L.polyline([], {
+                    color,
+                    weight: 3,
+                    opacity: 0.9,
+                    lineJoin: "round",
+                    lineCap: "round",
+                }).addTo(traceGroup);
+            }
+
+            function createPlayer(id, label, color) {
+                const polyline = _makePolyline(color);
+
+                // Marker starts at 0,0 — will be repositioned on first packet.
+                const marker = L.marker([0, 0], {
+                    icon: makeArrowIcon(color, label, 0),
+                    interactive: false,
+                    zIndexOffset: 1000,
+                });
+                // Don't add to map yet; wait for a valid position.
+
+                const cardEl = createCard(id, label, color);
+
+                // Remove the "waiting" placeholder on first real player.
+                const empty = document.getElementById("empty-state");
+                if (empty) empty.remove();
+
+                document.getElementById("cards-panel").appendChild(cardEl);
+
+                const resolved = displayLabel(id, label);
+
+                return {
+                    id,
+                    label,
+                    displayName: resolved,
+                    color,
+                    packet: null,
+                    online: true,
+                    polyline, // current active segment polyline
+                    allPolylines: [polyline], // all segments (for cleanup)
+                    tracePoints: [], // points in the current active segment
+                    lastPos: null, // [positionX, positionZ] of last drawn point
+                    traceBroken: false, // true → start a fresh segment on next point
+                    telemetryHistory: [],
+                    cardEl,
+                    marker,
+                    markerOnMap: false,
+                };
+            }
+
+            /**
+             * Apply a new packet to an existing player: update the trace, move the
+             * arrow marker, and refresh the card.
+             */
+            function applyPacket(player, packet) {
+                player.packet = packet;
+
+                /* Accumulate history for dashboard traces. */
+                player.telemetryHistory.push({
+                    throttle: packet.throttle,
+                    brake: packet.brake,
+                    speedMs: packet.speedMs,
+                });
+                if (player.telemetryHistory.length > HIST_MAX)
+                    player.telemetryHistory.shift();
+
+                /* Update the card immediately — player.packet is now current.
+                   This must happen before the trace block so that any exception
+                   in the map/Leaflet code cannot leave the card in a stale state. */
+                updateCard(player);
+
+                const { positionX, positionZ, yaw } = packet;
+                const isInMenu = packet.carPi === 0;
+
+                try {
+                    if (!isInMenu && (positionX !== 0 || positionZ !== 0)) {
+                        const latlng = worldToLatLng(positionX, positionZ);
+                        const headingDeg = (yaw * 180) / Math.PI;
+
+                        /* ── Trace — detect fast travel or post-menu re-entry ── */
+                        let needsBreak = player.traceBroken;
+                        if (!needsBreak && player.lastPos) {
+                            const dx = positionX - player.lastPos[0];
+                            const dz = positionZ - player.lastPos[1];
+                            if (dx * dx + dz * dz > FAST_TRAVEL_THRESHOLD_SQ) {
+                                needsBreak = true;
+                            }
+                        }
+
+                        if (needsBreak) {
+                            /* Start a new polyline segment so no line is drawn back to the
+                           previous position (fast travel or first point after menu). */
+                            const seg = _makePolyline(player.color);
+                            seg.addLatLng(latlng);
+                            player.polyline = seg;
+                            player.allPolylines.push(seg);
+                            player.tracePoints = [latlng];
+                            player.traceBroken = false;
+
+                            /* Prune the oldest segment once we accumulate too many. */
+                            const totalPts = player.allPolylines.reduce(
+                                (s, p) => s + p.getLatLngs().length,
+                                0,
+                            );
+                            if (
+                                totalPts > MAX_TRACE_PTS &&
+                                player.allPolylines.length > 1
+                            ) {
+                                player.allPolylines.shift().remove();
+                            }
+                        } else {
+                            /* Normal incremental append — O(1), no full redraw. */
+                            player.tracePoints.push(latlng);
+                            if (player.tracePoints.length > MAX_TRACE_PTS) {
+                                player.tracePoints.splice(0, 100);
+                                player.polyline.setLatLngs(player.tracePoints);
+                            } else {
+                                player.polyline.addLatLng(latlng);
+                            }
+                        }
+
+                        player.lastPos = [positionX, positionZ];
+
+                        /* ── Arrow marker ── */
+                        if (!player.markerOnMap) {
+                            player.marker.addTo(markerGroup);
+                            player.markerOnMap = true;
+                        }
+                        player.marker.setLatLng(latlng);
+                        player.marker.setIcon(
+                            makeArrowIcon(
+                                player.color,
+                                player.displayName,
+                                headingDeg,
+                            ),
+                        );
+
+                        /* ── Follow mode: pan map to keep this player centred ── */
+                        if (followedPlayerId === player.id) {
+                            map.panTo(latlng, {
+                                animate: true,
+                                duration: 0.25,
+                            });
+                        }
+                    } else if (isInMenu) {
+                        /* In menu — break trace so re-entry starts a fresh segment. */
+                        player.traceBroken = true;
+                        player.lastPos = null;
+                    }
+                } catch (err) {
+                    console.warn("[trace] error:", err);
+                }
+            }
+
+            /** Show the OFFLINE overlay on the player's card. */
+            function markPlayerOffline(player) {
+                player.online = false;
+                const ov = document.getElementById(
+                    `offline-${safeId(player.id)}`,
+                );
+                if (ov) ov.style.display = "flex";
+                // Cancel follow if this player went offline
+                if (followedPlayerId === player.id) {
+                    const dot = document
+                        .getElementById(`card-${safeId(player.id)}`)
+                        ?.querySelector("[data-center-player]");
+                    if (dot) dot.classList.remove("following");
+                    followedPlayerId = null;
+                }
+            }
+
+            /* ═══════════════════════════════════════════════════════════════════
+             WEBSOCKET  &  MESSAGE HANDLING
+             ═══════════════════════════════════════════════════════════════════
+
+             Expected message shapes
+             ────────────────────────
+             State (sent once on connect, initialises all live players):
+               { "type": "state",
+                 "players": [ { "id": "…", "label": "…", "color": "#…",
+                                "packet": { …TelemetryPacket camelCase… } } ] }
+
+             Update (one player's latest telemetry frame):
+               { "type": "update",
+                 "id": "…", "label": "…", "color": "#…",
+                 "packet": { …TelemetryPacket camelCase… } }
+
+             Player left:
+               { "type": "player_left", "id": "…" }
+             ═══════════════════════════════════════════════════════════════════ */
+
+            let ws = null;
+            let reconnectTimer = null;
+
+            function connect() {
+                if (ws) return;
+                setConnStatus("reconnecting", "● CONNECTING…");
+
+                ws = new WebSocket(`ws://${location.host}/ws`);
+
+                ws.addEventListener("open", () => {
+                    setConnStatus("connected", "● CONNECTED");
+                    clearTimeout(reconnectTimer);
+                    reconnectTimer = null;
+                });
+
+                ws.addEventListener("close", () => {
+                    setConnStatus("disconnected", "● DISCONNECTED");
+                    ws = null;
+                    reconnectTimer = setTimeout(connect, 3000);
+                });
+
+                ws.addEventListener("error", () => {
+                    // 'close' fires right after, which handles reconnect.
+                    ws && ws.close();
+                });
+
+                ws.addEventListener("message", (evt) => {
+                    let msg;
+                    try {
+                        msg = JSON.parse(evt.data);
+                    } catch {
+                        return;
+                    }
+                    handleMessage(msg);
+                });
+            }
+
+            function handleMessage(msg) {
+                switch (msg.type) {
+                    case "state": {
+                        // players is a dict {ip: {id, label, color, active, packet}}
+                        const dict =
+                            msg.players && typeof msg.players === "object"
+                                ? msg.players
+                                : {};
+                        for (const entry of Object.values(dict)) {
+                            upsertPlayer(entry);
+                        }
+                        break;
+                    }
+                    case "update": {
+                        // {type, player_id, packet, trace} — normalise to upsertPlayer shape
+                        upsertPlayer({
+                            id: msg.player_id,
+                            packet: msg.packet,
+                            trace: msg.trace,
+                        });
+                        break;
+                    }
+                    case "player_left": {
+                        const player = players.get(String(msg.player_id));
+                        if (player) markPlayerOffline(player);
+                        break;
+                    }
+                    default:
+                        // Unknown message type – silently ignore.
+                        break;
+                }
+            }
+
+            /**
+             * Create a player if not yet seen, or update an existing one.
+             * Accepts the shape used by both 'state' array entries and 'update'.
+             */
+            function upsertPlayer({ id, label, color, packet, trace }) {
+                id = String(id);
+
+                let player = players.get(id);
+                if (!player) {
+                    // Fall back to sensible defaults if the server omits fields.
+                    const resolvedColor = color || "#3b82f6";
+                    const resolvedLabel = label || id;
+                    player = createPlayer(id, resolvedLabel, resolvedColor);
+                    // Patch the card name element to show the resolved display name
+                    // (createCard receives label, but displayName may differ via localStorage)
+                    const sid = safeId(id);
+                    const nameEl = document.getElementById(`pname-${sid}`);
+                    if (nameEl) nameEl.textContent = player.displayName;
+                    players.set(id, player);
+
+                    /* Auto-follow the first (and only) player — user can double-click
+                       the dot to toggle off.  Don't override a follow already in progress. */
+                    if (players.size === 1 && followedPlayerId === null) {
+                        toggleFollow(id);
+                    }
+                }
+
+                // A player that reconnects should clear the OFFLINE overlay.
+                if (!player.online) {
+                    player.online = true;
+                    const ov = document.getElementById(`offline-${safeId(id)}`);
+                    if (ov) ov.style.display = "none";
+                }
+
+                if (packet) {
+                    applyPacket(player, packet, trace);
+                }
+            }
+
+            /* ── Connection indicator ─────────────────────────────────────────── */
+
+            function setConnStatus(cssClass, text) {
+                const el = document.getElementById("conn-status");
+                if (!el) return;
+                el.textContent = text;
+                el.className = `conn-status ${cssClass}`;
+            }
+
+            /* ═══════════════════════════════════════════════════════════════════
+             PANEL RESIZER
+             Drag #resizer to adjust the map / cards split.
+             Direction: left-right on landscape/desktop, top-bottom on portrait.
+             The split percentage is persisted in localStorage.
+             ═══════════════════════════════════════════════════════════════════ */
+            (function initResizer() {
+                const resizer = document.getElementById("resizer");
+                const mapPanel = document.getElementById("map-panel");
+                const cardsPanel = document.getElementById("cards-panel");
+                const layout = document.getElementById("main-layout");
+
+                function isRow() {
+                    return layout.classList.contains("split-row");
+                }
+
+                function applyPct(pct) {
+                    if (isRow()) {
+                        // Row mode: flex-basis drives width directly.
+                        mapPanel.style.height = "";
+                        cardsPanel.style.height = "";
+                        mapPanel.style.flex = `0 0 ${pct.toFixed(2)}%`;
+                        cardsPanel.style.flex = `0 0 ${(100 - pct).toFixed(2)}%`;
+                    } else {
+                        // Column mode: set explicit pixel heights.
+                        // flex-basis percentages in column containers are computed
+                        // against the container height, which works in spec-compliant
+                        // browsers, but using px is more reliable across iOS Safari.
+                        mapPanel.style.flex = "0 0 auto";
+                        cardsPanel.style.flex = "0 0 auto";
+                        const resizerPx = 5; // matches CSS height: 5px
+                        const totalH =
+                            layout.getBoundingClientRect().height ||
+                            window.innerHeight - 46;
+                        const usable = Math.max(0, totalH - resizerPx);
+                        const mapH = Math.round((pct / 100) * usable);
+                        mapPanel.style.height = `${mapH}px`;
+                        cardsPanel.style.height = `${usable - mapH}px`;
+                    }
+                }
+
+                function currentPct() {
+                    if (isRow()) {
+                        const m = (mapPanel.style.flex || "").match(
+                            /0 0 ([0-9.]+)%/,
+                        );
+                        return m ? parseFloat(m[1]) : 65;
+                    } else {
+                        const resizerPx = 5;
+                        const totalH =
+                            layout.getBoundingClientRect().height - resizerPx;
+                        const mapH = mapPanel.getBoundingClientRect().height;
+                        return totalH > 0 ? (mapH / totalH) * 100 : 55;
+                    }
+                }
+
+                function restoreSplit() {
+                    const key = isRow() ? "fh6.split.row" : "fh6.split.col";
+                    const def = isRow() ? 65 : 55;
+                    const saved = parseFloat(localStorage.getItem(key));
+                    applyPct(saved >= 10 && saved <= 90 ? saved : def);
+                }
+
+                function applyOrientation() {
+                    const row =
+                        window.innerWidth >= window.innerHeight ||
+                        window.innerWidth >= 640;
+                    layout.classList.toggle("split-row", row);
+                    layout.classList.toggle("split-col", !row);
+                    restoreSplit();
+                    map.invalidateSize();
+                }
+
+                let dragging = false,
+                    startPos = 0,
+                    startPct = 0;
+
+                function eventPos(e) {
+                    const src = e.touches?.[0] ?? e.changedTouches?.[0] ?? e;
+                    return isRow() ? src.clientX : src.clientY;
+                }
+
+                function onStart(e) {
+                    dragging = true;
+                    startPos = eventPos(e);
+                    startPct = currentPct();
+                    resizer.classList.add("dragging");
+                    document.body.style.userSelect = "none";
+                    document.body.style.cursor = isRow()
+                        ? "col-resize"
+                        : "row-resize";
+                    e.preventDefault();
+                }
+
+                function onMove(e) {
+                    if (!dragging) return;
+                    const totalPx = isRow()
+                        ? layout.getBoundingClientRect().width
+                        : layout.getBoundingClientRect().height;
+                    if (!totalPx) return;
+                    const newPct = Math.max(
+                        10,
+                        Math.min(
+                            90,
+                            startPct +
+                                ((eventPos(e) - startPos) / totalPx) * 100,
+                        ),
+                    );
+                    applyPct(newPct);
+                    map.invalidateSize();
+                }
+
+                function onEnd() {
+                    if (!dragging) return;
+                    dragging = false;
+                    resizer.classList.remove("dragging");
+                    document.body.style.userSelect = "";
+                    document.body.style.cursor = "";
+                    const key = isRow() ? "fh6.split.row" : "fh6.split.col";
+                    localStorage.setItem(key, currentPct().toFixed(2));
+                    map.invalidateSize();
+                }
+
+                resizer.addEventListener("mousedown", onStart);
+                document.addEventListener("mousemove", onMove);
+                document.addEventListener("mouseup", onEnd);
+                resizer.addEventListener("touchstart", onStart, {
+                    passive: false,
+                });
+                document.addEventListener("touchmove", onMove, {
+                    passive: false,
+                });
+                document.addEventListener("touchend", onEnd);
+
+                window.addEventListener("resize", applyOrientation);
+                applyOrientation();
+            })();
+
+            /* ── Service Worker registration ──────────────────────────────────────── */
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker
+                    .register("/sw.js")
+                    .catch((err) =>
+                        console.warn("[SW] registration failed:", err),
+                    );
+            }
+
+            /* ═══════════════════════════════════════════════════════════════════
+             DASHBOARD VIEW
+             ═══════════════════════════════════════════════════════════════════ */
+
+            const HIST_MAX = 400;
+            let dashId = null;
+            let dashRaf = null;
+
+            function dashEnter() {
+                const ids = [...players.keys()];
+                if (ids.length === 1) {
+                    dashPick(ids[0]);
+                } else {
+                    dashShowPicker();
+                }
+            }
+
+            function dashShowPicker() {
+                document.getElementById("dash-picker").style.display = "";
+                document.getElementById("dash-telem").style.display = "none";
+                const list = document.getElementById("dash-picker-list");
+                list.innerHTML = "";
+
+                if (players.size === 0) {
+                    list.innerHTML = `<p style="color:var(--tx-xdim);font-size:12px">Waiting for players…</p>`;
+                    return;
+                }
+
+                for (const [id, pl] of players) {
+                    const p = pl.packet;
+                    const carName =
+                        (typeof CAR_NAMES !== "undefined" &&
+                            p &&
+                            CAR_NAMES[p.carOrdinal]) ||
+                        "";
+                    const cls = p ? (CAR_CLASSES[p.carClass] ?? "?") : "?";
+                    const clsColor = p
+                        ? (CAR_CLASS_COLORS[p.carClass] ?? "#6b7280")
+                        : "#6b7280";
+                    const speed = p ? Math.round(p.speedMs * 2.23694) : 0;
+                    const gear = p
+                        ? p.gear === 0
+                            ? "R"
+                            : p.gear === 11
+                              ? "N"
+                              : String(p.gear)
+                        : "—";
+
+                    const card = document.createElement("button");
+                    card.className = "dpk-card";
+                    card.style.borderColor = pl.color;
+                    card.innerHTML = `
+                        <div class="dpk-name">
+                            <span class="dpk-dot" style="background:${pl.color}"></span>
+                            ${escHtml(pl.displayName)}
+                        </div>
+                        ${carName ? `<div class="dpk-car">${escHtml(carName)}</div>` : ""}
+                        <div class="dpk-stats">
+                            <div>
+                                <div class="dpk-stat-val">${speed}<span style="font-size:10px;font-weight:400"> mph</span></div>
+                                <div>Speed</div>
+                            </div>
+                            <div>
+                                <div class="dpk-stat-val">${gear}</div>
+                                <div>Gear</div>
+                            </div>
+                            <div>
+                                <span class="car-class-letter" style="background:${clsColor}">${cls}</span>
+                                ${p ? `<span class="car-pi-val">${p.carPi}</span>` : ""}
+                            </div>
+                        </div>
+                    `;
+                    card.addEventListener("click", () => dashPick(id));
+                    list.appendChild(card);
+                }
+            }
+
+            /* Cached DOM refs for the dashboard hot path — populated in dashPick. */
+            let _dr = {};
+
+            function dashPick(id) {
+                dashId = id;
+                document.getElementById("dash-picker").style.display = "none";
+                document.getElementById("dash-telem").style.display = "flex";
+
+                const pl = players.get(id);
+                document.getElementById("dh-dot").style.background = pl.color;
+                document.getElementById("dh-name").textContent = pl.displayName;
+
+                _dr = {
+                    telemEl: document.getElementById("dash-telem"),
+                    rev: document.getElementById("dash-rev"),
+                    gear: document.getElementById("d-gear"),
+                    spd: document.getElementById("d-spd"),
+                    rpmVal: document.getElementById("dt-rpm-val"),
+                    boostVal: document.getElementById("dt-boost-val"),
+                    boostFill: document.getElementById("dt-boost-fill"),
+                    dpT: document.getElementById("dp-t"),
+                    dpB: document.getElementById("dp-b"),
+                    dpC: document.getElementById("dp-c"),
+                    dpTp: document.getElementById("dp-tp"),
+                    dpBp: document.getElementById("dp-bp"),
+                    dpCp: document.getElementById("dp-cp"),
+                    dtFl: document.getElementById("dt-fl"),
+                    dtFr: document.getElementById("dt-fr"),
+                    dtRl: document.getElementById("dt-rl"),
+                    dtRr: document.getElementById("dt-rr"),
+                    dtwfFl: document.getElementById("dtwf-fl"),
+                    dtwfFr: document.getElementById("dtwf-fr"),
+                    dtwfRl: document.getElementById("dtwf-rl"),
+                    dtwfRr: document.getElementById("dtwf-rr"),
+                    dtwFl: document.getElementById("dtw-fl"),
+                    dtwFr: document.getElementById("dtw-fr"),
+                    dtwRl: document.getElementById("dtw-rl"),
+                    dtwRr: document.getElementById("dtw-rr"),
+                    cur: document.getElementById("d-cur"),
+                    best: document.getElementById("d-best"),
+                    last: document.getElementById("d-last"),
+                    lapnum: document.getElementById("d-lapnum"),
+                    fuel: document.getElementById("d-fuel"),
+                    fuelFill: document.getElementById("dt-fuel-fill"),
+                    pwr: document.getElementById("d-pwr"),
+                    hb: document.getElementById("d-hb"),
+                    steerNeedle: document.getElementById("dt-steer-needle"),
+                    dhCar: document.getElementById("dh-car"),
+                    dhClass: document.getElementById("dh-class"),
+                    dhPos: document.getElementById("dh-pos"),
+                    dhLap: document.getElementById("dh-lap"),
+                };
+
+                if (!dashRaf) dashRaf = requestAnimationFrame(dashFrame);
+            }
+
+            function dashFrame() {
+                if (document.body.getAttribute("data-tab") !== "dashboard") {
+                    dashRaf = null;
+                    return;
+                }
+                const pl = players.get(dashId);
+                if (!pl || !pl.packet) {
+                    dashRaf = requestAnimationFrame(dashFrame);
+                    return;
+                }
+                try {
+                    const p = pl.packet;
+                    const dr = _dr;
+                    const isInMenu = p.carPi === 0;
+
+                    /* Menu state toggle — dims live sections via CSS, keeps lap info */
+                    dr.telemEl.toggleAttribute("data-in-menu", isInMenu);
+
+                    /* Header (always) */
+                    const carName =
+                        (typeof CAR_NAMES !== "undefined" &&
+                            CAR_NAMES[p.carOrdinal]) ||
+                        `#${p.carOrdinal}`;
+                    const cls = CAR_CLASSES[p.carClass] ?? "?";
+                    const clsColor = CAR_CLASS_COLORS[p.carClass] ?? "#6b7280";
+                    dr.dhCar.textContent = isInMenu ? "" : carName;
+                    dr.dhClass.innerHTML = isInMenu
+                        ? ""
+                        : `<span class="car-class-letter" style="background:${clsColor}">${cls}</span>` +
+                          `<span class="car-pi-val">${p.carPi}</span>`;
+                    dr.dhPos.textContent =
+                        p.racePosition > 0 ? `P${p.racePosition}` : "";
+                    dr.dhPos.style.display = p.racePosition > 0 ? "" : "none";
+                    dr.dhLap.textContent = `Lap ${p.lapNumber > 0 ? p.lapNumber : "—"}`;
+
+                    /* Live telemetry — only meaningful when in-game */
+                    if (!isInMenu) {
+                        /* Rev bar */
+                        dashDrawRevBar(
+                            dr.rev,
+                            p.currentEngineRpm,
+                            p.engineMaxRpm,
+                        );
+
+                        /* Speed */
+                        dr.spd.textContent = Math.round(p.speedMs * 2.23694);
+
+                        /* Gear + RPM colour */
+                        const gearStr =
+                            p.gear === 0
+                                ? "R"
+                                : p.gear === 11
+                                  ? "N"
+                                  : String(p.gear);
+                        const rpmPct =
+                            p.engineMaxRpm > 0
+                                ? p.currentEngineRpm / p.engineMaxRpm
+                                : 0;
+                        const gearColor =
+                            rpmPct > 0.9
+                                ? "#ef4444"
+                                : rpmPct > 0.78
+                                  ? "#f59e0b"
+                                  : "#ffffff";
+                        const gearGlow =
+                            rpmPct > 0.9
+                                ? "0 0 40px rgba(239,68,68,0.8), 0 0 80px rgba(239,68,68,0.3)"
+                                : rpmPct > 0.78
+                                  ? "0 0 40px rgba(245,158,11,0.7), 0 0 80px rgba(245,158,11,0.2)"
+                                  : "0 0 30px rgba(59,130,246,0.5), 0 0 70px rgba(59,130,246,0.15)";
+                        dr.gear.textContent = gearStr;
+                        dr.gear.style.color = gearColor;
+                        dr.gear.style.textShadow = gearGlow;
+
+                        /* RPM text */
+                        dr.rpmVal.textContent = `${Math.round(p.currentEngineRpm).toLocaleString()} rpm`;
+
+                        /* Boost */
+                        const boostPos = Math.max(0, p.boost);
+                        const boostPct = Math.min(100, (boostPos / 2.0) * 100);
+                        const boostColor =
+                            boostPos > 1.5
+                                ? "#ef4444"
+                                : boostPos > 0.8
+                                  ? "#f59e0b"
+                                  : "#3b82f6";
+                        dr.boostVal.textContent = p.boost.toFixed(2);
+                        dr.boostVal.style.color =
+                            boostPos > 0 ? boostColor : "var(--tx)";
+                        dr.boostFill.style.width = `${boostPct.toFixed(1)}%`;
+                        dr.boostFill.style.background = boostColor;
+
+                        /* Pedals — horizontal bars, no CSS transition */
+                        const tPct = Math.round((p.throttle / 255) * 100);
+                        const bPct = Math.round((p.brake / 255) * 100);
+                        const cPct = Math.round((p.clutch / 255) * 100);
+                        dr.dpT.style.width = `${tPct}%`;
+                        dr.dpB.style.width = `${bPct}%`;
+                        dr.dpC.style.width = `${cPct}%`;
+                        dr.dpTp.textContent = `${tPct}%`;
+                        dr.dpBp.textContent = `${bPct}%`;
+                        dr.dpCp.textContent = `${cPct}%`;
+
+                        /* Steering — steer is signed byte −128…127; map to 0–100% */
+                        const steerNorm = (p.steer + 128) / 255;
+                        dr.steerNeedle.style.left = `${(steerNorm * 100).toFixed(1)}%`;
+
+                        /* Tires */
+                        dashDrawTire(dr.dtFl, p.tireTempFl);
+                        dashDrawTire(dr.dtFr, p.tireTempFr);
+                        dashDrawTire(dr.dtRl, p.tireTempRl);
+                        dashDrawTire(dr.dtRr, p.tireTempRr);
+
+                        /* Tire wear (optional field) */
+                        const hasWear = p.tireWearFl != null;
+                        [
+                            [dr.dtwFl, dr.dtwfFl, p.tireWearFl],
+                            [dr.dtwFr, dr.dtwfFr, p.tireWearFr],
+                            [dr.dtwRl, dr.dtwfRl, p.tireWearRl],
+                            [dr.dtwRr, dr.dtwfRr, p.tireWearRr],
+                        ].forEach(([bar, fill, wear]) => {
+                            if (!bar || !fill) return;
+                            if (hasWear) {
+                                bar.style.display = "";
+                                const remaining = Math.max(0, 1 - (wear ?? 0));
+                                fill.style.width = `${(remaining * 100).toFixed(1)}%`;
+                                fill.style.background =
+                                    remaining < 0.3
+                                        ? "#ef4444"
+                                        : remaining < 0.6
+                                          ? "#f59e0b"
+                                          : "#22c55e";
+                            } else {
+                                bar.style.display = "none";
+                            }
+                        });
+
+                        /* Power (W → hp) */
+                        const hp = Math.round(Math.abs(p.power) / 745.7);
+                        dr.pwr.textContent = `${hp} hp`;
+
+                        /* Handbrake */
+                        dr.hb.classList.toggle("active", p.handbrake > 0);
+                    }
+
+                    /* Lap times and fuel — valid in menu too */
+                    dr.cur.textContent = fmtTime(p.currentLap);
+                    dr.best.textContent = fmtTime(p.bestLap);
+                    dr.last.textContent = fmtTime(p.lastLap);
+                    dr.lapnum.textContent =
+                        p.lapNumber > 0 ? String(p.lapNumber) : "—";
+
+                    const fuelPct = Math.round(
+                        Math.max(0, Math.min(1, p.fuel)) * 100,
+                    );
+                    dr.fuel.textContent = `${fuelPct}%`;
+                    dr.fuelFill.style.width = `${fuelPct}%`;
+                    dr.fuelFill.style.background =
+                        fuelPct < 20
+                            ? "#ef4444"
+                            : fuelPct < 40
+                              ? "#f59e0b"
+                              : "#22c55e";
+                } catch (err) {
+                    console.warn("[dash] frame error:", err);
+                }
+                dashRaf = requestAnimationFrame(dashFrame);
+            }
+
+            function dashDrawTire(el, tempC) {
+                if (!el) return;
+                const col = tireTempColor(tempC);
+                el.style.background = col + "28";
+                el.style.borderColor = col + "80";
+                const t = el.querySelector(".dtt-temp");
+                if (t) {
+                    t.textContent = `${Math.round(tempC)}°`;
+                    t.style.color = col;
+                }
+            }
+
+            function dashDrawRevBar(canvas, rpm, maxRpm) {
+                const W = canvas.width,
+                    H = canvas.height;
+                if (!W || !H) return;
+                const dpr = window.devicePixelRatio || 1;
+                const ctx = canvas.getContext("2d");
+                const N = 20,
+                    pad = 8 * dpr,
+                    gap = 3 * dpr;
+                const segW = (W - pad * 2 - gap * (N - 1)) / N;
+                const pct = maxRpm > 0 ? Math.min(1, rpm / maxRpm) : 0;
+                const lit = Math.round(pct * N);
+
+                ctx.clearRect(0, 0, W, H);
+                for (let i = 0; i < N; i++) {
+                    const x = pad + i * (segW + gap);
+                    const on =
+                        i < 10 ? "#22c55e" : i < 15 ? "#f59e0b" : "#ef4444";
+                    const off =
+                        i < 10 ? "#051a0b" : i < 15 ? "#1a1100" : "#1a0303";
+                    ctx.shadowColor = on;
+                    ctx.shadowBlur = i < lit ? 8 * dpr : 0;
+                    ctx.fillStyle = i < lit ? on : off;
+                    ctx.beginPath();
+                    ctx.roundRect(x, 2 * dpr, segW, H - 4 * dpr, 2 * dpr);
+                    ctx.fill();
+                }
+                ctx.shadowBlur = 0;
+            }
+
+            function dashDrawTraces(canvas, history) {
+                const W = canvas.width,
+                    H = canvas.height;
+                if (!W || !H) return;
+                const dpr = window.devicePixelRatio || 1;
+                const ctx = canvas.getContext("2d");
+
+                ctx.fillStyle = "#020609";
+                ctx.fillRect(0, 0, W, H);
+                if (history.length < 2) return;
+
+                const N = Math.min(history.length, Math.ceil(W));
+                const s = history.length - N;
+                const dx = W / N;
+                const lh = H / 3;
+
+                /* dividers */
+                ctx.strokeStyle = "rgba(255,255,255,0.05)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(0, lh);
+                ctx.lineTo(W, lh);
+                ctx.moveTo(0, lh * 2);
+                ctx.lineTo(W, lh * 2);
+                ctx.stroke();
+
+                /* speed – slate line (top lane) */
+                const maxSpd = history.reduce(
+                    (m, h) => Math.max(m, h.speedMs),
+                    0.1,
+                );
+                ctx.strokeStyle = "rgba(148,163,184,0.85)";
+                ctx.lineWidth = 1.5 * dpr;
+                ctx.beginPath();
+                for (let i = 0; i < N; i++) {
+                    const h = history[s + i];
+                    const x = i * dx;
+                    const y = lh - (h.speedMs / maxSpd) * (lh - 2 * dpr);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+
+                /* throttle – green fill (middle lane) */
+                ctx.fillStyle = "rgba(34,197,94,0.75)";
+                ctx.beginPath();
+                ctx.moveTo(0, lh * 2);
+                for (let i = 0; i < N; i++) {
+                    const h = history[s + i];
+                    ctx.lineTo(
+                        i * dx,
+                        lh + lh - (h.throttle / 255) * (lh - 2 * dpr),
+                    );
+                }
+                ctx.lineTo((N - 1) * dx, lh * 2);
+                ctx.closePath();
+                ctx.fill();
+
+                /* brake – red fill (bottom lane) */
+                ctx.fillStyle = "rgba(239,68,68,0.75)";
+                ctx.beginPath();
+                ctx.moveTo(0, H);
+                for (let i = 0; i < N; i++) {
+                    const h = history[s + i];
+                    ctx.lineTo(
+                        i * dx,
+                        lh * 2 + lh - (h.brake / 255) * (lh - 2 * dpr),
+                    );
+                }
+                ctx.lineTo((N - 1) * dx, H);
+                ctx.closePath();
+                ctx.fill();
+
+                /* labels */
+                const sz = Math.max(8, 9 * dpr);
+                ctx.font = `${sz}px "Courier New",monospace`;
+                ctx.fillStyle = "rgba(148,163,184,0.4)";
+                ctx.fillText("SPD", 5 * dpr, 11 * dpr);
+                ctx.fillStyle = "rgba(34,197,94,0.5)";
+                ctx.fillText("THR", 5 * dpr, lh + 11 * dpr);
+                ctx.fillStyle = "rgba(239,68,68,0.5)";
+                ctx.fillText("BRK", 5 * dpr, lh * 2 + 11 * dpr);
+            }
+
+            /* Keep canvas pixel dimensions in sync with CSS layout.
+               ResizeObserver fires as soon as the element becomes visible,
+               so canvas.width/height are always valid before dashFrame draws. */
+            (function initDashCanvasSizing() {
+                const dpr = window.devicePixelRatio || 1;
+                const ro = new ResizeObserver(function (entries) {
+                    for (const e of entries) {
+                        const el = e.target;
+                        const w = Math.round(e.contentRect.width * dpr);
+                        const h = Math.round(e.contentRect.height * dpr);
+                        if (w > 0 && h > 0) {
+                            el.width = w;
+                            el.height = h;
+                        }
+                    }
+                });
+                ro.observe(document.getElementById("dash-rev"));
+            })();
+
+            /* ── Tab switching ─────────────────────────────────────────────────── */
+            (function initTabs() {
+                function setTab(tab) {
+                    document.body.setAttribute("data-tab", tab);
+                    document
+                        .querySelectorAll(".tab-btn")
+                        .forEach(function (btn) {
+                            btn.classList.toggle(
+                                "active",
+                                btn.dataset.tab === tab,
+                            );
+                        });
+                    if (tab === "map") {
+                        if (dashRaf) {
+                            cancelAnimationFrame(dashRaf);
+                            dashRaf = null;
+                        }
+                        setTimeout(function () {
+                            map.invalidateSize();
+                        }, 10);
+                    } else {
+                        dashEnter();
+                    }
+                }
+
+                document.querySelectorAll(".tab-btn").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        setTab(btn.dataset.tab);
+                    });
+                });
+
+                setTab("map");
+            })();
+
+            /* ── Bootstrap ────────────────────────────────────────────────────── */
+            connect();
+        </script>
+    </body>
+</html>

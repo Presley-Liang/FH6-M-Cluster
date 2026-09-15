@@ -1,0 +1,9 @@
+FH6 track catalog data adapted from LapScope:
+https://github.com/darcane/LapScope
+
+MIT License
+Copyright (c) 2026 Erdem Darcan
+
+The complete upstream license is retained at references/LapScope/LICENSE.
+The imported catalog is a 2026-09-09 unversioned main snapshot containing
+77 routes. Runtime code reads the JSON directly and has no Python dependency.

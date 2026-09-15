@@ -1,0 +1,7 @@
+node_modules/
+sessions/
+sessions-preview-*/
+.claude
+.docs
+dist/
+.env
