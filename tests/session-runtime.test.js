@@ -93,7 +93,7 @@ test('AUTO: confirmed game activity switches Free Roam and Race without mode fla
   assert.equal(runtime.freeRoamRecording, false);
 });
 
-test('MANUAL mode holds its choice until AUTO resumes the settled activity', async t => {
+test('AUTO: settled activity repairs a drive-mode mismatch without requiring a new detector event', async t => {
   const directory = await mkdtemp(resolve(tmpdir(), 'fh6-runtime-auto-reconcile-test-'));
   const store = new SessionStore(directory);
   await store.init();
@@ -114,12 +114,7 @@ test('MANUAL mode holds its choice until AUTO resumes the settled activity', asy
 
   result = runtime.process({ ...roaming, positionX: 11 }, 17);
   assert.equal(result.eventVersion, settledVersion);
-  assert.equal(result.driveMode, 'race');
-  assert.equal(runtime.state().modeControl, 'manual');
-
-  await runtime.setModeControl('auto');
-  assert.equal(runtime.state().driveMode, 'freeRoam');
-  assert.equal(runtime.state().eventVersion, settledVersion);
+  assert.equal(result.driveMode, 'freeRoam');
   assert.equal(runtime.state().modeSource, 'auto');
 });
 

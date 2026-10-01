@@ -98,21 +98,17 @@ test('P3-V dual material layer and unknown channels are explicit',()=>{
  assert.match(source,/tyreTemperatures/);assert.match(source,/tyreNeedle\.style\.setProperty\('--tyre-angle'/);
  new vm.Script('('+source+')');
 });
-test('DYN four-corner radar keeps real telemetry bindings without a vehicle illustration',()=>{
+test('P9-V DYN is one stable spatial cockpit with transform-driven controls',()=>{
  const html=clusterShell();
  assert.equal((html.match(/class="cluster-page dyn-page"/g)||[]).length,1);
- assert.ok(html.includes('class="dyn-radar"'));
- assert.ok(html.includes('class="g-target"'));
- assert.ok(!html.includes('class="vehicle-top"'));
+ assert.ok(html.includes('class="vehicle-cockpit"'));
  for(const wheel of ['fl','fr','rl','rr']){
   for(const token of [`class="wheel wheel-${wheel}"`,`id="temp-${wheel}"`,`id="temp-${wheel}-bar"`,`data-wheel="${wheel}-combined"`,`data-wheel="${wheel}-travel-bar"`]) assert.ok(html.includes(token),token);
  }
  for(const input of ['throttle','brake','clutch','handbrake']){
   assert.ok(html.includes(`id="${input}"`));assert.ok(html.includes(`id="${input}-bar"`));
  }
- for(const id of ['steer','steer-fill','steer-pip','g-dot','g-magnitude','power','boost'])assert.ok(html.includes(`id="${id}"`),id);
- assert.ok(html.includes('data-value="torque"'));
- assert.match(clusterCSS,/\.dyn-page \.pedal-grid\{display:grid;grid-template-columns:repeat\(4/);
+ for(const id of ['steer','steer-fill','steer-pip','g-dot'])assert.ok(html.includes(`id="${id}"`),id);
  assert.match(clusterCSS,/\.dyn-page\{overflow:hidden!important/);
  assert.match(clusterCSS,/data-stale=true\] \.dyn-page\.active\{opacity:\.42/);
  assert.match(clusterCSS,/data-stale=true\] \.dyn-page:not\(\.active\)\{opacity:0/);
@@ -120,7 +116,5 @@ test('DYN four-corner radar keeps real telemetry bindings without a vehicle illu
  const source=createClusterBindings.toString();
  assert.match(source,/travelBar\.style\.transform='scaleX/);
  assert.match(source,/steerFill\.style\.transform='scaleX/);
- assert.match(source,/input\+'-bar'\)\.style\.transform='scaleY/);
- assert.match(source,/Math\.hypot\(model\.gX, model\.gZ\)/);
- assert.match(source,/!stale && Number\.isFinite\(model\.gX\) && Number\.isFinite\(model\.gZ\)/);
+ assert.match(source,/input\+'-bar'\)\.style\.transform='scaleX/);
 });

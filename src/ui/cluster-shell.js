@@ -1,20 +1,12 @@
 export function clusterShell() {
   const wheels = ['fl','fr','rl','rr'].map(w => `<div class="wheel wheel-${w}" data-wheel-node="${w}"><header><span id="temp-${w}-bar" class="thermal-dot"></span>${w.toUpperCase()}</header><div class="wheel-temp"><strong id="temp-${w}">—</strong><small>°C</small></div><div class="wheel-slip"><span>SLIP</span><b data-wheel="${w}-combined">—</b></div><div class="suspension-mini"><i data-wheel="${w}-travel-bar"></i></div></div>`).join('');
-  const inputs = ['throttle','brake','clutch','handbrake'].map(k=>`<div class="pedal ${k}"><div class="input-track"><i id="${k}-bar"></i></div><label><span>${k.toUpperCase()}</span><b id="${k}">—</b></label></div>`).join('');
+  const inputs = ['throttle','brake','clutch','handbrake'].map(k=>`<div class="pedal ${k}"><label>${k.toUpperCase()} <b id="${k}">—</b></label><div class="input-track"><i id="${k}-bar"></i></div></div>`).join('');
   return `<main id="cluster" data-page="DRIVE" data-stale="true">
-    <header class="cluster-top"><span class="cluster-header-spacer" aria-hidden="true"></span><div class="cluster-control-cluster" data-control-mode="auto"><div class="control-policy" role="group" aria-label="Theme and drive mode control"><button type="button" id="control-auto-btn" class="control-policy-btn is-active" aria-pressed="true">AUTO</button><button type="button" id="control-manual-btn" class="control-policy-btn" aria-pressed="false">MANUAL</button></div><span class="manual-theme-debug-label">DEBUG</span><div id="manual-theme-button-set-mount" class="manual-theme-button-set-mount"></div><div class="mode-seg" role="group" aria-label="Drive mode"><span class="mode-slider" aria-hidden="true"></span><button class="mode-seg-btn seg-active" id="mode-race-btn" data-mode="race" aria-pressed="true"><i class="mode-icon race-icon" aria-hidden="true"></i><span>RACE</span><kbd>R</kbd></button><button class="mode-seg-btn" id="mode-freeroam-btn" data-mode="freeRoam" aria-pressed="false"><i class="mode-icon road-icon" aria-hidden="true"></i><span>FREE ROAM</span><kbd>F</kbd></button></div></div><div class="connection"><span id="header-vehicle-info" class="header-vehicle-info" title="MODEL UNKNOWN">MODEL UNKNOWN</span><span id="status"><span id="status-dot"></span>WAITING</span><span id="no-data-warn">NO TELEMETRY</span></div></header>
+    <header class="cluster-top"><span class="wordmark"><i></i><i></i><i></i> M <small>TELEMETRY</small></span><div class="mode-seg" role="group" aria-label="Drive mode"><span class="mode-slider" aria-hidden="true"></span><button class="mode-seg-btn seg-active" id="mode-race-btn" data-mode="race"><i class="mode-icon race-icon" aria-hidden="true"></i><span>RACE</span><kbd>R</kbd></button><button class="mode-seg-btn" id="mode-freeroam-btn" data-mode="freeRoam"><i class="mode-icon road-icon" aria-hidden="true"></i><span>FREE ROAM</span><kbd>F</kbd></button></div><div class="connection"><span id="status"><span id="status-dot"></span>WAITING</span><span id="no-data-warn">NO TELEMETRY</span></div></header>
     <div class="cluster-stage">
       <div class="shift-light" aria-hidden="true">${Array.from({length:11},(_,i)=>`<i style="--n:${i+1}"></i>`).join('')}</div>
       <div class="race-feedback" id="race-feedback" data-visible="false" data-tone="accent" role="status" aria-live="polite" aria-hidden="true"><small data-feedback-label></small><strong data-feedback-value></strong><span data-feedback-detail></span></div>
-      <span id="lap-time" hidden>—</span>
       <div class="mode-identity" aria-hidden="true"><i class="identity-line"></i><div data-mode-identity="race"><small>M PERFORMANCE</small><strong>RACE</strong><span>TRACK SYSTEM</span></div><div data-mode-identity="freeRoam"><small>M EXPLORATION</small><strong>FREE ROAM</strong><span>OPEN WORLD SYSTEM</span></div></div>
-      <div class="vehicle-info-card" id="vehicle-info-card" data-visible="false" aria-hidden="true">
-        <div class="vehicle-card-rule"></div>
-        <div class="vehicle-card-heading"><span data-card-era>ERA UNKNOWN</span><span data-card-region>REGION UNKNOWN</span></div>
-        <div class="vehicle-card-identity"><small data-card-brand>BRAND UNKNOWN</small><strong data-card-model>MODEL UNKNOWN</strong><span data-card-year>—</span></div>
-        <div class="vehicle-card-specs"><div><small>DRIVETRAIN</small><b data-card-drive>—</b></div><div><small>POWERTRAIN</small><b data-card-powertrain>—</b></div><div><small>CLASS / PI</small><b data-card-class>—</b></div></div>
-        <div class="vehicle-card-foot"><span>VEHICLE PROFILE</span><i></i><span>INSTRUMENT PREPARING</span></div>
-      </div>
       <svg class="instrument-shell" viewBox="0 0 1600 720" aria-label="Speed and engine instruments">
         <defs><linearGradient id="spd-grad"><stop stop-color="#889baa" stop-opacity=".06"/><stop offset="1" stop-color="#c4d2df" stop-opacity=".4"/></linearGradient><linearGradient id="needle-paint"><stop stop-color="#ff4058" stop-opacity="0"/><stop offset="1" stop-color="#ff644f"/></linearGradient></defs>
         <defs>
@@ -28,7 +20,6 @@ export function clusterShell() {
         <path class="dial-facet" d="M1015 110 Q1215 116 1335 219 L1419 305 Q1465 350 1434 419 L1354 566 Q1335 600 1287 600 L1207 600 L1275 406 Q1293 354 1263 303 L1157 157Z"/>
         <rect x="140" y="375" width="1320" height="235" fill="url(#micro-grid)" mask="url(#texture-mask)"/>
         <path class="shell-foot" d="M540 595 H319 Q272 595 251 573 M1060 595 H1281 Q1328 595 1349 573"/>
-        <path class="aux-bridge" d="M196 593 Q224 587 251 573 M1404 593 Q1376 587 1349 573"/>
         <path id="speed-track" class="gauge-rail" d="M315 587 Q270 590 252 557 L175 413 Q149 355 185 312 L270 226 Q385 129 584 123"/>
         <path id="rpm-track" class="gauge-rail" d="M1285 587 Q1330 590 1348 557 L1425 413 Q1451 355 1415 312 L1330 226 Q1215 129 1016 123"/>
         <use href="#speed-track" class="rim-underlay"/><use href="#rpm-track" class="rim-underlay"/>
@@ -43,7 +34,7 @@ export function clusterShell() {
         <path id="speed-needle" class="gauge-needle"/><path id="rpm-needle" class="gauge-needle"/>
         <text x="365" y="350" id="speed" class="speed-value" text-anchor="middle">—</text><text x="447" y="351" class="unit speed-unit">km/h</text>
         <text x="1235" y="350" id="gear" class="gear-value" text-anchor="middle">—</text><text x="1110" y="337" class="mode-dial-label">MODE</text><text x="1110" y="354" class="mode-dial-label" id="dial-mode-label">RACE</text>
-        <text x="1235" y="470" id="rpm" class="rpm-value" text-anchor="middle">—</text><text x="1235" y="470" id="power-ev-value" class="rpm-value power-ev-value" text-anchor="middle">—</text><text x="1235" y="493" id="rpm-unit" class="unit" text-anchor="middle">r/min</text><text x="1235" y="493" id="power-ev-label" class="unit power-ev-label" text-anchor="middle">POWER · kW</text>
+        <text x="1235" y="470" id="rpm" class="rpm-value" text-anchor="middle">—</text><text x="1235" y="493" class="unit" text-anchor="middle">r/min</text>
         <g class="boost-module"><text x="1132" y="530" class="boost-label">BOOST</text><text x="1190" y="530" id="boost-status" class="boost-status boost-unknown">—</text></g>
         <path class="readout-line" d="M286 370 H469 M1105 370 H1288"/>
         <g class="aux-gauge fuel-gauge">
@@ -66,20 +57,14 @@ export function clusterShell() {
       <div class="center-window">
         <section class="cluster-page active" data-cluster-page="DRIVE"><div class="drive-emblem"><i></i><i></i><i></i><b>M</b></div><p class="eyebrow" id="drive-label">CURRENT LAP</p><div id="drive-primary" class="drive-primary">—</div><p id="drive-secondary" class="drive-secondary">WAITING FOR TELEMETRY</p><div class="drive-inputs"><span>THR</span><div><i id="drive-throttle"></i></div><span>BRK</span><div><i id="drive-brake"></i></div></div><span class="drive-arrow">▲</span></section>
         <section class="cluster-page" data-cluster-page="MAP" aria-hidden="true" inert data-map-interaction><header class="page-heading">MAP <span id="map-route-name">ROUTE —</span><small id="map-status">MAP INITIALIZING</small></header><div id="minimap-card"><div id="map-leaflet" aria-label="FH6 offline map"></div><div id="map-delta" class="map-delta" data-state="idle" data-relation="unavailable"><small>DELTA</small><b id="map-delta-value">—</b><i>s</i></div><div class="map-toolbar" id="map-toolbar"><button id="map-follow-btn">FOLLOW</button><button id="map-trail-btn" aria-pressed="true">TRACE ON</button><button id="map-rec-btn">● REC</button></div><canvas id="minimap-canvas" class="legacy-map-canvas" width="700" height="394" aria-hidden="true"></canvas></div></section>
-        <section class="cluster-page dyn-page" data-cluster-page="DYN" aria-hidden="true" inert>
-          <header class="page-heading">DYNAMIC STATE</header>
-          <div class="dyn-power-strip"><span>PWR <b id="power">—</b><i>kW</i></span><span>TRQ <b data-value="torque">—</b><i>Nm</i></span><span>BST <b id="boost">—</b><i>raw</i></span><i id="power-bar" aria-hidden="true"></i></div>
-          <div class="dyn-radar" aria-label="Four-wheel state and lateral G force">${wheels}<div class="g-target"><span>G FORCE</span><i id="g-dot" aria-hidden="true"></i><strong id="g-magnitude">—</strong></div></div>
-          <div class="steering-row"><span>STEER</span><div class="steering-track"><i id="steer-fill"></i><em></em><b id="steer-pip"></b></div><strong id="steer">—</strong></div>
-          <div class="pedal-grid">${inputs}</div>
-        </section>
+        <section class="cluster-page dyn-page" data-cluster-page="DYN" aria-hidden="true" inert><header class="page-heading">VEHICLE STATE <small>LIVE / SI</small></header><div class="vehicle-cockpit">${wheels}<div class="vehicle-top" aria-label="Top view vehicle"><span class="vehicle-nose"></span><span class="vehicle-glass front"></span><span class="vehicle-glass rear"></span><span class="vehicle-spine"></span><b data-value="drivetrain">—</b><div class="g-orbit"><i id="g-dot"></i><span>G</span></div></div></div><div class="dyn-power-strip"><span>PWR <b id="power">—</b><i>kW</i></span><span>TRQ <b data-value="torque">—</b><i>Nm</i></span><span>BST <b id="boost">—</b><i>raw</i></span><i id="power-bar" aria-hidden="true"></i></div><div class="steering-row"><span>STEER</span><div class="steering-track"><i id="steer-fill"></i><em></em><b id="steer-pip"></b></div><strong id="steer">—</strong></div><div class="pedal-grid">${inputs}</div></section>
         <section class="cluster-page replay-page" data-cluster-page="RPY" aria-hidden="true" inert><header class="page-heading">SESSION / REPLAY <small>LIVE DATA ISOLATED</small></header><div id="session-info">No active session</div><div class="session-metrics"><div><span>LAP</span><strong id="lap-num">—</strong></div><div><span>LAST</span><strong data-value="lastLap">—</strong></div><div><span>RACE TIME</span><strong data-value="raceTime">—</strong></div></div><p class="replay-description">Review your last run.<br>Raw telemetry, lap history, and replay.</p><div class="record-actions"><button id="free-roam-rec-btn">● Rec</button><button id="sessions-btn">SESSION LIBRARY ↗</button><button id="export-btn" disabled>JSON ↓</button><button id="export-compact-btn" disabled>COMPACT ↓</button></div><p class="map-note">Replay opens independently. Live gauges stay live.</p></section>
       </div>
-      <footer class="fixed-info"><div class="info-row race-info race-timing"><span>BEST <b id="lap-best">—</b></span><span>POS <b id="position">—</b></span><span>LAP <b id="footer-lap-number">—</b></span></div><div class="info-row free-info"><span>TOP <b id="footer-top-speed">—</b><small> km/h</small></span></div><div class="mode-arming" aria-hidden="true"><i></i><span data-arming="race">RACE SYSTEM · ARMING</span><span data-arming="freeRoam">FREE ROAM SYSTEM · READY</span></div></footer>
+      <footer class="fixed-info"><div class="info-row"><span>CURRENT <b id="lap-time">—</b></span><span>BEST <b id="lap-best">—</b></span><span>POS <b id="position">—</b></span></div><div class="info-row"><span>PI <b data-value="carPi">—</b></span><span data-value="carName">ID —</span><span data-value="drivetrain">—</span></div><div class="mode-arming" aria-hidden="true"><i></i><span data-arming="race">RACE SYSTEM · ARMING</span><span data-arming="freeRoam">FREE ROAM SYSTEM · READY</span></div></footer>
     </div>
     <nav class="cluster-pagination" aria-label="Instrument pages" role="tablist">${['DRIVE','MAP','DYN','RPY'].map((p,i)=>`<button role="tab" data-page-target="${p}" aria-selected="${!i}" tabindex="${i?-1:0}">${p}</button>`).join('')}</nav>
     <div class="cluster-caption"><span>FH6 / TELEMETRY SYSTEM</span><span>LIVE INSTRUMENTS · <b id="data-freshness">NO SIGNAL</b></span></div>
-  </main><div class="vehicle-blackout-curtain" aria-hidden="true"></div>`;
+  </main>`;
 }
 
 export const clusterCSS = `
@@ -194,7 +179,6 @@ body[data-drive-mode=freeRoam] #cluster{--progress-bed:#123f65;--progress-edge:#
 @keyframes arming-pulse{to{filter:brightness(1.8);box-shadow:0 0 15px var(--progress-edge)}}
 @media(max-width:1000px){.mode-seg{width:248px}.mode-seg-btn,.mode-seg-btn:first-of-type,.mode-seg-btn:last-of-type{font-size:7px;letter-spacing:.8px;gap:5px}.mode-seg-btn kbd{display:none}}
 @media(prefers-reduced-motion:reduce){.mode-slider,.aux-needle,.mode-identity,.identity-line,.fixed-info .info-row,.mode-arming{transition:none!important;animation:none!important}}
-.cluster-control-cluster{position:absolute;left:50%;top:7px;transform:translateX(-50%);height:38px;display:flex;align-items:center;gap:9px;z-index:10}.cluster-control-cluster>.mode-seg{position:relative;left:auto;top:auto;transform:none}.control-policy{height:25px;display:flex;align-items:center;padding:2px;border:1px solid #71828f45;background:#080d12;clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%)}.control-policy-btn{height:19px;min-width:45px;padding:0 7px;border:0;background:transparent;color:#607483;cursor:pointer;font:600 7px 'Oxanium',sans-serif;letter-spacing:1px;transition:color .25s ease,background .25s ease,box-shadow .25s ease}.control-policy-btn.is-active{color:#eef8fc;background:linear-gradient(110deg,#30414c,#17232c);box-shadow:inset 0 0 0 1px #9cb2bf36,0 0 8px #90b7ce17}.control-policy-btn:disabled{opacity:.48;cursor:wait}.manual-theme-debug-label{display:none;color:#8aa0ad;font:600 6px 'Oxanium',sans-serif;letter-spacing:1.4px}.cluster-control-cluster[data-control-mode=manual] .manual-theme-debug-label,.cluster-control-cluster[data-control-mode=manual] .manual-theme-button-set-mount{display:block}.manual-theme-button-set-mount{display:none}.cluster-control-cluster[data-control-mode=auto] .mode-seg-btn{pointer-events:none;opacity:.56}.cluster-control-cluster[data-control-mode=auto] .mode-seg{filter:saturate(.65)}.cluster-control-cluster[data-error=true]{animation:mode-error .18s linear 2}.cluster-control-cluster[data-pending=true]{opacity:.72}@media(max-width:1000px){.cluster-control-cluster{gap:5px}.control-policy-btn{min-width:39px;padding:0 4px}}
 .cluster-top{position:relative}.cluster-top>.mode-seg{position:absolute;left:50%;top:8px;transform:translateX(-50%)}
 #cluster[data-ignition-kind=mode]:not([data-ignition-phase=live]) .cluster-stage{background:none}
 #cluster[data-ignition-kind=mode]:is([data-ignition-phase=off-center],[data-ignition-phase=blank]) :is(.mode-identity,.mode-arming){opacity:0;transform:translateY(5px)}
@@ -205,9 +189,9 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;background:rad
 body:after{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.16;background-image:linear-gradient(#fff 1px,transparent 1px),radial-gradient(circle at 50% 0,#cce8ff12,transparent 38%);background-size:100% 4px,100% 100%;mix-blend-mode:screen;mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 76%,transparent)}
 #cluster{position:relative;isolation:isolate;filter:drop-shadow(0 24px 70px #000);transition:filter .7s ease}
 #cluster:before,#cluster:after{content:'';position:absolute;z-index:-1;inset:14% 4% 12%;pointer-events:none;filter:blur(26px);transition:opacity 1.8s cubic-bezier(.22,.61,.36,1) .18s}
-#cluster:before{background:radial-gradient(ellipse 27% 25% at 18% 58%,#721e2f50,transparent 78%),radial-gradient(ellipse 27% 25% at 82% 58%,#721e2f46,transparent 78%);opacity:.5}
-#cluster:after{background:radial-gradient(ellipse 27% 25% at 18% 58%,#0d587550,transparent 78%),radial-gradient(ellipse 27% 25% at 82% 58%,#0d587546,transparent 78%);opacity:0}
-body[data-drive-mode=freeRoam] #cluster:before{opacity:0}body[data-drive-mode=freeRoam] #cluster:after{opacity:.5}
+#cluster:before{background:radial-gradient(ellipse at 18% 58%,#721e2f42,transparent 49%),radial-gradient(ellipse at 82% 58%,#721e2f38,transparent 49%);opacity:.72}
+#cluster:after{background:radial-gradient(ellipse at 18% 58%,#0d587542,transparent 49%),radial-gradient(ellipse at 82% 58%,#0d587538,transparent 49%);opacity:0}
+body[data-drive-mode=freeRoam] #cluster:before{opacity:0}body[data-drive-mode=freeRoam] #cluster:after{opacity:.72}
 .instrument-shell{filter:drop-shadow(0 10px 22px #000b)!important}
 .dial-facet{fill:color-mix(in srgb,#101820 88%,var(--progress-bed));opacity:.88}
 .rim-underlay{stroke-width:27;opacity:.74;filter:drop-shadow(0 7px 10px #000)}
@@ -242,126 +226,5 @@ body[data-drive-mode=freeRoam] #cluster:before{opacity:0}body[data-drive-mode=fr
 #cluster[data-ignition-phase=frames] :is(.rim-light,.gauge-rail,.rim-silver){filter:drop-shadow(0 0 9px var(--progress-edge))}
 #cluster[data-ignition-phase=scan] :is(.gauge-fill,.gauge-needle){filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 12px var(--progress-edge))}
  [data-value=carName]{font-family:'Segoe Script','Brush Script MT',cursive;font-style:italic;letter-spacing:.35px;color:#d8e8f1;max-width:180px;overflow:hidden;text-overflow:ellipsis}
-/* Information density follows the mode; the instrument geometry stays fixed. */
-body:not([data-drive-mode=freeRoam]) #cluster .free-info,body[data-drive-mode=freeRoam] #cluster .race-info{display:none}
-#cluster[data-race-timing=idle] .race-timing{display:none}
-body[data-drive-mode=freeRoam] #cluster[data-stale=true] .free-info span:last-child{display:none}
-#cluster .fixed-info .info-row{align-items:baseline;min-width:0}
-#cluster .fixed-info .free-info small{font-size:7px;color:#6d8594}
-/* The auxiliary arcs are fine extensions of the lower instrument rail. */
-.aux-bridge{fill:none;stroke:#778c98;stroke-width:1;opacity:.5;filter:drop-shadow(0 0 2px #b2c9d433)}
-.fuel-gauge{--fuel-indicator:#d7e7ee}.fuel-gauge[data-level=low]{--fuel-indicator:#eab56b}.fuel-gauge[data-level=critical]{--fuel-indicator:#ff6258}
-.fuel-gauge .aux-fill{stroke:var(--fuel-indicator);filter:drop-shadow(0 0 3px color-mix(in srgb,var(--fuel-indicator) 42%,transparent))}
-.fuel-gauge .aux-needle circle{stroke:var(--fuel-indicator);filter:drop-shadow(0 0 3px var(--fuel-indicator))}
-.fuel-gauge .aux-needle path{fill:var(--fuel-indicator);filter:drop-shadow(0 0 3px color-mix(in srgb,var(--fuel-indicator) 65%,transparent))}
-/* Four-corner force radar: real wheel channels surround the current G vector. */
-.center-window:has(.dyn-page.active){left:33%;top:24%;width:34%;height:48%}
-.dyn-page .page-heading{font-size:12px;margin-bottom:5px!important}
-.dyn-radar{height:clamp(96px,10.2cqi,142px);display:grid;grid-template-columns:minmax(0,1fr) 94px minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:12px;position:relative;margin:2px 0 3px;background:radial-gradient(ellipse 32% 72% at 50% 50%,color-mix(in srgb,var(--progress-bed) 14%,#10202a),transparent 86%)}
-.dyn-radar .wheel{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:auto;min-width:0;padding:2px 8px 1px;border-left:1px solid #6d8a9859;background:linear-gradient(90deg,#18303d35,transparent 86%);z-index:1;text-align:left}
-.dyn-radar .wheel-fl{grid-column:1;grid-row:1}.dyn-radar .wheel-fr{grid-column:3;grid-row:1}.dyn-radar .wheel-rl{grid-column:1;grid-row:2}.dyn-radar .wheel-rr{grid-column:3;grid-row:2}
-.dyn-radar .wheel-fr,.dyn-radar .wheel-rr{text-align:right;border-left:0;border-right:1px solid #6d8a9859;background:linear-gradient(270deg,#18303d35,transparent 86%)}
-.dyn-radar .wheel:after{content:'';position:absolute;right:0;top:24%;width:5px;height:24px;border-radius:2px;border:1px solid #91a9b786;background:#101c24;box-shadow:inset 0 0 4px #8daebe35}
-.dyn-radar .wheel-fr:after,.dyn-radar .wheel-rr:after{right:auto;left:0}
-.dyn-radar .wheel[data-slip=high]:after{border-color:#ff6574;box-shadow:0 0 6px #ff405866}
-.dyn-radar .wheel .suspension-mini{margin-top:2px}
-.wheel header{font-size:10px!important}.wheel-temp strong{font-size:22px!important}.wheel-temp small{font-size:10px!important}
-.wheel-slip{font-size:11px;color:#8da4b1}.wheel-slip b{font-size:12px;color:#e0edf2}.suspension-mini{height:3px}
-.g-target{grid-column:2;grid-row:1 / 3;position:relative;align-self:center;justify-self:center;width:88px;height:88px;border:1px solid #74909e82;border-radius:50%;background:linear-gradient(transparent 49.5%,#6e88943d 50%,transparent 50.5%),linear-gradient(90deg,transparent 49.5%,#6e88943d 50%,transparent 50.5%),radial-gradient(circle at center,#122a36,#071117 68%);box-shadow:inset 0 0 14px #000b,0 0 11px color-mix(in srgb,var(--progress-edge) 13%,transparent)}
-.g-target:before{content:'';position:absolute;inset:16px;border:1px solid #7596a455;border-radius:50%}.g-target:after{content:'';position:absolute;inset:32px;border:1px solid #7596a438;border-radius:50%}
-.g-target>span,.g-target>strong{position:absolute;left:0;right:0;text-align:center;color:#b8ced8;letter-spacing:1px}.g-target>span{top:7px;font-size:8px}.g-target>strong{bottom:6px;font-size:10px;font-weight:500;font-variant-numeric:tabular-nums}
-#g-dot{position:absolute;left:50%;top:50%;z-index:2;width:8px;height:8px;margin:-4px;border-radius:50%;background:var(--needle-tip);box-shadow:0 0 3px #fff,0 0 9px var(--progress-edge);transition:transform .12s ease-out,opacity .25s ease}
-.g-target[data-available=false] #g-dot{opacity:.2}.g-target[data-available=false]>strong{color:#607b8b}
-.dyn-power-strip{font-size:8px;border-top:1px solid #36515e62}.dyn-power-strip b{font-size:12px}.dyn-power-strip i{font-size:7px}
-.dyn-page .steering-row{height:24px;font-size:9px}.dyn-page .steering-row>strong{font-size:9px}
-.dyn-page .pedal label{font-size:9px}.dyn-page .pedal b{font-size:10px}.dyn-page .input-track{height:4px}
-@media(max-width:1000px){.center-window:has(.dyn-page.active){left:33%;top:24%;width:34%;height:49%}.dyn-radar{height:95px;grid-template-columns:minmax(0,1fr) 68px minmax(0,1fr);column-gap:4px}.dyn-radar .wheel{padding:1px 5px}.dyn-radar .wheel:after{width:4px;height:17px}.g-target{width:66px;height:66px}.g-target:before{inset:12px}.g-target:after{inset:25px}.g-target>span{top:4px;font-size:7px}.g-target>strong{bottom:3px;font-size:8px}.wheel header{font-size:9px!important}.wheel-temp strong{font-size:17px!important}.wheel-temp small{font-size:9px!important}.wheel-slip{font-size:9px}.wheel-slip b{font-size:9px}.dyn-power-strip{height:20px;gap:7px}.dyn-power-strip b{font-size:10px}.dyn-page .steering-row{height:18px}.dyn-page .pedal-grid{margin-top:2px!important}.dyn-page .pedal label{font-size:9px}.dyn-page .pedal b{font-size:9px}}
-.dyn-page .pedal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px!important;height:48px;margin-top:4px!important}
-.dyn-page .pedal{display:flex;align-items:flex-end;gap:6px;min-width:0}
-.dyn-page .pedal label{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:4px;min-width:0;margin:0 0 1px;font-size:10px;line-height:1.05;letter-spacing:.2px;white-space:nowrap}
-.dyn-page .pedal b{font-size:11px;font-variant-numeric:tabular-nums}
-.dyn-page .input-track{position:relative;flex:0 0 10px;width:10px;height:41px;margin:0;border:1px solid #607f8d7a;border-radius:1px;background:linear-gradient(90deg,#0a1117,#263944,#0a1117);overflow:hidden}
-.dyn-page .input-track i{position:absolute;inset:0;width:100%;height:100%;transform:scaleY(0);transform-origin:bottom;transition:transform .08s linear;box-shadow:inset 0 1px 0 #ffffff55,0 0 8px currentColor}
-@media(max-width:1000px){.dyn-page .pedal-grid{height:35px;gap:3px!important}.dyn-page .pedal{gap:3px}.dyn-page .input-track{height:32px;flex-basis:7px;width:7px;margin:0}.dyn-page .pedal label{font-size:9px;gap:2px}.dyn-page .pedal b{font-size:9px}}
-@media(prefers-reduced-motion:reduce){body,body:before,#cluster,#cluster:before,#cluster:after,.cluster-page,.mode-slider,.mode-seg-btn,.aux-needle{transition:none!important}.gear-value{animation:none!important}#g-dot,.dyn-page .input-track i{transition:none!important}}
-
-/* Theme adapter tokens preserve the fixed Race/Free Roam overlay over each base theme. */
-#cluster[data-theme-id]{--accent:var(--theme-mode-accent);--ice:var(--theme-cool);--progress-edge:var(--theme-mode-accent-strong);--progress-bed:color-mix(in srgb,var(--theme-accent) 32%,#10171e);--needle-tip:var(--theme-ink);--lamp-haze:color-mix(in srgb,var(--theme-glow) 10%,transparent);--lamp-cool:var(--theme-cool);color:var(--theme-ink)}
-#cluster[data-theme-id] .cluster-stage{background-color:var(--theme-surface)}#cluster[data-theme-id] .fixed-info{background-color:var(--theme-panel)}#cluster[data-theme-id] .rim-silver{stroke:var(--theme-metal)}#cluster[data-theme-id] .readout-line,#cluster[data-theme-id] .aux-track{stroke:var(--theme-grid)}
-#cluster[data-theme-id] .instrument-shell text{fill:var(--theme-ink)}#cluster[data-theme-id] .gauge-ticks line{stroke:var(--theme-cool)}
-#cluster[data-theme-era=pre1949] .gauge-ticks text,#cluster[data-theme-era=y1950_1959] .gauge-ticks text,#cluster[data-theme-era=y1960_1975] .gauge-ticks text,#cluster[data-theme-era=y1976_1985] .gauge-ticks text{font-family:Georgia,serif!important;font-style:normal}
-#cluster[data-theme-era=y1986_1994] .instrument-shell text{font-family:'Courier New',monospace!important;letter-spacing:.03em}
-#cluster[data-theme-era=y1995_2002] .gauge-needle{filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 7px var(--theme-glow))}
-#cluster[data-theme-era=y2003_2008] .gauge-ticks text,#cluster[data-theme-era=y2009_2014] .gauge-ticks text{font-weight:500;letter-spacing:.02em}
-#cluster[data-theme-era=y2020_2024] .gauge-needle,#cluster[data-theme-era=y2025plus] .gauge-needle{filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 10px var(--theme-glow))}
-/* All 33 base themes compose one of 11 instrument eras with one of three regional layouts. */
-#cluster[data-theme-typography=serif-instrument] .instrument-shell text{font-family:Georgia,serif!important;font-variant-numeric:oldstyle-nums}
-#cluster[data-theme-typography=rounded-classic] .speed-value,#cluster[data-theme-typography=rounded-classic] #gear{font-family:'Trebuchet MS',sans-serif!important;font-weight:500}
-#cluster[data-theme-typography=motorsport-grotesk] .instrument-shell text,#cluster[data-theme-typography=square-analog] .instrument-shell text{font-family:'Bahnschrift','Arial Narrow',sans-serif!important}
-#cluster[data-theme-typography=segmented-digital] .instrument-shell text{font-family:'Courier New',monospace!important;font-weight:700}
-#cluster[data-theme-typography=bold-italic] .speed-value,#cluster[data-theme-typography=bold-italic] #gear{font-style:italic;font-weight:800;letter-spacing:-.06em}
-#cluster[data-theme-typography=lcd-sans] .instrument-shell text,#cluster[data-theme-typography=humanist-digital] .instrument-shell text{font-family:'Segoe UI',sans-serif!important}
-#cluster[data-theme-typography=oxanium-display] .instrument-shell text{font-family:'Oxanium','Bahnschrift',sans-serif!important}
-#cluster[data-theme-typography=variable-sans] .instrument-shell text,#cluster[data-theme-typography=adaptive-display] .instrument-shell text{font-family:'Segoe UI Variable','Segoe UI',sans-serif!important;font-weight:600}
-#cluster[data-theme-dial=ivory-mechanical] .gauge-ticks text,#cluster[data-theme-dial=cream-roundel] .gauge-ticks text{font-size:18px}
-#cluster[data-theme-dial=black-face-mechanical] .gauge-rail,#cluster[data-theme-dial=angular-mechanical] .gauge-rail{stroke-width:3}
-#cluster[data-theme-dial=phosphor-digital] .gauge-needle{transition-timing-function:steps(18,end)!important}
-#cluster[data-theme-dial=sport-round-gauge] .gauge-needle{transition-duration:.24s}
-#cluster[data-theme-dial=lcd-hybrid] .gauge-fill,#cluster[data-theme-dial=hybrid-ring-display] .gauge-fill{stroke-width:5}
-#cluster[data-theme-dial=full-digital-cockpit] .rim-light,#cluster[data-theme-dial=adaptive-spatial-display] .rim-light{opacity:.72}
-#cluster[data-theme-bezel=aged-brass] .rim-silver,#cluster[data-theme-bezel=polished-chrome] .rim-silver{stroke-width:3.4}
-#cluster[data-theme-bezel=bright-chrome] .rim-silver{stroke-width:3.8}
-#cluster[data-theme-bezel=dark-anodized] .rim-silver,#cluster[data-theme-bezel=black-polymer] .rim-silver{stroke-width:1.8;opacity:.62}
-#cluster[data-theme-bezel=satin-alloy] .rim-silver,#cluster[data-theme-bezel=precision-metal] .rim-silver{stroke-width:2.8}
-#cluster[data-theme-bezel=glass-composite] .rim-light,#cluster[data-theme-bezel=light-field] .rim-light{filter:drop-shadow(0 0 7px var(--theme-glow))}
-#cluster[data-theme-region=europe]{--theme-layout-scale:1}
-#cluster[data-theme-region=europe] .gauge-ticks line{stroke-width:1.05}
-#cluster[data-theme-region=europe] .center-window{left:35%;width:30%;top:26%;height:44%}
-#cluster[data-theme-region=europe] .fixed-info{left:35%;width:30%;gap:13px}
-#cluster[data-theme-region=america]{--theme-layout-scale:.94}
-#cluster[data-theme-region=america] .gauge-ticks line{stroke-width:2.15}
-#cluster[data-theme-region=america] .gauge-fill{stroke-width:5}
-#cluster[data-theme-region=america] .center-window{left:36.5%;width:27%;top:28%;height:40%}
-#cluster[data-theme-region=america] .fixed-info{left:36%;width:28%;gap:9px}
-#cluster[data-theme-region=japan]{--theme-layout-scale:1.04}
-#cluster[data-theme-region=japan] .gauge-ticks line{stroke-width:1.25}
-#cluster[data-theme-region=japan] .gauge-ticks text{font-size:18px}
-#cluster[data-theme-region=japan] .center-window{left:33%;width:34%;top:24%;height:49%}
-#cluster[data-theme-region=japan] .fixed-info{left:32%;width:36%;gap:7px;padding:10px 15px 9px}
-#cluster[data-theme-region=japan] .cluster-page{padding-inline:5px}
-#cluster[data-theme-information-density=focused] .fixed-info{font-weight:700;letter-spacing:.08em}
-#cluster[data-theme-information-density=dense] .fixed-info{gap:6px;padding-block:9px}
-#cluster[data-theme-density=sparse] .fixed-info{opacity:.88}
-#cluster[data-theme-density=flexible] .center-window,#cluster[data-theme-density=adaptive] .center-window{font-size:1.04em}
-#cluster[data-theme-contrast=high] .gauge-ticks text{font-weight:700}
-#cluster[data-theme-silhouette=bold] .rim-underlay{stroke-width:31}
-#cluster[data-theme-silhouette=precision] .rim-silver{stroke-width:2.5}
-#cluster[data-theme-silhouette=technical] .gauge-ticks text{letter-spacing:.05em}
-/* Vehicle shutdown alone gets a viewport-wide opaque black frame. The curtain
-   sits outside #cluster so the cluster's drop-shadow cannot constrain it. */
-.vehicle-blackout-curtain{position:fixed;inset:0;z-index:1000;background:#000;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .24s ease,visibility 0s linear .24s}
-body:has(#cluster[data-ignition-kind=vehicle][data-ignition-phase=vehicle-blackout]) .vehicle-blackout-curtain{opacity:1;visibility:visible;transition:opacity .18s ease,visibility 0s}
-/* Mode changes dim the instrument surface but retain its physical silhouette. */
-#cluster[data-ignition-kind=mode]:is([data-ignition-phase=off-needles],[data-ignition-phase=off-frames],[data-ignition-phase=off-center],[data-ignition-phase=center]) .cluster-stage{background-color:#020407}
-#cluster[data-ignition-kind=mode]:is([data-ignition-phase=off-center],[data-ignition-phase=center]) .instrument-shell>*:not(defs){opacity:.16}
-#cluster[data-instrument-variant=custom] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
-.cluster-header-spacer{flex:1 1 18%;min-width:0}
-.cluster-top .connection{flex:1 1 18%;width:auto;min-width:0;max-width:360px;line-height:1.45}
-.header-vehicle-info{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#d3e0e4;font:500 9px/1.5 'Bahnschrift','Segoe UI',sans-serif;letter-spacing:.06em}
-@media(max-width:1000px){.header-vehicle-info{font-size:8px}}
-@media(prefers-reduced-motion:reduce){.vehicle-blackout-curtain{transition:none!important}}
-#cluster[data-display-override=ev] :is([href="#rpm-track"],#rpm-track,#rpm-redline,#rpm-bar,#rpm-ticks,#rpm-needle,#rpm,.shift-light){display:none!important}
-#cluster:not([data-display-override=ev]) :is(#power-ev-value,#power-ev-label){display:none}
-#cluster[data-display-override=ev] :is(#rpm-unit,#rpm){display:none}
-#cluster[data-display-override=ev] .power-ev-value{display:block;fill:var(--theme-display-accent);font-size:23px}
-#cluster[data-display-override=ev] .power-ev-label{display:block;fill:var(--theme-display-cool);font-size:9px;letter-spacing:1px}
-/* Keep the shared shell inside narrow preview panes; themes retain their own instrument geometry. */
-@media(max-width:759px){
-  #cluster{width:100%;min-width:0;padding:10px;justify-content:flex-start}
-  .cluster-top{position:relative;height:75px;padding:0 2%;align-items:flex-end}
-  .cluster-header-spacer{display:none}
-  .cluster-control-cluster{top:1px;left:50%;width:100%;max-width:431px;justify-content:center;gap:3px;transform:translateX(-50%)}
-  .cluster-top .connection{width:100%;max-width:none;flex:none;text-align:right;line-height:1.25;font-size:8px;padding:0 3px 4px}
-  .cluster-stage{height:340px;aspect-ratio:auto}
-}
+@media(prefers-reduced-motion:reduce){body,body:before,#cluster,#cluster:before,#cluster:after,.cluster-page,.mode-slider,.mode-seg-btn,.aux-needle{transition:none!important}.gear-value{animation:none!important}}
 `;

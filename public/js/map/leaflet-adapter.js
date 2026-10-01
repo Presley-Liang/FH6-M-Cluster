@@ -76,31 +76,21 @@ export function createLeafletAdapter(element, L, projectWorld, options = {}) {
     if (!points || !documentRef?.createElementNS || !element.appendChild) return false;
     const namespace = 'http://www.w3.org/2000/svg';
     const svg = documentRef.createElementNS(namespace, 'svg');
+    const line = documentRef.createElementNS(namespace, 'polyline');
     svg.setAttribute('class', 'fh6-route-outline');
     svg.setAttribute('viewBox', '0 0 1000 1000');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.setAttribute('aria-hidden', 'true');
-    Object.assign(svg.style, {
-      position: 'absolute', inset: '6%', width: '88%', height: '88%', pointerEvents: 'none', zIndex: '410',
-      // Keep the dark edge opaque even when legacy map CSS uses screen blending on the outline.
-      mixBlendMode: 'normal', filter: 'none',
-    });
-    for (const { className, color, width, opacity } of [
-      { className: 'fh6-route-outline-edge', color: '#071018', width: '9', opacity: '0.9' },
-      { className: 'fh6-route-outline-core', color: '#ff4058', width: '3.4', opacity: '0.95' },
-    ]) {
-      const line = documentRef.createElementNS(namespace, 'polyline');
-      line.setAttribute('class', className);
-      line.setAttribute('points', points);
-      line.setAttribute('fill', 'none');
-      line.setAttribute('stroke', color);
-      line.setAttribute('stroke-width', width);
-      line.setAttribute('stroke-linecap', 'round');
-      line.setAttribute('stroke-linejoin', 'round');
-      line.setAttribute('vector-effect', 'non-scaling-stroke');
-      line.setAttribute('opacity', opacity);
-      svg.appendChild(line);
-    }
+    Object.assign(svg.style, { position: 'absolute', inset: '6%', width: '88%', height: '88%', pointerEvents: 'none', zIndex: '410' });
+    line.setAttribute('points', points);
+    line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', '#ff4058');
+    line.setAttribute('stroke-width', '7');
+    line.setAttribute('stroke-linecap', 'round');
+    line.setAttribute('stroke-linejoin', 'round');
+    line.setAttribute('vector-effect', 'non-scaling-stroke');
+    line.setAttribute('opacity', '0.62');
+    svg.appendChild(line);
     element.appendChild(svg);
     outlineSvg = svg;
     return true;
