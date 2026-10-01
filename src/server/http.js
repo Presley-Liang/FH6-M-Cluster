@@ -26,7 +26,7 @@ async function staticFile(res, root, route, prefix, directory) {
     const buffer = await fs.readFile(file);
     let type = STATIC_TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream';
     if (buffer.toString('ascii', 0, 4) === 'RIFF' && buffer.toString('ascii', 8, 12) === 'WEBP') type = 'image/webp';
-    res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'public, max-age=3600', 'X-Content-Type-Options': 'nosniff' });
+    res.writeHead(200, { 'Content-Type': type, 'Cache-Control': prefix === '/styles/' ? 'no-store' : 'public, max-age=3600', 'X-Content-Type-Options': 'nosniff' });
     res.end(buffer);
     return true;
   } catch (error) {
@@ -42,13 +42,30 @@ async function body(req) {
   }
   try { return JSON.parse(text); } catch { throw Object.assign(Error('Bad JSON'), { status: 400 }); }
 }
-export function createHTTP({ runtime, store, routeIndex, hub, root, diagnostics }) {
+export function createHTTP({ runtime, store, routeIndex, hub, root, diagnostics, upstreamURL }) {
+  const upstream = upstreamURL ? new URL(upstreamURL) : null;
+  if (upstream && (upstream.protocol !== 'http:' || !['127.0.0.1', 'localhost', '[::1]'].includes(upstream.hostname))) throw new TypeError('Live UI upstream must be local HTTP');
   let command = Promise.resolve();
   const serialize = action => { const result = command.then(action); command = result.catch(() => {}); return result; };
   return http.createServer((req, res) => {
     (async () => {
       const url = new URL(req.url, 'http://localhost');
       const route = url.pathname;
+      // A development UI can reuse the packaged receiver's Store and SSE stream.
+      // Only its backend endpoints are relayed; HTML and visual assets stay local.
+      if (upstream && !['/', '/index.html'].includes(route) && !['/assets/', '/styles/', '/vendor/', '/maptiles/'].some(prefix => route.startsWith(prefix))) {
+        const target = new URL(req.url, upstream);
+        const forwarded = http.request(target, { method: req.method, headers: { ...req.headers, host: target.host } }, incoming => {
+          res.writeHead(incoming.statusCode, incoming.headers);
+          incoming.on('aborted', () => res.destroy());
+          incoming.on('error', () => res.destroy());
+          incoming.pipe(res);
+        });
+        forwarded.on('error', error => { if (!res.headersSent) json(res, 502, { error: 'Receiver unavailable', detail: error.message }); else res.destroy(); });
+        res.on('close', () => forwarded.destroy());
+        req.pipe(forwarded);
+        return;
+      }
       if (route === '/events') { hub.add(req, res); return; }
       if (route === '/status') return json(res, 200, { ...runtime.state(), clients: hub.size });
       if (route === '/debug') return json(res, 200, { ...diagnostics(), ...runtime.state(), sseClients: hub.size });
@@ -92,6 +109,12 @@ export function createHTTP({ runtime, store, routeIndex, hub, root, diagnostics 
         if (!['race', 'freeRoam'].includes(payload?.driveMode)) return json(res, 400, { error: 'Invalid driveMode' });
         return json(res, 200, await serialize(() => runtime.setMode(payload.driveMode)));
       }
+      if (route === '/mode-control' && req.method === 'GET') return json(res, 200, runtime.state());
+      if (route === '/mode-control' && req.method === 'POST') {
+        const payload = await body(req);
+        if (!['auto', 'manual'].includes(payload?.modeControl)) return json(res, 400, { error: 'modeControl must be auto or manual' });
+        return json(res, 200, await serialize(() => runtime.setModeControl(payload.modeControl)));
+      }
       if (route === '/free-roam-recording' && req.method === 'POST') {
         const payload = await body(req);
         if (typeof payload?.recording !== 'boolean') return json(res, 400, { error: 'recording must be boolean' });
@@ -117,11 +140,12 @@ export function createHTTP({ runtime, store, routeIndex, hub, root, diagnostics 
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' }); res.end(html); return;
       }
       if (route.startsWith('/assets/') && await staticFile(res, root, route, '/assets/', 'assets')) return;
+      if (route.startsWith('/styles/') && await staticFile(res, root, route, '/styles/', 'public/css')) return;
       if (route.startsWith('/vendor/') && await staticFile(res, root, route, '/vendor/', 'public/vendor')) return;
       if (route.startsWith('/maptiles/') && await staticFile(res, root, route, '/maptiles/', 'reference-assets/maptiles')) return;
       json(res, 404, { error: 'Not found' });
     })().catch(error => {
-      if (!res.headersSent) json(res, error.status || 500, { ...runtime.state(), error: error.message });
+      if (!res.headersSent) json(res, error.status || 500, { ...runtime?.state?.(), error: error.message });
       else res.destroy();
     });
   });

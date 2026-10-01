@@ -1,0 +1,28 @@
+/* Shared animation contract and text semantics, never a shared dashboard layout. */
+.next-instrument{position:absolute;inset:0;z-index:3;pointer-events:none;font-variant-numeric:tabular-nums;transition:opacity .38s ease}
+.next-instrument :is(header,footer,span,small){min-width:0}
+.next-instrument strong,.next-instrument b{font-weight:500;white-space:nowrap;line-height:1.1}
+.next-instrument :is(.next-readout,.next-detail){transition:opacity .28s ease}
+.next-mode-identity{position:absolute;z-index:15;inset:25% 25%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1cqw;background:radial-gradient(ellipse,#080b0ff2 25%,#080b0fd9 55%,transparent 78%);color:#eef1f3;opacity:0;visibility:hidden;pointer-events:none}
+.next-mode-identity small{font:500 clamp(8px,.8cqw,13px) 'Bahnschrift',sans-serif;letter-spacing:.17em}
+.next-mode-identity strong{display:none;font:400 clamp(46px,7cqw,100px) 'Bahnschrift',sans-serif;letter-spacing:.1em}
+#cluster[data-target-mode="race"] .next-mode-identity [data-next-mode="race"],#cluster[data-target-mode="freeRoam"] .next-mode-identity [data-next-mode="freeRoam"]{display:block}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="center"] .next-mode-identity{opacity:1;visibility:visible;animation:next-title-retire .48s ease both}
+@keyframes next-title-retire{0%,35%{opacity:1}100%{opacity:0;visibility:hidden}}
+#cluster:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .next-mode-identity{display:none;visibility:hidden;opacity:0;animation:none}
+#cluster[data-ignition-phase="off-needles"] .next-instrument :is(.next-readout strong,.next-readout b,[data-next-fill]){opacity:0;transition:opacity .28s ease}
+#cluster[data-ignition-phase="off-frames"] .next-instrument :is(.next-readout,.next-detail){opacity:0}
+#cluster[data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .next-instrument{opacity:.25}
+#cluster[data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .next-instrument{opacity:0}
+#cluster[data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .next-instrument .next-body{filter:brightness(.09);transition:filter .35s ease}
+#cluster[data-ignition-kind="vehicle"][data-ignition-phase="frames"] .next-instrument .next-body{animation:next-screen-build .84s cubic-bezier(.22,1,.36,1) both}
+#cluster[data-ignition-kind="vehicle"][data-ignition-phase="frames"] .next-instrument .next-detail{animation:next-detail-build .4s ease .5s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .next-instrument .next-body{animation:next-screen-relight .7s ease both}
+@keyframes next-screen-build{from{opacity:0;clip-path:inset(0 50%);transform:translateY(.8cqw)}to{opacity:1;clip-path:inset(0);transform:translateY(0)}}
+@keyframes next-detail-build{from{opacity:0;transform:translateY(.6cqw)}to{opacity:1;transform:translateY(0)}}
+@keyframes next-screen-relight{from{filter:brightness(.09)}to{filter:brightness(1)}}
+.next-instrument [data-next-fill]:not([data-next-fill="arc"]){transform-origin:left center;transform:scaleX(var(--drive-fill,0));transition:transform .05s linear,opacity .28s ease}
+.next-instrument[data-powertrain="ev"] [data-next-fill]{background:var(--next-ev,#8dc6d6)}
+@media(prefers-reduced-motion:reduce){.next-instrument,.next-instrument *,.next-mode-identity{animation:none!important;transition:none!important}}
+/* Full black gap between outgoing cluster and the one-piece vehicle card. */
+#cluster[data-ignition-kind="vehicle"][data-ignition-phase="vehicle-blackout"] .cluster-stage{background:#000!important;border-color:#000!important;box-shadow:none!important}
