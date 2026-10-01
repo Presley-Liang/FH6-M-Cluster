@@ -23,6 +23,7 @@ export class SessionRuntime {
     this.onState = onState;
     this.driveMode = 'race';
     this.autoDriveMode = !!autoDriveMode;
+    this.modeControl = this.autoDriveMode ? 'auto' : 'manual';
     this.autoModeInitialized = false;
     this.awaitingInitialRaceConfirmation = false;
     this.appliedEventVersion = 0;
@@ -51,7 +52,7 @@ export class SessionRuntime {
   state() {
     return {
       driveMode: this.driveMode, freeRoamRecording: this.freeRoamRecording,
-      autoDriveMode: this.autoDriveMode, modeSource: this.modeSource,
+      autoDriveMode: this.autoDriveMode, modeControl: this.modeControl, modeSource: this.modeSource,
       version: this.version, modeVersion: this.version,
       sessionActive: !!this.active, sessionId: this.active?.id ?? null,
       packetsRecorded: this.active?.packetCount ?? 0,
@@ -117,7 +118,34 @@ export class SessionRuntime {
     return Promise.resolve();
   }
   async setMode(mode) {
+    // The legacy /mode endpoint is an explicit user selection. Keep its
+    // driveMode contract while preventing detector updates from undoing it.
+    const versionBefore = this.version;
+    this.modeControl = 'manual';
     await this.transitionMode(mode, 'manual');
+    if (this.version === versionBefore) { this.version++; this.changed(); }
+    return this.state();
+  }
+  async setModeControl(modeControl) {
+    if (!['auto', 'manual'].includes(modeControl)) {
+      throw Object.assign(new Error('Invalid modeControl'), { status: 400 });
+    }
+    if (modeControl === this.modeControl) return this.state();
+
+    const versionBefore = this.version;
+    this.modeControl = modeControl;
+    if (modeControl === 'auto') {
+      // Resume from the detector's current settled activity. The detector has
+      // continued observing packets while Manual was active.
+      this.autoDriveMode = true;
+      this.autoModeInitialized = true;
+      this.awaitingInitialRaceConfirmation = false;
+      this.appliedEventVersion = this.detected.eventVersion;
+      await this.transitionMode(this.detected.activity, 'auto');
+    } else {
+      this.modeSource = 'manual';
+    }
+    if (this.version === versionBefore) { this.version++; this.changed(); }
     return this.state();
   }
   async setRecording(recording) {
@@ -134,7 +162,7 @@ export class SessionRuntime {
     this.lastPacketAt = now;
     this.lastPacket = packet;
     this.detected = this.eventDetector.update(packet, now);
-    if (this.autoDriveMode) {
+    if (this.modeControl === 'auto') {
       let autoTarget = null;
       if (!this.autoModeInitialized) {
         // A first packet with Race evidence starts the detector's enter debounce.

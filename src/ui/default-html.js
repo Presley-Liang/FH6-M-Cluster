@@ -16,6 +16,52 @@ import { createUIAnimationCoordinator } from '../../public/js/ui-animation-coord
 import { createShiftLightController } from '../../public/js/shift-light-controller.js';
 import { createRaceFeedbackController } from '../../public/js/race-feedback-controller.js';
 import { VEHICLE_MODEL_BY_ORDINAL, lookupVehicleModel } from '../../public/js/vehicle-model-catalog.js';
+import { createJdm90Instrument } from '../../public/js/themes/jdm90-instrument.js';
+import { createClassicalEuropeInstrument } from '../../public/js/themes/classical-europe-instrument.js';
+import { createRetroDigitalAmericaInstrument } from '../../public/js/themes/retro-digital-america-instrument.js';
+import { createEarly911EuropeInstrument } from '../../public/js/themes/early-911-europe-instrument.js';
+import { createRx8JapanInstrument } from '../../public/js/themes/rx8-japan-instrument.js';
+import { createC8AmericaInstrument } from '../../public/js/themes/c8-america-instrument.js';
+import { createBelairAmericaInstrument } from '../../public/js/themes/belair-america-instrument.js';
+import { createAe86JapanInstrument } from '../../public/js/themes/ae86-japan-instrument.js';
+import { createR8EuropeInstrument } from '../../public/js/themes/r8-europe-instrument.js';
+import { createS30JapanInstrument } from '../../public/js/themes/s30-japan-instrument.js';
+import { createDsEuropeInstrument } from '../../public/js/themes/ds-europe-instrument.js';
+import { createLfaJapanInstrument } from '../../public/js/themes/lfa-japan-instrument.js';
+import { createCxEuropeInstrument } from '../../public/js/themes/cx-europe-instrument.js';
+import { createFordGtAmericaInstrument } from '../../public/js/themes/ford-gt-america-instrument.js';
+import { createTaycanEuropeInstrument } from '../../public/js/themes/taycan-europe-instrument.js';
+import { createPanoramicEuropeInstrument } from '../../public/js/themes/panoramic-europe-instrument.js';
+import { createModernInstrumentBinding } from '../../public/js/themes/modern-instrument-binding.js';
+import { createCivicJapanInstrument } from '../../public/js/themes/civic-japan-instrument.js';
+import { createEscaladeAmericaInstrument } from '../../public/js/themes/escalade-america-instrument.js';
+import { createGxJapanInstrument } from '../../public/js/themes/gx-japan-instrument.js';
+import { createInstrumentThemeHost } from '../../public/js/themes/instrument-theme-host.js';
+import { mountManualThemeButtonSet as createManualThemeButtonSet } from '../../public/js/themes/manual-theme-button-set.js';
+import { VEHICLE_METADATA_BY_ORDINAL, resolveVehicleTheme } from '../vehicle/vehicle-metadata.js';
+import { DEFAULT_THEME_ID, THEME_REGISTRY, resolveTheme } from '../../public/js/themes/theme-registry.js';
+
+const VEHICLE_THEME_PRESENTATIONS = Object.fromEntries(
+  Object.keys(THEME_REGISTRY).flatMap(themeId => ['race', 'freeRoam'].flatMap(driveMode => ['combustion', 'hybrid', 'ev'].map(powertrain => {
+    const capabilities = powertrain === 'ev' ? { power: { available: true, verified: true, sourceKey: 'power', unit: 'kW' } } : {};
+    const resolved = resolveTheme({ themeId, driveMode, powertrain, capabilities });
+    return [`${themeId}|${driveMode}|${powertrain}`, {
+      themeId: resolved.themeId,
+      era: resolved.base.eraId,
+      region: resolved.base.regionId,
+      visual: resolved.base.visual,
+      mode: resolved.mode.id,
+      powertrain: resolved.powertrain?.kind ?? 'combustion',
+      displayOverride: resolved.powertrain ? 'ev' : 'none',
+      displayPowerAvailable: Boolean(resolved.powertrain?.signals.power.available),
+      displayRegenAvailable: Boolean(resolved.powertrain?.signals.regen.available),
+      displaySocAvailable: Boolean(resolved.powertrain?.signals.soc.available),
+      displayEnergyAvailable: Boolean(resolved.powertrain?.signals.energy.available),
+      tokens: resolved.tokens,
+    }];
+  }))));
+const VEHICLE_THEME_BY_ORDINAL = Object.fromEntries(Object.entries(VEHICLE_METADATA_BY_ORDINAL)
+  .map(([ordinal, metadata]) => [ordinal, resolveVehicleTheme(metadata)]));
 
 export function getDefaultHTML() {
   // Speedometer arc: r=95, circ=596.9, 270deg sweep=447.7
@@ -615,10 +661,78 @@ export function getDefaultHTML() {
   var createPageController = ${createPageController.toString()};
   var createClusterBindings = ${createClusterBindings.toString()};
   var VEHICLE_MODEL_BY_ORDINAL = ${JSON.stringify(VEHICLE_MODEL_BY_ORDINAL)};
+  var VEHICLE_METADATA_BY_ORDINAL = ${JSON.stringify(VEHICLE_METADATA_BY_ORDINAL)};
+  var VEHICLE_THEME_BY_ORDINAL = ${JSON.stringify(VEHICLE_THEME_BY_ORDINAL)};
+  var VEHICLE_THEME_PRESENTATIONS = ${JSON.stringify(VEHICLE_THEME_PRESENTATIONS)};
+  var DEFAULT_THEME_ID = '${DEFAULT_THEME_ID}';
+  var MANUAL_THEME_OPTIONS = ${JSON.stringify(Object.values(THEME_REGISTRY).map(theme => ({ id: theme.id, eraId: theme.eraId, eraLabel: theme.era.range, regionId: theme.regionId, regionLabel: theme.region.label })))};
+  var mountManualThemeButtonSet = ${createManualThemeButtonSet.toString()};
   var lookupVehicleModel = ${lookupVehicleModel.toString()};
+  var lookupVehicleMetadata = function(carOrdinal) {
+    var key = Number.isFinite(Number(carOrdinal)) ? String(Number(carOrdinal)) : '';
+    return VEHICLE_METADATA_BY_ORDINAL[key] || null;
+  };
+  var resolveVehicleTheme = function(vehicle, options) {
+    var ordinal = Number(vehicle && vehicle.ordinal);
+    var key = Number.isSafeInteger(ordinal) ? String(ordinal) : '';
+    var resolved = VEHICLE_THEME_BY_ORDINAL[key] || { themeId:'${DEFAULT_THEME_ID}', eraId:'y2015_2019', regionId:'europe', powertrain:'unknown', resolved:false, fallback:true };
+    var driveMode = options && options.driveMode;
+    return { ...resolved, modeOverlay: driveMode === 'race' || driveMode === 'freeRoam' ? driveMode : null };
+  };
+  var applyClusterVehicleTheme = function(root, context) {
+    var key = (context.themeId || '${DEFAULT_THEME_ID}') + '|' + (context.driveMode || 'race') + '|' + (context.powertrain || 'combustion');
+    var resolved = VEHICLE_THEME_PRESENTATIONS[key] || VEHICLE_THEME_PRESENTATIONS['${DEFAULT_THEME_ID}|race|combustion'];
+    var tokenNames = { surface:'--theme-surface', panel:'--theme-panel', ink:'--theme-ink', muted:'--theme-muted', metal:'--theme-metal', grid:'--theme-grid', glow:'--theme-glow', accent:'--theme-accent', accentStrong:'--theme-accent-strong', modeAccent:'--theme-mode-accent', modeAccentStrong:'--theme-mode-accent-strong', cool:'--theme-cool', displayAccent:'--theme-display-accent', displayCool:'--theme-display-cool' };
+    Object.keys(tokenNames).forEach(function(name) {
+      var value = resolved.tokens[name];
+      if (typeof value === 'string') root.style.setProperty(tokenNames[name], value);
+      else root.style.removeProperty(tokenNames[name]);
+    });
+    root.dataset.themeId = resolved.themeId;
+    root.dataset.themeEra = resolved.era;
+    root.dataset.themeRegion = resolved.region;
+    root.dataset.driveMode = resolved.mode;
+    root.dataset.powertrain = resolved.powertrain;
+    root.dataset.displayOverride = resolved.displayOverride;
+    root.dataset.displayPowerAvailable = String(resolved.displayPowerAvailable);
+    root.dataset.displayRegenAvailable = String(resolved.displayRegenAvailable);
+    root.dataset.displaySocAvailable = String(resolved.displaySocAvailable);
+    root.dataset.displayEnergyAvailable = String(resolved.displayEnergyAvailable);
+    root.dataset.themeDial = resolved.visual.dial;
+    root.dataset.themeBezel = resolved.visual.bezel;
+    root.dataset.themeTypography = resolved.visual.typography;
+    root.dataset.themeMotion = resolved.visual.motion;
+    root.dataset.themeDensity = resolved.visual.density;
+    root.dataset.themeSilhouette = resolved.visual.silhouette;
+    root.dataset.themeContrast = resolved.visual.contrast;
+    root.dataset.themeInformationDensity = resolved.visual.informationDensity;
+    root.dataset.themeTickWeight = resolved.visual.tickWeight;
+    return resolved;
+  };
   var createVehicleStateController = ${createVehicleStateController.toString()};
   var createRpmGaugeController = (function() { var niceRpmScale = ${niceRpmScale.toString()}; return ${createRpmGaugeController.toString()}; })();
   var createUIAnimationCoordinator = ${createUIAnimationCoordinator.toString()};
+  var createJdm90Instrument = ${createJdm90Instrument.toString()};
+  var createClassicalEuropeInstrument = ${createClassicalEuropeInstrument.toString()};
+  var createRetroDigitalAmericaInstrument = ${createRetroDigitalAmericaInstrument.toString()};
+  var createEarly911EuropeInstrument = ${createEarly911EuropeInstrument.toString()};
+  var createRx8JapanInstrument = ${createRx8JapanInstrument.toString()};
+  var createC8AmericaInstrument = ${createC8AmericaInstrument.toString()};
+  var createBelairAmericaInstrument = ${createBelairAmericaInstrument.toString()};
+  var createAe86JapanInstrument = ${createAe86JapanInstrument.toString()};
+  var createR8EuropeInstrument = ${createR8EuropeInstrument.toString()};
+  var createS30JapanInstrument = ${createS30JapanInstrument.toString()};
+  var createDsEuropeInstrument = ${createDsEuropeInstrument.toString()};
+  var createLfaJapanInstrument = ${createLfaJapanInstrument.toString()};
+  var createCxEuropeInstrument = ${createCxEuropeInstrument.toString()};
+  var createFordGtAmericaInstrument = ${createFordGtAmericaInstrument.toString()};
+  var createTaycanEuropeInstrument = ${createTaycanEuropeInstrument.toString()};
+  var createPanoramicEuropeInstrument = ${createPanoramicEuropeInstrument.toString()};
+  var createModernInstrumentBinding = ${createModernInstrumentBinding.toString()};
+  var createCivicJapanInstrument = ${createCivicJapanInstrument.toString()};
+  var createEscaladeAmericaInstrument = ${createEscaladeAmericaInstrument.toString()};
+  var createGxJapanInstrument = ${createGxJapanInstrument.toString()};
+  var createInstrumentThemeHost = ${createInstrumentThemeHost.toString()};
   var createShiftLightController = ${createShiftLightController.toString()};
   var createRaceFeedbackController = ${createRaceFeedbackController.toString()};
   var DEFAULT_CALIBRATION = ${JSON.stringify(DEFAULT_CALIBRATION)};
@@ -1034,13 +1148,128 @@ export function getDefaultHTML() {
   var clientFreeRoamRecording = false;
   var serverVersion = -1;
   var animationCoordinator = null;
+  var instrumentHost = null;
   var desiredDriveMode = clientDriveMode;
   var modeRequestInFlight = false;
+  var latestVehicleMetadata = null;
+  var latestVehicleState = null;
+  var clientModeControl = 'auto';
+  var policyRequestInFlight = false;
+  var manualThemeChosen = false;
+  var manualThemeId = DEFAULT_THEME_ID;
+  try {
+    clientModeControl = localStorage.getItem('fh6.clusterControlMode') === 'manual' ? 'manual' : 'auto';
+    var savedManualTheme = localStorage.getItem('fh6.manualThemeId');
+    if (MANUAL_THEME_OPTIONS.some(function(theme) { return theme.id === savedManualTheme; })) {
+      manualThemeId = savedManualTheme;
+      manualThemeChosen = true;
+    }
+  } catch (_) {}
+
+  function syncControlModeUI() {
+    var cluster = document.querySelector('.cluster-control-cluster');
+    if (!cluster) return;
+    cluster.dataset.controlMode = clientModeControl;
+    cluster.dataset.pending = String(policyRequestInFlight);
+    var auto = clientModeControl === 'auto';
+    var autoButton = document.getElementById('control-auto-btn');
+    var manualButton = document.getElementById('control-manual-btn');
+    autoButton.classList.toggle('is-active', auto);
+    manualButton.classList.toggle('is-active', !auto);
+    autoButton.setAttribute('aria-pressed', String(auto));
+    manualButton.setAttribute('aria-pressed', String(!auto));
+    autoButton.disabled = policyRequestInFlight;
+    manualButton.disabled = policyRequestInFlight;
+    document.querySelectorAll('.mode-seg-btn').forEach(function(button) {
+      button.disabled = auto || policyRequestInFlight;
+      button.setAttribute('aria-disabled', String(auto || policyRequestInFlight));
+    });
+  }
+
+  var themeButtonSet = mountManualThemeButtonSet({
+    container: document.getElementById('manual-theme-button-set-mount'),
+    options: MANUAL_THEME_OPTIONS,
+    selectedId: manualThemeId,
+    onChange: function(themeId) {
+      if (clientModeControl !== 'manual' || !MANUAL_THEME_OPTIONS.some(function(theme) { return theme.id === themeId; })) return;
+      manualThemeId = themeId;
+      manualThemeChosen = true;
+      try { localStorage.setItem('fh6.manualThemeId', manualThemeId); } catch (_) {}
+      if (animationCoordinator) {
+        animationCoordinator.wake(vehicleProfileFromState(latestVehicleState || { vehicle: {} }), clientDriveMode, applyThemeOverlay);
+      } else applyVehicleTheme(clientDriveMode);
+    }
+  });
+  syncControlModeUI();
+
+  function applyVehicleTheme(mode) {
+    var metadata = latestVehicleMetadata;
+    var resolved = metadata ? resolveVehicleTheme(metadata, { driveMode: mode }) : { themeId: DEFAULT_THEME_ID, powertrain: 'unknown', eraId: 'y2015_2019', regionId: 'europe', resolved: false };
+    var powertrain = resolved.powertrain === 'electric' ? 'ev'
+      : resolved.powertrain === 'hybrid' ? 'hybrid' : 'combustion';
+    var displayThemeId = clientModeControl === 'manual' ? manualThemeId : resolved.themeId;
+    applyClusterVehicleTheme(document.getElementById('cluster'), {
+      themeId: displayThemeId, driveMode: mode, powertrain: powertrain,
+      capabilities: metadata && metadata.capabilities ? metadata.capabilities : {},
+    });
+    var root = document.getElementById('cluster');
+    root.dataset.themeResolution = resolved.resolved ? 'resolved' : 'fallback';
+    root.dataset.themeSource = clientModeControl === 'manual' ? 'manual' : metadata && metadata.source ? metadata.source : 'anchor';
+    root.dataset.themeRegionSource = metadata && metadata.regionSource ? metadata.regionSource : 'unknown';
+    root.dataset.themeRegionConfidence = metadata && metadata.regionConfidence ? metadata.regionConfidence : 'unknown';
+    instrumentHost?.activate(displayThemeId);
+    return displayThemeId;
+  }
+
+  function applyThemeOverlay(nextMode) {
+    document.body.dataset.driveMode = nextMode;
+    document.getElementById('mode-race-btn').classList.toggle('seg-active', nextMode === 'race');
+    document.getElementById('mode-freeroam-btn').classList.toggle('seg-active', nextMode === 'freeRoam');
+    document.getElementById('mode-race-btn').setAttribute('aria-pressed', String(nextMode === 'race'));
+    document.getElementById('mode-freeroam-btn').setAttribute('aria-pressed', String(nextMode === 'freeRoam'));
+    applyVehicleTheme(nextMode);
+  }
+
+  function vehicleProfileFromState(state) {
+    var vehicle = state && state.vehicle ? state.vehicle : {};
+    var metadata = lookupVehicleMetadata(vehicle.carOrdinal) || {};
+    latestVehicleMetadata = metadata;
+    var resolvedTheme = resolveVehicleTheme(metadata, { driveMode: clientDriveMode });
+    if (!manualThemeChosen) {
+      manualThemeId = resolvedTheme.themeId;
+      themeButtonSet.update({ selectedId: manualThemeId });
+      if (clientModeControl === 'manual') {
+        manualThemeChosen = true;
+        try { localStorage.setItem('fh6.manualThemeId', manualThemeId); } catch (_) {}
+      }
+    }
+    var selectedThemeId = clientModeControl === 'manual' ? manualThemeId : resolvedTheme.themeId;
+    var selectedThemeParts = selectedThemeId.split('.');
+    var details = selectTelemetry({ ...vehicle, carId: vehicle.carOrdinal }, false);
+    return {
+      vehicle: vehicle,
+      metadata: {
+        brand: metadata.brand || 'BRAND UNKNOWN',
+        modelName: metadata.model || metadata.name || lookupVehicleModel(vehicle.carOrdinal) || 'MODEL UNKNOWN',
+        year: metadata.year,
+        drivetrain: details.drivetrainLabel || 'DRIVETRAIN UNKNOWN',
+        classPi: details.classLabel !== '—' && Number.isFinite(details.pi) ? details.classLabel + ' ' + Math.round(details.pi) : '—',
+        powertrainType: metadata.powertrain === 'electric' ? 'EV' : metadata.powertrain === 'hybrid' ? 'HYBRID' : metadata.powertrain === 'combustion' ? 'COMBUSTION' : 'UNKNOWN',
+      },
+      themeEra: selectedThemeParts[0] || resolvedTheme.eraId,
+      themeRegion: selectedThemeParts[1] || resolvedTheme.regionId,
+      themeId: selectedThemeId,
+      intervalMs: 560,
+    };
+  }
 
   function applyServerState(data) {
     if (data.version != null && data.version < serverVersion) return;
     serverVersion = data.version == null ? serverVersion : data.version;
-    if (data.driveMode) applyMode(data.driveMode);
+    if (data.driveMode) {
+      if (clientModeControl === 'auto') desiredDriveMode = data.driveMode;
+      applyMode(data.driveMode);
+    }
     if (typeof data.freeRoamRecording === 'boolean') applyRecordingState(data.freeRoamRecording);
     var info = document.getElementById('session-info');
     if (data.storageError || data.error) {
@@ -1063,14 +1292,14 @@ export function getDefaultHTML() {
     var changed = clientDriveMode !== mode;
     clientDriveMode = mode;
     if (routeUI) routeUI.setMode(mode);
-    var applyTheme = function(nextMode) {
-      document.body.dataset.driveMode = nextMode;
-      document.getElementById('mode-race-btn').classList.toggle('seg-active', nextMode === 'race');
-      document.getElementById('mode-freeroam-btn').classList.toggle('seg-active', nextMode === 'freeRoam');
-      document.getElementById('mode-race-btn').setAttribute('aria-pressed', String(nextMode === 'race'));
-      document.getElementById('mode-freeroam-btn').setAttribute('aria-pressed', String(nextMode === 'freeRoam'));
-    };
-    if (changed && animationCoordinator) animationCoordinator.switchMode(mode, applyTheme); else applyTheme(mode);
+    if (changed && animationCoordinator) {
+      animationCoordinator.switchMode(mode, applyThemeOverlay);
+    } else if (!animationCoordinator || animationCoordinator.state().phase === 'live') {
+      // SSE and the /mode response can report the same transition twice. Keep
+      // that duplicate from applying the new colors before the mode animation's
+      // black-frame handoff. Other server state still flows through normally.
+      applyThemeOverlay(mode);
+    }
     var mapCard = document.getElementById('minimap-card');
     if (mapCard) mapCard.style.display = '';
     var recBtn = document.getElementById('free-roam-rec-btn');
@@ -1113,7 +1342,7 @@ export function getDefaultHTML() {
   }
   function pumpModeRequest() {
     updateModePending();
-    if (modeRequestInFlight || desiredDriveMode === clientDriveMode) return;
+    if (clientModeControl !== 'manual' || modeRequestInFlight || desiredDriveMode === clientDriveMode) return;
     var requestedMode = desiredDriveMode;
     modeRequestInFlight = true;
     updateModePending();
@@ -1137,11 +1366,61 @@ export function getDefaultHTML() {
   }
   document.querySelectorAll('.mode-seg-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
+      if (clientModeControl !== 'manual') return;
       desiredDriveMode = btn.dataset.mode;
       pumpModeRequest();
     });
   });
 
+  function setControlMode(nextMode, forceSync) {
+    if ((nextMode !== 'auto' && nextMode !== 'manual') || (!forceSync && nextMode === clientModeControl) || policyRequestInFlight) return;
+    var previousMode = clientModeControl;
+    var previousThemeId = document.getElementById('cluster').dataset.themeId;
+    clientModeControl = nextMode;
+    if (nextMode === 'manual') {
+      if (!manualThemeChosen && latestVehicleMetadata) {
+        manualThemeId = resolveVehicleTheme(latestVehicleMetadata).themeId;
+        themeButtonSet.update({ selectedId: manualThemeId });
+      }
+      manualThemeChosen = true;
+      try { localStorage.setItem('fh6.manualThemeId', manualThemeId); } catch (_) {}
+      desiredDriveMode = clientDriveMode;
+    }
+    syncControlModeUI();
+    var automaticThemeId = latestVehicleMetadata ? resolveVehicleTheme(latestVehicleMetadata, { driveMode: clientDriveMode }).themeId : DEFAULT_THEME_ID;
+    var nextThemeId = clientModeControl === 'manual' ? manualThemeId : automaticThemeId;
+    var vehicleTransitionActive = animationCoordinator && document.getElementById('cluster').dataset.ignitionKind === 'vehicle' && animationCoordinator.state().phase !== 'live';
+    if (animationCoordinator && (nextThemeId !== previousThemeId || vehicleTransitionActive)) {
+      animationCoordinator.wake(vehicleProfileFromState(latestVehicleState || { vehicle: {} }), clientDriveMode, applyThemeOverlay);
+    } else applyVehicleTheme(clientDriveMode);
+    policyRequestInFlight = true;
+    syncControlModeUI();
+    fetch('/mode-control', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ modeControl: nextMode })
+    }).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(data) {
+      if (data.modeControl !== nextMode) throw new Error('Invalid mode control response');
+      try { localStorage.setItem('fh6.clusterControlMode', nextMode); } catch (_) {}
+      applyServerState(data);
+    }).catch(function(error) {
+      clientModeControl = previousMode;
+      if (animationCoordinator && (previousThemeId !== nextThemeId || vehicleTransitionActive)) {
+        animationCoordinator.wake(vehicleProfileFromState(latestVehicleState || { vehicle: {} }), clientDriveMode, applyThemeOverlay);
+      }
+      var cluster = document.querySelector('.cluster-control-cluster');
+      cluster.dataset.error = 'true';
+      setTimeout(function() { cluster.dataset.error = 'false'; }, 1200);
+      console.error('Control mode switch failed:', error);
+    }).finally(function() {
+      policyRequestInFlight = false;
+      syncControlModeUI();
+      if (!animationCoordinator || animationCoordinator.state().phase === 'live') applyVehicleTheme(clientDriveMode);
+      pumpModeRequest();
+    });
+  }
+  document.getElementById('control-auto-btn').addEventListener('click', function() { setControlMode('auto'); });
+  document.getElementById('control-manual-btn').addEventListener('click', function() { setControlMode('manual'); });
   function toggleFreeRoamRecording() {
     var newRecording = !clientFreeRoamRecording;
     fetch('/free-roam-recording', {
@@ -1157,6 +1436,7 @@ export function getDefaultHTML() {
 
   fetch('/mode').then(function(r) { return r.json(); }).then(function(data) {
     applyServerState(data);
+    if (data.modeControl && data.modeControl !== clientModeControl) setControlMode(clientModeControl, true);
   }).catch(function() { applyMode('race'); });
 
   // ── Hook minimap into SSE ─────────────────────────────────────────
@@ -1167,19 +1447,56 @@ export function getDefaultHTML() {
     catch (error) { console.error('Invalid telemetry event:', error); }
   }
 
+  instrumentHost = createInstrumentThemeHost({
+    document: document,
+    mount: document.querySelector('.cluster-stage'),
+    root: document.getElementById('cluster'),
+    factories: {
+      'pre1949.europe': createClassicalEuropeInstrument,
+      'y1986_1994.america': createRetroDigitalAmericaInstrument,
+      'y1995_2002.japan': createJdm90Instrument,
+      'y1960_1975.europe': createEarly911EuropeInstrument,
+      'y2003_2008.japan': createRx8JapanInstrument,
+      'y2020_2024.america': createC8AmericaInstrument,
+      'y1950_1959.america': createBelairAmericaInstrument,
+      'y1976_1985.japan': createAe86JapanInstrument,
+      'y2009_2014.europe': createR8EuropeInstrument,
+      'y1960_1975.japan': createS30JapanInstrument,
+      'y1950_1959.europe': createDsEuropeInstrument,
+      'y2009_2014.japan': createLfaJapanInstrument,
+      'y1976_1985.europe': createCxEuropeInstrument,
+      'y2015_2019.america': createFordGtAmericaInstrument,
+      'y2020_2024.europe': createTaycanEuropeInstrument,
+      'y2025plus.europe': createPanoramicEuropeInstrument,
+      'y2020_2024.japan': createCivicJapanInstrument,
+      'y2025plus.america': createEscaladeAmericaInstrument,
+      'y2025plus.japan': createGxJapanInstrument,
+    },
+  });
+  instrumentHost.activate(document.getElementById('cluster').dataset.themeId || DEFAULT_THEME_ID);
   var clusterBindings = createClusterBindings(document, selectTelemetry, {
     vehicleModelLookup: lookupVehicleModel,
     vehicleStateController: createVehicleStateController(),
     rpmGaugeController: createRpmGaugeController(),
     shiftLightController: createShiftLightController(),
     raceFeedbackController: createRaceFeedbackController(),
-    onVehicleChange: function() { if (animationCoordinator) animationCoordinator.wake(); },
+    onVehicleChange: function(state) {
+      latestVehicleState = state;
+      if (animationCoordinator) animationCoordinator.wake(vehicleProfileFromState(state), clientDriveMode, applyThemeOverlay);
+    },
+    onRender: function(model, context) {
+      var root = document.getElementById('cluster');
+      context.displayOverrideType = root.dataset.displayOverride;
+      context.powertrain = root.dataset.powertrain;
+      instrumentHost.update(model, context);
+    },
     onRaceFeedback: function(event) { if (animationCoordinator) animationCoordinator.feedback(event); }
   });
   animationCoordinator = createUIAnimationCoordinator({
     root: document.getElementById('cluster'), body: document.body, display: clusterBindings,
+    getLiveFractions: function() { return clusterBindings.getLiveFractions(); },
+    infoCard: document.getElementById('vehicle-info-card'),
     feedbackElement: document.getElementById('race-feedback'),
-    reducedMotion: function() { return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
   });
   var leafletMap = null;
   var mapTrailVisible = true;
@@ -1334,7 +1651,13 @@ export function getDefaultHTML() {
 </div>
 </body>
 </html>`;
+  const themeCssVersion = Date.now();
   return legacy.replace(/<body>[\s\S]*?<!-- SESSIONS DRAWER -->/, '<body>' + clusterShell() + '\n<!-- SESSIONS DRAWER -->')
-    .replace('</head>', '<link rel="stylesheet" href="/vendor/leaflet/leaflet.css"><style>' + clusterCSS + '</style></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/vendor/leaflet/leaflet.css"><link rel="stylesheet" href="/styles/manual-theme-button-set.css"><link rel="stylesheet" href="/styles/jdm90-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/classical-europe-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/retro-digital-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/early-911-europe-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/rx8-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/c8-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/belair-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/ae86-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/r8-europe-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/s30-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/ds-europe-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/lfa-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/vehicle-info-card.css?v=' + themeCssVersion + '"><style>' + clusterCSS + '</style></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/cx-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/ford-gt-america-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/taycan-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/panoramic-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/modern-instrument-common.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/civic-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/escalade-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/gx-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('<script>', '<script src="/vendor/leaflet/leaflet.js"></script><script>');
 }

@@ -1,0 +1,85 @@
+/* 1950s American touring interpretation: enamel, chrome wings, arched speed window. */
+#cluster:not([data-theme-id="y1950_1959.america"]) .belair-america-instrument{display:none}
+#cluster[data-theme-id="y1950_1959.america"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
+#cluster[data-theme-id="y1950_1959.america"]{color:#f8e9cb;--ba-lamp:#ffc678;--ba-ink:#e4f6ef;--ba-accent:#a8dfce}
+#cluster[data-theme-id="y1950_1959.america"] .cluster-stage{overflow:hidden;background:#081a20!important;border:4px solid #718c8d;box-shadow:0 0 0 2px #bdd0c2,0 0 0 7px #0c262b,0 30px 75px #000c}
+#cluster[data-theme-id="y1950_1959.america"] .cluster-top{color:#eadab6}
+#cluster[data-theme-id="y1950_1959.america"] .wordmark{color:#f6dfb8;font-family:Georgia,serif;font-style:italic;font-weight:400;letter-spacing:.08em;text-shadow:0 1px 1px #000,0 0 11px #e6c08466}
+#cluster[data-theme-id="y1950_1959.america"] .wordmark i{background:#d4b176;transform:skewX(-24deg)}
+#cluster[data-theme-id="y1950_1959.america"] .control-policy{background:linear-gradient(#4d7678,#12363b);border:1px solid #c3d4c6;border-radius:1cqw;box-shadow:inset 0 1px #fff6,0 3px 6px #0008;clip-path:none}
+#cluster[data-theme-id="y1950_1959.america"] .control-policy-btn{color:#e4dfc7;font:700 .64cqw Georgia,serif;letter-spacing:.1em}
+#cluster[data-theme-id="y1950_1959.america"] .control-policy-btn.is-active{background:linear-gradient(#fff5d8,#c9b991);color:#25393a;border-radius:1cqw}
+#cluster[data-theme-id="y1950_1959.america"] .cluster-control-cluster .mode-seg{background:#102f36;border:1px solid #acc4b5;border-radius:1cqw;padding:.15cqw}
+#cluster[data-theme-id="y1950_1959.america"] .cluster-control-cluster .mode-seg-btn{border:0;color:#d8d0b6;font:700 .62cqw Georgia,serif;letter-spacing:.12em}
+#cluster[data-theme-id="y1950_1959.america"] .cluster-control-cluster .mode-seg-btn.seg-active{background:linear-gradient(#fcf2d6,#cdb78b);color:#2c4747;border-radius:1cqw}
+#cluster[data-theme-id="y1950_1959.america"] .manual-theme-debug-label,#cluster[data-theme-id="y1950_1959.america"] .connection{color:#c3b995}
+#cluster[data-theme-id="y1950_1959.america"] .mode-slider{display:none}
+#cluster[data-theme-id="y1950_1959.america"] .race-feedback{clip-path:none;background:#173137ed;border:2px solid #dbbd83;border-radius:.7cqw;box-shadow:0 6px 18px #0009;color:#f1e2bd}
+#cluster[data-theme-id="y1950_1959.america"] .race-feedback strong{color:#ffe0a4;text-shadow:0 0 8px #faad61}
+
+.belair-america-instrument{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;font-family:Georgia,'Times New Roman',serif;font-variant-numeric:tabular-nums;background:#05242b;color:var(--ba-ink);transition:opacity .34s ease,clip-path .55s ease,filter .42s ease}
+.ba-enamel{position:absolute;inset:1.5%;border-radius:2.4cqw 2.4cqw 1cqw 1cqw;border:1px solid #b7d3c6;background:radial-gradient(ellipse at 50% 62%,#368088 0,#1e5b65 37%,#0d3641 78%,#09252e 100%);box-shadow:inset 0 0 0 3px #0e3a43,inset 0 0 0 5px #aac5b8,inset 0 15px 24px #ffffff13,inset 0 -17px 36px #00151bd9,0 8px 15px #000c}
+.ba-enamel::before{content:'';position:absolute;inset:1.8%;border:1px solid #d6ecdc38;border-radius:1.8cqw;pointer-events:none}
+.ba-enamel::after{content:'';position:absolute;left:8%;right:8%;top:17%;height:2px;background:linear-gradient(90deg,transparent,#f8f7dbb5 6%,#82a6a7 47%,#f8f7dbb5 94%,transparent);box-shadow:0 2px 5px #00171d}
+.ba-grille{position:absolute;top:34%;width:24%;height:25%;opacity:.62;background:repeating-linear-gradient(0deg,#d6ede07d 0 1px,#17434b 1px 4px,transparent 4px 11px);mask-image:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent)}
+.ba-grille-left{left:2%}.ba-grille-right{right:2%}
+.ba-plaque{position:absolute;top:7.5%;left:31%;right:31%;display:flex;align-items:center;gap:1.2cqw;color:#eed7ae;text-align:center;font:italic 1.1cqw Georgia,serif;letter-spacing:.18em;text-shadow:0 2px 2px #0009;white-space:nowrap}
+.ba-plaque i{flex:1;height:1px;background:linear-gradient(90deg,transparent,#e9d2a1,transparent)}
+.ba-main-housing{position:absolute;top:17%;left:9%;right:9%;height:61%;border-radius:4cqw 4cqw 2cqw 2cqw;background:linear-gradient(155deg,#eff7e8 0,#638a8a 2%,#d3e8d9 4%,#274a50 6%,#0b252d 8%,#05161d 83%,#d9e6d6 88%,#547b7f 91%,#eef3de 95%);box-shadow:inset 0 1px 0 #fff9,inset 0 0 0 3px #6a9a98,0 4px 0 #dcebd7,0 10px 12px #000b,0 20px 22px #0007}
+.ba-wing{position:absolute;z-index:0;top:10%;width:28%;height:38%;border-top:3px solid #ecf4d9;border-bottom:2px solid #aac9bd;background:linear-gradient(#78a2a0 0,#305760 13%,#122f38 35%,#081b24 75%,#7fa5a3 100%);box-shadow:0 4px 9px #0008}
+.ba-wing-left{left:-7%;clip-path:polygon(0 0,100% 0,100% 100%,12% 80%)}.ba-wing-right{right:-7%;clip-path:polygon(0 0,100% 0,88% 80%,0 100%)}
+.ba-speed-window{position:absolute;z-index:2;left:25%;right:25%;top:3%;bottom:7%;border:4px solid #cddfcd;border-radius:48% 48% 11% 11%/65% 65% 16% 16%;background:radial-gradient(ellipse at 50% 72%,#16343a 0,#091f27 50%,#030d12 100%);box-shadow:inset 0 0 0 2px #304f55,inset 0 0 0 5px #90b8af,inset 0 7px 13px #000d,0 0 0 3px #537c7e,0 8px 17px #000a;overflow:hidden}
+.ba-glass{position:absolute;z-index:5;inset:2%;border-radius:inherit;background:linear-gradient(154deg,#fff7 0,#ffffff26 10%,transparent 28%,transparent 74%,#ffffff0b 90%);pointer-events:none}
+.ba-speed-svg{position:absolute;left:3%;top:3%;width:94%;height:91%;overflow:visible}
+.ba-speed-arc{fill:none;stroke:var(--ba-accent);stroke-width:5;opacity:.58;filter:drop-shadow(0 0 4px var(--ba-accent))}
+.ba-tick-major{fill:none;stroke:#f5e9c6;stroke-width:6;stroke-linecap:round}.ba-tick-minor{fill:none;stroke:#bad3c5;stroke-width:2.7;opacity:.8}
+.ba-tick-number{fill:#f3e9cc;font:700 28px Georgia,serif;paint-order:stroke;stroke:#04131b;stroke-width:3}
+.ba-speed-needle-shadow{fill:#0008;filter:blur(5px)}.ba-speed-needle{fill:#f2a761;stroke:#ffc887;stroke-width:1;filter:drop-shadow(0 1px 2px #000) drop-shadow(0 0 5px #f9ae6577)}
+.belair-america-instrument :is(.ba-speed-needle,.ba-speed-needle-shadow,.ba-speed-readout,.ba-side strong,.ba-mode-data,.ba-signal){transition:opacity .32s ease,filter .32s ease}
+.ba-speed-hub{fill:#dcebd9;stroke:#39767b;stroke-width:6}.ba-speed-pin{fill:#28363b}
+.ba-speed-caption{position:absolute;top:13%;left:0;right:0;color:#c7dcd0;text-align:center;font-size:.56cqw;letter-spacing:.23em}
+.ba-speed-readout{position:absolute;left:35%;right:35%;bottom:12%;display:flex;align-items:baseline;justify-content:center;gap:.2cqw;border:2px solid #a5baaa;border-radius:.35cqw;background:linear-gradient(#d8d6b9,#f4f0d2 35%,#b9bda6);box-shadow:inset 0 2px 3px #775f4270,0 2px 4px #000a;color:#273c42}
+.ba-speed-readout strong{font:700 2.35cqw Georgia,serif;line-height:1.1}.ba-speed-readout span{font:700 .52cqw Georgia,serif}
+.ba-speed-scale{position:absolute;bottom:4%;left:0;right:0;color:#829d97;text-align:center;font-size:.45cqw;letter-spacing:.17em}
+.ba-side{position:absolute;z-index:3;top:31%;width:18%;height:43%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4cqw;background:radial-gradient(ellipse,#173d42,#071c24 75%);border:3px solid #dcebd7;border-radius:46% 46% 35% 35%;box-shadow:inset 0 0 0 2px #456d6d,inset 0 0 0 5px #102e36,0 0 0 2px #719b97,0 4px 12px #000c}
+.ba-side-left{left:4%}.ba-side-right{right:4%}.ba-side span{color:#d7e5ca;font-size:.61cqw;letter-spacing:.13em}.ba-side strong{font-size:2.55cqw;font-weight:400;line-height:1;color:var(--ba-lamp);text-shadow:0 0 7px #f7b86b74}.ba-side small{color:#93b2ac;font-size:.62cqw;letter-spacing:.12em}
+.ba-lower{position:absolute;left:15%;right:15%;bottom:8%;height:12%;display:flex;align-items:stretch;gap:1.1cqw;filter:drop-shadow(0 3px 3px #0007)}
+.ba-gear{width:10%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(#f2eccf,#bebea5);border:2px solid #9fb4a8;border-radius:.55cqw;color:#314d4c;box-shadow:inset 0 2px #fff9,inset 0 -3px #737d66}
+.ba-gear span{font-size:.48cqw;letter-spacing:.12em}.ba-gear strong{font-size:2.3cqw;line-height:1;font-weight:400}
+.ba-mode-data{flex:1;display:grid;grid-template-columns:repeat(3,1fr);align-items:center;border:1px solid #abc7b6;border-radius:.5cqw;background:linear-gradient(#0a333ba8,#041a22de);box-shadow:inset 0 1px #fff2}
+.ba-mode-data>div{min-width:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.2cqw;border-right:1px solid #a5c3b15c}.ba-mode-data>div:last-child{border:0}
+.ba-mode-data span{font-size:.55cqw;letter-spacing:.14em;color:#a8c4b4;white-space:nowrap}.ba-mode-data strong{font-size:1.45cqw;font-weight:400;color:var(--ba-lamp);white-space:nowrap}.ba-mode-data small{font-size:.47cqw;color:#91aa9d}
+.belair-america-instrument[data-mode="race"]{--ba-lamp:#ffd082;--ba-accent:#e3a46b;--ba-ink:#ffe6c4}
+.belair-america-instrument[data-mode="freeRoam"]{--ba-lamp:#b8f5d9;--ba-accent:#79cab8;--ba-ink:#d8f0dd}
+.belair-america-instrument[data-mode="race"] .ba-free-data,.belair-america-instrument[data-mode="freeRoam"] .ba-race-data{display:none}
+.belair-america-instrument[data-mode="race"] .ba-mode-data{background:linear-gradient(#533421a8,#21160fde);border-color:#d8ac77}
+.belair-america-instrument[data-mode="freeRoam"] .ba-mode-data{background:linear-gradient(#104b4ba8,#082829de)}
+.belair-america-instrument[data-mode="freeRoam"] .ba-mode-data{grid-template-columns:repeat(2,1fr)}
+.ba-footer{position:absolute;left:8%;right:8%;bottom:2.8%;display:flex;justify-content:space-between;color:#bfd0b7;font-size:.55cqw;letter-spacing:.13em}.ba-signal{display:flex;align-items:center;gap:.4cqw}.ba-signal i{width:.4cqw;height:.4cqw;border-radius:50%;background:var(--ba-lamp);box-shadow:0 0 6px var(--ba-lamp)}.ba-signal b{font-weight:400}
+.belair-america-instrument[data-signal="absent"] .ba-signal i{background:#344f4c;box-shadow:none}
+.belair-america-instrument[data-powertrain="ev"] .ba-side-right{display:none}.belair-america-instrument[data-powertrain="ev"] .ba-speed-window{right:17%;left:17%}.belair-america-instrument[data-powertrain="ev"] .ba-side-left{left:1.5%;width:13%}
+
+.ba-mode-identity{position:absolute;z-index:7;left:36%;top:29%;width:28%;height:35%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.45cqw;opacity:0;visibility:hidden;pointer-events:none;color:#f2e8c9;background:radial-gradient(ellipse,#071d23 22%,#071d23ed 61%,transparent 78%);text-shadow:0 2px 5px #000;transition:opacity .26s ease,visibility 0s linear .26s}
+.ba-mode-identity small{font-size:.65cqw;letter-spacing:.2em}.ba-mode-identity strong{display:none;font:italic 3.8cqw Georgia,serif;letter-spacing:.18em}.ba-mode-identity span{display:flex;gap:.5cqw}.ba-mode-identity span i{width:.55cqw;height:.18cqw;background:#dfbf8e;box-shadow:0 0 6px #dfbf8e}
+#cluster[data-target-mode="race"] .ba-mode-identity [data-ba-mode="race"],#cluster[data-target-mode="freeRoam"] .ba-mode-identity [data-ba-mode="freeRoam"]{display:block}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-center"],[data-ignition-phase="center"]) .ba-mode-identity{opacity:1;visibility:visible;transition-delay:0s}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="off-center"] .ba-mode-identity strong{opacity:0}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="center"] .ba-mode-identity{animation:ba-identity-exit .56s linear both}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .ba-mode-identity{opacity:0;visibility:hidden;animation:none;transition:none}
+
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .belair-america-instrument :is(.ba-speed-needle,.ba-speed-needle-shadow,.ba-signal){opacity:0}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .belair-america-instrument{opacity:.17;filter:brightness(.2);clip-path:inset(7% 5%)}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .belair-america-instrument{opacity:0;filter:brightness(0);clip-path:inset(48% 20%)}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .belair-america-instrument{animation:ba-build .95s cubic-bezier(.21,.83,.26,1) both}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .belair-america-instrument :is(.ba-speed-needle,.ba-speed-readout,.ba-side strong,.ba-mode-data,.ba-signal){opacity:0;filter:brightness(0)}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .belair-america-instrument :is(.ba-speed-window,.ba-side,.ba-plaque){filter:brightness(.12)}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument :is(.ba-speed-window,.ba-side,.ba-plaque){animation:ba-relight .8s ease-out both}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ba-mode-data{animation:ba-data-enter .72s ease-out both}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="center"] .ba-mode-identity strong{animation:ba-mode-name .3s cubic-bezier(.16,1,.3,1) both}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-phase="scan"] .ba-speed-arc{stroke-width:7;filter:drop-shadow(0 0 7px var(--ba-accent))}
+@keyframes ba-build{0%{opacity:0;clip-path:inset(48% 20%);filter:brightness(.07)}32%{opacity:.3;clip-path:inset(30% 8%);filter:brightness(.25)}75%{opacity:.85;clip-path:inset(2% 1%);filter:brightness(.75)}100%{opacity:1;clip-path:inset(0);filter:brightness(1)}}
+@keyframes ba-relight{0%{filter:brightness(.12)}65%{filter:brightness(.76)}100%{filter:brightness(1)}}
+@keyframes ba-data-enter{from{opacity:0;transform:translateY(1.1cqw)}to{opacity:1;transform:translateY(0)}}
+@keyframes ba-mode-name{from{opacity:0;transform:translateY(.9cqw) scale(.87)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ba-identity-exit{0%,55%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.belair-america-instrument,.belair-america-instrument *{animation:none!important;transition:none!important}}
