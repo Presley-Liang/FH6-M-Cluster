@@ -35,6 +35,8 @@ import { createPanoramicEuropeInstrument } from '../../public/js/themes/panorami
 import { createModernInstrumentBinding } from '../../public/js/themes/modern-instrument-binding.js';
 import { createCivicJapanInstrument } from '../../public/js/themes/civic-japan-instrument.js';
 import { createEscaladeAmericaInstrument } from '../../public/js/themes/escalade-america-instrument.js';
+import { createXtJapanInstrument } from '../../public/js/themes/xt-japan-instrument.js';
+import { createPriusJapanInstrument } from '../../public/js/themes/prius-japan-instrument.js';
 import { createGxJapanInstrument } from '../../public/js/themes/gx-japan-instrument.js';
 import { createEuropeanInstrumentBinding } from '../../public/js/themes/european-instrument-binding.js';
 import { createKadettEuropeInstrument } from '../../public/js/themes/kadett-europe-instrument.js';
@@ -735,6 +737,8 @@ export function getDefaultHTML() {
   var createModernInstrumentBinding = ${createModernInstrumentBinding.toString()};
   var createCivicJapanInstrument = ${createCivicJapanInstrument.toString()};
   var createEscaladeAmericaInstrument = ${createEscaladeAmericaInstrument.toString()};
+  var createXtJapanInstrument = ${createXtJapanInstrument.toString()};
+  var createPriusJapanInstrument = ${createPriusJapanInstrument.toString()};
   var createGxJapanInstrument = ${createGxJapanInstrument.toString()};
   var createEuropeanInstrumentBinding = ${createEuropeanInstrumentBinding.toString()};
   var createKadettEuropeInstrument = ${createKadettEuropeInstrument.toString()};
@@ -1491,6 +1495,8 @@ export function getDefaultHTML() {
       'y1986_1994.europe': createKadettEuropeInstrument,
       'y1995_2002.europe': createMultiplaEuropeInstrument,
       'y2003_2008.europe': createC4EuropeInstrument,
+      'y1986_1994.japan': createXtJapanInstrument,
+      'y2015_2019.japan': createPriusJapanInstrument,
     },
   });
   instrumentHost.activate(document.getElementById('cluster').dataset.themeId || DEFAULT_THEME_ID);
@@ -1682,6 +1688,7 @@ export function getDefaultHTML() {
     .replace('</head>', '<link rel="stylesheet" href="/styles/kadett-europe-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/multipla-europe-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/c4-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/xt-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/prius-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/modern-instrument-common.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/civic-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/escalade-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/gx-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('<script>', '<script src="/vendor/leaflet/leaflet.js"></script><script>');
 }

@@ -53,7 +53,7 @@
 | 2009–2014 | 日 | 已做·LFA 年代，构图复核中 | 左偏 TFT 转速环＋右侧上下两层驾驶数据板 | 已从中央圆环改位；与 JDM90／RX-8 并排验收，核对 LFA 参照的保真度 |
 | 2015–2019 | 欧 | 已做·用户原有基准 | 现有现代欧系仪表，保留其完整布局与 Race／Free 动画 | 其他主题不得直接拿它换色扩展 |
 | 2015–2019 | 美 | 已接入·Ford GT 年代，预览通过 | 紧凑数字屏＋顶部折线转速带；Free 中央速度／Race 中央档位 | 避开 C8 宽屏弧线／两侧瓦片；[Ford 官方仪表介绍](https://media.ford.com/content/fordmedia/fma/me/en/news/2017/01/17/all-new-ford-gt-supercars-digital-instrument-display-is-the-dash.html)；真实 FH6／用户验收另计 |
-| 2015–2019 | 日 | 候选·待找实物 | 上层细转速光带＋下层非对称速度／挡位区 | 避开 LFA 大圆 TFT 和原欧系双大弧 |
+| 2015–2019 | 日 | 开发态接入·第四代 Prius 年代，原厂参照待核实 | 中置遮光罩内左右矩形屏，左速度／右驾驶信息 | 避开 LFA 圆 TFT、Civic 顶部连续转速尺；无虚构混动能量流 |
 | 2020–2024 | 欧 | 已接入·Taycan 年代，预览通过 | 无表帽悬浮曲面、中央简洁速度与左右状态列；Free 保持纯净，Race 强化驾驶数据，不做独立大圆 | 避开 C8 数字弧线与 Ford GT 折线转速带；[Porsche 官方座舱资料](https://newsroom.porsche.com/en/2019/products/porsche-taycan-interior-digital-clear-sustainable-18432.html)；真实 FH6／用户验收另计 |
 | 2020–2024 | 美 | 已做·C8 年代 | 宽屏动力弧＋左右数字信息块 | 与 Taycan 无表圈纯净带形成主结构区别 |
 | 2020–2024 | 日 | 已接入·Civic FL5 +R 年代 | 左斜升至水平的连续转速尺、挡位凹口、下三驾驶区和右二维 G | Honda 原厂 +R 构图参考；必要字段适配，真实 FH6／用户验收待完成 |
