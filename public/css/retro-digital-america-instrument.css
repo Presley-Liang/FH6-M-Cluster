@@ -1,0 +1,147 @@
+/* TYPE 03: 1986–1994 American vacuum fluorescent digital cockpit. */
+#cluster:not([data-theme-id="y1986_1994.america"]) .retro-digital-america-instrument { display:none; }
+#cluster[data-theme-id="y1986_1994.america"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity) { display:none !important; }
+#cluster[data-theme-id="y1986_1994.america"] { --rda-glow:#7cf7d2; --rda-dim:#4c9987; --rda-amber:#f4bb67; }
+#cluster[data-theme-id="y1986_1994.america"] .cluster-stage { overflow:hidden; background:#020807 !important; border:5px solid #121b1b; box-shadow:0 0 0 1px #75878577,inset 0 0 0 3px #020404,0 35px 90px #000c; }
+#cluster[data-theme-id="y1986_1994.america"] .cluster-top { color:#73afa4; }
+#cluster[data-theme-id="y1986_1994.america"] .wordmark { color:#79ddc8; font-family:Consolas,'Lucida Console',monospace; font-size:19px; font-style:normal; font-weight:700; letter-spacing:.04em; text-shadow:0 0 14px #65eeca88; }
+#cluster[data-theme-id="y1986_1994.america"] .wordmark i { width:3px; height:16px; transform:none; background:#72cfbb; }
+#cluster[data-theme-id="y1986_1994.america"] .wordmark i:nth-child(2) { background:#b9ffe6; }
+#cluster[data-theme-id="y1986_1994.america"] .wordmark i:nth-child(3) { background:#4c9f8f; }
+#cluster[data-theme-id="y1986_1994.america"] .control-policy,#cluster[data-theme-id="y1986_1994.america"] .cluster-control-cluster .mode-seg { background:#06100f; border:1px solid #3c7168; border-radius:0; clip-path:none; }
+#cluster[data-theme-id="y1986_1994.america"] .control-policy-btn,#cluster[data-theme-id="y1986_1994.america"] .mode-seg-btn { color:#608f83; font-family:Consolas,'Lucida Console',monospace; letter-spacing:.1em; }
+#cluster[data-theme-id="y1986_1994.america"] .control-policy-btn.is-active,#cluster[data-theme-id="y1986_1994.america"] .mode-seg-btn.seg-active { color:#bcffe9; background:#174d42; border-bottom:0; box-shadow:inset 0 0 0 1px #7fe6c098,0 0 11px #61dfb566; }
+#cluster[data-theme-id="y1986_1994.america"] .mode-slider { display:none; }
+#cluster[data-theme-id="y1986_1994.america"] .manual-theme-debug-label { color:#83c5ab; }
+#cluster[data-theme-id="y1986_1994.america"] .connection { color:#6aafa2; }
+#cluster[data-theme-id="y1986_1994.america"] :is(.wordmark,.connection,.mode-seg-btn) { transition:color .26s ease,background-color .26s ease,box-shadow .26s ease,text-shadow .26s ease; }
+
+.retro-digital-america-instrument { position:absolute; inset:0; z-index:2; overflow:hidden; pointer-events:none; color:var(--rda-glow); font-family:Consolas,'Lucida Console',monospace; transition:opacity .36s ease,filter .36s ease,clip-path .46s ease; }
+.retro-digital-america-instrument::after { content:''; position:absolute; inset:0; z-index:8; pointer-events:none; opacity:.13; background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,#000 4px); mix-blend-mode:multiply; }
+.rda-cabinet { position:absolute; inset:3.4% 3.2%; padding:1.1%; background:linear-gradient(145deg,#182524,#040808 10%,#020605 85%,#23312d); border:1px solid #687e7699; box-shadow:inset 0 0 0 3px #0c1412,inset 0 0 0 4px #697a6e44,inset 0 0 35px #000,0 16px 24px #000b; }
+.rda-cabinet::before,.rda-cabinet::after { content:''; position:absolute; z-index:5; top:2%; bottom:2%; width:2px; background:linear-gradient(#07100e,#637e70 12%,#182a22 40%,#668273 88%,#07100e); }
+.rda-cabinet::before { left:1.2%; } .rda-cabinet::after { right:1.2%; }
+.rda-bezel { position:relative; height:100%; padding:1.2% 2.4% 1%; border:2px solid #213a34; box-shadow:inset 0 0 0 3px #010705,inset 0 0 80px #000,0 0 0 1px #95a49724; background:radial-gradient(ellipse 75% 50% at 50% 40%,#08201b,#010706 82%); display:grid; grid-template-rows:8% 23% 42% 22% 5%; transition:opacity .22s ease; }
+.rda-bezel::before { content:''; position:absolute; inset:2%; pointer-events:none; background:linear-gradient(110deg,#aaffd005,transparent 30%,#8cfbd006 72%,transparent); }
+.rda-header { display:flex; align-items:center; gap:1.3cqw; font-size:.77cqw; letter-spacing:.21em; color:#70978a; }
+.rda-system { color:#9dc5af; white-space:nowrap; }
+.rda-header-rule { flex:1; height:1px; background:linear-gradient(90deg,#3f806d,#122f27); }
+.rda-era { color:#6ba68f; white-space:nowrap; }
+.rda-rpm-zone { min-width:0; border-top:1px solid #356659; padding:1.2% 1.3% 0; background:linear-gradient(180deg,#0c241c88,#0000); }
+.rda-rpm-heading { display:flex; align-items:baseline; gap:.8cqw; height:35%; font-size:.8cqw; letter-spacing:.14em; color:#9fbcae; }
+.rda-rpm-heading strong { margin-left:auto; font-size:2.35cqw; line-height:1; font-weight:500; letter-spacing:.08em; color:#aaffde; text-shadow:0 0 5px #8cffccdd,0 0 18px #41dba7a0; }
+.rda-rpm-heading small { font-size:.75cqw; color:#75a58d; }
+.rda-segment-track { height:36%; display:grid; grid-template-columns:repeat(32,1fr); gap:.34cqw; padding:.38cqw; background:#03120e; border:1px solid #294e40; box-shadow:inset 0 0 17px #000d; transition:opacity .18s ease; }
+.retro-digital-america-instrument :is(.rda-rpm-zone,.rda-main-row,.rda-lower-row,.rda-bottom-legend){transition:opacity .32s ease,filter .32s ease}
+.retro-digital-america-instrument :is(.rda-rpm-heading strong,.rda-speed-number strong,.rda-gear-window strong){transition:opacity .18s ease}
+.rda-segment-track i { display:block; min-width:0; background:#10352a; border:1px solid #28624b77; transform:skew(-9deg); box-shadow:inset 0 0 3px #000; transition:background .12s linear,box-shadow .12s linear; }
+.rda-segment-track i[data-lit="true"] { background:#75f4c1; border-color:#b9ffe0; box-shadow:0 0 5px #73ffc3cc,0 0 16px #4cfcb180,inset 0 0 5px #ddfff0; }
+.rda-segment-track i:nth-child(n+28)[data-lit="true"] { background:#f1bc70; border-color:#ffe4a8; box-shadow:0 0 10px #ffc06faa; }
+.rda-segment-track i[data-scan-head="true"] { background:#e3fff4; box-shadow:0 0 7px #fff,0 0 22px #a9ffe4; }
+.rda-rpm-scale { display:flex; justify-content:space-between; gap:1%; padding:.55% .4% 0; color:#5d9a7b; font-size:.68cqw; letter-spacing:.07em; }
+.rda-rpm-scale em { font-size:.58cqw; font-style:normal; color:#567d69; }
+.rda-main-row { display:grid; grid-template-columns:19% 1fr; gap:1.7%; padding-top:.9%; min-height:0; }
+.rda-gear-window,.rda-speed-window { min-width:0; background:radial-gradient(ellipse at center,#09281c,#03140f 76%); border:1px solid #43816c; box-shadow:inset 0 0 0 3px #020b08,inset 0 0 0 4px #2e6f55aa,inset 0 0 40px #000a,0 0 12px #1e7d5660; }
+.rda-gear-window { display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:7% 3%; }
+.rda-gear-window span,.rda-gear-window small { color:#84b59b; font-size:.58cqw; letter-spacing:.13em; white-space:nowrap; }
+.rda-gear-window strong { font-size:8cqw; line-height:.95; font-weight:400; letter-spacing:-.06em; color:#b4ffe0; text-shadow:0 0 6px #aaffdacc,0 0 24px #6cf3adbb; }
+.rda-speed-window { display:flex; flex-direction:column; padding:1.4% 2% 1%; }
+.rda-speed-label,.rda-speed-footer { display:flex; align-items:center; gap:.7cqw; color:#8fbaa4; font-size:.68cqw; letter-spacing:.21em; white-space:nowrap; }
+.rda-speed-label i { flex:1; height:1px; background:linear-gradient(90deg,#559879,transparent); }
+.rda-speed-number { flex:1; display:flex; align-items:center; justify-content:center; position:relative; min-height:0; }
+.rda-speed-number strong { font-size:12.6cqw; line-height:.9; font-weight:400; letter-spacing:-.11em; color:#aaffdb; text-shadow:0 0 6px #95ffd5,0 0 26px #59efab,0 0 57px #29ac79aa; }
+.rda-speed-number span { align-self:flex-end; margin:0 0 3% 2%; color:#91c2a4; font-size:1.05cqw; letter-spacing:.08em; }
+.rda-speed-footer { justify-content:space-between; font-size:.55cqw; }
+.rda-lower-row { display:flex; gap:1%; padding-top:1.1%; min-height:0; }
+.rda-mode-plate { width:19%; min-width:0; display:flex; flex-direction:column; justify-content:center; padding:1% 1.5%; border:1px solid #386b56; background:#071b14; position:relative; }
+.rda-mode-plate span,.rda-lower-cell span { color:#789f83; font-size:.63cqw; letter-spacing:.13em; white-space:nowrap; }
+.rda-mode-plate strong { color:#ffe1a2; font-size:2.55cqw; font-weight:500; letter-spacing:.08em; text-shadow:0 0 12px #ffb54d88; }
+.rda-mode-plate i { position:absolute; right:9%; bottom:19%; width:.55cqw; height:.55cqw; border-radius:50%; background:#fac474; box-shadow:0 0 8px #ffd477; }
+.rda-race-data,.rda-free-data { flex:1; display:flex; gap:1%; }
+.rda-lower-cell { flex:1; display:flex; align-items:baseline; flex-direction:column; justify-content:center; min-width:0; padding:1% 3%; background:#071a14; border-top:1px solid #31735b; border-bottom:1px solid #1f4d3b; }
+.rda-lower-cell strong { color:#a0fbd4; font-size:2.45cqw; font-weight:500; line-height:1.1; text-shadow:0 0 10px #72e9b277; white-space:nowrap; }
+.rda-lower-cell small { color:#89b89a; font-size:.65cqw; }
+.rda-bottom-legend { display:flex; justify-content:space-between; align-items:end; color:#407960; font-size:.55cqw; letter-spacing:.22em; }
+.retro-digital-america-instrument[data-mode="race"] .rda-free-data,.retro-digital-america-instrument[data-mode="freeRoam"] .rda-race-data { display:none; }
+.retro-digital-america-instrument[data-mode="freeRoam"] .rda-mode-plate strong { color:#b4ffe1; text-shadow:0 0 10px #72ecc899; }
+.retro-digital-america-instrument[data-mode="freeRoam"] .rda-mode-plate i { background:#81f2c6; box-shadow:0 0 9px #8fffd1; }
+.retro-digital-america-instrument[data-powertrain="ev"]:not([data-scan="true"]) .rda-segment-track i { opacity:.16; }
+.retro-digital-america-instrument[data-powertrain="ev"] .rda-rpm-scale { opacity:.25; }
+.retro-digital-america-instrument[data-powertrain="ev"] .rda-main-row { grid-template-columns:1fr; }
+.retro-digital-america-instrument[data-powertrain="ev"] .rda-gear-window,.retro-digital-america-instrument[data-powertrain="ev"] .rda-free-data .rda-lower-cell:last-child { display:none; }
+.retro-digital-america-instrument[data-signal="absent"] .rda-speed-number strong,.retro-digital-america-instrument[data-signal="absent"] .rda-rpm-heading strong { text-shadow:0 0 10px #4c9f7855; }
+.rda-mode-identity { position:absolute; z-index:6; inset:29% 34%; display:none; flex-direction:column; align-items:center; justify-content:center; gap:.4cqw; background:radial-gradient(ellipse,#02110c 38%,#02110cde 65%,transparent 80%); opacity:0; pointer-events:none; color:#adffda; text-shadow:0 0 16px #63ebad; }
+.rda-mode-identity::before,.rda-mode-identity::after { content:''; width:70%; height:2px; background:linear-gradient(90deg,transparent,#79e9bc,transparent); box-shadow:0 0 12px #78f3c3; }
+.rda-mode-identity span,.rda-mode-identity small { color:#71aa8a; font-size:.67cqw; letter-spacing:.19em; }
+.rda-mode-identity strong { display:none; font-size:5.4cqw; line-height:1; font-weight:500; letter-spacing:.16em; }
+#cluster[data-target-mode="race"] .rda-mode-identity [data-rda-mode="race"],#cluster[data-target-mode="freeRoam"] .rda-mode-identity [data-rda-mode="freeRoam"] { display:block; }
+
+/* The shared coordinator controls power down, complete blackout, card and build. */
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .rda-segment-track { opacity:0; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .retro-digital-america-instrument { opacity:.3; filter:brightness(.2); clip-path:inset(8% 2%); }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .retro-digital-america-instrument { opacity:0; filter:brightness(0); clip-path:inset(50% 0); }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .retro-digital-america-instrument { animation:rda-power-up .84s steps(8,end) both; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .retro-digital-america-instrument :is(.rda-rpm-zone,.rda-main-row,.rda-lower-row,.rda-bottom-legend) { opacity:.03; filter:brightness(.02); }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-center"],[data-ignition-phase="center"]) .rda-bezel { opacity:0; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-center"],[data-ignition-phase="center"]) .rda-mode-identity { display:flex; opacity:1; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"][data-ignition-phase="off-center"] .rda-mode-identity strong { opacity:0; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"][data-ignition-phase="center"] .rda-mode-identity strong { animation:rda-mode-name .3s steps(5,end) both; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"][data-ignition-phase="center"] .rda-mode-identity { animation:rda-mode-identity-exit .43s ease-in both; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument { animation:none; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .rda-mode-identity { display:none; animation:none; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-phase="scan"] .retro-digital-america-instrument[data-scan="true"] .rda-speed-number strong { color:#e5fff2; text-shadow:0 0 11px #fff,0 0 35px #8affcf; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-phase="scan"] .retro-digital-america-instrument[data-mode="race"][data-scan="true"] .rda-speed-number strong { color:#fff1d6; text-shadow:0 0 10px #fff0d0,0 0 34px #ff923d; }
+@keyframes rda-power-up { 0%,11%{opacity:0;filter:brightness(0);clip-path:inset(50% 0)} 12%,24%{opacity:.35;filter:brightness(.25);clip-path:inset(25% 0)} 25%,40%{opacity:.05;filter:brightness(.05);clip-path:inset(10% 0)} 41%,67%{opacity:.75;filter:brightness(.7);clip-path:inset(2% 0)} 68%,100%{opacity:1;filter:brightness(1);clip-path:inset(0)} }
+
+/* Free keeps the cool VFD speed display. Race brings the gearbox and tach into
+   focus with amber/red phosphor; the underlying telemetry fields stay shared. */
+.retro-digital-america-instrument[data-mode="race"] .rda-bezel { background:radial-gradient(ellipse 75% 50% at 48% 38%,#281405,#090805 82%); border-color:#67412b; }
+.retro-digital-america-instrument[data-mode="race"] .rda-rpm-zone { border-top-color:#b76d36; background:linear-gradient(180deg,#4a240b66,#0000); }
+.retro-digital-america-instrument[data-mode="race"] :is(.rda-system,.rda-era,.rda-rpm-heading,.rda-rpm-heading small,.rda-rpm-scale,.rda-speed-label,.rda-speed-footer,.rda-mode-plate span,.rda-lower-cell span,.rda-bottom-legend) { color:#cb9b6c; }
+.retro-digital-america-instrument[data-mode="race"] .rda-header-rule { background:linear-gradient(90deg,#f89e4e,#4a2615); }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track { background:#170b05; border-color:#92542e; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i { background:#422212; border-color:#a4522f77; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-lit="true"] { background:#ffac5b; border-color:#ffd39a; box-shadow:0 0 5px #ffb262,0 0 16px #f56a29a0,inset 0 0 5px #fff1c4; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i:nth-child(n+28)[data-lit="true"] { background:#ff5c3e; border-color:#ffb69c; box-shadow:0 0 12px #ff5029; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-scan-head="true"] { background:#fff1d3; box-shadow:0 0 8px #fff,0 0 24px #ffb052; }
+.retro-digital-america-instrument[data-mode="race"] .rda-main-row { grid-template-columns:32% 1fr; }
+.retro-digital-america-instrument[data-mode="race"] :is(.rda-gear-window,.rda-speed-window) { background:radial-gradient(ellipse at center,#321605,#160b05 76%); border-color:#b06b38; box-shadow:inset 0 0 0 3px #0e0704,inset 0 0 0 4px #8c4c24aa,inset 0 0 40px #000a,0 0 14px #a7502066; }
+.retro-digital-america-instrument[data-mode="race"] .rda-gear-window strong { color:#ffe0ab; font-size:9.2cqw; text-shadow:0 0 8px #ffcf96,0 0 26px #ff6f2e; }
+.retro-digital-america-instrument[data-mode="race"] .rda-speed-number strong { color:#ffd19b; font-size:10.8cqw; text-shadow:0 0 6px #ffc489,0 0 26px #ec773b,0 0 57px #a93a1eaa; }
+.retro-digital-america-instrument[data-mode="race"] .rda-rpm-heading strong { color:#ffdbaf; text-shadow:0 0 6px #ffcf9b,0 0 20px #ff823b; }
+.retro-digital-america-instrument[data-mode="race"] :is(.rda-mode-plate,.rda-lower-cell) { background:#241207; border-color:#98552e; }
+.retro-digital-america-instrument[data-mode="race"] .rda-mode-plate strong { color:#ffb05d; text-shadow:0 0 14px #ff6e36; }
+.retro-digital-america-instrument[data-mode="race"] .rda-mode-plate i { background:#ff6c43; box-shadow:0 0 13px #ff663a; }
+.retro-digital-america-instrument[data-mode="race"] .rda-lower-cell strong { color:#ffd9a4; text-shadow:0 0 11px #fb8737aa; }
+.retro-digital-america-instrument[data-mode="race"] .rda-mode-plate { width:24%; }
+.retro-digital-america-instrument[data-mode="freeRoam"] .rda-main-row { grid-template-columns:14% 1fr; }
+.retro-digital-america-instrument[data-mode="freeRoam"] .rda-gear-window strong { font-size:6.7cqw; }
+.retro-digital-america-instrument[data-mode="freeRoam"] .rda-mode-plate { width:19%; }
+.retro-digital-america-instrument[data-mode="freeRoam"] .rda-speed-number strong { font-size:13cqw; }
+.retro-digital-america-instrument[data-powertrain="ev"] .rda-main-row { grid-template-columns:1fr; }
+
+#cluster[data-theme-id="y1986_1994.america"][data-drive-mode="race"] :is(.wordmark,.connection) { color:#d6a273; text-shadow:0 0 14px #f5885277; }
+#cluster[data-theme-id="y1986_1994.america"][data-drive-mode="race"] .mode-seg-btn.seg-active { color:#ffe0b8; background:#633017; box-shadow:inset 0 0 0 1px #ffa766,0 0 14px #ff703b88; }
+
+/* Identification begins only after the outgoing display has gone dark. */
+#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity { color:#ffca8c; text-shadow:0 0 18px #ff7b37; background:radial-gradient(ellipse,#1d0b04 38%,#1d0b04e8 65%,transparent 80%); }
+#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity :is(span,small) { color:#cd956e; }
+#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity::before,#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity::after { background:linear-gradient(90deg,transparent,#ff9b51,transparent); box-shadow:0 0 12px #ff743a; }
+.rda-identity-progress { width:74%; display:grid; grid-template-columns:repeat(12,1fr); gap:.35cqw; margin-top:.8cqw; }
+.rda-identity-progress i { height:.52cqw; background:#19362d; box-shadow:inset 0 0 0 1px #467765; opacity:.23; }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="center"] .rda-identity-progress i { animation:rda-program-lock .2s steps(1,end) both; animation-delay:calc(var(--step,0) * 29ms); }
+.rda-identity-progress i:nth-child(1){--step:0}.rda-identity-progress i:nth-child(2){--step:1}.rda-identity-progress i:nth-child(3){--step:2}.rda-identity-progress i:nth-child(4){--step:3}.rda-identity-progress i:nth-child(5){--step:4}.rda-identity-progress i:nth-child(6){--step:5}.rda-identity-progress i:nth-child(7){--step:6}.rda-identity-progress i:nth-child(8){--step:7}.rda-identity-progress i:nth-child(9){--step:8}.rda-identity-progress i:nth-child(10){--step:9}.rda-identity-progress i:nth-child(11){--step:10}.rda-identity-progress i:nth-child(12){--step:11}
+#cluster[data-target-mode="race"] .rda-identity-progress i { --lock-color:#ffad5c; --lock-glow:#ff7b37; }
+#cluster[data-target-mode="freeRoam"] .rda-identity-progress i { --lock-color:#8dffcf; --lock-glow:#56e5aa; }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument :is(.rda-rpm-zone,.rda-gear-window,.rda-speed-window,.rda-mode-plate,.rda-race-data,.rda-free-data) { animation:rda-bank-relight .72s steps(6,end) both; }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rda-rpm-zone { animation-delay:0ms; }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rda-gear-window { animation-delay:120ms; }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rda-speed-window { animation-delay:220ms; }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rda-mode-plate { animation-delay:320ms; }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.rda-race-data,.rda-free-data) { animation-delay:380ms; }
+@keyframes rda-program-lock { 0%,40% { opacity:.23; background:#19362d; } 41%,100% { opacity:1; background:var(--lock-color); box-shadow:0 0 7px var(--lock-glow); } }
+@keyframes rda-mode-name { from{opacity:0;filter:brightness(.2)} to{opacity:1;filter:brightness(1)} }
+@keyframes rda-mode-identity-exit { 0%,35%{opacity:1} 100%{opacity:0} }
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rda-identity-progress i { opacity:1; background:var(--lock-color); box-shadow:0 0 7px var(--lock-glow); }
+@keyframes rda-bank-relight { 0%,17% { opacity:0; filter:brightness(0); } 18%,35% { opacity:.65; filter:brightness(.5); } 36%,48% { opacity:.08; filter:brightness(.08); } 49%,100% { opacity:1; filter:brightness(1); } }
+@media(prefers-reduced-motion:reduce) { .retro-digital-america-instrument,.retro-digital-america-instrument * { animation:none!important; transition:none!important; } }

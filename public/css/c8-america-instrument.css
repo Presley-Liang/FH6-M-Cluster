@@ -1,0 +1,73 @@
+/* TYPE 08: a dedicated 2020–2024 American performance digital cockpit. */
+#cluster:not([data-theme-id="y2020_2024.america"]) :is(.c8-america-instrument,.c8-mode-identity){display:none!important}
+#cluster[data-theme-id="y2020_2024.america"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
+#cluster[data-theme-id="y2020_2024.america"]{--c8-red:#f65e4c;--c8-ice:#9cd4dd;--c8-line:#637582}
+#cluster[data-theme-id="y2020_2024.america"] .cluster-stage{overflow:hidden;background:#06090c!important;border:3px solid #1d252a;box-shadow:0 0 0 1px #8497a655,0 25px 70px #000c}
+#cluster[data-theme-id="y2020_2024.america"] .wordmark{font-family:'Bahnschrift SemiCondensed','DIN Condensed',sans-serif;font-style:normal;font-weight:800;letter-spacing:.12em;color:#c3d0d5}
+#cluster[data-theme-id="y2020_2024.america"] .mode-seg-btn{font-family:'Bahnschrift SemiCondensed','DIN Condensed',sans-serif;font-weight:700;letter-spacing:.18em;color:#859aa2}
+#cluster[data-theme-id="y2020_2024.america"] .mode-seg-btn.seg-active{color:#e9f4f6;border-color:#f65e4c}
+#cluster[data-theme-id="y2020_2024.america"][data-drive-mode="freeRoam"] .mode-seg-btn.seg-active{color:#e4faff;border-color:#73bfd2;background:#1a343d}
+#cluster[data-theme-id="y2020_2024.america"] .connection{color:#889ba2}
+.c8-america-instrument{--c8-accent:#f35f49;--c8-soft:#f6b38d;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none;font-family:'Bahnschrift SemiCondensed','DIN Condensed','Franklin Gothic Medium',sans-serif;color:#e8eef0;font-variant-numeric:tabular-nums;transition:opacity .35s ease,clip-path .45s ease}
+.c8-america-instrument[data-mode="freeRoam"]{--c8-accent:#73bfd2;--c8-soft:#c2e6e9}
+.c8-housing{position:absolute;inset:3.2% 2%;display:grid;grid-template-rows:8% minmax(0,1fr) 7%;background:linear-gradient(135deg,#111b20 0,#050809 13%,#070c10 82%,#111a1d);clip-path:polygon(1.7% 0,98.3% 0,100% 9%,100% 91%,98.3% 100%,1.7% 100%,0 91%,0 9%);border-top:1px solid #8b9ca35e;border-bottom:1px solid #8b9ca35e;box-shadow:inset 0 0 0 2px #111b20,inset 0 0 45px #000}
+.c8-housing:before,.c8-housing:after{content:'';position:absolute;left:3%;right:3%;height:1px;background:linear-gradient(90deg,transparent,#d4dfe071 18%,#58676d 50%,#d4dfe071 82%,transparent);pointer-events:none}
+.c8-housing:before{top:8%}.c8-housing:after{bottom:7%}
+.c8-header,.c8-footer{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:0 3%;letter-spacing:.18em;text-transform:uppercase;color:#92a6ad;font-size:clamp(8px,.72cqw,12px)}
+.c8-edition b{margin-left:.4em;color:var(--c8-accent)}
+.c8-header-mode{border-left:2px solid var(--c8-accent);padding-left:.7em;color:#f0f4f3;font-size:clamp(10px,.95cqw,16px);font-weight:800;transition:border-color .28s ease,color .28s ease}
+.c8-link{display:flex;align-items:center;gap:.7em}.c8-link i{display:block;width:5px;height:5px;border-radius:50%;background:#546973}
+.c8-america-instrument[data-signal="live"] .c8-link i{background:#83d7b7;box-shadow:0 0 8px #83d7b777}
+.c8-deck{display:grid;grid-template-columns:21% 58% 21%;min-height:0;padding:1.3% 3% 1%}
+.c8-side{display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:5%;min-height:0;padding:5% 0 7%;transition:opacity .25s ease}
+.c8-side-left{transform:skewY(-1deg)}.c8-side-right{transform:skewY(1deg)}
+.c8-tile{position:relative;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:.12em;padding:6% 7%;border:1px solid #5365708c;background:linear-gradient(135deg,#1b272dc9,#0a1015 72%);clip-path:polygon(0 0,94% 0,100% 12%,100% 100%,0 100%);box-shadow:inset 3px 0 var(--c8-accent);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.c8-side-right .c8-tile{clip-path:polygon(6% 0,100% 0,100% 100%,0 100%,0 12%);box-shadow:inset -3px 0 var(--c8-accent)}
+.c8-tile small{color:#97a8ae;font-size:clamp(8px,.9cqw,15px);font-weight:800;letter-spacing:.14em}
+.c8-tile strong{color:#f3f6f4;font-size:clamp(17px,2.1cqw,36px);font-weight:800;line-height:1.12;white-space:nowrap;letter-spacing:-.035em}
+.c8-tile span{color:var(--c8-soft);font-size:clamp(7px,.63cqw,11px);letter-spacing:.13em;transition:color .3s ease}
+.c8-america-instrument[data-mode="race"] .c8-free,.c8-america-instrument[data-mode="freeRoam"] .c8-race{display:none}
+.c8-core{position:relative;min-width:0;min-height:0;margin:0 1.6%;background:radial-gradient(ellipse 72% 77% at 50% 65%,#18242b 0,#0a1116 58%,#05090d 100%);border:1px solid #71818b75;clip-path:polygon(6% 0,94% 0,100% 9%,100% 89%,95% 100%,5% 100%,0 89%,0 9%);box-shadow:inset 0 0 0 3px #05090d,inset 0 0 0 4px #778c9052,inset 0 15px 45px #000b}
+.c8-core:before{content:'';position:absolute;inset:4.5% 4%;border:1px solid #61747f66;clip-path:polygon(4% 0,96% 0,100% 10%,100% 90%,96% 100%,4% 100%,0 90%,0 10%);pointer-events:none}
+.c8-arch{position:absolute;inset:1% 3% 7%;pointer-events:none}
+.c8-arc-svg{width:100%;height:100%;overflow:visible}
+.c8-arc-bed,.c8-arc-fill{fill:none;stroke-width:18;stroke-linecap:butt}
+.c8-arc-bed{stroke:#293b43}.c8-arc-fill{stroke:var(--c8-accent);transition:stroke .34s ease,stroke-dasharray .08s linear;filter:drop-shadow(0 0 4px color-mix(in srgb,var(--c8-accent) 65%,transparent))}
+.c8-arc-major{stroke:#e1ebea;stroke-width:3}.c8-arc-minor{stroke:#6d858d;stroke-width:1.6}
+.c8-main-readout{position:absolute;inset:26% 7% 13%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.c8-primary-label{font-size:clamp(9px,.9cqw,15px);font-weight:800;letter-spacing:.26em;color:var(--c8-soft)}
+.c8-rpm{font-family:Impact,'Bahnschrift Condensed',sans-serif;font-size:clamp(36px,7.4cqw,116px);font-weight:400;line-height:.98;letter-spacing:.015em;color:#f5f6f3}
+.c8-main-pair{width:77%;display:grid;grid-template-columns:42% 58%;align-items:end;margin-top:1.5%;border-top:1px solid #758b956e}
+.c8-gear,.c8-speed{display:flex;align-items:baseline;justify-content:center;gap:.6em;padding-top:3%;min-width:0}
+.c8-gear{border-right:1px solid #71838c6b}.c8-gear small{font-size:clamp(8px,.8cqw,14px);letter-spacing:.12em;color:#9fb0b6}.c8-gear b{font-family:Impact,'Bahnschrift Condensed',sans-serif;font-size:clamp(22px,3.5cqw,58px);font-weight:400;color:var(--c8-accent)}
+.c8-speed strong{font-family:Impact,'Bahnschrift Condensed',sans-serif;font-size:clamp(22px,3.7cqw,60px);font-weight:400;color:#f4f6f2}.c8-speed span{font-size:clamp(8px,.7cqw,12px);color:#9fb1b8}
+.c8-arc-caption{position:absolute;bottom:6%;left:12%;right:12%;display:flex;justify-content:space-between;align-items:center;letter-spacing:.16em;color:#a1adb4;font-size:clamp(8px,.68cqw,12px)}
+.c8-arc-caption b{color:var(--c8-soft);font-size:clamp(8px,.7cqw,12px);font-weight:700}
+.c8-footer{font-size:clamp(7px,.62cqw,11px)}.c8-footer-bars{display:flex;gap:4px}.c8-footer-bars i{display:block;width:2.4cqw;height:3px;background:var(--c8-accent);transform:skew(-22deg)}
+.c8-america-instrument[data-mode="freeRoam"] .c8-core{background:radial-gradient(ellipse 80% 80% at 50% 66%,#1a3037 0,#0a171d 56%,#05090d 100%)}
+.c8-america-instrument[data-mode="freeRoam"] .c8-rpm{font-size:clamp(42px,8.2cqw,132px)}
+.c8-america-instrument[data-mode="freeRoam"] .c8-tile{background:linear-gradient(135deg,#17303a,#0a1519 75%)}
+.c8-america-instrument[data-powertrain="ev"] .c8-gear b{font-family:'Bahnschrift SemiCondensed',sans-serif;font-size:clamp(15px,1.6cqw,28px)}
+.c8-mode-identity{display:none;position:absolute;z-index:9;left:33%;top:32%;width:34%;height:38%;align-items:center;justify-content:center;flex-direction:column;gap:5%;pointer-events:none;text-align:center;color:#f5f5f3;background:radial-gradient(ellipse at center,#101a20fa 0,#070b10e6 55%,transparent 78%)}
+.c8-mode-identity small{color:#8ea1a9;letter-spacing:.32em;font-size:clamp(8px,.7cqw,12px)}
+.c8-mode-identity strong{display:none;font-family:Impact,'Bahnschrift Condensed',sans-serif;font-size:clamp(34px,5.5cqw,89px);font-weight:400;letter-spacing:.05em;line-height:1}
+.c8-mode-identity span{display:flex;gap:.35cqw}.c8-mode-identity span i{display:block;width:1.7cqw;height:4px;transform:skew(-25deg);background:#e56c52;animation:c8-identity-pulse .56s ease-in-out both}
+.c8-mode-identity span i:nth-child(2){animation-delay:.05s}.c8-mode-identity span i:nth-child(3){animation-delay:.1s}.c8-mode-identity span i:nth-child(4){animation-delay:.15s}.c8-mode-identity span i:nth-child(5){animation-delay:.2s}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="mode"][data-ignition-phase="center"] .c8-mode-identity{display:flex;animation:c8-identity-out .56s linear both}
+#cluster[data-theme-id="y2020_2024.america"][data-target-mode="race"] .c8-mode-identity [data-c8-mode="race"],#cluster[data-theme-id="y2020_2024.america"][data-target-mode="freeRoam"] .c8-mode-identity [data-c8-mode="freeRoam"]{display:block;color:#f36e53}
+#cluster[data-theme-id="y2020_2024.america"][data-target-mode="freeRoam"] .c8-mode-identity [data-c8-mode="freeRoam"]{color:#a1dbe6}
+#cluster[data-theme-id="y2020_2024.america"][data-target-mode="freeRoam"] .c8-mode-identity span i{background:#7ec9db}
+@keyframes c8-identity-out{0%{opacity:0;transform:scale(.9)}15%,55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.06)}}
+@keyframes c8-identity-pulse{0%{opacity:.15;transform:skew(-25deg) scaleX(.2)}100%{opacity:1;transform:skew(-25deg) scaleX(1)}}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .c8-america-instrument :is(.c8-rpm,.c8-gear b,.c8-speed strong,.c8-arc-fill){opacity:0}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .c8-america-instrument{opacity:.28;clip-path:inset(17% 0)}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .c8-america-instrument{opacity:0;clip-path:inset(50% 0)}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .c8-america-instrument{animation:c8-build .9s cubic-bezier(.2,1,.25,1) both}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .c8-america-instrument :is(.c8-arc-fill,.c8-rpm,.c8-gear b,.c8-speed strong){opacity:0}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .c8-america-instrument :is(.c8-tile,.c8-arc-ticks,.c8-header,.c8-footer){opacity:0}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .c8-america-instrument{animation:c8-relight .86s ease-out both}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-phase="scan"] .c8-arc-fill{filter:drop-shadow(0 0 9px var(--c8-accent))}
+@keyframes c8-build{0%{opacity:0;clip-path:inset(49% 0)}35%{opacity:.55;clip-path:inset(18% 0)}100%{opacity:1;clip-path:inset(0)}}
+@keyframes c8-relight{0%{opacity:.1}35%{opacity:.58}100%{opacity:1}}
+@media(max-width:1000px){.c8-tile{padding:4% 5%}.c8-tile strong{font-size:clamp(14px,2cqw,28px)}.c8-main-pair{width:82%}.c8-side{gap:4%}}
+@media(prefers-reduced-motion:reduce){.c8-america-instrument,.c8-america-instrument *, .c8-mode-identity,.c8-mode-identity *{animation:none!important;transition:none!important}}

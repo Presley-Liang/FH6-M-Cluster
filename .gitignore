@@ -5,3 +5,4 @@ sessions-preview-*/
 .docs
 dist/
 .env
+logs/

@@ -1,0 +1,135 @@
+/* TYPE 08: 2003–2008 Japanese three-pod sport cluster. */
+#cluster:not([data-theme-id="y2003_2008.japan"]) :is(.rx8-instrument,.rx8-mode-identity) { display:none; }
+#cluster[data-theme-id="y2003_2008.japan"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity) { display:none !important; }
+#cluster[data-theme-id="y2003_2008.japan"] { --rx8-warm:#ffbd68; --rx8-cold:#9fd4d9; --rx8-white:#e5e6dc; }
+#cluster[data-theme-id="y2003_2008.japan"] .cluster-stage { overflow:hidden; background:#06080a !important; border:4px solid #171c20; border-radius:2.2cqw 2.2cqw 1cqw 1cqw; box-shadow:0 0 0 1px #4e59617a,inset 0 0 0 3px #050607,0 35px 80px #000d; }
+#cluster[data-theme-id="y2003_2008.japan"] .cluster-top { color:#9ba4a5; }
+#cluster[data-theme-id="y2003_2008.japan"] .wordmark { color:#ece9de; font-family:'Bahnschrift','DIN Alternate',sans-serif; font-weight:800; font-style:normal; letter-spacing:.04em; text-shadow:0 0 10px #ffffff33; }
+#cluster[data-theme-id="y2003_2008.japan"] .wordmark i { width:5px; height:16px; transform:skew(-17deg); background:#d9dedb; }
+#cluster[data-theme-id="y2003_2008.japan"] .wordmark i:nth-child(2) { background:#c9c9bf; }
+#cluster[data-theme-id="y2003_2008.japan"] .wordmark i:nth-child(3) { background:#d9814f; }
+#cluster[data-theme-id="y2003_2008.japan"] .control-policy,#cluster[data-theme-id="y2003_2008.japan"] .cluster-control-cluster .mode-seg { background:#11171b; border:1px solid #5f696b8c; border-radius:4px; clip-path:none; }
+#cluster[data-theme-id="y2003_2008.japan"] :is(.control-policy-btn,.mode-seg-btn) { color:#a9b1b1; font-family:'Bahnschrift',sans-serif; letter-spacing:.12em; }
+#cluster[data-theme-id="y2003_2008.japan"] .control-policy-btn.is-active,#cluster[data-theme-id="y2003_2008.japan"] .mode-seg-btn.seg-active { color:#fff2dc; background:#604225; border-bottom:0; box-shadow:inset 0 0 0 1px #e1ae7199; }
+#cluster[data-theme-id="y2003_2008.japan"][data-drive-mode="freeRoam"] .mode-seg-btn.seg-active { color:#e4fbfb; background:#28454a; box-shadow:inset 0 0 0 1px #86cfdbb8; }
+#cluster[data-theme-id="y2003_2008.japan"] .mode-slider { display:none; }
+#cluster[data-theme-id="y2003_2008.japan"] .manual-theme-debug-label { color:#c6a77e; }
+#cluster[data-theme-id="y2003_2008.japan"] .connection { color:#9aa4a3; }
+#cluster[data-theme-id="y2003_2008.japan"] .race-feedback { top:12%; background:#101416ec; border:1px solid #a0a59a7a; }
+#cluster[data-theme-id="y2003_2008.japan"] .race-feedback strong { color:#ffcc85; font-family:'Bahnschrift',sans-serif; }
+
+.rx8-instrument { position:absolute; inset:0; z-index:2; overflow:hidden; pointer-events:none; color:var(--rx8-white); font-family:'Bahnschrift','DIN Alternate',sans-serif; font-variant-numeric:tabular-nums; background:radial-gradient(ellipse 54% 85% at 50% 40%,#21262a 0%,#0d1115 66%,#050709 100%); transition:opacity .4s ease,filter .4s ease,clip-path .5s ease; }
+.rx8-instrument::before { content:''; position:absolute; inset:3% 1.8%; border-radius:3cqw 3cqw 1cqw 1cqw; border-top:2px solid #717b82a3; border-bottom:2px solid #22292d; box-shadow:inset 0 12px 22px #0008,inset 0 -18px 30px #000a; }
+.rx8-instrument::after { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 72% 92% at 50% 45%,transparent 50%,#000b 100%); }
+.rx8-housing { position:absolute; inset:0; display:grid; grid-template-rows:10% 82% 8%; padding:1.8% 4% 1.7%; }
+.rx8-header { z-index:2; display:flex; align-items:center; gap:1.2cqw; color:#899396; font-size:.68cqw; font-weight:700; letter-spacing:.19em; }
+.rx8-header i { flex:1; height:1px; background:linear-gradient(90deg,#5c686b,transparent 70%); }
+.rx8-header span:last-child { color:var(--rx8-warm); }
+.rx8-pod-row { z-index:2; display:grid; grid-template-columns:22% 56% 22%; align-items:center; min-height:0; }
+.rx8-side { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; height:100%; padding-top:4%; }
+.rx8-side-left { transform:translateX(3.5%); }
+.rx8-side-right { transform:translateX(-3.5%); }
+.rx8-side-bezel { position:relative; width:100%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,#111519 0 63%,#1f272b 69%,#080a0c 72%,#535b5d 74%,#050709 78%,transparent 79%); box-shadow:0 18px 27px #000a,0 0 0 1px #b5babb22,inset 0 0 20px #000; transition:opacity .35s ease,transform .5s cubic-bezier(.2,1,.3,1); }
+.rx8-side-dial { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.rx8-side-face { fill:#0d1114; stroke:#566166; stroke-width:1.5; }
+.rx8-side-track { fill:none; stroke:#6a7679; stroke-width:1.5; opacity:.55; }
+.rx8-side-major { stroke:#d8dedb; stroke-width:4; }
+.rx8-side-minor { stroke:#a1adac; stroke-width:2; }
+.rx8-side-needle { fill:#e2e5df; transition:transform .12s linear,opacity .3s ease; }
+.rx8-side-hub { fill:#30383b; stroke:#a8b0ad; stroke-width:4; }
+.rx8-side-caption { position:absolute; left:15%; right:15%; bottom:20%; display:flex; align-items:baseline; justify-content:center; gap:.3cqw; flex-wrap:wrap; text-align:center; }
+.rx8-side-caption span { flex:0 0 100%; color:#adb5b2; font-size:.58cqw; letter-spacing:.14em; font-weight:700; }
+.rx8-side-caption strong { color:#f1eee3; font-size:1.85cqw; line-height:1; font-weight:700; }
+.rx8-side-caption small { color:#c2c9c6; font-size:.8cqw; }
+.rx8-side-foot { min-height:12%; width:85%; display:flex; align-items:baseline; justify-content:center; gap:.35cqw; flex-wrap:wrap; margin-top:3%; padding-top:5%; border-top:1px solid #707d7c68; text-align:center; }
+.rx8-side-foot span { flex:0 0 100%; color:#9ea7a6; font-size:.62cqw; letter-spacing:.14em; }
+.rx8-side-foot strong { color:#e7e8dd; font-size:1.3cqw; font-weight:600; white-space:nowrap; }
+.rx8-side-foot small { font-size:.7cqw; color:#adbbb9; }
+.rx8-center { position:relative; min-width:0; min-height:0; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.rx8-shift { position:absolute; z-index:5; top:-2%; left:27%; right:27%; display:flex; justify-content:center; align-items:center; gap:.7cqw; color:#a5ada9; font-size:.58cqw; letter-spacing:.15em; font-weight:700; transition:opacity .25s ease; }
+.rx8-shift-lamps { display:flex; gap:.32cqw; }
+.rx8-shift-lamps i { width:1.35cqw; height:.46cqw; background:#30231b; border:1px solid #7d5a41; border-radius:1px; box-shadow:inset 0 0 3px #000; }
+.rx8-shift-lamps i[data-lit="true"] { background:#e4a455; border-color:#ffd08c; box-shadow:0 0 8px #e7a452a0; }
+.rx8-shift-lamps i:nth-child(n+6)[data-lit="true"] { background:#e95f46; border-color:#ff9a7c; box-shadow:0 0 9px #f35d4db6; }
+.rx8-main-bezel { position:relative; height:min(calc(100% - 5cqw),37cqw); width:auto; aspect-ratio:1; flex:none; border-radius:50%; background:radial-gradient(circle,#101418 0 62%,#21272a 65%,#07090b 69%,#62696a 72%,#090c0e 75%,transparent 77%); box-shadow:0 22px 33px #000d,0 0 0 1px #b2b7b244,inset 0 0 35px #000b; transition:transform .55s cubic-bezier(.2,1,.3,1),opacity .32s ease; }
+.rx8-tach-svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.rx8-tach-face { fill:#0b0e11; stroke:#667076; stroke-width:1.5; }
+.rx8-tach-track { fill:none; stroke:#6a7273; stroke-width:1.5; opacity:.62; }
+.rx8-tach-major { stroke:#e8e8df; stroke-width:4.5; }
+.rx8-tach-minor { stroke:#8f9a9d; stroke-width:2.3; }
+.rx8-tach-number { fill:#ecece4; font-family:'Bahnschrift','DIN Alternate',sans-serif; font-size:28px; font-weight:700; }
+.rx8-redline-tick { stroke:#d95945; stroke-width:7; }
+.rx8-tach-needle,.rx8-tach-needle-shadow { transition:transform .11s linear,opacity .3s ease; }
+.rx8-tach-needle { fill:#f0e9d8; filter:drop-shadow(0 0 3px #f3e5c799); }
+.rx8-tach-needle-shadow { fill:#000b; }
+.rx8-tach-hub { fill:#2a3235; stroke:#aeb5b0; stroke-width:5; }
+.rx8-tach-pin { fill:#e5e1d8; }
+.rx8-drive-readout { position:absolute; left:34%; right:34%; top:20%; display:flex; align-items:center; flex-direction:column; color:#cdd2cc; }
+.rx8-drive-readout span { font-size:.61cqw; white-space:nowrap; letter-spacing:.12em; }
+.rx8-drive-readout strong { font-size:1.25cqw; font-weight:600; }
+.rx8-gear { position:absolute; left:38%; right:38%; top:49%; display:flex; align-items:center; justify-content:center; gap:.6cqw; }
+.rx8-gear span { color:#a7aeab; font-size:.58cqw; letter-spacing:.14em; }
+.rx8-gear strong { color:#f0eee4; font-size:2.8cqw; line-height:1; font-weight:700; }
+.rx8-speed-window { position:absolute; left:31%; right:31%; bottom:15%; display:flex; flex-direction:column; align-items:center; padding:.4cqw .5cqw .2cqw; background:#19150fbf; border:1px solid #9d795497; box-shadow:inset 0 0 0 2px #080909,0 0 12px #d98f3926; transition:left .55s ease,right .55s ease,bottom .55s ease,background .4s ease,border-color .4s ease; }
+.rx8-speed-window>span { color:#cbac7d; font-size:.54cqw; font-weight:700; letter-spacing:.16em; white-space:nowrap; }
+.rx8-speed-window>div { display:flex; align-items:baseline; gap:.4cqw; }
+.rx8-speed-window strong { color:#ffc572; font-size:3.4cqw; line-height:1.02; letter-spacing:-.04em; text-shadow:0 0 9px #e8a55966; transition:font-size .5s ease,color .5s ease; }
+.rx8-speed-window small { color:#c7a177; font-size:.68cqw; }
+.rx8-center-foot { position:absolute; bottom:-1%; left:29%; right:29%; display:flex; align-items:baseline; justify-content:center; gap:.6cqw; padding:.45cqw 0 .1cqw; border-top:1px solid #68777778; white-space:nowrap; }
+.rx8-center-foot span { color:#b4bcb8; font-size:.63cqw; letter-spacing:.13em; }
+.rx8-center-foot strong { color:#e9e9df; font-size:1.45cqw; font-weight:600; }
+.rx8-center-foot small { color:#f3b579; font-size:.85cqw; }
+.rx8-status { z-index:2; display:flex; align-items:center; justify-content:space-between; color:#778287; font-size:.58cqw; letter-spacing:.17em; }
+.rx8-status>span:first-child { display:flex; align-items:center; gap:.6cqw; }
+.rx8-status i { width:.48cqw; height:.48cqw; border-radius:50%; background:#6e5b3d; border:1px solid #b6a57c; }
+.rx8-status b { color:#a1abaa; font-weight:600; }
+.rx8-instrument[data-signal="live"] .rx8-status i { background:#ffc476; box-shadow:0 0 8px #f4ae61a5; }
+.rx8-instrument[data-fuel-valid="false"] [data-rx8-needle="fuel"],.rx8-instrument[data-throttle-valid="false"] [data-rx8-needle="throttle"] { opacity:0; }
+.rx8-instrument[data-mode="race"] .rx8-free-data,.rx8-instrument[data-mode="freeRoam"] .rx8-race-data { display:none; }
+.rx8-instrument[data-mode="race"] .rx8-center-foot strong { color:#f6c284; }
+.rx8-instrument[data-mode="freeRoam"] { --rx8-warm:#a9dce1; }
+.rx8-instrument[data-mode="freeRoam"] .rx8-main-bezel { transform:scale(.91) translateY(-1.3%); }
+.rx8-instrument[data-mode="freeRoam"] .rx8-side-bezel { transform:scale(.92); }
+.rx8-instrument[data-mode="freeRoam"] .rx8-speed-window { left:25%; right:25%; bottom:13%; background:#10262bdb; border-color:#85c8cfad; box-shadow:inset 0 0 0 2px #071014,0 0 15px #91d9dd42; }
+.rx8-instrument[data-mode="freeRoam"] .rx8-speed-window strong { color:#b4f0ed; font-size:4.35cqw; text-shadow:0 0 12px #91dbdd8a; }
+.rx8-instrument[data-mode="freeRoam"] .rx8-speed-window :is(span,small) { color:#a7d6d8; }
+.rx8-instrument[data-mode="freeRoam"] .rx8-center-foot strong,.rx8-instrument[data-mode="freeRoam"] .rx8-side-foot strong { color:#badfdf; }
+.rx8-instrument[data-mode="freeRoam"] .rx8-shift { opacity:.15; }
+.rx8-instrument[data-mode="freeRoam"] .rx8-redline-layer { opacity:.3; }
+.rx8-instrument[data-powertrain="ev"] .rx8-tach-svg :is(.rx8-redline-layer,.rx8-tick-layer,.rx8-tach-needle,.rx8-tach-needle-shadow,.rx8-tach-hub,.rx8-tach-pin) { opacity:0; }
+.rx8-instrument[data-powertrain="ev"] .rx8-drive-readout { top:27%; }
+.rx8-instrument[data-powertrain="ev"] .rx8-drive-readout strong { font-size:3cqw; color:#bce7e3; }
+.rx8-instrument[data-powertrain="ev"] :is(.rx8-shift,.rx8-gear) { display:none; }
+.rx8-instrument[data-powertrain="ev"] .rx8-side-left { opacity:.35; }
+
+.rx8-mode-identity { position:absolute; z-index:15; left:31%; top:28%; width:38%; height:39%; display:none; align-items:center; justify-content:center; flex-direction:column; gap:.5cqw; color:#ffd39d; pointer-events:none; background:radial-gradient(ellipse at center,#090c0efb 28%,#090c0ef0 55%,transparent 78%); text-shadow:0 0 12px #f3a65a75; }
+.rx8-mode-identity::before,.rx8-mode-identity::after { content:''; width:63%; height:1px; background:linear-gradient(90deg,transparent,#d5a977,transparent); }
+.rx8-mode-identity span,.rx8-mode-identity small { color:#a9aaaa; font-size:.62cqw; letter-spacing:.22em; }
+.rx8-mode-identity strong { display:none; font-size:5cqw; line-height:1; letter-spacing:.1em; }
+#cluster[data-target-mode="race"] .rx8-mode-identity [data-rx8-mode="race"],#cluster[data-target-mode="freeRoam"] .rx8-mode-identity [data-rx8-mode="freeRoam"] { display:block; }
+#cluster[data-theme-id="y2003_2008.japan"][data-target-mode="freeRoam"] .rx8-mode-identity strong { color:#b5eceb; text-shadow:0 0 14px #77d2d6a3; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-center"],[data-ignition-phase="center"]) .rx8-mode-identity { display:flex; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"][data-ignition-phase="off-center"] .rx8-mode-identity strong { opacity:0; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"][data-ignition-phase="center"] .rx8-mode-identity { animation:rx8-identity-out .43s ease-in both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"][data-ignition-phase="center"] .rx8-mode-identity strong { animation:rx8-identity-stamp .3s cubic-bezier(.2,1,.3,1) both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .rx8-mode-identity { display:none; animation:none; }
+@keyframes rx8-identity-out { 0%,58%{opacity:1} 100%{opacity:0} }
+@keyframes rx8-identity-stamp { from{opacity:0;transform:scaleX(1.3) translateY(.5cqw)} 65%{opacity:1} to{opacity:1;transform:none} }
+
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .rx8-instrument :is(.rx8-tach-needle,.rx8-tach-needle-shadow,.rx8-side-needle,.rx8-shift) { opacity:0; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .rx8-instrument { opacity:.28; filter:brightness(.2); clip-path:inset(9% 4%); }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .rx8-instrument { opacity:0; filter:brightness(0); clip-path:inset(50% 0); }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .rx8-instrument { animation:rx8-build .85s cubic-bezier(.2,1,.3,1) both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .rx8-side-left { animation:rx8-pod-in .5s .07s both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .rx8-center { animation:rx8-pod-in .5s .18s both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .rx8-side-right { animation:rx8-pod-in .5s .3s both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .rx8-speed-window { animation:rx8-digital-on .35s .58s both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .rx8-instrument :is(.rx8-tach-needle,.rx8-tach-needle-shadow,.rx8-side-needle,.rx8-speed-window,.rx8-side-foot,.rx8-center-foot,.rx8-gear,.rx8-drive-readout,.rx8-shift) { opacity:0; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .rx8-pod-row { filter:brightness(.08); }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .rx8-pod-row { animation:rx8-relight .75s steps(5,end) both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-phase="scan"] .rx8-tach-needle { filter:drop-shadow(0 0 8px #fff4d8) drop-shadow(0 0 14px #f1ad64); }
+@keyframes rx8-build { from{opacity:0;filter:brightness(0);clip-path:inset(48% 0)} 45%{opacity:.7;filter:brightness(.45);clip-path:inset(15% 0)} to{opacity:1;filter:brightness(1);clip-path:inset(0)} }
+@keyframes rx8-pod-in { from{opacity:0;transform:translateY(.8cqw) scale(.9)} to{opacity:1;transform:none} }
+@keyframes rx8-digital-on { from{opacity:0;filter:brightness(.1)} 60%{opacity:.8;filter:brightness(1.7)} to{opacity:1;filter:brightness(1)} }
+@keyframes rx8-relight { 0%,24%{filter:brightness(.06)} 25%,54%{filter:brightness(.45)} 55%,100%{filter:brightness(1)} }
+@media(prefers-reduced-motion:reduce) { .rx8-instrument,.rx8-instrument *,.rx8-mode-identity,.rx8-mode-identity * { animation:none!important; transition:none!important; } }
