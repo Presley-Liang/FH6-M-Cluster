@@ -35,6 +35,8 @@ import { createPanoramicEuropeInstrument } from '../../public/js/themes/panorami
 import { createModernInstrumentBinding } from '../../public/js/themes/modern-instrument-binding.js';
 import { createCivicJapanInstrument } from '../../public/js/themes/civic-japan-instrument.js';
 import { createEscaladeAmericaInstrument } from '../../public/js/themes/escalade-america-instrument.js';
+import { createXtJapanInstrument } from '../../public/js/themes/xt-japan-instrument.js';
+import { createPriusJapanInstrument } from '../../public/js/themes/prius-japan-instrument.js';
 import { createGxJapanInstrument } from '../../public/js/themes/gx-japan-instrument.js';
 import { createInstrumentThemeHost } from '../../public/js/themes/instrument-theme-host.js';
 import { mountManualThemeButtonSet as createManualThemeButtonSet } from '../../public/js/themes/manual-theme-button-set.js';
@@ -731,6 +733,8 @@ export function getDefaultHTML() {
   var createModernInstrumentBinding = ${createModernInstrumentBinding.toString()};
   var createCivicJapanInstrument = ${createCivicJapanInstrument.toString()};
   var createEscaladeAmericaInstrument = ${createEscaladeAmericaInstrument.toString()};
+  var createXtJapanInstrument = ${createXtJapanInstrument.toString()};
+  var createPriusJapanInstrument = ${createPriusJapanInstrument.toString()};
   var createGxJapanInstrument = ${createGxJapanInstrument.toString()};
   var createInstrumentThemeHost = ${createInstrumentThemeHost.toString()};
   var createShiftLightController = ${createShiftLightController.toString()};
@@ -1480,6 +1484,8 @@ export function getDefaultHTML() {
       'y2020_2024.japan': createCivicJapanInstrument,
       'y2025plus.america': createEscaladeAmericaInstrument,
       'y2025plus.japan': createGxJapanInstrument,
+      'y1986_1994.japan': createXtJapanInstrument,
+      'y2015_2019.japan': createPriusJapanInstrument,
     },
   });
   instrumentHost.activate(document.getElementById('cluster').dataset.themeId || DEFAULT_THEME_ID);
@@ -1668,6 +1674,7 @@ export function getDefaultHTML() {
     .replace('</head>', '<link rel="stylesheet" href="/styles/ford-gt-america-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/taycan-europe-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/panoramic-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/xt-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/prius-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/modern-instrument-common.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/civic-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/escalade-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/gx-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('<script>', '<script src="/vendor/leaflet/leaflet.js"></script><script>');
 }

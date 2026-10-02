@@ -50,15 +50,32 @@ sets `data-instrument-variant=custom` on the cluster while a custom instrument
 is active, so the old BMW shell stays mounted but visually hidden.
 
 Exact custom instrument IDs currently mounted by the page are
-`pre1949.europe`, `y1950_1959.europe`, `y1950_1959.america`, `y1960_1975.europe`,
+`pre1949.europe`,
+`y1986_1994.america`,
+`y1995_2002.japan`,
+`y1960_1975.europe`,
+`y2003_2008.japan`,
+`y2020_2024.america`,
+`y1950_1959.america`,
+`y1976_1985.japan`,
+`y2009_2014.europe`,
 `y1960_1975.japan`,
-`y1976_1985.japan`, `y1986_1994.america`, `y1995_2002.japan`,
-`y2003_2008.japan`, `y2009_2014.europe`, `y2009_2014.japan`, and `y2020_2024.america`.
-`y2015_2019.europe` remains the existing baseline. The other 20 registry IDs
-still use the shared shell with era/region tokens until their distinct
-instrument components are implemented. Vehicle-change information cards use
-the target era and region, reveal the brand within the same card before the
-model details, and do not start an ENGINE/TELEMETRY/DISPLAY self-check.
+`y1950_1959.europe`,
+`y2009_2014.japan`,
+`y1976_1985.europe`,
+`y2015_2019.america`,
+`y2020_2024.europe`,
+`y2025plus.europe`,
+`y2020_2024.japan`,
+`y2025plus.america`,
+`y2025plus.japan`,
+`y1986_1994.japan`,
+`y2015_2019.japan`.
+`y2015_2019.europe` remains the existing baseline: 22 independent surfaces
+and 11 shared-shell IDs. The new XT/Prius surfaces are development previews
+pending primary vehicle-photo verification; see the reference note in `docs/`.
+Vehicle-change cards use the target era and region in one combined card and
+do not start an ENGINE/TELEMETRY/DISPLAY self-check.
 
 ## Era IDs
 
