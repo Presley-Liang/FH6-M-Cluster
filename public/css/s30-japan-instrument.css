@@ -30,7 +30,7 @@
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="center"] .s30-mode-identity{animation:s30-identity-out .4s linear both}
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .s30-mode-identity{display:none;opacity:0;visibility:hidden;animation:none;transition:none}
 @keyframes s30-identity-out{0%,55%{opacity:1}100%{opacity:0}}
-#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .s30-needle{opacity:0}
+#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .s30-needle{opacity:0}
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .s30-instrument{opacity:.18;filter:brightness(.15)}
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .s30-instrument{opacity:0;filter:brightness(0)}
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .s30-main{animation:s30-main-build .7s cubic-bezier(.2,.8,.2,1) both}

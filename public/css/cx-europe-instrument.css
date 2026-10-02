@@ -36,7 +36,7 @@
 #cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="center"] .cx-mode-identity{animation:cx-title-exit .4s linear both}
 #cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .cx-mode-identity{display:none;opacity:0;visibility:hidden;animation:none;transition:none}
 @keyframes cx-title-exit{0%,50%{opacity:1}100%{opacity:0}}
-#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .cx-drum-reading{opacity:0}
+#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .cx-drum-reading{opacity:0}
 #cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .cx-instrument{opacity:.2;filter:brightness(.18)}
 #cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .cx-instrument{opacity:0;filter:brightness(0)}
 #cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .cx-lunule{animation:cx-lunule-build .83s cubic-bezier(.15,.9,.24,1) both}

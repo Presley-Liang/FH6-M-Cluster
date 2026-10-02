@@ -150,10 +150,12 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     root.dataset.stale=String(stale);
     text('data-freshness', stale ? (received ? 'STALE · LAST VALUES' : 'NO SIGNAL') : 'CONNECTED');
     text('speed',number(model.speedKmh)); text('rpm',number(model.rpm)); renderGear(model.gearLabel,stale,now);
-    const fuelFraction = Number.isFinite(model.fuelRaw) && model.fuelRaw >= 0 && model.fuelRaw <= 1 ? model.fuelRaw : null;
-    text('fuel',fuelFraction == null ? '—' : Math.round(fuelFraction*100)+'%');
+    // The packet's fuel unit is unverified; keep the E/F needle parked and
+    // show the raw value without assigning percentage or warning thresholds.
+    const fuelFraction = null;
+    text('fuel',Number.isFinite(model.fuelRaw) ? model.fuelRaw.toFixed(3)+' raw' : '—');
     const fuelGauge = doc.querySelector('.fuel-gauge');
-    if (fuelGauge) fuelGauge.dataset.level = fuelFraction == null ? 'unknown' : fuelFraction <= .15 ? 'critical' : fuelFraction <= .25 ? 'low' : 'normal';
+    if (fuelGauge) fuelGauge.dataset.level = 'unknown';
     if (fuelFill && fuelLength) fuelFill.style.strokeDasharray = `${fuelLength*(fuelFraction ?? 0)} ${fuelLength}`;
     if (fuelNeedle) {
       fuelNeedle.classList.toggle('parked',fuelFraction == null);

@@ -52,6 +52,8 @@ export function createUIAnimationCoordinator(options = {}) {
   const infoCard = options.infoCard;
   const schedule = options.schedule || ((fn, ms) => setTimeout(fn, ms));
   const cancelSchedule = options.cancelSchedule || clearTimeout;
+  const reducedMotion = () => typeof options.reducedMotion === 'function'
+    ? options.reducedMotion() : Boolean(options.reducedMotion);
   let generation = 0;
   let timers = [];
   let feedbackGeneration = 0, feedbackTimer = null;
@@ -201,6 +203,10 @@ export function createUIAnimationCoordinator(options = {}) {
       root.dataset.ignitionKind = 'vehicle';
       root.dataset.targetMode = latestMode;
     }
+    if (reducedMotion()) {
+      settle();
+      return;
+    }
     const token = generation;
     const era = vehicleEra(latestVehicle);
     later(token, 0, () => phase('off-needles'));
@@ -239,6 +245,14 @@ export function createUIAnimationCoordinator(options = {}) {
   }
   function switchMode(mode, applyModeTheme) {
     applyTheme = applyModeTheme || applyTheme;
+    if (reducedMotion()) {
+      latestMode = mode;
+      clear();
+      queuedVehicleMode = null;
+      if (root) { root.dataset.ignitionKind = 'mode'; root.dataset.targetMode = mode; }
+      settle();
+      return;
+    }
     if (activeVehicle) {
       if (vehicleThemeApplied) {
         // A mode request during build or sweep starts its own transition after

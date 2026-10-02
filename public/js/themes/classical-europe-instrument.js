@@ -187,7 +187,7 @@ export function createClassicalEuropeInstrument({ document, mount }) {
     const driveTarget = available ? finite(ev ? model.powerKw : model.rpm) : null;
     const speedFraction = finite(context.speedFraction) ?? (sweep ? clamp(override.speed) : 0);
     const driveFraction = finite(context.gaugeFraction) ?? (sweep ? clamp(override.rpm) : 0);
-    const speed = speedFromLegacyFraction(speedFraction);
+    const speed = sweep ? speedFromLegacyFraction(speedFraction) : speedTarget;
     const drive = ev ? driveTarget : scale === null ? null : driveFraction * scale;
     needleAt(speedNeedle, speedShadow, speedFraction);
     needleAt(driveNeedle, driveShadow, driveFraction);

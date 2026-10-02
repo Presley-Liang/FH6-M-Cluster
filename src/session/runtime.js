@@ -122,6 +122,7 @@ export class SessionRuntime {
     // driveMode contract while preventing detector updates from undoing it.
     const versionBefore = this.version;
     this.modeControl = 'manual';
+    this.autoDriveMode = false;
     await this.transitionMode(mode, 'manual');
     if (this.version === versionBefore) { this.version++; this.changed(); }
     return this.state();
@@ -143,6 +144,7 @@ export class SessionRuntime {
       this.appliedEventVersion = this.detected.eventVersion;
       await this.transitionMode(this.detected.activity, 'auto');
     } else {
+      this.autoDriveMode = false;
       this.modeSource = 'manual';
     }
     if (this.version === versionBefore) { this.version++; this.changed(); }

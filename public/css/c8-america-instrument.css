@@ -59,7 +59,7 @@
 #cluster[data-theme-id="y2020_2024.america"][data-target-mode="freeRoam"] .c8-mode-identity span i{background:#7ec9db}
 @keyframes c8-identity-out{0%{opacity:0;transform:scale(.9)}15%,55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.06)}}
 @keyframes c8-identity-pulse{0%{opacity:.15;transform:skew(-25deg) scaleX(.2)}100%{opacity:1;transform:skew(-25deg) scaleX(1)}}
-#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .c8-america-instrument :is(.c8-rpm,.c8-gear b,.c8-speed strong,.c8-arc-fill){opacity:0}
+#cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .c8-america-instrument :is(.c8-rpm,.c8-gear b,.c8-speed strong,.c8-arc-fill){opacity:0}
 #cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .c8-america-instrument{opacity:.28;clip-path:inset(17% 0)}
 #cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .c8-america-instrument{opacity:0;clip-path:inset(50% 0)}
 #cluster[data-theme-id="y2020_2024.america"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .c8-america-instrument{animation:c8-build .9s cubic-bezier(.2,1,.25,1) both}

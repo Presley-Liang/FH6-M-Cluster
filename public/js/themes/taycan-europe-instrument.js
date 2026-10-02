@@ -100,7 +100,7 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     write('sideMain', available ? ev ? whole(model.powerKw) : String(model.gearLabel ?? '—') : '—');
     const racing = mode === 'race' && Boolean(context.racing) && available;
     write('sideSecond', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? ev ? whole(model.throttlePercent) : whole(model.powerKw) : '—');
-    write('foot1', mode === 'race' ? available ? decimal(model.gY) : '—' : available ? whole(model.throttlePercent) : '—');
+    write('foot1', mode === 'race' ? available ? decimal(model.gX) : '—' : available ? whole(model.throttlePercent) : '—');
     write('foot2', mode === 'race' ? racing ? lap(model.bestLap) : '—' : available ? whole(model.powerKw) : '—');
     write('foot3', mode === 'race' ? available ? whole(ev ? model.throttlePercent : model.powerKw) : '—' : available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : '—');
   }

@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import { getDefaultHTML } from '../src/ui/default-html.js';
 
 // Exercise the code shipped in the page, without the source module's scope.
-function browserAnimation() {
+function browserAnimation(options = {}) {
   const html = getDefaultHTML();
   const start = html.indexOf('var createUIAnimationCoordinator = ');
   const end = html.indexOf('var createJdm90Instrument = ', start);
@@ -34,6 +34,7 @@ function browserAnimation() {
     { performance: { now: () => now } },
   );
   const coordinator = factory({
+    ...options,
     root, body,
     display: { setDisplayOverride: value => { overrides.push(value); overrideEvents.push({ value, at: now }); } },
     getLiveFractions: () => live,
@@ -52,8 +53,39 @@ function browserAnimation() {
     now = to;
   }
   function applyTheme(mode) { body.dataset.driveMode = mode; themes.push({ mode, at: now }); }
-  return { coordinator, root, body, infoCard, cardFields, overrides, overrideEvents, themes, phases, phaseEvents, advance, applyTheme, setLive(value) { live = value; } };
+  return { coordinator, root, body, infoCard, cardFields, overrides, overrideEvents, themes, phases, phaseEvents, tasks, advance, applyTheme, setLive(value) { live = value; } };
 }
+
+test('reduced motion settles mode and vehicle changes immediately without blackout timers', () => {
+  const h = browserAnimation({ reducedMotion: true });
+  h.coordinator.switchMode('freeRoam', h.applyTheme);
+  assert.equal(h.body.dataset.driveMode, 'freeRoam');
+  assert.equal(h.root.dataset.ignitionPhase, 'live');
+  assert.equal(h.tasks.size, 0);
+  h.coordinator.wake({ brand: 'NEW', themeEra: 'y2020_2024', themeRegion: 'japan' }, 'race', h.applyTheme);
+  assert.equal(h.coordinator.state().vehicle.brand, 'NEW');
+  assert.equal(h.root.dataset.startupThemeRegion, 'japan');
+  assert.equal(h.body.dataset.driveMode, 'race');
+  assert.equal(h.infoCard.dataset.visible, 'false');
+  assert.equal(h.overrides.at(-1), null);
+  assert.equal(h.tasks.size, 0);
+  assert.deepEqual(h.phases, ['live', 'live']);
+});
+
+test('enabling reduced motion cancels an active vehicle sweep and its queued mode', () => {
+  let reduce = false;
+  const h = browserAnimation({ reducedMotion: () => reduce });
+  h.coordinator.wake({ themeEra: 'y1995_2002' }, 'race', h.applyTheme);
+  h.advance(6000);
+  h.coordinator.switchMode('freeRoam', h.applyTheme);
+  reduce = true;
+  h.coordinator.switchMode('race', h.applyTheme);
+  assert.equal(h.tasks.size, 0);
+  h.advance(12000);
+  assert.equal(h.body.dataset.driveMode, 'race');
+  assert.equal(h.root.dataset.ignitionPhase, 'live');
+  assert.equal(h.overrides.at(-1), null);
+});
 
 test('shipped standalone page runs the original complete Race/Free transition', () => {
   const h = browserAnimation();

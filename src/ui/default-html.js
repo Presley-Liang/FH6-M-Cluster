@@ -1266,6 +1266,16 @@ export function getDefaultHTML() {
   function applyServerState(data) {
     if (data.version != null && data.version < serverVersion) return;
     serverVersion = data.version == null ? serverVersion : data.version;
+    if ((data.modeControl === 'auto' || data.modeControl === 'manual') && data.modeControl !== clientModeControl) {
+      clientModeControl = data.modeControl;
+      desiredDriveMode = data.driveMode || clientDriveMode;
+      if (clientModeControl === 'manual') manualThemeChosen = true;
+      try { localStorage.setItem('fh6.clusterControlMode', clientModeControl); } catch (_) {}
+      syncControlModeUI();
+      if (animationCoordinator) {
+        animationCoordinator.wake(vehicleProfileFromState(latestVehicleState || { vehicle: {} }), data.driveMode || clientDriveMode, applyThemeOverlay);
+      } else applyVehicleTheme(data.driveMode || clientDriveMode);
+    }
     if (data.driveMode) {
       if (clientModeControl === 'auto') desiredDriveMode = data.driveMode;
       applyMode(data.driveMode);
@@ -1436,7 +1446,6 @@ export function getDefaultHTML() {
 
   fetch('/mode').then(function(r) { return r.json(); }).then(function(data) {
     applyServerState(data);
-    if (data.modeControl && data.modeControl !== clientModeControl) setControlMode(clientModeControl, true);
   }).catch(function() { applyMode('race'); });
 
   // ── Hook minimap into SSE ─────────────────────────────────────────
@@ -1494,6 +1503,7 @@ export function getDefaultHTML() {
   });
   animationCoordinator = createUIAnimationCoordinator({
     root: document.getElementById('cluster'), body: document.body, display: clusterBindings,
+    reducedMotion: function() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; },
     getLiveFractions: function() { return clusterBindings.getLiveFractions(); },
     infoCard: document.getElementById('vehicle-info-card'),
     feedbackElement: document.getElementById('race-feedback'),

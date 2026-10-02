@@ -10,7 +10,7 @@
 #cluster[data-ignition-kind="mode"][data-ignition-phase="center"] .next-mode-identity{opacity:1;visibility:visible;animation:next-title-retire .48s ease both}
 @keyframes next-title-retire{0%,35%{opacity:1}100%{opacity:0;visibility:hidden}}
 #cluster:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .next-mode-identity{display:none;visibility:hidden;opacity:0;animation:none}
-#cluster[data-ignition-phase="off-needles"] .next-instrument :is(.next-readout strong,.next-readout b,[data-next-fill]){opacity:0;transition:opacity .28s ease}
+#cluster:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .next-instrument :is(.next-readout strong,.next-readout b,[data-next-fill]){opacity:0;transition:opacity .28s ease}
 #cluster[data-ignition-phase="off-frames"] .next-instrument :is(.next-readout,.next-detail){opacity:0}
 #cluster[data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .next-instrument{opacity:.25}
 #cluster[data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .next-instrument{opacity:0}

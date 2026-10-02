@@ -39,7 +39,7 @@
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="mode"][data-ignition-phase="center"] .pan-mode-identity{animation:pan-title-leave .46s linear both}
 @keyframes pan-title-leave{0%,36%{opacity:1}100%{opacity:0}}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .pan-mode-identity{display:none;opacity:0;visibility:hidden;animation:none;transition:none}
-#cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .pan-instrument :is(.pan-projection strong,.pan-power-track i,.pan-float strong){opacity:0}
+#cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .pan-instrument :is(.pan-projection strong,.pan-power-track i,.pan-float strong){opacity:0}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .pan-instrument{opacity:.13;filter:brightness(.12)}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .pan-instrument{opacity:0;filter:brightness(0)}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .pan-projection{animation:pan-build-strip .91s cubic-bezier(.2,.8,.25,1) both}

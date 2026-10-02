@@ -116,7 +116,7 @@
 @keyframes rx8-identity-out { 0%,58%{opacity:1} 100%{opacity:0} }
 @keyframes rx8-identity-stamp { from{opacity:0;transform:scaleX(1.3) translateY(.5cqw)} 65%{opacity:1} to{opacity:1;transform:none} }
 
-#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .rx8-instrument :is(.rx8-tach-needle,.rx8-tach-needle-shadow,.rx8-side-needle,.rx8-shift) { opacity:0; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .rx8-instrument :is(.rx8-tach-needle,.rx8-tach-needle-shadow,.rx8-side-needle,.rx8-shift) { opacity:0; }
 #cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .rx8-instrument { opacity:.28; filter:brightness(.2); clip-path:inset(9% 4%); }
 #cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .rx8-instrument { opacity:0; filter:brightness(0); clip-path:inset(50% 0); }
 #cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .rx8-instrument { animation:rx8-build .85s cubic-bezier(.2,1,.3,1) both; }

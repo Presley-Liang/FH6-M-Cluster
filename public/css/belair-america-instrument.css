@@ -67,7 +67,7 @@
 #cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="center"] .ba-mode-identity{animation:ba-identity-exit .56s linear both}
 #cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .ba-mode-identity{opacity:0;visibility:hidden;animation:none;transition:none}
 
-#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .belair-america-instrument :is(.ba-speed-needle,.ba-speed-needle-shadow,.ba-signal){opacity:0}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .belair-america-instrument :is(.ba-speed-needle,.ba-speed-needle-shadow,.ba-signal){opacity:0}
 #cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .belair-america-instrument{opacity:.17;filter:brightness(.2);clip-path:inset(7% 5%)}
 #cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .belair-america-instrument{opacity:0;filter:brightness(0);clip-path:inset(48% 20%)}
 #cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .belair-america-instrument{animation:ba-build .95s cubic-bezier(.21,.83,.26,1) both}

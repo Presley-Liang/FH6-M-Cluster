@@ -84,7 +84,7 @@
 @keyframes e911-title-exit { 0%,50% { opacity:1; } 100% { opacity:0; } }
 
 /* The shared coordinator owns power-down, construction, scan and live handoff. */
-#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .early911-instrument :is(.e911-needle,.e911-needle-shadow,.e911-lamp) { opacity:0; }
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .early911-instrument :is(.e911-needle,.e911-needle-shadow,.e911-lamp) { opacity:0; }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .early911-instrument { opacity:.22; filter:brightness(.13); }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .early911-instrument { opacity:0; filter:brightness(0); }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .early911-instrument { opacity:1; }

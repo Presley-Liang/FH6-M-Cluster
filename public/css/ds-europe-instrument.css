@@ -30,7 +30,7 @@
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="center"] .ds-mode-identity{animation:ds-title-exit .4s linear both}
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .ds-mode-identity{display:none;opacity:0;visibility:hidden;animation:none;transition:none}
 @keyframes ds-title-exit{0%,50%{opacity:1}100%{opacity:0}}
-#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .ds-speed-needle{opacity:0}
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .ds-speed-needle{opacity:0}
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .ds-instrument{opacity:.18;filter:brightness(.2)}
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .ds-instrument{opacity:0;filter:brightness(0)}
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .ds-window{animation:ds-window-build .82s cubic-bezier(.2,.8,.3,1) both}

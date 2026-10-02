@@ -82,7 +82,7 @@ export function createLfaJapanInstrument({ document, mount }) {
     const angle = `rotate(${(-130 + fraction * 260).toFixed(2)} 200 200)`;
     if (angle !== lastAngle) { needle.setAttribute('transform', angle); lastAngle = angle; }
     const racing = mode === 'race' && Boolean(context.racing) && available;
-    write('center', mode === 'race' ? ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—' : sweep || available ? whole(speedTarget ?? (sweep ? clamp(override.speed) * 280 : null)) : '—');
+    write('center', mode === 'race' ? ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—' : sweep ? whole(clamp(override.speed) * 280) : available ? whole(speedTarget) : '—');
     write('speed', sweep ? whole(clamp(override.speed) * 280) : available ? whole(speedTarget) : '—');
     write('left1', available ? whole(model.powerKw) : '—');
     write('left2', mode === 'race' ? available ? signed(model.gY) : '—' : available ? whole(model.throttlePercent) : '—');

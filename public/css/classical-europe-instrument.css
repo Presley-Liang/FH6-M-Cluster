@@ -91,7 +91,7 @@
 #cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .ce-mode-identity { opacity:0; visibility:hidden; animation:none; transition:none; }
 
 /* The shared coordinator supplies the phases and live telemetry handoff. */
-#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .classical-europe-instrument :is(.ce-speed-needle,.ce-drive-needle,.ce-status-lamp) { opacity:0; }
+#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .classical-europe-instrument :is(.ce-speed-needle,.ce-drive-needle,.ce-status-lamp) { opacity:0; }
 #cluster[data-theme-id="pre1949.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .classical-europe-instrument { opacity:.24; filter:brightness(.22); clip-path:inset(4% 5%); }
 #cluster[data-theme-id="pre1949.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .classical-europe-instrument { opacity:0; filter:brightness(0); clip-path:inset(48% 14%); }
 #cluster[data-theme-id="pre1949.europe"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .classical-europe-instrument { animation:ce-build .88s ease-out both; }

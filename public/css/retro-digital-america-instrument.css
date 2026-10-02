@@ -77,7 +77,7 @@
 #cluster[data-target-mode="race"] .rda-mode-identity [data-rda-mode="race"],#cluster[data-target-mode="freeRoam"] .rda-mode-identity [data-rda-mode="freeRoam"] { display:block; }
 
 /* The shared coordinator controls power down, complete blackout, card and build. */
-#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .rda-segment-track { opacity:0; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .rda-segment-track { opacity:0; }
 #cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .retro-digital-america-instrument { opacity:.3; filter:brightness(.2); clip-path:inset(8% 2%); }
 #cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .retro-digital-america-instrument { opacity:0; filter:brightness(0); clip-path:inset(50% 0); }
 #cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .retro-digital-america-instrument { animation:rda-power-up .84s steps(8,end) both; }

@@ -95,7 +95,7 @@ export function createC8AmericaInstrument({ document, mount }) {
     const scanning = finite(override?.speed) !== null && finite(override?.rpm) !== null;
     const max = finite(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : finite(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
     const fraction = mode === 'freeRoam'
-      ? clamp(finite(context.speedFraction) ?? (scanning ? finite(override.speed) : null) ?? (finite(model.speedKmh) === null ? 0 : model.speedKmh / 260))
+      ? clamp(scanning ? override.speed : available && finite(model.speedKmh) !== null ? model.speedKmh / 260 : 0)
       : ev ? (scanning ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0)
         : clamp(finite(context.gaugeFraction) ?? finite(model.rpmRatio) ?? 0);
     element.dataset.mode = mode;

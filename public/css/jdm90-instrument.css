@@ -143,7 +143,7 @@
 @keyframes jdm90-mode-identity-exit { 0%,55%{opacity:1} 100%{opacity:0} }
 
 /* The coordinator owns these phases; telemetry keeps updating underneath. */
-#cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .jdm90-instrument :is(.jdm90-needle,.jdm90-needle-shadow,.jdm90-shift-lamps) { opacity:0; }
+#cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .jdm90-instrument :is(.jdm90-needle,.jdm90-needle-shadow,.jdm90-shift-lamps) { opacity:0; }
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .jdm90-instrument { opacity:.3; filter:brightness(.24); clip-path:inset(8% 4%); }
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .jdm90-instrument { opacity:0; filter:brightness(0); clip-path:inset(50% 0); }
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .jdm90-instrument { animation:jdm90-build .82s cubic-bezier(.16,1,.3,1) both; }

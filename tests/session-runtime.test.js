@@ -110,6 +110,7 @@ test('MANUAL mode holds its choice until AUTO resumes the settled activity', asy
 
   await runtime.setMode('race');
   assert.equal(runtime.state().driveMode, 'race');
+  assert.equal(runtime.state().autoDriveMode, false);
   assert.equal(runtime.state().eventVersion, settledVersion);
 
   result = runtime.process({ ...roaming, positionX: 11 }, 17);
@@ -119,8 +120,13 @@ test('MANUAL mode holds its choice until AUTO resumes the settled activity', asy
 
   await runtime.setModeControl('auto');
   assert.equal(runtime.state().driveMode, 'freeRoam');
+  assert.equal(runtime.state().autoDriveMode, true);
   assert.equal(runtime.state().eventVersion, settledVersion);
   assert.equal(runtime.state().modeSource, 'auto');
+  await runtime.setModeControl('manual');
+  assert.equal(runtime.state().autoDriveMode, false);
+  await runtime.setModeControl('manual');
+  assert.equal(runtime.state().autoDriveMode, false);
 });
 
 test('AUTO: a startup race packet stays Race while entry confirmation is pending', async t => {

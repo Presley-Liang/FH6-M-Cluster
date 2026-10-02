@@ -38,7 +38,7 @@
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="mode"][data-ignition-phase="center"] .tay-mode-identity{animation:tay-title-retire .5s linear both}
 @keyframes tay-title-retire{0%,36%{opacity:1}100%{opacity:0}}
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .tay-mode-identity{display:none;opacity:0;visibility:hidden;animation:none;transition:none}
-#cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .tay-instrument :is(.tay-drive-track i,.tay-speed-number strong,.tay-side strong,.tay-lower strong){opacity:0}
+#cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .tay-instrument :is(.tay-drive-track i,.tay-speed-number strong,.tay-side strong,.tay-lower strong){opacity:0}
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .tay-instrument{opacity:.16;filter:brightness(.14)}
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .tay-instrument{opacity:0;filter:brightness(0)}
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .tay-glass{animation:tay-glass-build .92s cubic-bezier(.2,.75,.25,1) both}

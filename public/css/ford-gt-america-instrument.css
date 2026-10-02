@@ -40,7 +40,7 @@
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="mode"][data-ignition-phase="center"] .fgt-mode-identity{animation:fgt-title-exit .48s linear both}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .fgt-mode-identity{display:none;opacity:0;visibility:hidden;animation:none;transition:none}
 @keyframes fgt-title-exit{0%,48%{opacity:1}100%{opacity:0}}
-#cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .fgt-instrument :is(.fgt-tach-fill,.fgt-main strong,.fgt-data-strip strong){opacity:0}
+#cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .fgt-instrument :is(.fgt-tach-fill,.fgt-main strong,.fgt-data-strip strong){opacity:0}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .fgt-instrument{opacity:.18;filter:brightness(.18)}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .fgt-instrument{opacity:0;filter:brightness(0)}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .fgt-display{animation:fgt-build .85s cubic-bezier(.16,.88,.27,1) both}

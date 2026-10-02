@@ -30,7 +30,7 @@
 #cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="mode"][data-ignition-phase="center"] .lfa-mode-identity{animation:lfa-title-out .4s linear both}
 #cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .lfa-mode-identity{display:none;opacity:0;visibility:hidden;animation:none;transition:none}
 @keyframes lfa-title-out{0%,50%{opacity:1}100%{opacity:0}}
-#cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-needles"] .lfa-needle{opacity:0}
+#cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .lfa-needle{opacity:0}
 #cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="vehicle"][data-ignition-phase="off-frames"] .lfa-instrument{opacity:.16;filter:brightness(.15)}
 #cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="vehicle"]:is([data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .lfa-instrument{opacity:0;filter:brightness(0)}
 #cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .lfa-ring{animation:lfa-ring-build .86s cubic-bezier(.16,.9,.25,1) both}
