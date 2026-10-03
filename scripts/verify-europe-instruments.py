@@ -72,12 +72,16 @@ with sync_playwright() as p:
     const el=currentInstrument.element;
     const opacity=node=>{let result=1;for(let n=node;n&&n!==root;n=n.parentElement)result*=Number(getComputedStyle(n).opacity);return result;};
     const readout=el.querySelector('[data-next-value="speed"]');const meter=el.querySelector('.kad-meter,[data-mul-needle],[data-next-fill]');
-    return {phase,speedOpacity:opacity(readout),meterOpacity:opacity(meter),screenOpacity:opacity(el)};
+    const sideMeters=[...el.querySelectorAll('[data-c4-temperature],[data-c4-input]')];
+    const sideMeterOpacity=sideMeters.length?Math.max(...sideMeters.map(opacity)):null;
+    return {phase,speedOpacity:opacity(readout),meterOpacity:opacity(meter),sideMeterOpacity,screenOpacity:opacity(el)};
    }''',phase)
    check['theme']=kind;phase_checks.append(check)
  for c in phase_checks:
-  if c['phase'] in ['off-needles','off-frames','off-center','vehicle-blackout','vehicle-card']:assert c['speedOpacity']==0 and c['meterOpacity']==0,c
-  if c['phase']=='live':assert c['speedOpacity']==1 and c['meterOpacity']==1,c
+  if c['phase'] in ['off-needles','off-frames','off-center','vehicle-blackout','vehicle-card']:
+   assert c['speedOpacity']==0 and c['meterOpacity']==0 and (c['sideMeterOpacity'] is None or c['sideMeterOpacity']==0),c
+  if c['phase']=='live':
+   assert c['speedOpacity']==1 and c['meterOpacity']==1 and (c['sideMeterOpacity'] is None or c['sideMeterOpacity']==1),c
  (output/'css-phase-checks.json').write_text(json.dumps({'checks':phase_checks},indent=2))
  (output/'layout-checks.json').write_text(json.dumps({'checks':checks,'errors':errors},indent=2))
  print(json.dumps({'cases':len(checks),'cssPhaseCases':len(phase_checks),'failed':[c for c in checks if c['outside'] or c['overlaps']],'errors':errors}))
