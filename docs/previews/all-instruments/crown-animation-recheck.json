@@ -1,0 +1,194 @@
+{
+  "status": 200,
+  "checks": [
+    {
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "phase": "live"
+    }
+  ],
+  "phases": [
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0.222305"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0.618331"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    }
+  ],
+  "errors": [],
+  "failedResponses": []
+}

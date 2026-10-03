@@ -1,0 +1,2414 @@
+{
+  "status": 200,
+  "checks": [
+    {
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "pre1949.america",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "phase": "live"
+    },
+    {
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "phase": "live"
+    },
+    {
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "phase": "live"
+    }
+  ],
+  "phases": [
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "needleOpacity": null
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "needleOpacity": null
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "needleOpacity": null
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "needleOpacity": null
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "freeRoam",
+      "needleOpacity": null
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1986_1994.europe",
+      "mode": "race",
+      "needleOpacity": null
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0.118126"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "0.0317696"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0.0531945"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "0.29481"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "0.222336"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "0.0532271"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0.164451"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0.618059"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0.00656329"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": null,
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "0.164345"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0.383202"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "0.0165051"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0.294493"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0.0814887"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0.0531146"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0.491731"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0.222103"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0.0813842"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1960_1975.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0.383155"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0.383202"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0.0532063"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0.491363"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0.164581"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0.053236"
+    },
+    {
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "0.118249"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0.222072"
+    },
+    {
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "freeRoam",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "0"
+    },
+    {
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    },
+    {
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "needleOpacity": "1"
+    }
+  ],
+  "errors": [],
+  "failedResponses": []
+}

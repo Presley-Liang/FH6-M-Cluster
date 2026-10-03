@@ -1,0 +1,58 @@
+import { createHeritageInstrument, createHeritageDial } from './heritage-instrument-binding.js';
+
+// Independent era layout. OEM photo verification remains in the reference log.
+export function createShieldAmericaInstrument({ document, mount }) {
+  return createHeritageInstrument({ document, mount, className: 'shield', label: 'AMERICA / PRE—49 instrument', markup: `<div class="shield-dashboard">
+    <div class="shield-casing next-body">
+    <header class="heritage-heading">
+    <span>AMERICA / PRE—49</span>
+    <span data-next-label="mode">RACE</span>
+    <small data-next-value="status">NO SIGNAL</small>
+    </header>
+    <div class="shield-dial">${createHeritageDial()}</div>
+    <div class="heritage-speed next-readout">
+    <strong data-next-value="speed">—</strong>
+    <small>km/h</small>
+    </div>
+    <div class="heritage-gear next-detail">
+    <span>GEAR</span>
+    <b data-next-value="gear">—</b>
+    </div>
+    </div>
+    <div class="shield-left next-body">
+    <div class="heritage-drive next-detail">
+    <span data-eu-value="driveLabel">ENGINE SPEED</span>
+    <div class="heritage-track">
+    <i data-next-fill>
+    </i>
+    </div>
+    <div class="heritage-drive-values">
+    <b data-eu-value="drive">—</b>
+    <small data-eu-value="driveUnit">RPM</small>
+    </div>
+    <small data-eu-value="scale">— RPM</small>
+    </div>
+    </div>
+    <div class="shield-right next-body">
+    <div class="heritage-temp next-detail">
+    <span>TYRE MAX</span>
+    <b data-eu-value="temperature">—</b>
+    <small>°C</small>
+    </div>
+    </div>
+    <div class="shield-tray next-body">
+    <footer class="heritage-info next-detail">
+    <div>
+    <span data-next-label="a">CURRENT LAP</span>
+    <b data-next-value="a">—</b>
+    <small data-next-label="aUnit">TIME</small>
+    </div>
+    <div>
+    <span data-next-label="b">BEST LAP</span>
+    <b data-next-value="b">—</b>
+    <small data-next-label="bUnit">TIME</small>
+    </div>
+    </footer>
+    </div>
+    </div>` });
+}
