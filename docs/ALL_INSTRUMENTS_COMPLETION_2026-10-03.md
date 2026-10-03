@@ -69,7 +69,7 @@
 
 ## 复跑
 
-浏览器核对需要 Python Playwright 与 Chromium。仅运行检查，不自动安装依赖。验证脚本会自动查找 PATH 中的 `chromium` / `chromium-browser`，也可用 `--chromium` 指定路径；若未找到系统 Chromium，则交给 Playwright 使用其已安装的托管 Chromium。切换检查会验证完整阶段顺序，并在熄灭阶段检查仪表元素的稳定透明度。
+浏览器核对需要 Python Playwright 与 Chromium。仅运行检查，不自动安装依赖。`verify-instrument-completion.py` 与 `verify-instrument-switches.py` 都会自动查找 PATH 中的 `chromium` / `chromium-browser`，也可用 `--chromium` 指定路径；若未找到系统 Chromium，两者都会交给 Playwright 使用其已安装的托管 Chromium。切换检查会先归一到 Race 起始模式，再验证完整阶段顺序，并逐一检查当前仪表内所有动画表元素在熄灭阶段的稳定有效透明度。
 
 ```sh
 npm test

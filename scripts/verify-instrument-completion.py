@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Inspect thirteen completed instruments with synthetic telemetry in Chromium.
-Requires Python Playwright and an installed Chromium; does not install packages.
+Requires Python Playwright. Uses --chromium, a Chromium on PATH, or Playwright's managed Chromium; does not install packages.
 """
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -8,9 +8,12 @@ import json,re,base64,argparse,shutil,subprocess
 root=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--output-dir',type=Path,default=Path('/tmp/completion-preview'))
-parser.add_argument('--chromium',default=shutil.which('chromium') or shutil.which('chromium-browser'))
+parser.add_argument(
+ '--chromium',
+ default=shutil.which('chromium') or shutil.which('chromium-browser'),
+ help='Chromium executable. If omitted, use chromium/chromium-browser from PATH or Playwright managed Chromium.',
+)
 args=parser.parse_args()
-if not args.chromium: parser.error('Chromium was not found; provide --chromium /path/to/chromium')
 output=args.output_dir.resolve();output.mkdir(parents=True,exist_ok=True)
 html=subprocess.check_output(['node','--input-type=module','-e',"import {getDefaultHTML} from './src/ui/default-html.js'; process.stdout.write(getDefaultHTML());"],cwd=root,text=True)
 a=html.index('  var createModernInstrumentBinding =');b=html.index('  var createInstrumentThemeHost =',a)
@@ -50,7 +53,9 @@ window.measureLayout=function(){
 };
 '''
 with sync_playwright() as p:
- browser=p.chromium.launch(executable_path=args.chromium,headless=True,args=['--no-sandbox'])
+ launch={'headless':True,'args':['--no-sandbox']}
+ if args.chromium: launch['executable_path']=args.chromium
+ browser=p.chromium.launch(**launch)
  page=browser.new_page(reduced_motion='reduce');errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.set_content(static);page.add_script_tag(content=factories+'\n'+script)
  checks=[]

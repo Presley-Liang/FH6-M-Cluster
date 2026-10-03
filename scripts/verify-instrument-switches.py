@@ -72,19 +72,30 @@ def validate_phase_log(phases, expected_transition_count):
         opacity_checks = []
         for entry in entries:
             phase = entry.get('phase')
-            opacity = entry.get('settledNeedleOpacity')
-            if phase not in off_phases or opacity is None:
+            opacities = entry.get('settledMeterOpacities')
+            if phase not in off_phases or opacities is None:
                 continue
-            value = float(opacity)
+            values = [float(value) for value in opacities]
+            assert values, (
+                f'Transition {transition} ({kind}) recorded no animated meters in {phase}'
+            )
+            max_value = max(values)
             # off-needles intentionally fades for .28 s; sample near the end of
             # that phase and allow a small timing margin. Later off phases must
             # already be effectively dark.
             limit = 0.20 if phase == 'off-needles' else 0.05
-            assert value <= limit, (
+            assert max_value <= limit, (
                 f'Transition {transition} ({kind}) left a meter visible in '
-                f'{phase}: settled opacity {value:.3f} > {limit:.2f}'
+                f'{phase}: max settled opacity {max_value:.3f} > {limit:.2f}; '
+                f'all meter opacities={values}'
             )
-            opacity_checks.append({'phase': phase, 'opacity': value, 'limit': limit})
+            opacity_checks.append({
+                'phase': phase,
+                'meterCount': len(values),
+                'opacities': values,
+                'maxOpacity': max_value,
+                'limit': limit,
+            })
 
         validation.append({
             'transition': transition,
@@ -110,15 +121,32 @@ with sync_playwright() as p:
     page.wait_for_timeout(500)
     page.locator('#control-manual-btn').click()
     page.wait_for_timeout(300)
+    # Normalize the starting mode before installing the observer. This keeps
+    # every selected theme at exactly one vehicle + two real mode transitions,
+    # even when the server happened to start in freeRoam.
+    page.locator('#mode-race-btn').click()
+    page.wait_for_function(
+        "()=>document.querySelector('#cluster').dataset.ignitionPhase==='live'&&document.querySelector('.next-instrument[data-active=\"true\"]')?.dataset.mode==='race'",
+        timeout=20000,
+    )
+    page.wait_for_timeout(100)
     page.evaluate('''()=>{
       window.phaseLog=[];
       window.transitionIndex=0;
       const root=document.querySelector('#cluster');
       const meterSelector='[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],.xt-graphic,[data-next-fill],.next-readout strong';
-      const readOpacity=()=>{
+      const effectiveOpacity=node=>{
+        let value=1;
+        for(let current=node;current&&current!==root;current=current.parentElement){
+          const opacity=Number.parseFloat(getComputedStyle(current).opacity);
+          if(Number.isFinite(opacity)) value*=opacity;
+        }
+        return value;
+      };
+      const readOpacities=()=>{
         const instrument=document.querySelector('.next-instrument[data-active="true"]');
-        const meter=instrument?.querySelector(meterSelector);
-        return meter?getComputedStyle(meter).opacity:null;
+        if(!instrument) return [];
+        return [...instrument.querySelectorAll(meterSelector)].map(effectiveOpacity);
       };
       new MutationObserver(()=>{
         const phase=root.dataset.ignitionPhase;
@@ -130,13 +158,13 @@ with sync_playwright() as p:
           kind:root.dataset.ignitionKind,
           theme:root.dataset.themeId,
           mode:instrument?.dataset.mode,
-          needleOpacity:readOpacity(),
-          settledNeedleOpacity:null
+          meterOpacities:readOpacities(),
+          settledMeterOpacities:null
         };
         phaseLog.push(entry);
         const delay=phase==='off-needles'?260:80;
         setTimeout(()=>{
-          if(root.dataset.ignitionPhase===phase) entry.settledNeedleOpacity=readOpacity();
+          if(root.dataset.ignitionPhase===phase) entry.settledMeterOpacities=readOpacities();
         },delay);
       }).observe(root,{attributes:true,attributeFilter:['data-ignition-phase']});
     }''')
