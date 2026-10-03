@@ -1,0 +1,13 @@
+#cluster:not([data-theme-id="pre1949.america"]) :is(.shield-instrument,.shield-identity){display:none!important}
+#cluster[data-theme-id="pre1949.america"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
+#cluster[data-theme-id="pre1949.america"] .cluster-stage{overflow:hidden;background:#111!important}
+/* Upright shield, two detached auxiliary plaques and a low information tray. */
+.shield-dashboard{position:absolute;inset:0;background:repeating-linear-gradient(92deg,#282b24 0 2px,#303329 3px 6px)}
+.shield-casing{position:absolute;inset:6% 32% 20%;background:linear-gradient(135deg,#c6bea4,#655f4f 6%,#242922 12%,#343c2f 88%,#a7a085);clip-path:polygon(9% 0,91% 0,100% 13%,92% 78%,50% 100%,8% 78%,0 13%);border-top:3px solid #c4b899}
+.shield-casing header{position:absolute;left:12%;right:12%;top:6%;font-size:.7cqw}.shield-casing header>span:first-child{display:none}
+.shield-dial{position:absolute;inset:14% 3% 24%}.shield-dial .heritage-face{fill:#d2c7a3;stroke:#665f48}.shield-dial .heritage-ticks{stroke:#353b2c}.shield-dial .heritage-ticks text{fill:#353b2c}.shield-dial .heritage-needle path{fill:#994e33}
+.shield-casing .heritage-speed{position:absolute;left:19%;right:19%;top:63%;bottom:24%;background:#20281f;border:1px solid #837d5e;border-radius:.4cqw}.shield-casing .heritage-speed strong{font-size:3.6cqw}.shield-casing .heritage-speed small{font-size:.75cqw}
+.shield-casing .heritage-gear{position:absolute;left:36%;right:36%;top:79%;bottom:10%}.shield-casing .heritage-gear span{font-size:.7cqw}.shield-casing .heritage-gear b{font-size:2.3cqw}
+.shield-left,.shield-right{position:absolute;top:37%;width:22%;padding:1.8cqw;background:linear-gradient(#62664d,#2c3326 10%,#222b20 85%,#92927a);border:1px solid #938d6b;border-radius:1cqw}.shield-left{left:6%}.shield-right{right:6%}
+.shield-tray{position:absolute;inset:81% 16% 5%;padding:1cqw 3cqw;background:#23281f;border:2px solid #827c61;border-radius:1cqw}.shield-tray .heritage-info b{font-size:2.6cqw}
+@media(max-width:759px){.shield-casing{left:28%;right:28%;top:12%}.shield-left,.shield-right{top:38%;width:23%;padding:1.4cqw}.shield-left{left:2%}.shield-right{right:2%}.shield-tray{left:5%;right:5%;top:82%;bottom:4%}.shield-casing header{font-size:7px}.shield-casing .heritage-speed strong{font-size:23px}.shield-casing .heritage-speed small{font-size:6px}.shield-casing .heritage-gear{left:25%;right:25%}.shield-casing .heritage-gear b{font-size:18px}.shield-casing .heritage-gear span{font-size:6px}.shield-tray .heritage-info b{font-size:16px}}

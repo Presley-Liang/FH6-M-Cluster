@@ -40,8 +40,17 @@ import { createPriusJapanInstrument } from '../../public/js/themes/prius-japan-i
 import { createGxJapanInstrument } from '../../public/js/themes/gx-japan-instrument.js';
 import { createEuropeanInstrumentBinding } from '../../public/js/themes/european-instrument-binding.js';
 import { createKadettEuropeInstrument } from '../../public/js/themes/kadett-europe-instrument.js';
-import { createMultiplaEuropeInstrument } from '../../public/js/themes/multipla-europe-instrument.js';
+import { createMultiplaEuropeInstrument, mapMultiplaLiveFractions } from '../../public/js/themes/multipla-europe-instrument.js';
 import { createC4EuropeInstrument } from '../../public/js/themes/c4-europe-instrument.js';
+import { createHeritageInstrument, createHeritageDial } from '../../public/js/themes/heritage-instrument-binding.js';
+import { createShieldAmericaInstrument } from '../../public/js/themes/shield-america-instrument.js';
+import { createAaJapanInstrument } from '../../public/js/themes/aa-japan-instrument.js';
+import { createCrownJapanInstrument } from '../../public/js/themes/crown-japan-instrument.js';
+import { createPortalAmericaInstrument } from '../../public/js/themes/portal-america-instrument.js';
+import { createCorvette84AmericaInstrument } from '../../public/js/themes/corvette84-america-instrument.js';
+import { createDevilleAmericaInstrument } from '../../public/js/themes/deville-america-instrument.js';
+import { createThreeWellAmericaInstrument } from '../../public/js/themes/three-well-america-instrument.js';
+import { createCamaroAmericaInstrument } from '../../public/js/themes/camaro-america-instrument.js';
 import { createInstrumentThemeHost } from '../../public/js/themes/instrument-theme-host.js';
 import { mountManualThemeButtonSet as createManualThemeButtonSet } from '../../public/js/themes/manual-theme-button-set.js';
 import { VEHICLE_METADATA_BY_ORDINAL, resolveVehicleTheme } from '../vehicle/vehicle-metadata.js';
@@ -743,7 +752,18 @@ export function getDefaultHTML() {
   var createEuropeanInstrumentBinding = ${createEuropeanInstrumentBinding.toString()};
   var createKadettEuropeInstrument = ${createKadettEuropeInstrument.toString()};
   var createMultiplaEuropeInstrument = ${createMultiplaEuropeInstrument.toString()};
+  var mapMultiplaLiveFractions = ${mapMultiplaLiveFractions.toString()};
   var createC4EuropeInstrument = ${createC4EuropeInstrument.toString()};
+  var createHeritageDial = ${createHeritageDial.toString()};
+  var createHeritageInstrument = ${createHeritageInstrument.toString()};
+  var createShieldAmericaInstrument = ${createShieldAmericaInstrument.toString()};
+  var createAaJapanInstrument = ${createAaJapanInstrument.toString()};
+  var createCrownJapanInstrument = ${createCrownJapanInstrument.toString()};
+  var createPortalAmericaInstrument = ${createPortalAmericaInstrument.toString()};
+  var createCorvette84AmericaInstrument = ${createCorvette84AmericaInstrument.toString()};
+  var createDevilleAmericaInstrument = ${createDevilleAmericaInstrument.toString()};
+  var createThreeWellAmericaInstrument = ${createThreeWellAmericaInstrument.toString()};
+  var createCamaroAmericaInstrument = ${createCamaroAmericaInstrument.toString()};
   var createInstrumentThemeHost = ${createInstrumentThemeHost.toString()};
   var createShiftLightController = ${createShiftLightController.toString()};
   var createRaceFeedbackController = ${createRaceFeedbackController.toString()};
@@ -1473,6 +1493,14 @@ export function getDefaultHTML() {
     mount: document.querySelector('.cluster-stage'),
     root: document.getElementById('cluster'),
     factories: {
+      'pre1949.america': createShieldAmericaInstrument,
+      'pre1949.japan': createAaJapanInstrument,
+      'y1950_1959.japan': createCrownJapanInstrument,
+      'y1960_1975.america': createPortalAmericaInstrument,
+      'y1976_1985.america': createCorvette84AmericaInstrument,
+      'y1995_2002.america': createDevilleAmericaInstrument,
+      'y2003_2008.america': createThreeWellAmericaInstrument,
+      'y2009_2014.america': createCamaroAmericaInstrument,
       'pre1949.europe': createClassicalEuropeInstrument,
       'y1986_1994.america': createRetroDigitalAmericaInstrument,
       'y1995_2002.japan': createJdm90Instrument,
@@ -1521,7 +1549,10 @@ export function getDefaultHTML() {
   animationCoordinator = createUIAnimationCoordinator({
     root: document.getElementById('cluster'), body: document.body, display: clusterBindings,
     reducedMotion: function() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; },
-    getLiveFractions: function() { return clusterBindings.getLiveFractions(); },
+    getLiveFractions: function() {
+      var live = clusterBindings.getLiveFractions();
+      return document.getElementById('cluster').dataset.themeId === 'y1995_2002.europe' ? mapMultiplaLiveFractions(live) : live;
+    },
     infoCard: document.getElementById('vehicle-info-card'),
     feedbackElement: document.getElementById('race-feedback'),
   });
@@ -1689,6 +1720,15 @@ export function getDefaultHTML() {
     .replace('</head>', '<link rel="stylesheet" href="/styles/multipla-europe-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/c4-europe-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/xt-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/prius-japan-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/heritage-instrument-common.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/shield-america-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/aa-japan-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/crown-japan-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/portal-america-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/corvette84-america-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/deville-america-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/three-well-america-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/camaro-america-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/modern-instrument-common.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/civic-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/escalade-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/gx-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('<script>', '<script src="/vendor/leaflet/leaflet.js"></script><script>');
 }

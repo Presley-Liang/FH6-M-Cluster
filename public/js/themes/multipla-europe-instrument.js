@@ -1,5 +1,14 @@
 import { createEuropeanInstrumentBinding } from './european-instrument-binding.js';
 
+// The coordinator's baseline uses nonlinear speed stops. This instrument's
+// evenly spaced 20 km/h ticks require a linear return target as well as sweep.
+export function mapMultiplaLiveFractions(fractions = {}) {
+  const stops = [0,20,40,60,100,140,200,260];
+  const position = Math.max(0, Math.min(1, Number.isFinite(fractions.speed) ? fractions.speed : 0)) * 7;
+  const index = Math.min(6, Math.floor(position));
+  return { ...fractions, speed: (stops[index] + (stops[index+1]-stops[index])*(position-index)) / 260 };
+}
+
 // Multipla-era center pod direction; the OEM photo comparison is pending.
 export function createMultiplaEuropeInstrument({ document, mount }) {
   const element = document.createElement('section');
@@ -28,6 +37,10 @@ export function createMultiplaEuropeInstrument({ document, mount }) {
   const needle = element.querySelector('[data-mul-needle]');
   function update(model, context) {
     const state = bind(model, context);
+    if (state.sweep) {
+      state.speed = Math.max(0, Math.min(1, context.displayOverride.speed)) * 260;
+      element.querySelector('[data-next-value="speed"]').textContent = String(Math.round(state.speed));
+    }
     needle.style.visibility = state.speed === null ? 'hidden' : 'visible';
     const fraction = Math.max(0, Math.min(1, (state.speed ?? 0) / 260));
     needle.setAttribute('transform', 'rotate(' + (-130 + fraction * 260) + ' 180 180)');

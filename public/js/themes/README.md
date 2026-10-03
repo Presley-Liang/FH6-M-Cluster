@@ -49,34 +49,19 @@ connection, read the Store independently, or control Session state. The host
 sets `data-instrument-variant=custom` on the cluster while a custom instrument
 is active, so the old BMW shell stays mounted but visually hidden.
 
-Exact custom instrument IDs currently mounted by this branch are
-`pre1949.europe`,
-`y1986_1994.america`,
-`y1995_2002.japan`,
-`y1960_1975.europe`,
-`y2003_2008.japan`,
-`y2020_2024.america`,
-`y1950_1959.america`,
-`y1976_1985.japan`,
-`y2009_2014.europe`,
-`y1960_1975.japan`,
-`y1950_1959.europe`,
-`y2009_2014.japan`,
-`y1976_1985.europe`,
-`y2015_2019.america`,
-`y2020_2024.europe`,
-`y2025plus.europe`,
-`y2020_2024.japan`,
-`y2025plus.america`,
-`y2025plus.japan`,
-`y1986_1994.europe`,
-`y1995_2002.europe`,
-`y2003_2008.europe`.
-`y2015_2019.europe` remains the existing baseline: 23 independent surfaces
-and 10 shared-shell IDs. This branch starts from main; the two Japanese
-surfaces in PR #3 are separate. After both batches merge, the total is 25.
-The three new European surfaces remain development previews with reference
-verification boundaries documented in `docs/EUROPE_REMAINING_REFERENCE_AND_IMPLEMENTATION_2026-10-03.md`.
+All registry IDs except the existing `y2015_2019.europe` baseline now have
+custom factories mounted in `default-html.js`: **32 custom surfaces plus the
+baseline = 33 independent layouts**, with no unimplemented shared-shell IDs.
+PR #3's XT/Prius batch is included in the consolidated PR #4. The final eight
+layouts share data projection and phase semantics via
+`heritage-instrument-binding.js`, but each factory and stylesheet owns its
+geometry. Missing OEM references remain explicit candidates; see
+`docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md`.
+
+The Multipla's linear speed dial maps both the coordinator's sweep fraction
+and live return target to its own scale. All other layouts retain their
+existing projection. Browser checks must load CSS in production order.
+
 Vehicle-change cards use the target era and region in one combined card and
 do not start an ENGINE/TELEMETRY/DISPLAY self-check.
 
