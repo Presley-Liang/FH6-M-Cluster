@@ -42,7 +42,7 @@ import { createEuropeanInstrumentBinding } from '../../public/js/themes/european
 import { createKadettEuropeInstrument } from '../../public/js/themes/kadett-europe-instrument.js';
 import { createMultiplaEuropeInstrument, mapMultiplaLiveFractions } from '../../public/js/themes/multipla-europe-instrument.js';
 import { createC4EuropeInstrument } from '../../public/js/themes/c4-europe-instrument.js';
-import { createHeritageInstrument, createHeritageDial } from '../../public/js/themes/heritage-instrument-binding.js';
+import { createHeritageInstrument, createHeritageDial, mapHeritageLinearLiveFractions } from '../../public/js/themes/heritage-instrument-binding.js';
 import { createShieldAmericaInstrument } from '../../public/js/themes/shield-america-instrument.js';
 import { createAaJapanInstrument } from '../../public/js/themes/aa-japan-instrument.js';
 import { createCrownJapanInstrument } from '../../public/js/themes/crown-japan-instrument.js';
@@ -756,6 +756,7 @@ export function getDefaultHTML() {
   var createC4EuropeInstrument = ${createC4EuropeInstrument.toString()};
   var createHeritageDial = ${createHeritageDial.toString()};
   var createHeritageInstrument = ${createHeritageInstrument.toString()};
+  var mapHeritageLinearLiveFractions = ${mapHeritageLinearLiveFractions.toString()};
   var createShieldAmericaInstrument = ${createShieldAmericaInstrument.toString()};
   var createAaJapanInstrument = ${createAaJapanInstrument.toString()};
   var createCrownJapanInstrument = ${createCrownJapanInstrument.toString()};
@@ -1551,7 +1552,12 @@ export function getDefaultHTML() {
     reducedMotion: function() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; },
     getLiveFractions: function() {
       var live = clusterBindings.getLiveFractions();
-      return document.getElementById('cluster').dataset.themeId === 'y1995_2002.europe' ? mapMultiplaLiveFractions(live) : live;
+      var themeId = document.getElementById('cluster').dataset.themeId;
+      if (themeId === 'y1995_2002.europe') return mapMultiplaLiveFractions(live);
+      if (themeId === 'y1960_1975.america' || themeId === 'y1976_1985.america' || themeId === 'y2003_2008.america') {
+        return mapHeritageLinearLiveFractions(live);
+      }
+      return live;
     },
     infoCard: document.getElementById('vehicle-info-card'),
     feedbackElement: document.getElementById('race-feedback'),
