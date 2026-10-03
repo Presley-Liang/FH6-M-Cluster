@@ -113,7 +113,7 @@ test('Kadett lamps and Multipla needle share the numeric scale and darken on mis
   const map = vm.runInNewContext(html.slice(begin, end) + '\nmapMultiplaLiveFractions;');
   assert.equal(map({ speed: (4 + .75) / 7, rpm: .25 }).speed, .5);
   assert.equal(map({ speed: 1, rpm: .25 }).rpm, .25);
-  assert.ok(html.includes("dataset.themeId === 'y1995_2002.europe' ? mapMultiplaLiveFractions(live) : live"));
+  assert.ok(html.includes("if (themeId === 'y1995_2002.europe') return mapMultiplaLiveFractions(live);"));
   mul.update({ speedKmh: 350 }); assert.equal(needle.attributes.transform, 'rotate(130 180 180)'); assert.equal(mul.value('speed'), '350');
   mul.update({}, { stale: true }); assert.equal(needle.style.visibility, 'hidden');
 });
