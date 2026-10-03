@@ -36,6 +36,10 @@ import { createModernInstrumentBinding } from '../../public/js/themes/modern-ins
 import { createCivicJapanInstrument } from '../../public/js/themes/civic-japan-instrument.js';
 import { createEscaladeAmericaInstrument } from '../../public/js/themes/escalade-america-instrument.js';
 import { createGxJapanInstrument } from '../../public/js/themes/gx-japan-instrument.js';
+import { createEuropeanInstrumentBinding } from '../../public/js/themes/european-instrument-binding.js';
+import { createKadettEuropeInstrument } from '../../public/js/themes/kadett-europe-instrument.js';
+import { createMultiplaEuropeInstrument } from '../../public/js/themes/multipla-europe-instrument.js';
+import { createC4EuropeInstrument } from '../../public/js/themes/c4-europe-instrument.js';
 import { createInstrumentThemeHost } from '../../public/js/themes/instrument-theme-host.js';
 import { mountManualThemeButtonSet as createManualThemeButtonSet } from '../../public/js/themes/manual-theme-button-set.js';
 import { VEHICLE_METADATA_BY_ORDINAL, resolveVehicleTheme } from '../vehicle/vehicle-metadata.js';
@@ -732,6 +736,10 @@ export function getDefaultHTML() {
   var createCivicJapanInstrument = ${createCivicJapanInstrument.toString()};
   var createEscaladeAmericaInstrument = ${createEscaladeAmericaInstrument.toString()};
   var createGxJapanInstrument = ${createGxJapanInstrument.toString()};
+  var createEuropeanInstrumentBinding = ${createEuropeanInstrumentBinding.toString()};
+  var createKadettEuropeInstrument = ${createKadettEuropeInstrument.toString()};
+  var createMultiplaEuropeInstrument = ${createMultiplaEuropeInstrument.toString()};
+  var createC4EuropeInstrument = ${createC4EuropeInstrument.toString()};
   var createInstrumentThemeHost = ${createInstrumentThemeHost.toString()};
   var createShiftLightController = ${createShiftLightController.toString()};
   var createRaceFeedbackController = ${createRaceFeedbackController.toString()};
@@ -1480,6 +1488,9 @@ export function getDefaultHTML() {
       'y2020_2024.japan': createCivicJapanInstrument,
       'y2025plus.america': createEscaladeAmericaInstrument,
       'y2025plus.japan': createGxJapanInstrument,
+      'y1986_1994.europe': createKadettEuropeInstrument,
+      'y1995_2002.europe': createMultiplaEuropeInstrument,
+      'y2003_2008.europe': createC4EuropeInstrument,
     },
   });
   instrumentHost.activate(document.getElementById('cluster').dataset.themeId || DEFAULT_THEME_ID);
@@ -1668,6 +1679,9 @@ export function getDefaultHTML() {
     .replace('</head>', '<link rel="stylesheet" href="/styles/ford-gt-america-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/taycan-europe-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/panoramic-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/kadett-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/multipla-europe-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/c4-europe-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/modern-instrument-common.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/civic-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/escalade-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/gx-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('<script>', '<script src="/vendor/leaflet/leaflet.js"></script><script>');
 }

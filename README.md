@@ -4,11 +4,13 @@
 
 ## 当前进度
 
-- 33 个主题入口已接入；20 套已有独立仪表画面，另外 13 个入口仍使用共享仪表壳。
+- 33 个主题入口已接入；23 套已接入独立仪表画面，另外 10 个入口仍使用共享仪表壳。
 - Race 与 Free 是同一主题内的显示和颜色覆盖，不复制成两套完整主题。
 - 自动模式按车型资料选择主题；手动调试模式可手动选择主题和 Race／Free 模式。
 - 换车流程为：旧表退场 → 短暂全黑 → 一张融合品牌、车型与参数的车型卡 → 新表构建 → 扫表 → 接管最新遥测值。
 - EV 使用动力覆盖逻辑；缺少可靠遥测依据的 SOC、REGEN 等数据不伪造。
+
+新增三套欧系为开发态：[网上来源、预览与验证](docs/EUROPE_REMAINING_REFERENCE_AND_IMPLEMENTATION_2026-10-03.md)。另两套日系在 [PR #3](https://github.com/Presley-Liang/FH6-M-Cluster/pull/3)，两批均合并后为 25 套独立画面、8 个共享壳入口；外观核实与现场验收另计。
 
 最新状态、未完成事项和验收边界见[进度表](PROGRESS.md)。主题设计约束见[33 套设计基准](docs/ERA_REGION_33_DESIGN_EXPECTATIONS.md)，待集中修复的问题见[旧主题审查记录](docs/ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)。
 

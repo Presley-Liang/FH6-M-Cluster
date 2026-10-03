@@ -1,0 +1,365 @@
+{
+  "checks": [
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "kadett",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "kadett",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "kadett",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "kadett",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "multipla",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "multipla",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "multipla",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "multipla",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "c4",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "c4",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "c4",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 355,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 375,
+      "theme": "c4",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "kadett",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "kadett",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "kadett",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "kadett",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "multipla",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "multipla",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "multipla",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "multipla",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "c4",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "c4",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "c4",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 449,
+      "height": 340,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 469,
+      "theme": "c4",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "kadett",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "kadett",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "kadett",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "kadett",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "multipla",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "multipla",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "multipla",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "multipla",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "c4",
+      "mode": "race",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "c4",
+      "mode": "race",
+      "powertrain": "ev"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "c4",
+      "mode": "freeRoam",
+      "powertrain": "combustion"
+    },
+    {
+      "width": 1390,
+      "height": 625.5,
+      "outside": [],
+      "overlaps": [],
+      "viewport": 1440,
+      "theme": "c4",
+      "mode": "freeRoam",
+      "powertrain": "ev"
+    }
+  ],
+  "errors": []
+}
