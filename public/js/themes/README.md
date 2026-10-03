@@ -58,9 +58,10 @@ layouts share data projection and phase semantics via
 geometry. Missing OEM references remain explicit candidates; see
 `docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md`.
 
-The Multipla's linear speed dial maps both the coordinator's sweep fraction
-and live return target to its own scale. All other layouts retain their
-existing projection. Browser checks must load CSS in production order.
+The Multipla linear speed dial and the Portal, Corvette84, and Three-Well
+linear 0–260 speed meters map both the coordinator sweep fraction and live
+return target to their own scales. Other layouts retain their existing
+projection. Browser checks must load CSS in production order.
 
 Vehicle-change cards use the target era and region in one combined card and
 do not start an ENGINE/TELEMETRY/DISPLAY self-check.
