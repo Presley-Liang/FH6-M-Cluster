@@ -117,6 +117,25 @@ test('Kadett lamps and Multipla needle share the numeric scale and darken on mis
   mul.update({ speedKmh: 350 }); assert.equal(needle.attributes.transform, 'rotate(130 180 180)'); assert.equal(mul.value('speed'), '350');
   mul.update({}, { stale: true }); assert.equal(needle.style.visibility, 'hidden');
 });
+test('linear heritage meters use direct sweep fractions and matching live return fractions', () => {
+  const portal = harness('createPortalAmericaInstrument');
+  const speedMeter = portal.element.querySelector('[data-heritage-speed-meter=""]');
+  portal.update({ speedKmh: 130, rpm: 4000, engineMaxRpm: 8000 }, { displayOverride: { speed: .5, rpm: .5 } });
+  assert.equal(portal.value('speed'), '130');
+  assert.equal(speedMeter.style['--heritage-fill'], '0.5000');
+  portal.update({ speedKmh: 130, rpm: 4000, engineMaxRpm: 8000 });
+  assert.equal(speedMeter.style['--heritage-fill'], '0.5000');
+
+  const html = getDefaultHTML();
+  const begin = html.indexOf('  var mapHeritageLinearLiveFractions =');
+  const end = html.indexOf('  var createShieldAmericaInstrument =', begin);
+  const map = vm.runInNewContext(html.slice(begin, end) + '\nmapHeritageLinearLiveFractions;');
+  assert.equal(map({ speed: (4 + .75) / 7, rpm: .25 }).speed, .5);
+  for (const id of ['y1960_1975.america', 'y1976_1985.america', 'y2003_2008.america']) {
+    assert.ok(html.includes(`themeId === '${id}'`));
+  }
+});
+
 test('new European factories and CSS are delivered for their exact production IDs', () => {
   const html = getDefaultHTML();
   for (const [name, factory, id] of themes) {
