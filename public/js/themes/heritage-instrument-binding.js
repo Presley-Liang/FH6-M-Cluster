@@ -14,6 +14,14 @@ export function createHeritageDial({ drive = false, start = -130, end = 130, hal
   return `<svg viewBox="0 0 ${half ? '600 120' : '300 300'}" aria-label="${drive ? 'Engine speed or drive input scale' : 'Speed scale 0 to 260 km/h'}">${face}<g class="heritage-ticks">${marks}</g><g transform="scale(${half ? '2 .6666667' : '1 1'})"><g class="heritage-needle" data-heritage-needle="${drive ? 'drive' : 'speed'}" data-start="${start}" data-end="${end}"><path d="M150 30L146 166L150 160L154 166Z"/><circle cx="150" cy="150" r="7"/></g></g></svg>`;
 }
 
+export function mapHeritageLinearLiveFractions(fractions = {}) {
+  const stops = [0,20,40,60,100,140,200,260];
+  const clamp = n => Math.max(0, Math.min(1, n));
+  const position = clamp(Number.isFinite(fractions.speed) ? fractions.speed : 0) * 7;
+  const index = Math.min(6, Math.floor(position));
+  return { ...fractions, speed: (stops[index] + (stops[index+1]-stops[index])*(position-index)) / 260 };
+}
+
 export function createHeritageInstrument({ document, mount, className, label, markup }) {
   const element = document.createElement('section');
   element.className = 'next-instrument heritage-instrument ' + className + '-instrument';
@@ -28,6 +36,7 @@ export function createHeritageInstrument({ document, mount, className, label, ma
   const needles = [...element.querySelectorAll('[data-heritage-needle]')];
   const speedMeters = [...element.querySelectorAll('[data-heritage-speed-meter]')];
   const driveMeters = [...element.querySelectorAll('[data-heritage-drive-meter]')];
+  const linearSpeed = speedMeters.length > 0;
   const speedStops = [0,20,40,60,100,140,200,260];
   const clamp = n => Math.max(0, Math.min(1, n));
   function speedFraction(speed) {
@@ -37,7 +46,12 @@ export function createHeritageInstrument({ document, mount, className, label, ma
   }
   function update(model = {}, context = {}) {
     const state = bind(model, context);
-    const speed = speedFraction(state.speed ?? 0);
+    if (linearSpeed && state.sweep) {
+      state.speed = clamp(context.displayOverride.speed) * 260;
+      const readout = element.querySelector('[data-next-value="speed"]');
+      if (readout) readout.textContent = String(Math.round(state.speed));
+    }
+    const speed = linearSpeed ? clamp((state.speed ?? 0) / 260) : speedFraction(state.speed ?? 0);
     const finite = value => typeof value === 'number' && Number.isFinite(value);
     const driveAvailable = state.sweep || state.live && (state.ev ? state.input !== null
       : finite(model.rpm) && (finite(context.rpmGauge?.gaugeMax) && context.rpmGauge.gaugeMax > 0
@@ -49,7 +63,7 @@ export function createHeritageInstrument({ document, mount, className, label, ma
       const start = Number(needle.dataset.start), end = Number(needle.dataset.end);
       needle.setAttribute('transform', 'rotate(' + (start + fraction * (end-start)) + ' 150 150)');
     }
-    for (const meter of speedMeters) meter.style.setProperty('--heritage-fill', clamp((state.speed ?? 0) / 260).toFixed(4));
+    for (const meter of speedMeters) meter.style.setProperty('--heritage-fill', speed.toFixed(4));
     for (const meter of driveMeters) meter.style.setProperty('--heritage-fill', state.fraction.toFixed(4));
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
