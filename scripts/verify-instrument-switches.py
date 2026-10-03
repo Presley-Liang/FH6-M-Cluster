@@ -134,7 +134,7 @@ with sync_playwright() as p:
       window.phaseLog=[];
       window.transitionIndex=0;
       const root=document.querySelector('#cluster');
-      const meterSelector='[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],.xt-graphic,[data-next-fill],.next-readout strong';
+      const meterSelector='[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],.xt-graphic,[data-next-fill],[data-c4-temperature],[data-c4-input],.next-readout strong';
       const effectiveOpacity=node=>{
         let value=1;
         for(let current=node;current&&current!==root;current=current.parentElement){

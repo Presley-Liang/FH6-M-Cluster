@@ -76,13 +76,16 @@ with sync_playwright() as p:
     const root=document.getElementById('cluster');root.dataset.ignitionKind='vehicle';root.dataset.ignitionPhase=phase;
     const el=currentInstrument.element;
     const opacity=node=>{if(!node)throw Error('Missing animated meter');let result=1;for(let n=node;n&&n!==root;n=n.parentElement)result*=Number(getComputedStyle(n).opacity);return result;};
-    const readout=el.querySelector('[data-next-value="speed"]');const meter=el.querySelector('.kad-meter,[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],.xt-graphic,[data-next-fill]');
-    return {phase,speedOpacity:opacity(readout),meterOpacity:opacity(meter),screenOpacity:opacity(el)};
+    const readout=el.querySelector('[data-next-value="speed"]');
+    const meters=[...el.querySelectorAll('.kad-meter,[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],.xt-graphic,[data-next-fill],[data-c4-temperature],[data-c4-input]')];
+    if(!meters.length)throw Error('Missing animated meters');
+    const meterOpacities=meters.map(opacity);
+    return {phase,speedOpacity:opacity(readout),meterOpacities,maxMeterOpacity:Math.max(...meterOpacities),screenOpacity:opacity(el)};
    }''',phase)
    check['theme']=kind;phase_checks.append(check)
  for c in phase_checks:
-  if c['phase'] in ['off-needles','off-frames','off-center','vehicle-blackout','vehicle-card']:assert c['speedOpacity']==0 and c['meterOpacity']==0,c
-  if c['phase']=='live':assert c['speedOpacity']==1 and c['meterOpacity']==1,c
+  if c['phase'] in ['off-needles','off-frames','off-center','vehicle-blackout','vehicle-card']:assert c['speedOpacity']==0 and c['maxMeterOpacity']==0,c
+  if c['phase']=='live':assert c['speedOpacity']==1 and c['maxMeterOpacity']==1,c
  (output/'css-phase-checks.json').write_text(json.dumps({'checks':phase_checks},indent=2))
  (output/'layout-checks.json').write_text(json.dumps({'checks':checks,'errors':errors},indent=2))
  print(json.dumps({'cases':len(checks),'cssPhaseCases':len(phase_checks),'failed':[c for c in checks if c['outside'] or c['overlaps']],'errors':errors}))
