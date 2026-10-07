@@ -3,6 +3,8 @@ from pathlib import Path
 import argparse
 import json
 import shutil
+from datetime import datetime, timezone
+from urllib.parse import urljoin
 
 parser = argparse.ArgumentParser(description='Inspect actual theme and mode switches in Chromium')
 parser.add_argument('--url', default='http://127.0.0.1:3000/')
@@ -73,8 +75,11 @@ def validate_phase_log(phases, expected_transition_count):
         for entry in entries:
             phase = entry.get('phase')
             opacities = entry.get('settledMeterOpacities')
-            if phase not in off_phases or opacities is None:
+            if phase not in off_phases:
                 continue
+            assert opacities is not None, (
+                f'Transition {transition} ({kind}) missed the settled meter sample in {phase}'
+            )
             values = [float(value) for value in opacities]
             assert values, (
                 f'Transition {transition} ({kind}) recorded no animated meters in {phase}'
@@ -116,17 +121,34 @@ with sync_playwright() as p:
     failed = []
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.on('response', lambda r: failed.append({'url': r.url, 'status': r.status}) if r.status >= 400 else None)
+    initial_state = page.request.get(urljoin(args.url, '/mode'))
+    assert initial_state.status == 200
+    initial_mode = initial_state.json()['driveMode']
+    assert initial_mode in {'race', 'freeRoam'}
     response = page.goto(args.url, wait_until='domcontentloaded')
     assert response.status == 200
     page.wait_for_timeout(500)
     page.locator('#control-manual-btn').click()
-    page.wait_for_timeout(300)
+    page.wait_for_function(
+        "()=>document.querySelector('#control-manual-btn').getAttribute('aria-pressed')==='true'&&!document.querySelector('#mode-race-btn').disabled",
+        timeout=20000,
+    )
     # Normalize the starting mode before installing the observer. This keeps
     # every selected theme at exactly one vehicle + two real mode transitions,
     # even when the server happened to start in freeRoam.
     page.locator('#mode-race-btn').click()
+    # Before the first animation the coordinator reports live without setting
+    # an ignitionPhase attribute. Accept that same initial state here.
     page.wait_for_function(
-        "()=>document.querySelector('#cluster').dataset.ignitionPhase==='live'&&document.querySelector('.next-instrument[data-active=\"true\"]')?.dataset.mode==='race'",
+        "()=>(document.querySelector('#cluster').dataset.ignitionPhase||'live')==='live'&&document.body.dataset.driveMode==='race'",
+        timeout=20000,
+    )
+    # The legacy anchor has no .next-instrument node. Start there explicitly so
+    # the first selected custom theme always causes a real vehicle transition.
+    page.locator('.manual-theme-set__trigger').click()
+    page.locator('button[data-theme-id="y2015_2019.europe"]').click()
+    page.wait_for_function(
+        "()=>document.querySelector('#cluster').dataset.themeId==='y2015_2019.europe'&&(document.querySelector('#cluster').dataset.ignitionPhase||'live')==='live'",
         timeout=20000,
     )
     page.wait_for_timeout(100)
@@ -134,7 +156,7 @@ with sync_playwright() as p:
       window.phaseLog=[];
       window.transitionIndex=0;
       const root=document.querySelector('#cluster');
-      const meterSelector='[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],.xt-graphic,[data-next-fill],[data-c4-temperature],[data-c4-input],.next-readout strong';
+      const meterSelector='[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],[data-heritage-drive-meter],.kad-meter,.xt-graphic,[data-next-fill],[data-c4-temperature],[data-c4-input],.next-readout strong';
       const effectiveOpacity=node=>{
         let value=1;
         for(let current=node;current&&current!==root;current=current.parentElement){
@@ -145,7 +167,7 @@ with sync_playwright() as p:
       };
       const readOpacities=()=>{
         const instrument=document.querySelector('.next-instrument[data-active="true"]');
-        if(!instrument) return [];
+        if(!instrument) return [...root.querySelectorAll('#speed-needle,#rpm-needle,#speed-arc,#rpm-bar')].map(effectiveOpacity);
         return [...instrument.querySelectorAll(meterSelector)].map(effectiveOpacity);
       };
       new MutationObserver(()=>{
@@ -162,7 +184,9 @@ with sync_playwright() as p:
           settledMeterOpacities:null
         };
         phaseLog.push(entry);
-        const delay=phase==='off-needles'?260:80;
+        // Mode off-needles lasts 220ms, vehicle off-needles lasts 300ms.
+        // Sample both while their own phase is still active.
+        const delay=phase==='off-needles'?(entry.kind==='mode'?180:260):80;
         setTimeout(()=>{
           if(root.dataset.ignitionPhase===phase) entry.settledMeterOpacities=readOpacities();
         },delay);
@@ -199,6 +223,8 @@ with sync_playwright() as p:
     phases = page.evaluate('phaseLog')
     validation = validate_phase_log(phases, expected_transition_count=len(selected_themes) * 3)
     report = {
+        'generatedAt': datetime.now(timezone.utc).isoformat(),
+        'initialMode': initial_mode,
         'status': response.status,
         'chromium': args.chromium or 'playwright-managed',
         'checks': checks,

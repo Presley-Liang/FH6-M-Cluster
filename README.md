@@ -10,7 +10,7 @@
 - 换车流程为：旧表退场 → 短暂全黑 → 一张融合品牌、车型与参数的车型卡 → 新表构建 → 扫表 → 接管最新遥测值。
 - EV 使用动力覆盖逻辑；缺少可靠遥测依据的 SOC、REGEN 等数据不伪造。
 
-日系、欧系与剩余八套已整合到同一批：[构图、来源、模拟预览和本地布局／动画检查](docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md)。本轮代码待 PR 集中审核；缺少原厂资料的主题标为候选。
+日系、欧系与剩余八套已整合到同一批：[构图、来源、模拟预览和本地布局／动画检查](docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md)。审查修正与复核结果见进度表，[PR #4](https://github.com/Presley-Liang/FH6-M-Cluster/pull/4) 记录发布与合并状态；缺少原厂资料的主题标为候选。
 
 最新状态、未完成事项和验收边界见[进度表](PROGRESS.md)。主题设计约束见[33 套设计基准](docs/ERA_REGION_33_DESIGN_EXPECTATIONS.md)，待集中修复的问题见[旧主题审查记录](docs/ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)。
 
