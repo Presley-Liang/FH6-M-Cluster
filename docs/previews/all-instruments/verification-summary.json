@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T00:41:01.4118846Z",
+  "generatedAt": "2026-10-08T00:50:51.3245333Z",
   "scope": "13 newly integrated development layouts; not a new audit of the 20 baseline themes",
   "tests": {
     "command": "npm test",
@@ -8,7 +8,7 @@
   },
   "verifierTests": {
     "command": "python tests/test_instrument_switches.py",
-    "passed": 10,
+    "passed": 12,
     "failed": 0
   },
   "bundle": {
@@ -38,5 +38,12 @@
     "evidence": "race-start-animation-checks.json"
   },
   "realGameAcceptance": false,
-  "allOemReferencesVerified": false
+  "allOemReferencesVerified": false,
+  "supplementalEuropeStatic": {
+    "layoutCases": 36,
+    "cssPhaseCases": 27,
+    "evidenceDate": "2026-10-08",
+    "layoutEvidence": "../europe-remaining/layout-checks.json",
+    "cssPhaseEvidence": "../europe-remaining/css-phase-checks.json"
+  }
 }

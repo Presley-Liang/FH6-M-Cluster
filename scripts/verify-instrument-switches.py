@@ -268,7 +268,7 @@ with sync_playwright() as p:
         'errors': errors,
         'failedResponses': failed,
     }
-    (args.output_dir / 'live-animation-checks.json').write_text(json.dumps(report, indent=2))
+    (args.output_dir / 'live-animation-checks.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
     print(json.dumps({
         'status': response.status,
         'checks': checks,

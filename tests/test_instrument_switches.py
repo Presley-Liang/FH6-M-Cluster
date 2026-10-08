@@ -106,5 +106,24 @@ class CompletionValidationTests(unittest.TestCase):
                          set(namespace['meter_selector'].split(',')))
         self.assertIn('[data-heritage-drive-meter]', completion_namespace['meter_selector'])
 
+    def test_europe_verifier_uses_same_assertions_and_sampling(self):
+        europe_source = source.with_name('verify-europe-instruments.py')
+        europe_tree = ast.parse(europe_source.read_text(encoding='utf-8'))
+        for name in ('meter_selector', 'validate_css_phase'):
+            def find(nodes):
+                return next(node for node in nodes if
+                    isinstance(node, ast.FunctionDef) and node.name == name or
+                    isinstance(node, ast.Assign) and any(isinstance(target, ast.Name)
+                        and target.id == name for target in node.targets))
+            self.assertEqual(ast.dump(find(europe_tree.body)), ast.dump(find(completion_tree.body)))
+
+    def test_all_verifier_text_io_is_utf8(self):
+        for script in source.parent.glob('verify-*.py'):
+            for node in ast.walk(ast.parse(script.read_text(encoding='utf-8'))):
+                if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr in ('check_output', 'read_text', 'write_text'):
+                    encoding = next((kw.value for kw in node.keywords if kw.arg == 'encoding'), None)
+                    self.assertIsInstance(encoding, ast.Constant, str(script))
+                    self.assertEqual(encoding.value, 'utf-8', str(script))
+
 if __name__ == '__main__':
     unittest.main()

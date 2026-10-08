@@ -3,6 +3,7 @@
 Requires Python Playwright and an installed Chromium; does not install packages.
 """
 from pathlib import Path
+from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 import json,re,base64,argparse,shutil,subprocess
 root=Path(__file__).resolve().parents[1]
@@ -10,14 +11,28 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--output-dir',type=Path,default=Path('/tmp/europe-preview'))
 parser.add_argument('--chromium',default=shutil.which('chromium') or shutil.which('chromium-browser'))
 args=parser.parse_args()
+meter_selector = (
+ '[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],'
+ '[data-heritage-drive-meter],.kad-meter,.xt-graphic,[data-next-fill],'
+ '[data-c4-temperature],[data-c4-input],.next-readout strong,.next-readout b'
+)
+
+def validate_css_phase(check):
+ values = check['meterOpacities']
+ assert values, ('Missing animated meters', check)
+ if check['phase'] in ['off-needles','off-frames','off-center','vehicle-blackout','vehicle-card']:
+  assert check['speedOpacity']==0 and all(value==0 for value in values), check
+ if check['phase']=='live':
+  assert check['speedOpacity']==1 and all(value==1 for value in values), check
+
 if not args.chromium: parser.error('Chromium was not found; provide --chromium /path/to/chromium')
 output=args.output_dir.resolve();output.mkdir(parents=True,exist_ok=True)
-html=subprocess.check_output(['node','--input-type=module','-e',"import {getDefaultHTML} from './src/ui/default-html.js'; process.stdout.write(getDefaultHTML());"],cwd=root,text=True)
+html=subprocess.check_output(['node','--input-type=module','-e',"import {getDefaultHTML} from './src/ui/default-html.js'; process.stdout.write(getDefaultHTML());"],cwd=root,text=True,encoding='utf-8')
 a=html.index('  var createModernInstrumentBinding =');b=html.index('  var createInstrumentThemeHost =',a)
 factories=html[a:b]
 static=re.sub(r'<script[\s\S]*?</script>','',html)
 static=re.sub(r'<link[^>]*>','',static)
-css='\n'.join((root/'public/css'/n).read_text() for n in ['modern-instrument-common.css','kadett-europe-instrument.css','multipla-europe-instrument.css','c4-europe-instrument.css','vehicle-info-card.css'])
+css='\n'.join((root/'public/css'/n).read_text(encoding='utf-8') for n in re.findall(r'href="/styles/([^"?]+)',html))
 font=base64.b64encode((root/'assets/fonts/Oxanium-Variable.ttf').read_bytes()).decode()
 css+='\n@font-face{font-family:Oxanium;src:url(data:font/ttf;base64,'+font+')}\n'
 static=static.replace('</head>','<style>'+css+'</style></head>')
@@ -67,23 +82,22 @@ with sync_playwright() as p:
  for kind in ['kadett','multipla','c4']:
   for phase in ['off-needles','off-frames','off-center','vehicle-blackout','vehicle-card','frames','scan','return','live']:
    page.evaluate('kind=>renderInstrument(kind,"race","combustion",false,true)',kind)
-   check=page.evaluate('''phase=>{
+   check=page.evaluate('''([phase,meterSelector])=>{
     const root=document.getElementById('cluster');root.dataset.ignitionKind='vehicle';root.dataset.ignitionPhase=phase;
     const el=currentInstrument.element;
-    const opacity=node=>{let result=1;for(let n=node;n&&n!==root;n=n.parentElement)result*=Number(getComputedStyle(n).opacity);return result;};
-    const readout=el.querySelector('[data-next-value="speed"]');const meter=el.querySelector('.kad-meter,[data-mul-needle],[data-next-fill]');
-    const sideMeters=[...el.querySelectorAll('[data-c4-temperature],[data-c4-input]')];
-    const sideMeterOpacity=sideMeters.length?Math.max(...sideMeters.map(opacity)):null;
-    return {phase,speedOpacity:opacity(readout),meterOpacity:opacity(meter),sideMeterOpacity,screenOpacity:opacity(el)};
-   }''',phase)
+    const opacity=node=>{if(!node)throw Error('Missing animated meter');let result=1;for(let n=node;n&&n!==root;n=n.parentElement)result*=Number(getComputedStyle(n).opacity);return result;};
+    const readout=el.querySelector('[data-next-value="speed"]');
+    const meters=[...el.querySelectorAll(meterSelector)];
+    if(!meters.length)throw Error('Missing animated meters');
+    const meterOpacities=meters.map(opacity);
+    return {phase,speedOpacity:opacity(readout),meterOpacities,minMeterOpacity:Math.min(...meterOpacities),maxMeterOpacity:Math.max(...meterOpacities),screenOpacity:opacity(el)};
+   }''',[phase,meter_selector])
    check['theme']=kind;phase_checks.append(check)
  for c in phase_checks:
-  if c['phase'] in ['off-needles','off-frames','off-center','vehicle-blackout','vehicle-card']:
-   assert c['speedOpacity']==0 and c['meterOpacity']==0 and (c['sideMeterOpacity'] is None or c['sideMeterOpacity']==0),c
-  if c['phase']=='live':
-   assert c['speedOpacity']==1 and c['meterOpacity']==1 and (c['sideMeterOpacity'] is None or c['sideMeterOpacity']==1),c
- (output/'css-phase-checks.json').write_text(json.dumps({'checks':phase_checks},indent=2))
- (output/'layout-checks.json').write_text(json.dumps({'checks':checks,'errors':errors},indent=2))
+  validate_css_phase(c)
+ generated_at=datetime.now(timezone.utc).isoformat()
+ (output/'css-phase-checks.json').write_text(json.dumps({'generatedAt':generated_at,'checks':phase_checks},indent=2),encoding='utf-8')
+ (output/'layout-checks.json').write_text(json.dumps({'generatedAt':generated_at,'checks':checks,'errors':errors},indent=2),encoding='utf-8')
  print(json.dumps({'cases':len(checks),'cssPhaseCases':len(phase_checks),'failed':[c for c in checks if c['outside'] or c['overlaps']],'errors':errors}))
  assert not errors and not any(c['outside'] or c['overlaps'] for c in checks), 'Browser layout checks failed; inspect reports and screenshots'
  browser.close()
