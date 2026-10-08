@@ -41,6 +41,18 @@
 
 ## 本地检查结果及边界
 
+### 2026-10-08 Race／Free 连续衔接修复
+
+针对用户反馈的“熄灯后新布局瞬间出现”和“重新点亮跳亮”，本地开发分支完成公共修复：自定义主题在点灯开始时交接内容与布局；原 2015–2019 欧系保持原交接时序。动画更新不再经过普通详情的 50ms 门槛，扫表／回落跟随浏览器逐帧回调，取消切换会取消剩余回调。普通详情、遥测接收、Store 与 Session 的行为保持原约定。
+
+12 套非复古数字主题的重新点灯由分步亮度改为连续曲线；古典欧系、AE86、JDM90 改为在实际熄灭的对应层点亮。JDM90 的 panel 与 chassis 是并列层，二者同时渐暗／渐亮。RX8 补齐表舱渐暗；公共数字／填充和 C4 侧表在 center 阶段保持熄灭并逐渐出现。复古数字的分段扫描仍保留。
+
+- [全部 33 套双向模式节奏记录](previews/all-instruments/mode-motion-checks.json)：**66 次**，完整八阶段、内容交接时刻和逐帧更新断言通过，无脚本错误。首次配置主题使用减少动画方式快速定位；被测的两次模式切换均为完整动画，并使用目标年代的扫表时间。
+- [六套重新点灯记录](previews/all-instruments/mode-relight-checks.json)：古典欧系、AE86、JDM90、RX8、R8、C4，共 **12 次**；**14 组**亮度层均至少出现五个采样值、最终亮度超过 .95、相邻 50ms 采样最大增幅小于 .3。证明所测层连续渐亮，不代表全部视觉细节已由用户认可。
+- [三套修改前后对比](previews/all-instruments/mode-motion-comparison.json)：R8／C4／JDM90 的平均扫表更新间隔由约 **55.5ms** 降至约 **6.9–7.1ms**。本机浏览器出帧约 7ms，全主题记录中仍存在出帧波动；未把浏览器回调频率当成游戏 FPS。
+- 代码回归 **210/210**、核验离线回归 **12/12**、打包通过；13 套复跑 [156 组布局](previews/all-instruments/mode-layout-checks.json)及 [117 组 CSS 阶段](previews/all-instruments/mode-css-phase-checks.json)检查通过。
+- [本轮汇总](previews/all-instruments/mode-motion-summary.json)独立于 PR #4 历史证据。隔离接收器使用独立 HTTP／UDP，检查期间没有操作用户的 3000／3002 接收器模式。真实 FH6 驾驶、持续帧率、用户视觉验收仍待完成；修复在 [codex/fix-mode-transition-motion](https://github.com/Presley-Liang/FH6-M-Cluster/tree/codex/fix-mode-transition-motion) 分支交付，尚未合并主分支或打成新版可执行文件。
+
 ### 2026-10-08 复审补项与最终证据
 
 - 采样补齐公共动画契约中的 `.next-readout b`；指定多个主题时，任意未知编号均在启动浏览器前报错，不再静默漏测。

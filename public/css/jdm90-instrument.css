@@ -149,9 +149,9 @@
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .jdm90-instrument { animation:jdm90-build .82s cubic-bezier(.16,1,.3,1) both; }
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .jdm90-instrument :is(.jdm90-needle,.jdm90-needle-shadow,.jdm90-tick-layer,.jdm90-shift,.jdm90-center-readout,.jdm90-left,.jdm90-right) { opacity:0; filter:brightness(0); }
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .jdm90-instrument :is(.jdm90-panel,.jdm90-chassis) { filter:brightness(.025); }
-#cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .jdm90-instrument { animation:jdm90-relight .82s steps(7,end) both; }
+#cluster[data-theme-id="y1995_2002.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .jdm90-instrument :is(.jdm90-panel,.jdm90-chassis) { animation:jdm90-relight .82s cubic-bezier(.22,.61,.36,1) both; }
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-phase="scan"] .jdm90-needle { filter:drop-shadow(0 0 8px #fff1ba) drop-shadow(0 0 16px #f7aa42); }
 #cluster[data-theme-id="y1995_2002.japan"][data-ignition-phase="return"] .jdm90-instrument { transition:filter .45s ease; }
 @keyframes jdm90-build { 0%{opacity:0;filter:brightness(0);clip-path:inset(50% 0)} 36%{opacity:.45;filter:brightness(.38);clip-path:inset(21% 0)} 68%{opacity:1;filter:brightness(.72);clip-path:inset(4% 0)} 100%{opacity:1;filter:brightness(1);clip-path:inset(0)} }
-@keyframes jdm90-relight { 0%,22%{filter:brightness(.02)} 23%,42%{filter:brightness(.34)} 43%,63%{filter:brightness(.72)} 64%,100%{filter:brightness(1)} }
+@keyframes jdm90-relight { from{filter:brightness(.025)} to{filter:brightness(1)} }
 @media(prefers-reduced-motion:reduce) { .jdm90-instrument,.jdm90-instrument * { animation:none!important; transition:none!important; } }

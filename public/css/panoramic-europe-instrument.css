@@ -48,7 +48,7 @@
 @keyframes pan-build-float{from{opacity:0;transform:translateY(1.4cqw) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .pan-instrument :is(.pan-projection strong,.pan-power-track i,.pan-float strong){opacity:0}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .pan-projection{filter:brightness(.07)}
-#cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection{animation:pan-relight .75s steps(8,end) both}
+#cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection{animation:pan-relight .75s cubic-bezier(.22,.61,.36,1) both}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-float{animation:pan-float-relight .53s ease .17s both}
 @keyframes pan-relight{from{filter:brightness(.06)}to{filter:brightness(1)}}
 @keyframes pan-float-relight{from{opacity:.08;transform:translateY(.6cqw)}to{opacity:1;transform:translateY(0)}}

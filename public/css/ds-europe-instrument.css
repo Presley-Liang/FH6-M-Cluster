@@ -39,5 +39,5 @@
 @keyframes ds-lower-build{from{opacity:0;transform:translateY(1.5cqw)}to{opacity:1;transform:translateY(0)}}
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .ds-instrument :is(.ds-speed-needle,.ds-speed-number,.ds-lower-panel strong,.ds-center strong,.ds-footer){opacity:0}
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .ds-instrument :is(.ds-window,.ds-lower){filter:brightness(.09)}
-#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument :is(.ds-window,.ds-lower){animation:ds-relight .65s steps(6,end) both}
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument :is(.ds-window,.ds-lower){animation:ds-relight .65s cubic-bezier(.22,.61,.36,1) both}
 @keyframes ds-relight{from{filter:brightness(.08)}to{filter:brightness(1)}}

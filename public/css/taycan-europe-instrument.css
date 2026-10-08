@@ -47,7 +47,7 @@
 @keyframes tay-readout-build{from{opacity:0;transform:translateY(1.2cqw)}to{opacity:1;transform:translateY(0)}}
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .tay-instrument :is(.tay-drive-track i,.tay-speed-number strong,.tay-side strong,.tay-lower strong){opacity:0}
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .tay-glass{filter:brightness(.09)}
-#cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-glass{animation:tay-glass-relight .78s steps(9,end) both}
+#cluster[data-theme-id="y2020_2024.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-glass{animation:tay-glass-relight .78s cubic-bezier(.22,.61,.36,1) both}
 @keyframes tay-glass-relight{from{filter:brightness(.07)}to{filter:brightness(1)}}
 #cluster[data-theme-id="y2020_2024.europe"][data-ignition-phase="scan"] .tay-glass{box-shadow:inset 0 1px 0 #c9eff3a8,inset 0 -2px 8px #0009,0 19px 35px #000a,0 0 1.7cqw #92d4df23}
 @media(max-width:1000px){.tay-top{font-size:8px}.tay-drive{grid-template-columns:minmax(0,1fr) 14%}.tay-lower{gap:.2cqw}.tay-lower>div{gap:.35cqw}.tay-lower span{font-size:8px}.tay-lower strong{font-size:1.5cqw}.tay-side strong{font-size:4cqw}}

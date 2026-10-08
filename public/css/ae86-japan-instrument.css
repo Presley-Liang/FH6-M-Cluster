@@ -101,8 +101,9 @@
 #cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .ae86-instrument { animation:ae86-build .9s cubic-bezier(.16,1,.3,1) both; }
 #cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .ae86-instrument :is(.ae86-needle,.ae86-needle-shadow,.ae86-dial-word,.ae86-gear,.ae86-central-data,.ae86-shift,.ae86-dial-foot,.ae86-top-rail,.ae86-bottom-rail) { opacity:0; }
 #cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .ae86-instrument .ae86-hood { filter:brightness(.04); }
-#cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ae86-instrument { animation:ae86-relight .8s steps(6,end) both; }
+#cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ae86-instrument .ae86-hood { animation:ae86-relight .8s cubic-bezier(.22,.61,.36,1) both; }
 #cluster[data-theme-id="y1976_1985.japan"][data-ignition-phase="scan"] .ae86-instrument .ae86-needle { filter:drop-shadow(0 0 6px #ffe5ad) drop-shadow(0 0 14px #eda658); }
 @keyframes ae86-build { 0% { opacity:0; filter:brightness(0); clip-path:inset(50% 0); } 28% { opacity:.42; filter:brightness(.35); clip-path:inset(26% 0); } 66% { opacity:.9; filter:brightness(.72); clip-path:inset(4% 0); } 100% { opacity:1; filter:brightness(1); clip-path:inset(0); } }
-@keyframes ae86-relight { 0%,20% { filter:brightness(.02); } 21%,42% { filter:brightness(.3); } 43%,62% { filter:brightness(.72); } 63%,100% { filter:brightness(1); } }
+@keyframes ae86-relight { from { filter:brightness(.04); } to { filter:brightness(1); } }
+.ae86-hood { transition:filter .38s ease; }
 @media (prefers-reduced-motion:reduce) { .ae86-instrument,.ae86-instrument *,.ae86-mode-identity { animation:none !important; transition:none !important; } }

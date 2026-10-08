@@ -52,10 +52,13 @@ export function createUIAnimationCoordinator(options = {}) {
   const infoCard = options.infoCard;
   const schedule = options.schedule || ((fn, ms) => setTimeout(fn, ms));
   const cancelSchedule = options.cancelSchedule || clearTimeout;
+  const requestFrame = options.requestFrame || (typeof requestAnimationFrame === 'function' ? requestAnimationFrame : null);
+  const cancelFrame = options.cancelFrame || (typeof cancelAnimationFrame === 'function' ? cancelAnimationFrame : null);
   const reducedMotion = () => typeof options.reducedMotion === 'function'
     ? options.reducedMotion() : Boolean(options.reducedMotion);
   let generation = 0;
   let timers = [];
+  const animationFrames = new Set();
   let feedbackGeneration = 0, feedbackTimer = null;
   let activeVehicle = false;
   let vehicleThemeApplied = false;
@@ -68,9 +71,19 @@ export function createUIAnimationCoordinator(options = {}) {
     generation += 1;
     timers.forEach(cancelSchedule);
     timers = [];
+    if (cancelFrame) animationFrames.forEach(cancelFrame);
+    animationFrames.clear();
   }
   function later(token, ms, fn) {
     timers.push(schedule(() => { if (token === generation) fn(); }, ms));
+  }
+  function nextFrame(token, fn) {
+    if (!requestFrame || !cancelFrame) { later(token, 16, fn); return; }
+    const handle = requestFrame(() => {
+      animationFrames.delete(handle);
+      if (token === generation) fn();
+    });
+    animationFrames.add(handle);
   }
   function phase(value) {
     if (root) root.dataset.ignitionPhase = value;
@@ -146,7 +159,7 @@ export function createUIAnimationCoordinator(options = {}) {
       const t = Math.min(1, (performance.now() - startedAt) / durationMs);
       const fraction = sweepCurve(era, t) * extent;
       display?.setDisplayOverride?.({ speed: fraction, rpm: fraction });
-      if (t < 1) later(token, 16, step);
+      if (t < 1) nextFrame(token, step);
     };
     step();
   }
@@ -166,7 +179,7 @@ export function createUIAnimationCoordinator(options = {}) {
       const rpm = Number.isFinite(live.rpm) ? Math.max(0, Math.min(1, live.rpm)) : 0;
       if (t < 1) {
         display?.setDisplayOverride?.({ speed: from + (speed - from) * eased, rpm: from + (rpm - from) * eased });
-        later(token, 16, step);
+        nextFrame(token, step);
       } else display?.setDisplayOverride?.(null);
     };
     step();
@@ -178,7 +191,12 @@ export function createUIAnimationCoordinator(options = {}) {
       phase('center');
       display?.setDisplayOverride?.({ speed: 0, rpm: 0 });
     });
-    later(token, offset + 560, () => phase('frames'));
+    later(token, offset + 560, () => {
+      // Custom layouts reveal their new content and geometry together with
+      // relighting. Applying it under the center title hides the layout motion.
+      if (root?.dataset.instrumentVariant === 'custom') applyLatestTheme();
+      phase('frames');
+    });
     later(token, offset + 1500, () => {
       phase('scan');
       // The modern European anchor keeps its original smoothstep timing.
@@ -272,7 +290,9 @@ export function createUIAnimationCoordinator(options = {}) {
     later(token, 220, () => phase('off-frames'));
     later(token, 650, () => phase('off-center'));
     // Switch only the current instrument's illumination and mode identity.
-    later(token, 1250, () => applyLatestTheme());
+    later(token, 1250, () => {
+      if (root?.dataset.instrumentVariant !== 'custom') applyLatestTheme();
+    });
     startupMode(token, 1250);
   }
   function wake(profile, mode, theme) {

@@ -42,7 +42,7 @@
 @keyframes s30-pod-build{from{opacity:0;filter:brightness(0);transform:translateX(1cqw) scale(.85)}to{opacity:1;filter:brightness(1);transform:none}}
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .s30-instrument :is(.s30-needle,.s30-readout,.s30-under,.s30-gear,.s30-drive-note,.s30-aux-pod strong,.s30-shift){opacity:0}
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .s30-instrument :is(.s30-main,.s30-aux-pod){filter:brightness(.08)}
-#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument :is(.s30-main,.s30-aux-pod){animation:s30-relight .66s steps(6,end) both}
+#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument :is(.s30-main,.s30-aux-pod){animation:s30-relight .66s cubic-bezier(.22,.61,.36,1) both}
 @keyframes s30-relight{from{filter:brightness(.07)}to{filter:brightness(1)}}
 /* The narrow preview keeps a taller stage; size the two dials from its width. */
 @media(max-width:759px){

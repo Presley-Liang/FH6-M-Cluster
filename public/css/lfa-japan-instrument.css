@@ -39,5 +39,5 @@
 @keyframes lfa-side-build{from{opacity:0;transform:translateY(1.8cqw)}to{opacity:1;transform:translateY(0)}}
 #cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .lfa-instrument :is(.lfa-needle,.lfa-ring-content,.lfa-metric strong,.lfa-side-led,.lfa-footer){opacity:0}
 #cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .lfa-instrument :is(.lfa-ring,.lfa-side){filter:brightness(.08)}
-#cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .lfa-instrument :is(.lfa-ring,.lfa-side){animation:lfa-relight .7s steps(7,end) both}
+#cluster[data-theme-id="y2009_2014.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .lfa-instrument :is(.lfa-ring,.lfa-side){animation:lfa-relight .7s cubic-bezier(.22,.61,.36,1) both}
 @keyframes lfa-relight{from{filter:brightness(.06)}to{filter:brightness(1)}}

@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-10-08T05:07:56.798989+00:00",
+  "scope": "Race/Free motion repair; isolated browser with no game telemetry",
+  "tests": {
+    "passed": 210,
+    "failed": 0
+  },
+  "verifierTests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "bundle": true,
+  "modeCases": 66,
+  "themes": 33,
+  "modeErrors": [],
+  "relightCases": 12,
+  "brightnessLayerCases": 14,
+  "brightnessPassed": true,
+  "layoutCases": 156,
+  "cssPhaseCases": 117,
+  "evidence": [
+    "mode-motion-checks.json",
+    "mode-relight-checks.json",
+    "mode-motion-comparison.json",
+    "mode-layout-checks.json",
+    "mode-css-phase-checks.json"
+  ],
+  "acceptance": {
+    "realFH6Driving": false,
+    "sustainedGameFPS": false,
+    "userVisual": false
+  }
+}
