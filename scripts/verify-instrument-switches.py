@@ -16,7 +16,6 @@ parser.add_argument(
     help='Chromium executable. If omitted, use chromium/chromium-browser from PATH or Playwright managed Chromium.',
 )
 args = parser.parse_args()
-args.output_dir.mkdir(parents=True, exist_ok=True)
 
 themes = [
     ('y1986_1994.europe', '.kad-instrument'),
@@ -33,7 +32,25 @@ themes = [
     ('y2003_2008.america', '.well-instrument'),
     ('y2009_2014.america', '.camaro-instrument'),
 ]
-selected_themes = [(theme_id, selector) for theme_id, selector in themes if not args.theme or theme_id in args.theme]
+def select_themes(available, requested=None):
+    unknown = set(requested or []) - {theme_id for theme_id, _ in available}
+    if unknown:
+        raise ValueError('Unknown theme IDs: ' + ', '.join(sorted(unknown)))
+    return [(theme_id, selector) for theme_id, selector in available
+            if not requested or theme_id in requested]
+
+
+try:
+    selected_themes = select_themes(themes, args.theme)
+except ValueError as error:
+    parser.error(str(error))
+args.output_dir.mkdir(parents=True, exist_ok=True)
+
+meter_selector = (
+    '[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],'
+    '[data-heritage-drive-meter],.kad-meter,.xt-graphic,[data-next-fill],'
+    '[data-c4-temperature],[data-c4-input],.next-readout strong,.next-readout b'
+)
 
 vehicle_sequence = [
     'off-needles', 'off-frames', 'off-center', 'vehicle-blackout',
@@ -152,11 +169,10 @@ with sync_playwright() as p:
         timeout=20000,
     )
     page.wait_for_timeout(100)
-    page.evaluate('''()=>{
+    page.evaluate('''meterSelector=>{
       window.phaseLog=[];
       window.transitionIndex=0;
       const root=document.querySelector('#cluster');
-      const meterSelector='[data-mul-needle],.heritage-needle,[data-heritage-speed-meter],[data-heritage-drive-meter],.kad-meter,.xt-graphic,[data-next-fill],[data-c4-temperature],[data-c4-input],.next-readout strong';
       const effectiveOpacity=node=>{
         let value=1;
         for(let current=node;current&&current!==root;current=current.parentElement){
@@ -180,18 +196,21 @@ with sync_playwright() as p:
           kind:root.dataset.ignitionKind,
           theme:root.dataset.themeId,
           mode:instrument?.dataset.mode,
-          meterOpacities:readOpacities(),
+          meterOpacities:[],
           settledMeterOpacities:null
         };
         phaseLog.push(entry);
         // Mode off-needles lasts 220ms, vehicle off-needles lasts 300ms.
         // Sample both while their own phase is still active.
-        const delay=phase==='off-needles'?(entry.kind==='mode'?180:260):80;
+        const delay=phase==='off-needles'?(entry.kind==='mode'?180:220):80;
+        // Queue the stable sample before reading styles; a large instrument
+        // must not add its style-read cost to the sampling delay.
         setTimeout(()=>{
           if(root.dataset.ignitionPhase===phase) entry.settledMeterOpacities=readOpacities();
         },delay);
+        entry.meterOpacities=readOpacities();
       }).observe(root,{attributes:true,attributeFilter:['data-ignition-phase']});
-    }''')
+    }''', meter_selector)
 
     checks = []
     for theme_id, selector in selected_themes:
