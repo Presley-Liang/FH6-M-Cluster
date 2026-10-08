@@ -8,6 +8,7 @@
 - 新增两条模式交接／逐帧取消回归和隔离浏览器节奏核验；210 项代码回归、12 项核验回归、打包、66 次全主题模式切换及六套 12 次亮度补查通过。156 组布局、117 组 CSS 阶段复跑通过。
 - 三套对比测量确认原约 55.5ms 动画更新间隔已解除；记录浏览器出帧波动，未据此宣布真实 FH6 帧率或用户视觉验收通过。[证据汇总](docs/previews/all-instruments/mode-motion-summary.json)。
 - 本轮代码与检查证据通过 `codex/fix-mode-transition-motion` 分支交付；主分支合并和新版可执行文件另计。
+- 已创建正式 [PR #5](https://github.com/Presley-Liang/FH6-M-Cluster/pull/5) 提交云端审核，审核结果待返回。
 
 ## 2026-10-08 · PR #4 复审补项
 

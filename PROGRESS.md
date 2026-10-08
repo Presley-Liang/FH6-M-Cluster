@@ -10,6 +10,7 @@
 - [x] 已自动验证：**33 套 × 双向 = 66 次**模式切换阶段／内容交接／更新节奏通过；六套另完成 **12 次**点灯补查、**14 组**亮度层连续性检查。三套对比检查中，扫表平均更新间隔由约 55.5ms 降至约 6.9–7.1ms；此为本机隔离浏览器测量，不是游戏帧率保证。
 - [x] 已自动验证：代码回归 **210/210**、核验离线回归 **12/12**、打包通过；13 套再次完成 **156 组**布局和 **117 组** CSS 阶段检查。见[本轮汇总](docs/previews/all-instruments/mode-motion-summary.json)与[详细交付记录](docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md)。
 - 本轮交付分支：[codex/fix-mode-transition-motion](https://github.com/Presley-Liang/FH6-M-Cluster/tree/codex/fix-mode-transition-motion)。代码、回归与浏览器检查证据随分支交付。
+- [x] 已推送并创建正式 [PR #5](https://github.com/Presley-Liang/FH6-M-Cluster/pull/5)，集中审核模式内容交接、连续点灯、逐帧取消与旧基准兼容；云端审核结果待返回。
 - [ ] 实际验收：真实 FH6 模式切换观感与持续帧率仍待用户现场确认；本轮修复尚未合并主分支或生成新版可执行文件。
 
 ## PR #4 审查修正
