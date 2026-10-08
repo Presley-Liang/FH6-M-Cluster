@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T00:24:32.688053+00:00",
+  "generatedAt": "2026-10-08T00:41:01.4118846Z",
   "scope": "13 newly integrated development layouts; not a new audit of the 20 baseline themes",
   "tests": {
     "command": "npm test",
@@ -8,7 +8,7 @@
   },
   "verifierTests": {
     "command": "python tests/test_instrument_switches.py",
-    "passed": 7,
+    "passed": 10,
     "failed": 0
   },
   "bundle": {
@@ -17,12 +17,12 @@
   },
   "layoutCases": 156,
   "cssPhaseCases": 117,
-  "layoutEvidenceDate": "2026-10-03",
-  "liveVehicleSwitches": 13,
+  "layoutEvidenceDate": "2026-10-08",
+  "liveVehicleSwitches": 14,
   "liveModeSwitches": 26,
-  "liveTransitions": 39,
-  "observedPhases": 325,
-  "offPhaseSamples": 143,
+  "liveTransitions": 40,
+  "observedPhases": 334,
+  "offPhaseSamples": 148,
   "initialMode": "freeRoam",
   "liveEvidence": "live-animation-checks.json",
   "supplementalRaceStart": {
@@ -30,11 +30,11 @@
       "y2003_2008.europe"
     ],
     "initialMode": "race",
-    "vehicleSwitches": 1,
+    "vehicleSwitches": 2,
     "modeSwitches": 2,
-    "transitions": 3,
-    "observedPhases": 25,
-    "offPhaseSamples": 11,
+    "transitions": 4,
+    "observedPhases": 34,
+    "offPhaseSamples": 16,
     "evidence": "race-start-animation-checks.json"
   },
   "realGameAcceptance": false,

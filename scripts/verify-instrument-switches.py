@@ -63,7 +63,7 @@ mode_sequence = [
 off_phases = {'off-needles', 'off-frames', 'off-center', 'vehicle-blackout', 'vehicle-card'}
 
 
-def validate_phase_log(phases, expected_transition_count):
+def validate_phase_log(phases, expected_transition_count, expected_outgoing_themes=None):
     groups = {}
     for entry in phases:
         transition = entry.get('transition')
@@ -74,6 +74,10 @@ def validate_phase_log(phases, expected_transition_count):
     assert len(groups) == expected_transition_count, (
         f'Expected {expected_transition_count} transitions, recorded {len(groups)}'
     )
+    outgoing_themes = {entries[0].get('theme') for entries in groups.values()
+                       if entries[0].get('kind') == 'vehicle'}
+    missing = set(expected_outgoing_themes or []) - outgoing_themes
+    assert not missing, f'Missing outgoing vehicle coverage: {sorted(missing)}'
 
     validation = []
     for transition, entries in sorted(groups.items()):
@@ -151,7 +155,7 @@ with sync_playwright() as p:
         timeout=20000,
     )
     # Normalize the starting mode before installing the observer. This keeps
-    # every selected theme at exactly one vehicle + two real mode transitions,
+    # every selected theme at one incoming vehicle + two real mode transitions,
     # even when the server happened to start in freeRoam.
     page.locator('#mode-race-btn').click()
     # Before the first animation the coordinator reports live without setting
@@ -236,11 +240,23 @@ with sync_playwright() as p:
         print(json.dumps({'theme': theme_id, 'modeSwitches': 2}), flush=True)
 
     assert checks, 'No theme IDs matched'
+    # Switch away from the final selected theme too. Off-phase samples belong
+    # to the outgoing instrument, so targeted runs need this transition as well.
+    page.locator('.manual-theme-set__trigger').click()
+    page.locator('button[data-theme-id="y2015_2019.europe"]').click()
+    page.wait_for_function(
+        "()=>document.querySelector('#cluster').dataset.themeId==='y2015_2019.europe'&&document.querySelector('#cluster').dataset.ignitionPhase==='live'",
+        timeout=20000,
+    )
+    assert page.locator('.next-instrument[data-active="true"]').count() == 0
     # Let the delayed opacity sample for the last live transition settle before
     # collecting the final phase log.
     page.wait_for_timeout(300)
     phases = page.evaluate('phaseLog')
-    validation = validate_phase_log(phases, expected_transition_count=len(selected_themes) * 3)
+    validation = validate_phase_log(
+        phases, expected_transition_count=len(selected_themes) * 3 + 1,
+        expected_outgoing_themes=[theme_id for theme_id, _ in selected_themes],
+    )
     report = {
         'generatedAt': datetime.now(timezone.utc).isoformat(),
         'initialMode': initial_mode,

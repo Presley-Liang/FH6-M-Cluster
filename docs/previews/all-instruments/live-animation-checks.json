@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T00:16:41.162067+00:00",
+  "generatedAt": "2026-10-08T00:40:04.797043+00:00",
   "initialMode": "freeRoam",
   "status": 200,
   "chromium": "C:/Program Files/Google/Chrome/Application/chrome.exe",
@@ -143,16 +143,16 @@
       "theme": "y2015_2019.europe",
       "mode": null,
       "meterOpacities": [
-        0.0757835,
-        0.0757835,
-        0.0757835,
-        0.0757835
+        0.125582,
+        0.125582,
+        0.125582,
+        0.125582
       ],
       "settledMeterOpacities": [
-        0.00925387,
-        0.00925387,
-        0.00925387,
-        0.00925387
+        0.0253615,
+        0.0253615,
+        0.0253615,
+        0.0253615
       ]
     },
     {
@@ -162,16 +162,16 @@
       "theme": "y2015_2019.europe",
       "mode": null,
       "meterOpacities": [
-        0.00436337,
-        0.00436337,
-        0.00436337,
-        0.00436337
+        0.0110925,
+        0.0110925,
+        0.0110925,
+        0.0110925
       ],
       "settledMeterOpacities": [
-        0.000513966,
-        0.000513966,
-        0.000513966,
-        0.000513966
+        0.0028949,
+        0.0028949,
+        0.0028949,
+        0.0028949
       ]
     },
     {
@@ -206,10 +206,10 @@
         0
       ],
       "settledMeterOpacities": [
-        0.0144365,
-        0.0144365,
-        0.0144365,
-        0.0144365
+        0.0175188,
+        0.0175188,
+        0.0175188,
+        0.0175188
       ]
     },
     {
@@ -242,8 +242,8 @@
         0
       ],
       "settledMeterOpacities": [
-        0.035233997742293244,
-        0.087176829732
+        0.05026941671881651,
+        0.109881388624
       ]
     },
     {
@@ -299,8 +299,8 @@
         1
       ],
       "settledMeterOpacities": [
-        0.101603,
-        0.101603
+        0.101646,
+        0.101646
       ]
     },
     {
@@ -310,8 +310,8 @@
       "theme": "y1986_1994.europe",
       "mode": "race",
       "meterOpacities": [
-        0.0417348,
-        0.0417348
+        0.0416313,
+        0.0416313
       ],
       "settledMeterOpacities": [
         0,
@@ -344,7 +344,7 @@
         1
       ],
       "settledMeterOpacities": [
-        0.457812,
+        0.457819,
         1
       ]
     },
@@ -416,8 +416,8 @@
         1
       ],
       "settledMeterOpacities": [
-        0.101701,
-        0.101701
+        0.101612,
+        0.101612
       ]
     },
     {
@@ -427,8 +427,8 @@
       "theme": "y1986_1994.europe",
       "mode": "freeRoam",
       "meterOpacities": [
-        0.0332817,
-        0.0332817
+        0.0333488,
+        0.0333488
       ],
       "settledMeterOpacities": [
         0,
@@ -461,7 +461,7 @@
         1
       ],
       "settledMeterOpacities": [
-        0.458264,
+        0,
         1
       ]
     },
@@ -520,7 +520,10 @@
         1,
         1
       ],
-      "settledMeterOpacities": null
+      "settledMeterOpacities": [
+        1,
+        1
+      ]
     },
     {
       "transition": 4,
@@ -533,8 +536,8 @@
         1
       ],
       "settledMeterOpacities": [
-        0.041662,
-        0.041662
+        0.045682,
+        0.045682
       ]
     },
     {
@@ -609,8 +612,8 @@
         0
       ],
       "settledMeterOpacities": [
-        0.023233214471029648,
-        0.066777077825,
+        0.050493915547602956,
+        0.110203487537,
         0
       ]
     },
@@ -673,9 +676,9 @@
         1
       ],
       "settledMeterOpacities": [
-        0.101585,
-        0.101585,
-        0.101585
+        0.101697,
+        0.101697,
+        0.101697
       ]
     },
     {
@@ -685,9 +688,9 @@
       "theme": "y1995_2002.europe",
       "mode": "race",
       "meterOpacities": [
-        0.0333354,
-        0.0333354,
-        0.0333354
+        0.0416607,
+        0.0416607,
+        0.0416607
       ],
       "settledMeterOpacities": [
         0,
@@ -724,9 +727,9 @@
         0
       ],
       "settledMeterOpacities": [
-        0.457246,
+        0.458279,
         1,
-        0.457246
+        0.458279
       ]
     },
     {
@@ -805,9 +808,9 @@
         1
       ],
       "settledMeterOpacities": [
-        0.101762,
-        0.101762,
-        0.101762
+        0.101867,
+        0.101867,
+        0.101867
       ]
     },
     {
@@ -817,136 +820,1929 @@
       "theme": "y1995_2002.europe",
       "mode": "freeRoam",
       "meterOpacities": [
+        0.0331409,
+        0.0331409,
+        0.0331409
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 6,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 6,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.457488,
+        1,
+        0.457488
+      ]
+    },
+    {
+      "transition": 6,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 6,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 6,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 6,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 7,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.0334048,
+        0.0334048,
+        0.0334048
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1995_2002.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": null,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0.11015484049000002,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 7,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 8,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.101681,
+        0.101681,
+        0.101681,
+        0.101681,
+        0.101681
+      ]
+    },
+    {
+      "transition": 8,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0.0331598,
+        0.0331598,
+        0.0331598,
+        0.0331598,
+        0.0331598
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 8,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 8,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.458542,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 8,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 8,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 8,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 8,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 9,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.117972,
+        0.117972,
+        0.117972,
+        0.117972,
+        0.117972
+      ]
+    },
+    {
+      "transition": 9,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0.0416914,
+        0.0416914,
+        0.0416914,
+        0.0416914,
+        0.0416914
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 9,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 9,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.403842,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 9,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 9,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 9,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 9,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 10,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.0333679,
+        0.0333679,
+        0.0333679,
+        0.0333679,
+        0.0333679
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.10983961938699999,
+        0.10983961938699999,
+        0.10983961938699999,
+        0.10983961938699999
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 10,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 11,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.101851,
+        0.101851,
+        0.101851,
+        0
+      ]
+    },
+    {
+      "transition": 11,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0.0334688,
+        0.0334688,
+        0.0334688,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 11,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 11,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 11,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 11,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 11,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 11,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 12,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.101518,
+        0.101518,
+        0.101518,
+        0
+      ]
+    },
+    {
+      "transition": 12,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0.0416863,
+        0.0416863,
+        0.0416863,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 12,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 12,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 12,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 12,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 12,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 12,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 13,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.0332481,
+        0.0332481,
+        0.0332481,
+        0
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1986_1994.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.109895016,
+        0.050278947930288004,
+        0.109895016
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 13,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 14,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.102169,
+        0.102169,
+        0.102169
+      ]
+    },
+    {
+      "transition": 14,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0.0332917,
+        0.0332917,
+        0.0332917
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 14,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 14,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        0,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        0.457533,
+        1
+      ]
+    },
+    {
+      "transition": 14,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 14,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 14,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 14,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 15,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.10165,
+        0.10165,
+        0.10165
+      ]
+    },
+    {
+      "transition": 15,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0.0416339,
+        0.0416339,
+        0.0416339
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 15,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 15,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        0,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        0.457593,
+        1
+      ]
+    },
+    {
+      "transition": 15,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 15,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 15,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 15,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 16,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.0333208,
+        0.0333208,
+        0.0333208
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2015_2019.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.050443150576276644,
+        0.110130669555,
+        0
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 16,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 17,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.101724,
+        0.101724,
+        0.101724
+      ]
+    },
+    {
+      "transition": 17,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        0.0415484,
+        0.0415484,
+        0.0415484
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 17,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 17,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.456696,
+        1,
+        0.456696
+      ]
+    },
+    {
+      "transition": 17,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 17,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 17,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 17,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 18,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.10146,
+        0.10146,
+        0.10146
+      ]
+    },
+    {
+      "transition": 18,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0.033161,
+        0.033161,
+        0.033161
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 18,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 18,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.404372,
+        1,
+        0.404372
+      ]
+    },
+    {
+      "transition": 18,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 18,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 18,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 18,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 19,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "pre1949.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
         0.0333119,
         0.0333119,
         0.0333119
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
       ]
     },
     {
-      "transition": 6,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y1995_2002.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 6,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y1995_2002.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.403502,
-        1,
-        0.403502
-      ]
-    },
-    {
-      "transition": 6,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y1995_2002.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 6,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y1995_2002.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 6,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y1995_2002.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 6,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y1995_2002.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 7,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "y1995_2002.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.0333365,
-        0.0333365,
-        0.0333365
-      ]
-    },
-    {
-      "transition": 7,
+      "transition": 19,
       "phase": "off-frames",
       "kind": "vehicle",
-      "theme": "y1995_2002.europe",
+      "theme": "pre1949.america",
       "mode": "race",
       "meterOpacities": [
         0,
@@ -960,10 +2756,10 @@
       ]
     },
     {
-      "transition": 7,
+      "transition": 19,
       "phase": "off-center",
       "kind": "vehicle",
-      "theme": "y1995_2002.europe",
+      "theme": "pre1949.america",
       "mode": "race",
       "meterOpacities": [
         0,
@@ -977,10 +2773,10 @@
       ]
     },
     {
-      "transition": 7,
+      "transition": 19,
       "phase": "vehicle-blackout",
       "kind": "vehicle",
-      "theme": "y1995_2002.europe",
+      "theme": "pre1949.america",
       "mode": "race",
       "meterOpacities": [
         0,
@@ -994,10 +2790,10 @@
       ]
     },
     {
-      "transition": 7,
+      "transition": 19,
       "phase": "vehicle-card",
       "kind": "vehicle",
-      "theme": "y1995_2002.europe",
+      "theme": "pre1949.america",
       "mode": "race",
       "meterOpacities": [
         0,
@@ -1011,983 +2807,10 @@
       ]
     },
     {
-      "transition": 7,
+      "transition": 19,
       "phase": "frames",
       "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": null,
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0.000344308618506,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 7,
-      "phase": "scan",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 7,
-      "phase": "return",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 7,
-      "phase": "live",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 8,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.101465,
-        0.101465,
-        0.101465,
-        0.101465,
-        0.101465
-      ]
-    },
-    {
-      "transition": 8,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        0.0332749,
-        0.0332749,
-        0.0332749,
-        0.0332749,
-        0.0332749
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 8,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 8,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.45794,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 8,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 8,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 8,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 8,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 9,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.155582,
-        0.155582,
-        0.155582,
-        0.155582,
-        0.155582
-      ]
-    },
-    {
-      "transition": 9,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0.0616772,
-        0.0616772,
-        0.0616772,
-        0.0616772,
-        0.0616772
-      ],
-      "settledMeterOpacities": [
-        2.01493112832e-05,
-        2.01493112832e-05,
-        2.01493112832e-05,
-        1.2007699968865077e-05,
-        2.01493112832e-05
-      ]
-    },
-    {
-      "transition": 9,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 9,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.457955,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 9,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 9,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 9,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 9,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.0416237,
-        0.0416237,
-        0.0416237,
-        0.0416237,
-        0.0416237
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "off-frames",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "off-center",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "vehicle-blackout",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "vehicle-card",
-      "kind": "vehicle",
-      "theme": "y2003_2008.europe",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "frames",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.08699649375999999,
-        0.08699649375999999,
-        0.08699649375999999,
-        0.08699649375999999
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "scan",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "return",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 10,
-      "phase": "live",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 11,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.10167,
-        0.10167,
-        0.10167,
-        0
-      ]
-    },
-    {
-      "transition": 11,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0.033266,
-        0.033266,
-        0.033266,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 11,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 11,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 11,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 11,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 11,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 11,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 12,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.101739,
-        0.101739,
-        0.101739,
-        0
-      ]
-    },
-    {
-      "transition": 12,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0.0329659,
-        0.0329659,
-        0.0329659,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 12,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 12,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 12,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 12,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 12,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 12,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 13,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.051036,
-        0.051036,
-        0.051036,
-        0
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "off-frames",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "off-center",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "vehicle-blackout",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "vehicle-card",
-      "kind": "vehicle",
-      "theme": "y1986_1994.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "frames",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
+      "theme": "pre1949.japan",
       "mode": "race",
       "meterOpacities": [
         0,
@@ -1995,825 +2818,412 @@
         0
       ],
       "settledMeterOpacities": [
-        0.08725146690999999,
         0.035280741405326874,
-        0.08725146690999999
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "scan",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "return",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 13,
-      "phase": "live",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 14,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.118079,
-        0.118079,
-        0.118079
-      ]
-    },
-    {
-      "transition": 14,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0.0416186,
-        0.0416186,
-        0.0416186
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 14,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 14,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        0,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        0.457344,
-        1
-      ]
-    },
-    {
-      "transition": 14,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 14,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 14,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 14,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 15,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.118111,
-        0.118111,
-        0.118111
-      ]
-    },
-    {
-      "transition": 15,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0.0511603,
-        0.0511603,
-        0.0511603
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 15,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 15,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        0,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        0.457156,
-        1
-      ]
-    },
-    {
-      "transition": 15,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 15,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 15,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 15,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 16,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.0415892,
-        0.0415892,
-        0.0415892
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "off-frames",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        3.70877e-05,
-        3.70877e-05,
-        3.70877e-05
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "off-center",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "vehicle-blackout",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "vehicle-card",
-      "kind": "vehicle",
-      "theme": "y2015_2019.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "frames",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.050741245372689606,
-        0.11055773280000002,
-        0
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "scan",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "return",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 16,
-      "phase": "live",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 17,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.118076,
-        0.118076,
-        0.118076
-      ]
-    },
-    {
-      "transition": 17,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0.0416173,
-        0.0416173,
-        0.0416173
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 17,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 17,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.458332,
-        1,
-        0.458332
-      ]
-    },
-    {
-      "transition": 17,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 17,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 17,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 17,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 18,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.101876,
-        0.101876,
-        0.101876
-      ]
-    },
-    {
-      "transition": 18,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0.0332571,
-        0.0332571,
-        0.0332571
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 18,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 18,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.403368,
-        1,
-        0.403368
-      ]
-    },
-    {
-      "transition": 18,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 18,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 18,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 18,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 19,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.0415203,
-        0.0415203,
-        0.0415203
-      ]
-    },
-    {
-      "transition": 19,
-      "phase": "off-frames",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
+        0.08725146690999999,
         0
       ]
     },
     {
       "transition": 19,
-      "phase": "off-center",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 19,
-      "phase": "vehicle-blackout",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 19,
-      "phase": "vehicle-card",
-      "kind": "vehicle",
-      "theme": "pre1949.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 19,
-      "phase": "frames",
+      "phase": "scan",
       "kind": "vehicle",
       "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 19,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 19,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 20,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.101791,
+        0.101791,
+        0.101791
+      ]
+    },
+    {
+      "transition": 20,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0.0333264,
+        0.0333264,
+        0.0333264
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 20,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 20,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.457457,
+        1,
+        0.457457
+      ]
+    },
+    {
+      "transition": 20,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 20,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 20,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 20,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 21,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.101565,
+        0.101565,
+        0.101565
+      ]
+    },
+    {
+      "transition": 21,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0.0415854,
+        0.0415854,
+        0.0415854
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 21,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 21,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.404784,
+        1,
+        0.404784
+      ]
+    },
+    {
+      "transition": 21,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 21,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 21,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 21,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 22,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.0332962,
+        0.0332962,
+        0.0332962
+      ]
+    },
+    {
+      "transition": 22,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 22,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 22,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 22,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 22,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1950_1959.japan",
       "mode": null,
       "meterOpacities": [
         0,
@@ -2821,421 +3231,8 @@
         0
       ],
       "settledMeterOpacities": [
-        0.035438774179712106,
-        0.087503794299,
-        0
-      ]
-    },
-    {
-      "transition": 19,
-      "phase": "scan",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 19,
-      "phase": "return",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 19,
-      "phase": "live",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 20,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.101695,
-        0.101695,
-        0.101695
-      ]
-    },
-    {
-      "transition": 20,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0.0333903,
-        0.0333903,
-        0.0333903
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 20,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 20,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.457495,
-        1,
-        0.457495
-      ]
-    },
-    {
-      "transition": 20,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 20,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 20,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 20,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 21,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.101784,
-        0.101784,
-        0.101784
-      ]
-    },
-    {
-      "transition": 21,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0.0333231,
-        0.0333231,
-        0.0333231
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 21,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 21,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.457246,
-        1,
-        0.457246
-      ]
-    },
-    {
-      "transition": 21,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 21,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 21,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 21,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 22,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.041676,
-        0.041676,
-        0.041676
-      ]
-    },
-    {
-      "transition": 22,
-      "phase": "off-frames",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 22,
-      "phase": "off-center",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 22,
-      "phase": "vehicle-blackout",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 22,
-      "phase": "vehicle-card",
-      "kind": "vehicle",
-      "theme": "pre1949.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 22,
-      "phase": "frames",
-      "kind": "vehicle",
-      "theme": "y1950_1959.japan",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.03512311328300112,
-        0.08699955731999999,
+        0.035222171407820954,
+        0.08715791984,
         0
       ]
     },
@@ -3298,9 +3295,9 @@
         1
       ],
       "settledMeterOpacities": [
-        0.101851,
-        0.101851,
-        0.101851
+        0.101521,
+        0.101521,
+        0.101521
       ]
     },
     {
@@ -3310,9 +3307,9 @@
       "theme": "y1950_1959.japan",
       "mode": "race",
       "meterOpacities": [
-        0.0333567,
-        0.0333567,
-        0.0333567
+        0.0333029,
+        0.0333029,
+        0.0333029
       ],
       "settledMeterOpacities": [
         0,
@@ -3349,9 +3346,9 @@
         0
       ],
       "settledMeterOpacities": [
-        0.403969,
+        0.457133,
         1,
-        0.403969
+        0.457133
       ]
     },
     {
@@ -3430,9 +3427,9 @@
         1
       ],
       "settledMeterOpacities": [
-        0.102073,
-        0.102073,
-        0.102073
+        0.101751,
+        0.101751,
+        0.101751
       ]
     },
     {
@@ -3442,9 +3439,9 @@
       "theme": "y1950_1959.japan",
       "mode": "freeRoam",
       "meterOpacities": [
-        0.03358,
-        0.03358,
-        0.03358
+        0.0334183,
+        0.0334183,
+        0.0334183
       ],
       "settledMeterOpacities": [
         0,
@@ -3481,9 +3478,9 @@
         0
       ],
       "settledMeterOpacities": [
-        0.458294,
+        0.458625,
         1,
-        0.458294
+        0.458625
       ]
     },
     {
@@ -3562,9 +3559,9 @@
         1
       ],
       "settledMeterOpacities": [
-        0.0417361,
-        0.0417361,
-        0.0417361
+        0.0333197,
+        0.0333197,
+        0.0333197
       ]
     },
     {
@@ -3574,9 +3571,9 @@
       "theme": "y1950_1959.japan",
       "mode": "race",
       "meterOpacities": [
-        3.44235e-05,
-        3.44235e-05,
-        3.44235e-05
+        0,
+        0,
+        0
       ],
       "settledMeterOpacities": [
         0,
@@ -3647,8 +3644,8 @@
         0
       ],
       "settledMeterOpacities": [
-        0.087382321641,
-        0.087382321641,
+        0.109936794957,
+        0.109936794957,
         0
       ]
     },
@@ -3712,8 +3709,8 @@
       ],
       "settledMeterOpacities": [
         0,
-        0.101547,
-        0.101547
+        0.10159,
+        0.10159
       ]
     },
     {
@@ -3724,8 +3721,8 @@
       "mode": "race",
       "meterOpacities": [
         0,
-        0.0333163,
-        0.0333163
+        0.0415994,
+        0.0415994
       ],
       "settledMeterOpacities": [
         0,
@@ -3764,7 +3761,7 @@
       "settledMeterOpacities": [
         1,
         1,
-        0.404103
+        0.403724
       ]
     },
     {
@@ -3844,8 +3841,8 @@
       ],
       "settledMeterOpacities": [
         0,
-        0.101512,
-        0.101512
+        0.101773,
+        0.101773
       ]
     },
     {
@@ -3856,8 +3853,8 @@
       "mode": "freeRoam",
       "meterOpacities": [
         0,
-        0.0332984,
-        0.0332984
+        0.0332056,
+        0.0332056
       ],
       "settledMeterOpacities": [
         0,
@@ -3896,7 +3893,7 @@
       "settledMeterOpacities": [
         1,
         1,
-        0.457827
+        0.404436
       ]
     },
     {
@@ -3961,11 +3958,7 @@
         1,
         1
       ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1
-      ]
+      "settledMeterOpacities": null
     },
     {
       "transition": 28,
@@ -3980,8 +3973,8 @@
       ],
       "settledMeterOpacities": [
         0,
-        0.0415101,
-        0.0415101
+        0.0334015,
+        0.0334015
       ]
     },
     {
@@ -4057,473 +4050,473 @@
       "phase": "frames",
       "kind": "vehicle",
       "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.10978756870800001,
+        0.10978756870800001,
+        0.10978756870800001,
+        0
+      ]
+    },
+    {
+      "transition": 28,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 28,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 28,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 29,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0.117854,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 29,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0.0415025,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 29,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 29,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 29,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 29,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 29,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 29,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 30,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0.101483,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 30,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0.0332839,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 30,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 30,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 30,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 30,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 30,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 30,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 31,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0.0416748,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 31,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 31,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 31,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 31,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y1976_1985.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 31,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y1995_2002.america",
       "mode": null,
       "meterOpacities": [
         0,
-        0,
-        0,
         0
       ],
       "settledMeterOpacities": [
-        0.110335608936,
-        0.110335608936,
-        0.110335608936,
-        0
-      ]
-    },
-    {
-      "transition": 28,
-      "phase": "scan",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 28,
-      "phase": "return",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 28,
-      "phase": "live",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 29,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        1,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0.101543,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 29,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0.0414451,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 29,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 29,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 29,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 29,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 29,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 29,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 30,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        1,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0.101617,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 30,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0.0416147,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 30,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 30,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 30,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 30,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 30,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 30,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 31,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        1,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0.0333208,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 31,
-      "phase": "off-frames",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 31,
-      "phase": "off-center",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 31,
-      "phase": "vehicle-blackout",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 31,
-      "phase": "vehicle-card",
-      "kind": "vehicle",
-      "theme": "y1976_1985.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 31,
-      "phase": "frames",
-      "kind": "vehicle",
-      "theme": "y1995_2002.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.10987427792499999,
+        0.08698066502,
         0
       ]
     },
@@ -4580,8 +4573,8 @@
         1
       ],
       "settledMeterOpacities": [
-        0.10169,
-        0.10169
+        0.135873,
+        0.135873
       ]
     },
     {
@@ -4591,8 +4584,8 @@
       "theme": "y1995_2002.america",
       "mode": "race",
       "meterOpacities": [
-        0.033388,
-        0.033388
+        0.0510865,
+        0.0510865
       ],
       "settledMeterOpacities": [
         0,
@@ -4626,7 +4619,7 @@
       ],
       "settledMeterOpacities": [
         1,
-        0.458023
+        0.348264
       ]
     },
     {
@@ -4697,8 +4690,8 @@
         1
       ],
       "settledMeterOpacities": [
-        0.101731,
-        0.101731
+        0.118135,
+        0.118135
       ]
     },
     {
@@ -4708,8 +4701,8 @@
       "theme": "y1995_2002.america",
       "mode": "freeRoam",
       "meterOpacities": [
-        0.0415522,
-        0.0415522
+        0.0416479,
+        0.0416479
       ],
       "settledMeterOpacities": [
         0,
@@ -4743,7 +4736,7 @@
       ],
       "settledMeterOpacities": [
         1,
-        0.404096
+        0.403937
       ]
     },
     {
@@ -4814,8 +4807,8 @@
         1
       ],
       "settledMeterOpacities": [
-        0.0416109,
-        0.0416109
+        0.0333667,
+        0.0333667
       ]
     },
     {
@@ -4884,466 +4877,6 @@
       "kind": "vehicle",
       "theme": "y2003_2008.america",
       "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.03524753910279202,
-        0,
-        0.087198467928,
-        0.087198467928
-      ]
-    },
-    {
-      "transition": 34,
-      "phase": "scan",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 34,
-      "phase": "return",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 34,
-      "phase": "live",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 35,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.101833,
-        0,
-        0.101833,
-        0
-      ]
-    },
-    {
-      "transition": 35,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        0.0414833,
-        0,
-        0.0414833,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 35,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 35,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.404436,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 35,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 35,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 35,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 35,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 36,
-      "phase": "off-needles",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        1,
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.101538,
-        0,
-        0.101538,
-        0
-      ]
-    },
-    {
-      "transition": 36,
-      "phase": "off-frames",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0.0415701,
-        0,
-        0.0415701,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 36,
-      "phase": "off-center",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 36,
-      "phase": "center",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "freeRoam",
-      "meterOpacities": [
-        0,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        0.45742,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 36,
-      "phase": "frames",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 36,
-      "phase": "scan",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 36,
-      "phase": "return",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    {
-      "transition": 36,
-      "phase": "live",
-      "kind": "mode",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "settledMeterOpacities": null
-    },
-    {
-      "transition": 37,
-      "phase": "off-needles",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        1,
-        0,
-        1,
-        0
-      ],
-      "settledMeterOpacities": [
-        0.0416403,
-        0,
-        0.0416403,
-        0
-      ]
-    },
-    {
-      "transition": 37,
-      "phase": "off-frames",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 37,
-      "phase": "off-center",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 37,
-      "phase": "vehicle-blackout",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 37,
-      "phase": "vehicle-card",
-      "kind": "vehicle",
-      "theme": "y2003_2008.america",
-      "mode": "race",
-      "meterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "settledMeterOpacities": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "transition": 37,
-      "phase": "frames",
-      "kind": "vehicle",
-      "theme": "y2009_2014.america",
-      "mode": null,
       "meterOpacities": [
         0,
         0,
@@ -5352,8 +4885,468 @@
       ],
       "settledMeterOpacities": [
         0.03504915012948184,
+        0,
         0.086881127696,
-        0.03504915012948184,
+        0.086881127696
+      ]
+    },
+    {
+      "transition": 34,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 34,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 34,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 35,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.101679,
+        0,
+        0.101679,
+        0
+      ]
+    },
+    {
+      "transition": 35,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        0.0332705,
+        0,
+        0.0332705,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 35,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 35,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.404562,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 35,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 35,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 35,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 35,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 36,
+      "phase": "off-needles",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.101632,
+        0,
+        0.101632,
+        0
+      ]
+    },
+    {
+      "transition": 36,
+      "phase": "off-frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0.0416237,
+        0,
+        0.0416237,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 36,
+      "phase": "off-center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 36,
+      "phase": "center",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "freeRoam",
+      "meterOpacities": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        0.404127,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 36,
+      "phase": "frames",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 36,
+      "phase": "scan",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 36,
+      "phase": "return",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "transition": 36,
+      "phase": "live",
+      "kind": "mode",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 37,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.033369,
+        0,
+        0.033369,
+        0
+      ]
+    },
+    {
+      "transition": 37,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 37,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 37,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 37,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2003_2008.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 37,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": null,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.035086231135396634,
+        0.08694050325199999,
+        0.035086231135396634,
         0
       ]
     },
@@ -5422,9 +5415,9 @@
         0
       ],
       "settledMeterOpacities": [
-        0.101643,
-        0.101643,
-        0.101643,
+        0.10186,
+        0.10186,
+        0.10186,
         0
       ]
     },
@@ -5435,9 +5428,9 @@
       "theme": "y2009_2014.america",
       "mode": "race",
       "meterOpacities": [
-        0.0332526,
-        0.0332526,
-        0.0332526,
+        0.0333611,
+        0.0333611,
+        0.0333611,
         0
       ],
       "settledMeterOpacities": [
@@ -5479,9 +5472,9 @@
         1
       ],
       "settledMeterOpacities": [
-        0.403779,
+        0.403858,
         1,
-        0.403779,
+        0.403858,
         1
       ]
     },
@@ -5569,9 +5562,9 @@
         0
       ],
       "settledMeterOpacities": [
-        0.101791,
-        0.101791,
-        0.101791,
+        0.10184,
+        0.10184,
+        0.10184,
         0
       ]
     },
@@ -5582,9 +5575,9 @@
       "theme": "y2009_2014.america",
       "mode": "freeRoam",
       "meterOpacities": [
-        0.0417144,
-        0.0417144,
-        0.0417144,
+        0.0332392,
+        0.0332392,
+        0.0332392,
         0
       ],
       "settledMeterOpacities": [
@@ -5626,9 +5619,9 @@
         1
       ],
       "settledMeterOpacities": [
-        0.458083,
+        0.404697,
         1,
-        0.458083,
+        0.404697,
         1
       ]
     },
@@ -5701,11 +5694,177 @@
         1,
         1
       ],
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 40,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        0
+      ],
       "settledMeterOpacities": [
-        1,
-        1,
-        1,
-        1
+        0.033304,
+        0.033304,
+        0.033304,
+        0
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2009_2014.america",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ],
+      "settledMeterOpacities": [
+        0.129136,
+        0.129136,
+        0.129136,
+        0.129136
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.0175434,
+        0.0175434,
+        0.0175434,
+        0.0175434
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ],
+      "settledMeterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ]
+    },
+    {
+      "transition": 40,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ],
+      "settledMeterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
       ]
     }
   ],
@@ -5729,24 +5888,24 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.00925387,
-            0.00925387,
-            0.00925387,
-            0.00925387
+            0.0253615,
+            0.0253615,
+            0.0253615,
+            0.0253615
           ],
-          "maxOpacity": 0.00925387,
+          "maxOpacity": 0.0253615,
           "limit": 0.2
         },
         {
           "phase": "off-frames",
           "meterCount": 4,
           "opacities": [
-            0.000513966,
-            0.000513966,
-            0.000513966,
-            0.000513966
+            0.0028949,
+            0.0028949,
+            0.0028949,
+            0.0028949
           ],
-          "maxOpacity": 0.000513966,
+          "maxOpacity": 0.0028949,
           "limit": 0.05
         },
         {
@@ -5765,12 +5924,12 @@
           "phase": "vehicle-blackout",
           "meterCount": 4,
           "opacities": [
-            0.0144365,
-            0.0144365,
-            0.0144365,
-            0.0144365
+            0.0175188,
+            0.0175188,
+            0.0175188,
+            0.0175188
           ],
-          "maxOpacity": 0.0144365,
+          "maxOpacity": 0.0175188,
           "limit": 0.05
         },
         {
@@ -5805,10 +5964,10 @@
           "phase": "off-needles",
           "meterCount": 2,
           "opacities": [
-            0.101603,
-            0.101603
+            0.101646,
+            0.101646
           ],
-          "maxOpacity": 0.101603,
+          "maxOpacity": 0.101646,
           "limit": 0.2
         },
         {
@@ -5851,10 +6010,10 @@
           "phase": "off-needles",
           "meterCount": 2,
           "opacities": [
-            0.101701,
-            0.101701
+            0.101612,
+            0.101612
           ],
-          "maxOpacity": 0.101701,
+          "maxOpacity": 0.101612,
           "limit": 0.2
         },
         {
@@ -5898,10 +6057,10 @@
           "phase": "off-needles",
           "meterCount": 2,
           "opacities": [
-            0.041662,
-            0.041662
+            0.045682,
+            0.045682
           ],
-          "maxOpacity": 0.041662,
+          "maxOpacity": 0.045682,
           "limit": 0.2
         },
         {
@@ -5964,11 +6123,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.101585,
-            0.101585,
-            0.101585
+            0.101697,
+            0.101697,
+            0.101697
           ],
-          "maxOpacity": 0.101585,
+          "maxOpacity": 0.101697,
           "limit": 0.2
         },
         {
@@ -6013,11 +6172,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.101762,
-            0.101762,
-            0.101762
+            0.101867,
+            0.101867,
+            0.101867
           ],
-          "maxOpacity": 0.101762,
+          "maxOpacity": 0.101867,
           "limit": 0.2
         },
         {
@@ -6063,11 +6222,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.0333365,
-            0.0333365,
-            0.0333365
+            0.0334048,
+            0.0334048,
+            0.0334048
           ],
-          "maxOpacity": 0.0333365,
+          "maxOpacity": 0.0334048,
           "limit": 0.2
         },
         {
@@ -6134,13 +6293,13 @@
           "phase": "off-needles",
           "meterCount": 5,
           "opacities": [
-            0.101465,
-            0.101465,
-            0.101465,
-            0.101465,
-            0.101465
+            0.101681,
+            0.101681,
+            0.101681,
+            0.101681,
+            0.101681
           ],
-          "maxOpacity": 0.101465,
+          "maxOpacity": 0.101681,
           "limit": 0.2
         },
         {
@@ -6189,26 +6348,26 @@
           "phase": "off-needles",
           "meterCount": 5,
           "opacities": [
-            0.155582,
-            0.155582,
-            0.155582,
-            0.155582,
-            0.155582
+            0.117972,
+            0.117972,
+            0.117972,
+            0.117972,
+            0.117972
           ],
-          "maxOpacity": 0.155582,
+          "maxOpacity": 0.117972,
           "limit": 0.2
         },
         {
           "phase": "off-frames",
           "meterCount": 5,
           "opacities": [
-            2.01493112832e-05,
-            2.01493112832e-05,
-            2.01493112832e-05,
-            1.2007699968865077e-05,
-            2.01493112832e-05
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
-          "maxOpacity": 2.01493112832e-05,
+          "maxOpacity": 0.0,
           "limit": 0.05
         },
         {
@@ -6245,13 +6404,13 @@
           "phase": "off-needles",
           "meterCount": 5,
           "opacities": [
-            0.0416237,
-            0.0416237,
-            0.0416237,
-            0.0416237,
-            0.0416237
+            0.0333679,
+            0.0333679,
+            0.0333679,
+            0.0333679,
+            0.0333679
           ],
-          "maxOpacity": 0.0416237,
+          "maxOpacity": 0.0333679,
           "limit": 0.2
         },
         {
@@ -6326,12 +6485,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.10167,
-            0.10167,
-            0.10167,
+            0.101851,
+            0.101851,
+            0.101851,
             0.0
           ],
-          "maxOpacity": 0.10167,
+          "maxOpacity": 0.101851,
           "limit": 0.2
         },
         {
@@ -6378,12 +6537,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.101739,
-            0.101739,
-            0.101739,
+            0.101518,
+            0.101518,
+            0.101518,
             0.0
           ],
-          "maxOpacity": 0.101739,
+          "maxOpacity": 0.101518,
           "limit": 0.2
         },
         {
@@ -6431,12 +6590,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.051036,
-            0.051036,
-            0.051036,
+            0.0332481,
+            0.0332481,
+            0.0332481,
             0.0
           ],
-          "maxOpacity": 0.051036,
+          "maxOpacity": 0.0332481,
           "limit": 0.2
         },
         {
@@ -6507,11 +6666,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.118079,
-            0.118079,
-            0.118079
+            0.102169,
+            0.102169,
+            0.102169
           ],
-          "maxOpacity": 0.118079,
+          "maxOpacity": 0.102169,
           "limit": 0.2
         },
         {
@@ -6556,11 +6715,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.118111,
-            0.118111,
-            0.118111
+            0.10165,
+            0.10165,
+            0.10165
           ],
-          "maxOpacity": 0.118111,
+          "maxOpacity": 0.10165,
           "limit": 0.2
         },
         {
@@ -6606,11 +6765,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.0415892,
-            0.0415892,
-            0.0415892
+            0.0333208,
+            0.0333208,
+            0.0333208
           ],
-          "maxOpacity": 0.0415892,
+          "maxOpacity": 0.0333208,
           "limit": 0.2
         },
         {
@@ -6677,11 +6836,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.118076,
-            0.118076,
-            0.118076
+            0.101724,
+            0.101724,
+            0.101724
           ],
-          "maxOpacity": 0.118076,
+          "maxOpacity": 0.101724,
           "limit": 0.2
         },
         {
@@ -6726,11 +6885,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.101876,
-            0.101876,
-            0.101876
+            0.10146,
+            0.10146,
+            0.10146
           ],
-          "maxOpacity": 0.101876,
+          "maxOpacity": 0.10146,
           "limit": 0.2
         },
         {
@@ -6776,11 +6935,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.0415203,
-            0.0415203,
-            0.0415203
+            0.0333119,
+            0.0333119,
+            0.0333119
           ],
-          "maxOpacity": 0.0415203,
+          "maxOpacity": 0.0333119,
           "limit": 0.2
         },
         {
@@ -6847,11 +7006,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.101695,
-            0.101695,
-            0.101695
+            0.101791,
+            0.101791,
+            0.101791
           ],
-          "maxOpacity": 0.101695,
+          "maxOpacity": 0.101791,
           "limit": 0.2
         },
         {
@@ -6896,11 +7055,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.101784,
-            0.101784,
-            0.101784
+            0.101565,
+            0.101565,
+            0.101565
           ],
-          "maxOpacity": 0.101784,
+          "maxOpacity": 0.101565,
           "limit": 0.2
         },
         {
@@ -6946,11 +7105,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.041676,
-            0.041676,
-            0.041676
+            0.0332962,
+            0.0332962,
+            0.0332962
           ],
-          "maxOpacity": 0.041676,
+          "maxOpacity": 0.0332962,
           "limit": 0.2
         },
         {
@@ -7017,11 +7176,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.101851,
-            0.101851,
-            0.101851
+            0.101521,
+            0.101521,
+            0.101521
           ],
-          "maxOpacity": 0.101851,
+          "maxOpacity": 0.101521,
           "limit": 0.2
         },
         {
@@ -7066,11 +7225,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.102073,
-            0.102073,
-            0.102073
+            0.101751,
+            0.101751,
+            0.101751
           ],
-          "maxOpacity": 0.102073,
+          "maxOpacity": 0.101751,
           "limit": 0.2
         },
         {
@@ -7116,11 +7275,11 @@
           "phase": "off-needles",
           "meterCount": 3,
           "opacities": [
-            0.0417361,
-            0.0417361,
-            0.0417361
+            0.0333197,
+            0.0333197,
+            0.0333197
           ],
-          "maxOpacity": 0.0417361,
+          "maxOpacity": 0.0333197,
           "limit": 0.2
         },
         {
@@ -7188,10 +7347,10 @@
           "meterCount": 3,
           "opacities": [
             0.0,
-            0.101547,
-            0.101547
+            0.10159,
+            0.10159
           ],
-          "maxOpacity": 0.101547,
+          "maxOpacity": 0.10159,
           "limit": 0.2
         },
         {
@@ -7237,10 +7396,10 @@
           "meterCount": 3,
           "opacities": [
             0.0,
-            0.101512,
-            0.101512
+            0.101773,
+            0.101773
           ],
-          "maxOpacity": 0.101512,
+          "maxOpacity": 0.101773,
           "limit": 0.2
         },
         {
@@ -7287,10 +7446,10 @@
           "meterCount": 3,
           "opacities": [
             0.0,
-            0.0415101,
-            0.0415101
+            0.0334015,
+            0.0334015
           ],
-          "maxOpacity": 0.0415101,
+          "maxOpacity": 0.0334015,
           "limit": 0.2
         },
         {
@@ -7358,11 +7517,11 @@
           "meterCount": 4,
           "opacities": [
             0.0,
-            0.101543,
+            0.117854,
             0.0,
             0.0
           ],
-          "maxOpacity": 0.101543,
+          "maxOpacity": 0.117854,
           "limit": 0.2
         },
         {
@@ -7410,11 +7569,11 @@
           "meterCount": 4,
           "opacities": [
             0.0,
-            0.101617,
+            0.101483,
             0.0,
             0.0
           ],
-          "maxOpacity": 0.101617,
+          "maxOpacity": 0.101483,
           "limit": 0.2
         },
         {
@@ -7463,11 +7622,11 @@
           "meterCount": 4,
           "opacities": [
             0.0,
-            0.0333208,
+            0.0416748,
             0.0,
             0.0
           ],
-          "maxOpacity": 0.0333208,
+          "maxOpacity": 0.0416748,
           "limit": 0.2
         },
         {
@@ -7538,10 +7697,10 @@
           "phase": "off-needles",
           "meterCount": 2,
           "opacities": [
-            0.10169,
-            0.10169
+            0.135873,
+            0.135873
           ],
-          "maxOpacity": 0.10169,
+          "maxOpacity": 0.135873,
           "limit": 0.2
         },
         {
@@ -7584,10 +7743,10 @@
           "phase": "off-needles",
           "meterCount": 2,
           "opacities": [
-            0.101731,
-            0.101731
+            0.118135,
+            0.118135
           ],
-          "maxOpacity": 0.101731,
+          "maxOpacity": 0.118135,
           "limit": 0.2
         },
         {
@@ -7631,10 +7790,10 @@
           "phase": "off-needles",
           "meterCount": 2,
           "opacities": [
-            0.0416109,
-            0.0416109
+            0.0333667,
+            0.0333667
           ],
-          "maxOpacity": 0.0416109,
+          "maxOpacity": 0.0333667,
           "limit": 0.2
         },
         {
@@ -7697,12 +7856,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.101833,
+            0.101679,
             0.0,
-            0.101833,
+            0.101679,
             0.0
           ],
-          "maxOpacity": 0.101833,
+          "maxOpacity": 0.101679,
           "limit": 0.2
         },
         {
@@ -7749,12 +7908,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.101538,
+            0.101632,
             0.0,
-            0.101538,
+            0.101632,
             0.0
           ],
-          "maxOpacity": 0.101538,
+          "maxOpacity": 0.101632,
           "limit": 0.2
         },
         {
@@ -7802,12 +7961,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.0416403,
+            0.033369,
             0.0,
-            0.0416403,
+            0.033369,
             0.0
           ],
-          "maxOpacity": 0.0416403,
+          "maxOpacity": 0.033369,
           "limit": 0.2
         },
         {
@@ -7878,12 +8037,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.101643,
-            0.101643,
-            0.101643,
+            0.10186,
+            0.10186,
+            0.10186,
             0.0
           ],
-          "maxOpacity": 0.101643,
+          "maxOpacity": 0.10186,
           "limit": 0.2
         },
         {
@@ -7930,12 +8089,12 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.101791,
-            0.101791,
-            0.101791,
+            0.10184,
+            0.10184,
+            0.10184,
             0.0
           ],
-          "maxOpacity": 0.101791,
+          "maxOpacity": 0.10184,
           "limit": 0.2
         },
         {
@@ -7952,6 +8111,83 @@
         },
         {
           "phase": "off-center",
+          "meterCount": 4,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        }
+      ]
+    },
+    {
+      "transition": 40,
+      "kind": "vehicle",
+      "phases": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "vehicle-blackout",
+        "vehicle-card",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "opacityChecks": [
+        {
+          "phase": "off-needles",
+          "meterCount": 4,
+          "opacities": [
+            0.033304,
+            0.033304,
+            0.033304,
+            0.0
+          ],
+          "maxOpacity": 0.033304,
+          "limit": 0.2
+        },
+        {
+          "phase": "off-frames",
+          "meterCount": 4,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        },
+        {
+          "phase": "off-center",
+          "meterCount": 4,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        },
+        {
+          "phase": "vehicle-blackout",
+          "meterCount": 4,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        },
+        {
+          "phase": "vehicle-card",
           "meterCount": 4,
           "opacities": [
             0.0,

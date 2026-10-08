@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T00:13:24.410276+00:00",
+  "generatedAt": "2026-10-08T00:35:51.268338+00:00",
   "initialMode": "race",
   "status": 200,
   "chromium": "C:/Program Files/Google/Chrome/Application/chrome.exe",
@@ -23,16 +23,16 @@
       "theme": "y2015_2019.europe",
       "mode": null,
       "meterOpacities": [
-        0.0964077,
-        0.0964077,
-        0.0964077,
-        0.0964077
+        0.104998,
+        0.104998,
+        0.104998,
+        0.104998
       ],
       "settledMeterOpacities": [
-        0.0153725,
-        0.0153725,
-        0.0153725,
-        0.0153725
+        0.0179002,
+        0.0179002,
+        0.0179002,
+        0.0179002
       ]
     },
     {
@@ -42,16 +42,16 @@
       "theme": "y2015_2019.europe",
       "mode": null,
       "meterOpacities": [
-        0.00553817,
-        0.00553817,
-        0.00553817,
-        0.00553817
+        0.00688623,
+        0.00688623,
+        0.00688623,
+        0.00688623
       ],
       "settledMeterOpacities": [
-        0.000515143,
-        0.000515143,
-        0.000515143,
-        0.000515143
+        0.00116144,
+        0.00116144,
+        0.00116144,
+        0.00116144
       ]
     },
     {
@@ -86,10 +86,10 @@
         0
       ],
       "settledMeterOpacities": [
-        0.00913153,
-        0.00913153,
-        0.00913153,
-        0.00913153
+        0.0175679,
+        0.0175679,
+        0.0175679,
+        0.0175679
       ]
     },
     {
@@ -127,7 +127,7 @@
       "settledMeterOpacities": [
         0,
         0,
-        0.00033362380533299995,
+        0.000327885836115,
         0,
         0
       ]
@@ -203,11 +203,11 @@
         1
       ],
       "settledMeterOpacities": [
-        0.136221,
-        0.136221,
-        0.136221,
-        0.136221,
-        0.136221
+        0.101697,
+        0.101697,
+        0.101697,
+        0.101697,
+        0.101697
       ]
     },
     {
@@ -217,18 +217,18 @@
       "theme": "y2003_2008.europe",
       "mode": "race",
       "meterOpacities": [
-        0.0617064,
-        0.0617064,
-        0.0617064,
-        0.0617064,
-        0.0617064
+        0.0332794,
+        0.0332794,
+        0.0332794,
+        0.0332794,
+        0.0332794
       ],
       "settledMeterOpacities": [
-        2.0484631404e-05,
-        2.0484631404e-05,
-        2.0484631404e-05,
-        1.2211749134443366e-05,
-        2.0484631404e-05
+        0,
+        0,
+        0,
+        0,
+        0
       ]
     },
     {
@@ -266,7 +266,7 @@
         1
       ],
       "settledMeterOpacities": [
-        0.403803,
+        0.45843,
         1,
         1,
         1,
@@ -365,11 +365,11 @@
         1
       ],
       "settledMeterOpacities": [
-        0.101565,
-        0.101565,
-        0.101565,
-        0.101565,
-        0.101565
+        0.101697,
+        0.101697,
+        0.101697,
+        0.101697,
+        0.101697
       ]
     },
     {
@@ -379,11 +379,11 @@
       "theme": "y2003_2008.europe",
       "mode": "freeRoam",
       "meterOpacities": [
-        0.0333253,
-        0.0333253,
-        0.0333253,
-        0.0333253,
-        0.0333253
+        0.0333914,
+        0.0333914,
+        0.0333914,
+        0.0333914,
+        0.0333914
       ],
       "settledMeterOpacities": [
         0,
@@ -428,7 +428,7 @@
         1
       ],
       "settledMeterOpacities": [
-        0.458324,
+        0.403581,
         1,
         1,
         1,
@@ -511,12 +511,187 @@
         1,
         1
       ],
-      "settledMeterOpacities": [
+      "settledMeterOpacities": null
+    },
+    {
+      "transition": 4,
+      "phase": "off-needles",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
         1,
         1,
         1,
         1,
         1
+      ],
+      "settledMeterOpacities": [
+        0.0333018,
+        0.0333018,
+        0.0333018,
+        0.0333018,
+        0.0333018
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "off-frames",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "off-center",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "vehicle-blackout",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "vehicle-card",
+      "kind": "vehicle",
+      "theme": "y2003_2008.europe",
+      "mode": "race",
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "frames",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ],
+      "settledMeterOpacities": [
+        0.132456,
+        0.132456,
+        0.132456,
+        0.132456
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "scan",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "settledMeterOpacities": [
+        0.0208998,
+        0.0208998,
+        0.0208998,
+        0.0208998
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "return",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ],
+      "settledMeterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ]
+    },
+    {
+      "transition": 4,
+      "phase": "live",
+      "kind": "vehicle",
+      "theme": "y2015_2019.europe",
+      "mode": null,
+      "meterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ],
+      "settledMeterOpacities": [
+        0.15,
+        0.15,
+        0.15,
+        0.15
       ]
     }
   ],
@@ -540,24 +715,24 @@
           "phase": "off-needles",
           "meterCount": 4,
           "opacities": [
-            0.0153725,
-            0.0153725,
-            0.0153725,
-            0.0153725
+            0.0179002,
+            0.0179002,
+            0.0179002,
+            0.0179002
           ],
-          "maxOpacity": 0.0153725,
+          "maxOpacity": 0.0179002,
           "limit": 0.2
         },
         {
           "phase": "off-frames",
           "meterCount": 4,
           "opacities": [
-            0.000515143,
-            0.000515143,
-            0.000515143,
-            0.000515143
+            0.00116144,
+            0.00116144,
+            0.00116144,
+            0.00116144
           ],
-          "maxOpacity": 0.000515143,
+          "maxOpacity": 0.00116144,
           "limit": 0.05
         },
         {
@@ -576,12 +751,12 @@
           "phase": "vehicle-blackout",
           "meterCount": 4,
           "opacities": [
-            0.00913153,
-            0.00913153,
-            0.00913153,
-            0.00913153
+            0.0175679,
+            0.0175679,
+            0.0175679,
+            0.0175679
           ],
-          "maxOpacity": 0.00913153,
+          "maxOpacity": 0.0175679,
           "limit": 0.05
         },
         {
@@ -616,26 +791,26 @@
           "phase": "off-needles",
           "meterCount": 5,
           "opacities": [
-            0.136221,
-            0.136221,
-            0.136221,
-            0.136221,
-            0.136221
+            0.101697,
+            0.101697,
+            0.101697,
+            0.101697,
+            0.101697
           ],
-          "maxOpacity": 0.136221,
+          "maxOpacity": 0.101697,
           "limit": 0.2
         },
         {
           "phase": "off-frames",
           "meterCount": 5,
           "opacities": [
-            2.0484631404e-05,
-            2.0484631404e-05,
-            2.0484631404e-05,
-            1.2211749134443366e-05,
-            2.0484631404e-05
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ],
-          "maxOpacity": 2.0484631404e-05,
+          "maxOpacity": 0.0,
           "limit": 0.05
         },
         {
@@ -671,13 +846,13 @@
           "phase": "off-needles",
           "meterCount": 5,
           "opacities": [
-            0.101565,
-            0.101565,
-            0.101565,
-            0.101565,
-            0.101565
+            0.101697,
+            0.101697,
+            0.101697,
+            0.101697,
+            0.101697
           ],
-          "maxOpacity": 0.101565,
+          "maxOpacity": 0.101697,
           "limit": 0.2
         },
         {
@@ -695,6 +870,88 @@
         },
         {
           "phase": "off-center",
+          "meterCount": 5,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        }
+      ]
+    },
+    {
+      "transition": 4,
+      "kind": "vehicle",
+      "phases": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "vehicle-blackout",
+        "vehicle-card",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "opacityChecks": [
+        {
+          "phase": "off-needles",
+          "meterCount": 5,
+          "opacities": [
+            0.0333018,
+            0.0333018,
+            0.0333018,
+            0.0333018,
+            0.0333018
+          ],
+          "maxOpacity": 0.0333018,
+          "limit": 0.2
+        },
+        {
+          "phase": "off-frames",
+          "meterCount": 5,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        },
+        {
+          "phase": "off-center",
+          "meterCount": 5,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        },
+        {
+          "phase": "vehicle-blackout",
+          "meterCount": 5,
+          "opacities": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "maxOpacity": 0.0,
+          "limit": 0.05
+        },
+        {
+          "phase": "vehicle-card",
           "meterCount": 5,
           "opacities": [
             0.0,

@@ -1,821 +1,1560 @@
 {
+  "generatedAt": "2026-10-08T00:37:41.229026+00:00",
   "checks": [
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "kadett"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "kadett"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "kadett"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "kadett"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "kadett"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "kadett"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "kadett"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "kadett"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "kadett"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "multipla"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "multipla"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "multipla"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "multipla"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "multipla"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "multipla"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "multipla"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "multipla"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "multipla"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "c4"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "c4"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "c4"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "c4"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "c4"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "c4"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "c4"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "c4"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "c4"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "xt"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "xt"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "xt"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "xt"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "xt"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "xt"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "xt"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "xt"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "xt"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "prius"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "prius"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "prius"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "prius"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "prius"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "prius"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "prius"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "prius"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "prius"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "shield"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "shield"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "shield"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "shield"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "shield"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "shield"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "shield"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "shield"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "shield"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "aa"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "aa"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "aa"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "aa"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "aa"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "aa"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "aa"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "aa"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "aa"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "crown"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "crown"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "crown"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "crown"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "crown"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "crown"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "crown"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "crown"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "crown"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "portal"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "portal"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "portal"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "portal"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "portal"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "portal"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "portal"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "portal"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "portal"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "v84"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "v84"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "v84"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "v84"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "v84"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "v84"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "v84"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "v84"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "v84"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "deville"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "deville"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "deville"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "deville"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "deville"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "deville"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "deville"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "deville"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "deville"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "well"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "well"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "well"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "well"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "well"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "well"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "well"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "well"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "well"
     },
     {
       "phase": "off-needles",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 1,
       "theme": "camaro"
     },
     {
       "phase": "off-frames",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0.25,
       "theme": "camaro"
     },
     {
       "phase": "off-center",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "camaro"
     },
     {
       "phase": "vehicle-blackout",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "camaro"
     },
     {
       "phase": "vehicle-card",
       "speedOpacity": 0,
-      "meterOpacity": 0,
+      "meterOpacities": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "minMeterOpacity": 0,
+      "maxMeterOpacity": 0,
       "screenOpacity": 0,
       "theme": "camaro"
     },
     {
       "phase": "frames",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "camaro"
     },
     {
       "phase": "scan",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "camaro"
     },
     {
       "phase": "return",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "camaro"
     },
     {
       "phase": "live",
       "speedOpacity": 1,
-      "meterOpacity": 1,
+      "meterOpacities": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "minMeterOpacity": 1,
+      "maxMeterOpacity": 1,
       "screenOpacity": 1,
       "theme": "camaro"
     }

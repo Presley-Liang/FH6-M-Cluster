@@ -45,6 +45,14 @@ class PhaseValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError, 'phase order mismatch'):
             namespace['validate_phase_log'](entries, 1)
 
+    def test_every_requested_theme_must_be_outgoing(self):
+        entries = self.entries('vehicle')
+        for entry in entries:
+            entry['theme'] = 'one'
+        namespace['validate_phase_log'](entries, 1, ['one'])
+        with self.assertRaisesRegex(AssertionError, 'Missing outgoing vehicle coverage'):
+            namespace['validate_phase_log'](entries, 1, ['one', 'two'])
+
 
 class ThemeSelectionTests(unittest.TestCase):
     available = [('one', '.one'), ('two', '.two')]
@@ -73,6 +81,30 @@ class ThemeSelectionTests(unittest.TestCase):
                         and node.args[0].value.startswith('meterSelector=>{'))
         self.assertNotIn('meterOpacities:readOpacities()', observer)
         self.assertLess(observer.index('setTimeout('), observer.index('entry.meterOpacities=readOpacities();'))
+
+completion_source = source.with_name('verify-instrument-completion.py')
+completion_tree = ast.parse(completion_source.read_text(encoding='utf-8'))
+completion_definitions = [node for node in completion_tree.body if
+    isinstance(node, ast.FunctionDef) and node.name == 'validate_css_phase' or
+    isinstance(node, ast.Assign) and any(isinstance(target, ast.Name) and
+        target.id == 'meter_selector' for target in node.targets)]
+completion_namespace = {}
+exec(compile(ast.Module(body=completion_definitions, type_ignores=[]), str(completion_source), 'exec'), completion_namespace)
+
+class CompletionValidationTests(unittest.TestCase):
+    def test_all_meters_must_relight(self):
+        validate = completion_namespace['validate_css_phase']
+        validate({'phase': 'live', 'speedOpacity': 1, 'meterOpacities': [1, 1]})
+        for values in ([1, 0], []):
+            with self.assertRaises(AssertionError):
+                validate({'phase': 'live', 'speedOpacity': 1, 'meterOpacities': values})
+        with self.assertRaises(AssertionError):
+            validate({'phase': 'off-center', 'speedOpacity': 0, 'meterOpacities': [0, 1]})
+
+    def test_completion_samples_same_meter_contract(self):
+        self.assertEqual(set(completion_namespace['meter_selector'].split(',')),
+                         set(namespace['meter_selector'].split(',')))
+        self.assertIn('[data-heritage-drive-meter]', completion_namespace['meter_selector'])
 
 if __name__ == '__main__':
     unittest.main()
