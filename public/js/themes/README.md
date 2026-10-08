@@ -49,16 +49,22 @@ connection, read the Store independently, or control Session state. The host
 sets `data-instrument-variant=custom` on the cluster while a custom instrument
 is active, so the old BMW shell stays mounted but visually hidden.
 
-Exact custom instrument IDs currently mounted by the page are
-`pre1949.europe`, `y1950_1959.europe`, `y1950_1959.america`, `y1960_1975.europe`,
-`y1960_1975.japan`,
-`y1976_1985.japan`, `y1986_1994.america`, `y1995_2002.japan`,
-`y2003_2008.japan`, `y2009_2014.europe`, `y2009_2014.japan`, and `y2020_2024.america`.
-`y2015_2019.europe` remains the existing baseline. The other 20 registry IDs
-still use the shared shell with era/region tokens until their distinct
-instrument components are implemented. Vehicle-change information cards use
-the target era and region, reveal the brand within the same card before the
-model details, and do not start an ENGINE/TELEMETRY/DISPLAY self-check.
+All registry IDs except the existing `y2015_2019.europe` baseline now have
+custom factories mounted in `default-html.js`: **32 custom surfaces plus the
+baseline = 33 independent layouts**, with no unimplemented shared-shell IDs.
+PR #3's XT/Prius batch is included in the consolidated PR #4. The final eight
+layouts share data projection and phase semantics via
+`heritage-instrument-binding.js`, but each factory and stylesheet owns its
+geometry. Missing OEM references remain explicit candidates; see
+`docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md`.
+
+The Multipla linear speed dial and the Portal, Corvette84, and Three-Well
+linear 0–260 speed meters map both the coordinator sweep fraction and live
+return target to their own scales. Other layouts retain their existing
+projection. Browser checks must load CSS in production order.
+
+Vehicle-change cards use the target era and region in one combined card and
+do not start an ENGINE/TELEMETRY/DISPLAY self-check.
 
 ## Era IDs
 

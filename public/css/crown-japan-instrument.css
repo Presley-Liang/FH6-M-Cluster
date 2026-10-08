@@ -1,0 +1,13 @@
+#cluster:not([data-theme-id="y1950_1959.japan"]) :is(.crown-instrument,.crown-identity){display:none!important}
+#cluster[data-theme-id="y1950_1959.japan"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
+#cluster[data-theme-id="y1950_1959.japan"] .cluster-stage{overflow:hidden;background:#111!important}
+.crown-hood{overflow:hidden}.crown-hood .heritage-speed{background:#20392c;border-radius:1cqw;z-index:1}
+/* A compact arched hood above a separate three-section lower tray. */
+.crown-dashboard{position:absolute;inset:0;background:linear-gradient(#314540,#53746b 48%,#233d34)}.crown-instrument{--heritage-ink:#eee6cf;--heritage-muted:#c0c4ad}
+.crown-hood{position:absolute;inset:10% 16% 30%;border-radius:40% 40% 1.8cqw 1.8cqw;background:linear-gradient(135deg,#c6c9b4,#59695e 4%,#1b342a 9%,#273d30 91%,#afbbab);border-bottom:3px solid #b5b9a6;box-shadow:0 1cqw 2cqw #15281dcc}
+.crown-hood header{position:absolute;top:11%;left:13%;right:13%}.crown-dial{position:absolute;left:13%;right:13%;top:18%;bottom:-34%;overflow:hidden}.crown-dial svg{overflow:hidden}.crown-dial .heritage-face{fill:#182f24;stroke:#9eac91}
+.crown-hood .heritage-speed{position:absolute;top:64%;bottom:7%;left:25%;right:25%}.crown-hood .heritage-speed strong{font-size:5.4cqw}.crown-hood .heritage-gear{position:absolute;right:10%;top:62%;bottom:9%;flex-direction:column;gap:0}.crown-hood .heritage-gear b{font-size:2.8cqw}
+.crown-tray{position:absolute;inset:73% 12% 6%;display:grid;grid-template-columns:28% 1fr;gap:3cqw;padding:1.4cqw 2cqw;background:#20392c;border:1px solid #a4b498;border-radius:1cqw}.crown-tray .heritage-drive-values b{font-size:2.3cqw}.crown-tray .heritage-info{align-content:center;border-left:1px solid #95a88c;padding-left:3cqw}
+@media(max-width:759px){.crown-hood{inset:16% 3% 30%}.crown-hood header{top:13%;left:10%;right:10%}.crown-hood .heritage-speed strong{font-size:32px}.crown-tray{inset:75% 3% 5%;grid-template-columns:26% 1fr;padding:2cqw;gap:3cqw}.crown-tray .heritage-drive-values b{font-size:16px}.crown-hood .heritage-gear b{font-size:20px}}
+/* Keep both endpoint labels and the needle above the separate digit window. */
+.crown-dial{top:23%;bottom:39%;left:12%;right:12%}.crown-dial svg{overflow:visible}.crown-dial .heritage-face{stroke-width:2}
