@@ -45,7 +45,7 @@
 @keyframes cx-drum-build{from{opacity:0;transform:translateY(2cqw);filter:brightness(.16)}to{opacity:1;transform:translateY(0);filter:brightness(1)}}
 #cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .cx-instrument :is(.cx-drum-reading,.cx-aux strong,.cx-bottom){opacity:0}
 #cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .cx-instrument :is(.cx-drum-housing,.cx-aux,.cx-warning-bank){filter:brightness(.08)}
-#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .cx-instrument :is(.cx-drum-housing,.cx-aux,.cx-warning-bank){animation:cx-relight .64s steps(6,end) both}
+#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .cx-instrument :is(.cx-drum-housing,.cx-aux,.cx-warning-bank){animation:cx-relight .64s cubic-bezier(.22,.61,.36,1) both}
 @keyframes cx-relight{from{filter:brightness(.06)}to{filter:brightness(1)}}
 .cx-crest{font-size:.82cqw}.cx-crest b{font-size:.74cqw}
 .cx-drum-cap,.cx-drum-base{font-size:.74cqw}

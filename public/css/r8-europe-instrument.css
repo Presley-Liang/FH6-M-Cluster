@@ -45,5 +45,5 @@
 @keyframes r8-screen-build { from { opacity:0; clip-path:inset(0 50%); } to { opacity:1; clip-path:inset(0); } }
 #cluster[data-theme-id="y2009_2014.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .r8-instrument :is(.r8-needle,.r8-speed-readout,.r8-rpm-readout,.r8-primary,.r8-columns,.r8-lamps) { opacity:0; }
 #cluster[data-theme-id="y2009_2014.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .r8-instrument :is(.r8-dial,.r8-screen-border) { filter:brightness(.1); }
-#cluster[data-theme-id="y2009_2014.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .r8-instrument :is(.r8-dial,.r8-screen-border) { animation:r8-relight .62s steps(5,end) both; }
+#cluster[data-theme-id="y2009_2014.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .r8-instrument :is(.r8-dial,.r8-screen-border) { animation:r8-relight .62s cubic-bezier(.22,.61,.36,1) both; }
 @keyframes r8-relight { from { filter:brightness(.07); } to { filter:brightness(1); } }

@@ -41,6 +41,10 @@ function browserAnimation(options = {}) {
     infoCard,
     schedule(fn, delay) { const id = ++nextId; tasks.set(id, { fn, at: now + delay }); return id; },
     cancelSchedule: id => tasks.delete(id),
+    ...(options.frameCadence ? {
+      requestFrame(fn) { const id = ++nextId; tasks.set(id, { fn, at: now + options.frameCadence }); return id; },
+      cancelFrame: id => tasks.delete(id),
+    } : {}),
   });
   function advance(to) {
     for (;;) {
@@ -105,6 +109,41 @@ test('shipped standalone page runs the original complete Race/Free transition', 
   h.advance(9100);
   assert.equal(h.body.dataset.driveMode, 'race');
   assert.equal(h.root.dataset.ignitionPhase, 'live');
+});
+
+test('custom mode content commits at relight while the baseline keeps its center timing', () => {
+  const h = browserAnimation();
+  h.root.dataset.instrumentVariant = 'custom';
+  h.coordinator.switchMode('freeRoam', h.applyTheme);
+  h.advance(1250);
+  assert.equal(h.root.dataset.ignitionPhase, 'center');
+  assert.equal(h.body.dataset.driveMode, 'race');
+  assert.equal(h.themes.length, 0);
+  h.advance(1809);
+  assert.equal(h.body.dataset.driveMode, 'race');
+  h.advance(1810);
+  assert.equal(h.root.dataset.ignitionPhase, 'frames');
+  assert.equal(h.body.dataset.driveMode, 'freeRoam');
+  assert.equal(h.themes[0].at, 1810);
+});
+
+test('sweep and live return follow browser frames and cancel pending frame callbacks', () => {
+  const h = browserAnimation({ frameCadence: 7 });
+  h.coordinator.switchMode('freeRoam', h.applyTheme);
+  h.advance(2800);
+  const scan = h.overrideEvents.filter(entry => entry.at >= 2750);
+  assert.ok(scan.length >= 8);
+  assert.equal(scan[1].at - scan[0].at, 7);
+  h.advance(4080);
+  const returning = h.overrideEvents.filter(entry => entry.at >= 4050);
+  assert.ok(returning.length >= 5);
+  assert.equal(returning[1].at - returning[0].at, 7);
+  h.coordinator.cancel();
+  assert.equal(h.tasks.size, 0);
+  assert.equal(h.overrides.at(-1), null);
+  const count = h.overrideEvents.length;
+  h.advance(6000);
+  assert.equal(h.overrideEvents.length, count, 'cancelled frame must not write an old display override');
 });
 
 test('shipped standalone vehicle sequence reveals one complete card before build and sweep', () => {

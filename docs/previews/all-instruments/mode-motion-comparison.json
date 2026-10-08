@@ -1,0 +1,337 @@
+{
+  "scope": "Three themes measured in isolated Chrome without game telemetry; browser timing is not game FPS acceptance",
+  "before": {
+    "generatedAt": "2026-10-08T02:53:13.791668+00:00",
+    "checks": [
+      {
+        "theme": "y2009_2014.europe",
+        "mode": "freeRoam",
+        "stats": {
+          "frames": {
+            "updateCount": 17,
+            "meanUpdateGapMs": 55.53125,
+            "maxUpdateGapMs": 56.0,
+            "maxFrameGapMs": 14.0,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "scan": {
+            "updateCount": 23,
+            "meanUpdateGapMs": 55.56818181818182,
+            "maxUpdateGapMs": 56.0,
+            "maxFrameGapMs": 7.400000000000546,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "return": {
+            "updateCount": 9,
+            "meanUpdateGapMs": 55.57499999925494,
+            "maxUpdateGapMs": 55.79999999701977,
+            "maxFrameGapMs": 7.100000000000364,
+            "maxUpdateCostMs": 0.30000000447034836
+          }
+        }
+      },
+      {
+        "theme": "y2009_2014.europe",
+        "mode": "race",
+        "stats": {
+          "frames": {
+            "updateCount": 17,
+            "meanUpdateGapMs": 55.543750000186265,
+            "maxUpdateGapMs": 56.0,
+            "maxFrameGapMs": 13.5,
+            "maxUpdateCostMs": 0.10000000149011612
+          },
+          "scan": {
+            "updateCount": 23,
+            "meanUpdateGapMs": 55.54090909084136,
+            "maxUpdateGapMs": 56.099999994039536,
+            "maxFrameGapMs": 13.399999999999636,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "return": {
+            "updateCount": 9,
+            "meanUpdateGapMs": 55.549999999813735,
+            "maxUpdateGapMs": 56.70000000298023,
+            "maxFrameGapMs": 7.100000000000364,
+            "maxUpdateCostMs": 0.19999999552965164
+          }
+        }
+      },
+      {
+        "theme": "y2003_2008.europe",
+        "mode": "freeRoam",
+        "stats": {
+          "frames": {
+            "updateCount": 17,
+            "meanUpdateGapMs": 55.5500000002794,
+            "maxUpdateGapMs": 55.899999998509884,
+            "maxFrameGapMs": 7.300000000001091,
+            "maxUpdateCostMs": 0.30000000447034836
+          },
+          "scan": {
+            "updateCount": 23,
+            "meanUpdateGapMs": 55.85454545474865,
+            "maxUpdateGapMs": 62.69999999552965,
+            "maxFrameGapMs": 14.0,
+            "maxUpdateCostMs": 0.30000000447034836
+          },
+          "return": {
+            "updateCount": 9,
+            "meanUpdateGapMs": 55.58750000037253,
+            "maxUpdateGapMs": 56.0,
+            "maxFrameGapMs": 14.200000000000728,
+            "maxUpdateCostMs": 0.20000000298023224
+          }
+        }
+      },
+      {
+        "theme": "y2003_2008.europe",
+        "mode": "race",
+        "stats": {
+          "frames": {
+            "updateCount": 17,
+            "meanUpdateGapMs": 55.53125,
+            "maxUpdateGapMs": 56.0,
+            "maxFrameGapMs": 14.0,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "scan": {
+            "updateCount": 24,
+            "meanUpdateGapMs": 55.573913043283895,
+            "maxUpdateGapMs": 55.80000000447035,
+            "maxFrameGapMs": 7.400000000001455,
+            "maxUpdateCostMs": 0.30000000447034836
+          },
+          "return": {
+            "updateCount": 9,
+            "meanUpdateGapMs": 55.58750000037253,
+            "maxUpdateGapMs": 55.899999998509884,
+            "maxFrameGapMs": 7.200000000000728,
+            "maxUpdateCostMs": 0.20000000298023224
+          }
+        }
+      },
+      {
+        "theme": "y1995_2002.japan",
+        "mode": "freeRoam",
+        "stats": {
+          "frames": {
+            "updateCount": 17,
+            "meanUpdateGapMs": 55.5437499997206,
+            "maxUpdateGapMs": 56.29999999701977,
+            "maxFrameGapMs": 14.100000000002183,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "scan": {
+            "updateCount": 24,
+            "meanUpdateGapMs": 55.560869565476544,
+            "maxUpdateGapMs": 56.20000000298023,
+            "maxFrameGapMs": 35.099999999998545,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "return": {
+            "updateCount": 9,
+            "meanUpdateGapMs": 55.58749999944121,
+            "maxUpdateGapMs": 56.0,
+            "maxFrameGapMs": 13.700000000000728,
+            "maxUpdateCostMs": 0.20000000298023224
+          }
+        }
+      },
+      {
+        "theme": "y1995_2002.japan",
+        "mode": "race",
+        "stats": {
+          "frames": {
+            "updateCount": 17,
+            "meanUpdateGapMs": 55.4812499997206,
+            "maxUpdateGapMs": 55.80000000447035,
+            "maxFrameGapMs": 21.0,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "scan": {
+            "updateCount": 23,
+            "meanUpdateGapMs": 55.56818181818182,
+            "maxUpdateGapMs": 60.30000000447035,
+            "maxFrameGapMs": 14.0,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "return": {
+            "updateCount": 9,
+            "meanUpdateGapMs": 55.299999999813735,
+            "maxUpdateGapMs": 55.80000000447035,
+            "maxFrameGapMs": 7.100000000002183,
+            "maxUpdateCostMs": 0.19999999552965164
+          }
+        }
+      }
+    ]
+  },
+  "after": {
+    "generatedAt": "2026-10-08T02:59:12.612718+00:00",
+    "checks": [
+      {
+        "theme": "y2009_2014.europe",
+        "mode": "freeRoam",
+        "stats": {
+          "frames": {
+            "updateCount": 131,
+            "meanUpdateGapMs": 7.154615384626847,
+            "maxUpdateGapMs": 32.70000000298023,
+            "maxFrameGapMs": 27.59999999999991,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "scan": {
+            "updateCount": 187,
+            "meanUpdateGapMs": 6.923655913962472,
+            "maxUpdateGapMs": 10.299999997019768,
+            "maxFrameGapMs": 7.300000000000182,
+            "maxUpdateCostMs": 0.29999999701976776
+          },
+          "return": {
+            "updateCount": 72,
+            "meanUpdateGapMs": 6.907042253500139,
+            "maxUpdateGapMs": 9.700000002980232,
+            "maxFrameGapMs": 7.100000000000364,
+            "maxUpdateCostMs": 0.30000000447034836
+          }
+        }
+      },
+      {
+        "theme": "y2009_2014.europe",
+        "mode": "race",
+        "stats": {
+          "frames": {
+            "updateCount": 136,
+            "meanUpdateGapMs": 6.9051851852072605,
+            "maxUpdateGapMs": 10.399999998509884,
+            "maxFrameGapMs": 7.300000000001091,
+            "maxUpdateCostMs": 0.20000000298023224
+          },
+          "scan": {
+            "updateCount": 187,
+            "meanUpdateGapMs": 6.93010752688172,
+            "maxUpdateGapMs": 7.799999997019768,
+            "maxFrameGapMs": 7.299999999999272,
+            "maxUpdateCostMs": 0.4000000059604645
+          },
+          "return": {
+            "updateCount": 71,
+            "meanUpdateGapMs": 7.014285714285714,
+            "maxUpdateGapMs": 14.200000002980232,
+            "maxFrameGapMs": 14.200000000000728,
+            "maxUpdateCostMs": 0.20000000298023224
+          }
+        }
+      },
+      {
+        "theme": "y2003_2008.europe",
+        "mode": "freeRoam",
+        "stats": {
+          "frames": {
+            "updateCount": 136,
+            "meanUpdateGapMs": 6.945185185196223,
+            "maxUpdateGapMs": 12.299999997019768,
+            "maxFrameGapMs": 7.399999999999636,
+            "maxUpdateCostMs": 0.5
+          },
+          "scan": {
+            "updateCount": 187,
+            "meanUpdateGapMs": 6.932258064508118,
+            "maxUpdateGapMs": 8.100000001490116,
+            "maxFrameGapMs": 7.400000000001455,
+            "maxUpdateCostMs": 0.5
+          },
+          "return": {
+            "updateCount": 72,
+            "meanUpdateGapMs": 6.911267605675778,
+            "maxUpdateGapMs": 9.600000001490116,
+            "maxFrameGapMs": 7.399999999999636,
+            "maxUpdateCostMs": 1.2000000029802322
+          }
+        }
+      },
+      {
+        "theme": "y2003_2008.europe",
+        "mode": "race",
+        "stats": {
+          "frames": {
+            "updateCount": 136,
+            "meanUpdateGapMs": 6.91185185186289,
+            "maxUpdateGapMs": 12.0,
+            "maxFrameGapMs": 7.400000000001455,
+            "maxUpdateCostMs": 0.5
+          },
+          "scan": {
+            "updateCount": 187,
+            "meanUpdateGapMs": 6.945161290306558,
+            "maxUpdateGapMs": 8.100000001490116,
+            "maxFrameGapMs": 7.400000000001455,
+            "maxUpdateCostMs": 0.29999999701976776
+          },
+          "return": {
+            "updateCount": 72,
+            "meanUpdateGapMs": 6.938028169035072,
+            "maxUpdateGapMs": 7.5,
+            "maxFrameGapMs": 7.30000000000291,
+            "maxUpdateCostMs": 0.20000000298023224
+          }
+        }
+      },
+      {
+        "theme": "y1995_2002.japan",
+        "mode": "freeRoam",
+        "stats": {
+          "frames": {
+            "updateCount": 133,
+            "meanUpdateGapMs": 7.073484848507426,
+            "maxUpdateGapMs": 18.0,
+            "maxFrameGapMs": 21.100000000002183,
+            "maxUpdateCostMs": 0.30000000447034836
+          },
+          "scan": {
+            "updateCount": 181,
+            "meanUpdateGapMs": 7.142777777752943,
+            "maxUpdateGapMs": 48.20000000298023,
+            "maxFrameGapMs": 48.60000000000218,
+            "maxUpdateCostMs": 0.29999999701976776
+          },
+          "return": {
+            "updateCount": 72,
+            "meanUpdateGapMs": 6.912676056296053,
+            "maxUpdateGapMs": 7.300000004470348,
+            "maxFrameGapMs": 7.100000000002183,
+            "maxUpdateCostMs": 0.30000000447034836
+          }
+        }
+      },
+      {
+        "theme": "y1995_2002.japan",
+        "mode": "race",
+        "stats": {
+          "frames": {
+            "updateCount": 135,
+            "meanUpdateGapMs": 6.964179104499853,
+            "maxUpdateGapMs": 15.0,
+            "maxFrameGapMs": 13.900000000001455,
+            "maxUpdateCostMs": 0.30000000447034836
+          },
+          "scan": {
+            "updateCount": 187,
+            "meanUpdateGapMs": 6.93010752688172,
+            "maxUpdateGapMs": 9.5,
+            "maxFrameGapMs": 8.400000000001455,
+            "maxUpdateCostMs": 0.3999999985098839
+          },
+          "return": {
+            "updateCount": 71,
+            "meanUpdateGapMs": 6.974285714221852,
+            "maxUpdateGapMs": 14.099999994039536,
+            "maxFrameGapMs": 14.099999999998545,
+            "maxUpdateCostMs": 0.29999999701976776
+          }
+        }
+      }
+    ]
+  }
+}

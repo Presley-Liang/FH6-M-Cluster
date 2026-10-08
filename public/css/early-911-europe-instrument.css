@@ -96,7 +96,7 @@
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .e911-tube-five { animation-delay:.28s; }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .early911-instrument :is(.e911-needle,.e911-needle-shadow,.e911-small-value,.e911-dial-value,.e911-drive-value,.e911-gear,.e911-ev-power,.e911-bottomline) { opacity:0; }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .e911-tube { filter:brightness(.09); }
-#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .e911-tube { animation:e911-relight .64s steps(5,end) both; }
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .e911-tube { animation:e911-relight .64s cubic-bezier(.22,.61,.36,1) both; }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .e911-tube-one { animation-delay:.02s; }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .e911-tube-two { animation-delay:.08s; }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .e911-tube-three { animation-delay:.14s; }
@@ -104,5 +104,5 @@
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .e911-tube-five { animation-delay:.26s; }
 #cluster[data-theme-id="y1960_1975.europe"][data-ignition-phase="scan"] .e911-needle { filter:drop-shadow(0 0 7px #f3dfbc); }
 @keyframes e911-tube-build { 0% { opacity:0; filter:brightness(0); transform:translateY(2cqw) scale(.84); } 55% { opacity:1; filter:brightness(.55); } 100% { opacity:1; filter:brightness(1); transform:translateY(0) scale(1); } }
-@keyframes e911-relight { 0%,20% { filter:brightness(.05); } 21%,45% { filter:brightness(.4); } 46%,70% { filter:brightness(.72); } 71%,100% { filter:brightness(1); } }
+@keyframes e911-relight { from { filter:brightness(.05); } to { filter:brightness(1); } }
 @media (prefers-reduced-motion:reduce) { .early911-instrument,.early911-instrument *,.e911-mode-identity { animation:none!important; transition:none!important; } }

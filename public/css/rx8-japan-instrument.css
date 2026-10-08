@@ -126,10 +126,11 @@
 #cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="vehicle"][data-ignition-phase="frames"] .rx8-speed-window { animation:rx8-digital-on .35s .58s both; }
 #cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .rx8-instrument :is(.rx8-tach-needle,.rx8-tach-needle-shadow,.rx8-side-needle,.rx8-speed-window,.rx8-side-foot,.rx8-center-foot,.rx8-gear,.rx8-drive-readout,.rx8-shift) { opacity:0; }
 #cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .rx8-pod-row { filter:brightness(.08); }
-#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .rx8-pod-row { animation:rx8-relight .75s steps(5,end) both; }
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .rx8-pod-row { animation:rx8-relight .75s cubic-bezier(.22,.61,.36,1) both; }
 #cluster[data-theme-id="y2003_2008.japan"][data-ignition-phase="scan"] .rx8-tach-needle { filter:drop-shadow(0 0 8px #fff4d8) drop-shadow(0 0 14px #f1ad64); }
 @keyframes rx8-build { from{opacity:0;filter:brightness(0);clip-path:inset(48% 0)} 45%{opacity:.7;filter:brightness(.45);clip-path:inset(15% 0)} to{opacity:1;filter:brightness(1);clip-path:inset(0)} }
 @keyframes rx8-pod-in { from{opacity:0;transform:translateY(.8cqw) scale(.9)} to{opacity:1;transform:none} }
 @keyframes rx8-digital-on { from{opacity:0;filter:brightness(.1)} 60%{opacity:.8;filter:brightness(1.7)} to{opacity:1;filter:brightness(1)} }
-@keyframes rx8-relight { 0%,24%{filter:brightness(.06)} 25%,54%{filter:brightness(.45)} 55%,100%{filter:brightness(1)} }
+@keyframes rx8-relight { from{filter:brightness(.06)} to{filter:brightness(1)} }
+.rx8-pod-row { transition:filter .35s ease; }
 @media(prefers-reduced-motion:reduce) { .rx8-instrument,.rx8-instrument *,.rx8-mode-identity,.rx8-mode-identity * { animation:none!important; transition:none!important; } }

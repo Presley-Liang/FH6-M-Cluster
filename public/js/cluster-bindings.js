@@ -145,6 +145,18 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
       gauge(rails[0],displayedSpeed); gauge(rails[1],displayedRpm);
     }
     frame=requestAnimationFrame(render);
+    const race = doc.body.dataset.driveMode !== 'freeRoam';
+    const racing = race && raw.isRaceOn && (raw.racePosition > 0 || raw.currentLap > 0);
+    const animationPhase = root.dataset.ignitionPhase || 'live';
+    const animateCustom = root.dataset.instrumentVariant === 'custom' &&
+      (displayOverride !== null || root.dataset.ignitionKind === 'mode' && animationPhase !== 'live');
+    const renderInstrument = () => options.onRender?.(model, {
+      stale, mode: race ? 'race' : 'freeRoam', racing, topSpeed,
+      displayOverride, gaugeFraction: displayedRpm, speedFraction: displayedSpeed, rpmGauge,
+    });
+    // The animation display must follow browser frames. Slow telemetry/details
+    // keep their own 50ms cadence and never throttle a sweep or mode relight.
+    if (animateCustom) renderInstrument();
     if (now-lastDetails<50) return;
     lastDetails=now;
     root.dataset.stale=String(stale);
@@ -178,12 +190,10 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     const boostKey=[raw.boostState?.carOrdinal,raw.boostState?.version,boostState].join(':');
     if (boostStatus && boostKey!==boostPresentationKey) {boostPresentationKey=boostKey;boostStatus.setAttribute('class', 'boost-status boost-' + boostState.toLowerCase());}
     text('power',number(model.powerKw,1));text('power-ev-value',number(model.powerKw,1));text('boost',number(model.boostRaw,3));
-    const race = doc.body.dataset.driveMode !== 'freeRoam';
     const shift=shiftController?.update?.(rpmGauge?.rpmRatio, !stale && race && rpmGauge?.available) ?? {level:'off',segments:0,ratio:null};
     root.dataset.shiftLevel=shift.level;root.style.setProperty('--shift-segments',String(shift.segments));
     doc.querySelectorAll('.shift-light i').forEach((lamp,index)=>{lamp.dataset.lit=String(index<shift.segments);});
     text('dial-mode-label',race?'RACE':'FREE ROAM');
-    const racing = race && raw.isRaceOn && (raw.racePosition > 0 || raw.currentLap > 0);
     root.dataset.raceTiming = racing ? 'live' : 'idle';
     text('lap-time',racing?time(model.currentLap):'—');text('lap-best',racing?time(model.bestLap):'—');text('position',racing?number(model.rank):'—');text('lap-num',racing?number(model.lapNumber):'—');text('footer-lap-number',racing?number(model.lapNumber):'—');text('footer-top-speed',stale?'—':number(topSpeed));
     text('drive-label',race?'CURRENT LAP':'POWER / kW');text('drive-primary',race?(racing?time(model.currentLap):'—'):number(model.powerKw,1));
@@ -212,11 +222,7 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     const gTravel = value => Math.max(-19, Math.min(19, value * 11));
     doc.getElementById('g-dot').style.transform = gAvailable ? `translate(${gTravel(model.gX)}px,${gTravel(-model.gZ)}px)` : 'translate(0px,0px)';
     text('g-magnitude', gAvailable ? Math.hypot(model.gX, model.gZ).toFixed(2) + ' G' : '—');
-    options.onRender?.(model, {
-      stale, mode: race ? 'race' : 'freeRoam', racing, topSpeed,
-      displayOverride, gaugeFraction: displayedRpm, speedFraction: displayedSpeed,
-      rpmGauge,
-    });
+    if (!animateCustom) renderInstrument();
   }
   frame=requestAnimationFrame(render);
   return {update(packet){raw=packet;received=Date.now();vehicleState=vehicleController?.update?.(packet,received) ?? null;if(vehicleState?.changed)options.onVehicleChange?.(vehicleState);rpmGauge=rpmController?.update?.(packet,vehicleState,false) ?? {available:true,gaugeFraction:selectTelemetry(packet,false).rpmRatio,rpmRatio:selectTelemetry(packet,false).rpmRatio,majorTicks:Array.from({length:9},(_,i)=>i),gaugeMax:8000,scaleVersion:0,redlineStartFraction:.9,redlineEndFraction:1};const events=raceFeedbackController?.update?.(packet,{active:doc.body.dataset.driveMode!=='freeRoam',stale:false})??[];if(events[0])options.onRaceFeedback?.(events[0]);},setRaceSecondary(value){raceSecondary=value || null;},setDisplayOverride(value){displayOverride=value&&Number.isFinite(value.speed)&&Number.isFinite(value.rpm)?{speed:bound(value.speed),rpm:bound(value.rpm)}:null;},getLiveFractions(){const model=selectTelemetry(raw,false);const ev=root.dataset.instrumentVariant==='custom'&&['ev','electric'].includes(String(root.dataset.powertrain||'').toLowerCase());return {speed:Number.isFinite(model.speedKmh)?speedRatio(model.speedKmh):0,rpm:ev?(Number.isFinite(model.throttlePercent)?bound(model.throttlePercent/100):0):(Number.isFinite(rpmGauge?.gaugeFraction)?bound(rpmGauge.gaugeFraction):0)};},destroy(){cancelAnimationFrame(frame);clearTimeout(gearAnimationTimer);}};

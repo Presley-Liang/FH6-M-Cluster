@@ -49,7 +49,7 @@
 @keyframes fgt-main-build{from{opacity:0;transform:translateY(1.4cqw)}to{opacity:1;transform:translateY(0)}}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .fgt-instrument :is(.fgt-tach-fill,.fgt-main strong,.fgt-data-strip strong){opacity:0}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .fgt-display{filter:brightness(.1)}
-#cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-display{animation:fgt-relight .72s steps(8,end) both}
+#cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-display{animation:fgt-relight .72s cubic-bezier(.22,.61,.36,1) both}
 @keyframes fgt-relight{from{filter:brightness(.06)}to{filter:brightness(1)}}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-phase="scan"] .fgt-tach-fill{filter:drop-shadow(0 0 12px var(--fgt-accent))}
 @media(max-width:1000px){.fgt-data-strip span{font-size:8px}.fgt-data-strip{gap:1%}.fgt-main-primary strong{font-size:8.3cqw}.fgt-main-secondary strong{font-size:4.6cqw}}
