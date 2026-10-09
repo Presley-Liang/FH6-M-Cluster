@@ -7,7 +7,7 @@ export function createRouteUIController({
   const nameEl = doc.getElementById('map-route-name');
   const deltaEl = doc.getElementById('map-delta');
   const deltaValue = doc.getElementById('map-delta-value');
-  let key = null, requestSeq = 0, tracker = null, mode = 'race';
+  let key = null, requestSeq = 0, tracker = null, mode = 'race', sessionId = null;
 
   const text = (element, value) => { if (element && element.textContent !== value) element.textContent = value; };
   function renderDelta(result, fallback = 'NO REFERENCE') {
@@ -49,6 +49,15 @@ export function createRouteUIController({
     const priorMode = mode;
     mode = packet.driveMode === 'freeRoam' ? 'freeRoam' : 'race';
     if (mode !== 'race') { if (key !== null || priorMode !== mode) clear('FREE ROAM'); return; }
+    const incomingSession = packet.sessionId ?? null;
+    if (incomingSession !== sessionId) {
+      if (key !== null) clear();
+      sessionId = incomingSession;
+    }
+    // Preserve loaded references across an unknown-car gap without feeding
+    // its placeholder lap/distance/identity into the tracker or ghost lookup.
+    // Session/mode boundaries above still invalidate stale async requests.
+    if (packet.routeSampleAvailable === false) return;
     const activeRoute = packet.activeRoute;
     if (activeRoute?.status !== 'matched' || !activeRoute.routeId) {
       if (key !== null) clear(activeRoute?.status === 'ambiguous' ? 'ROUTE ?' : 'ROUTE —');

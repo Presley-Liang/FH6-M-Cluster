@@ -28,7 +28,11 @@ export function createEscaladeAmericaInstrument({ document, mount }) {
   }});
   function updateScale(model,context) {
     const ev = ['ev','electric'].includes(String(context.powertrain || '').toLowerCase());
-    const max = number(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : number(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
+    // A supplied controller owns the axis, including its confirmation gap.
+    // Raw RPM limits are only a fallback for standalone callers without it.
+    const gauge = context.rpmGauge;
+    const max = gauge == null ? number(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null
+      : gauge.available !== false && number(gauge.gaugeMax) > 0 ? gauge.gaugeMax : null;
     const key = ev ? 'ev' : String(max);
     if (priorAxis === key) return;
     priorAxis = key;

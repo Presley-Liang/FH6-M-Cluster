@@ -7,6 +7,7 @@ import { SessionRuntime } from '../src/session/runtime.js';
 import { SessionStore } from '../src/session/store.js';
 import { buildCompactExport, calculateSessionStats } from '../src/session/export.js';
 import { buildElapsedTimeline, createElapsedTimeline } from '../public/js/timeline-clock.js';
+import { LiveRouteIdentifier } from '../src/routes/live-route-identifier.js';
 
 const packet = (overrides = {}) => ({
   isRaceOn: 1, racePosition: 2, currentLap: 1, currentRaceTime: 1,
@@ -104,7 +105,8 @@ test('R27: eligible unknown identity is disclosed and excluded, valid capture re
   const first = runtime.process(packet(), 0);
   const unknown = runtime.process(packet({ carOrdinal: 0, timestampMs: 1017 }), 17);
   assert.equal(unknown.recordingBoundary, 'unknown-vehicle');
-  assert.equal(unknown.sessionId, null);
+  assert.equal(unknown.sessionId, first.sessionId, 'live context survives without archive ownership');
+  assert.equal(unknown.routeSampleAvailable, false);
   assert.equal(runtime.state().unattributedPackets, 1);
   assert.equal(runtime.droppedPackets, 0);
   const resumed = runtime.process(packet({ timestampMs: 1034 }), 34);
@@ -126,6 +128,68 @@ test('R27: an unknown first identity never opens a labelled session', async t =>
   const valid = runtime.process(packet(), 17);
   assert.ok(valid.sessionId);
   assert.equal(runtime.active.carOrdinal, 3445);
+});
+
+for (const recordingMode of ['race', 'freeRoam']) {
+  test(`P2: ${recordingMode} A -> unknown -> B splits ownership on the first valid B sample`, async t => {
+    const { runtime, store } = await setup(t);
+    if (recordingMode === 'freeRoam') {
+      await runtime.setMode('freeRoam');
+      await runtime.setRecording(true);
+    }
+    const a = runtime.process(packet(), 0);
+    const unknown = runtime.process(packet({ carOrdinal: 0, timestampMs: 1017, positionX: 0, positionZ: 0 }), 17);
+    assert.equal(unknown.sessionId, a.sessionId);
+    assert.equal(unknown.routeSampleAvailable, false);
+    const b = runtime.process(packet({ carOrdinal: 3625, timestampMs: 1034 }), 34);
+    assert.ok(b.sessionId);
+    assert.notEqual(b.sessionId, a.sessionId);
+    assert.equal(b.routeSampleAvailable, true);
+    await runtime.close('test-complete');
+    await Promise.allSettled([...runtime.saves]);
+    const old = await store.read(a.sessionId);
+    const next = await store.read(b.sessionId);
+    assert.equal(old.closeReason, 'car-change');
+    assert.deepEqual(old.packets.map(value => value.carOrdinal), [3445]);
+    assert.deepEqual(next.packets.map(value => value.carOrdinal), [3625]);
+    assert.equal(next.packets[0].timestampMs, 1034);
+  });
+}
+
+test('P2: unknown placeholder samples retain the matched live route and never enter its fingerprint/archive', async t => {
+  const live = new LiveRouteIdentifier({ routes: [{
+    id: 'test-route', name: 'Test Route', kind: 'circuit',
+    start: { x: 100, z: 200 }, distance: 5850, span: { x: 900, z: 360 },
+  }] });
+  const { runtime, store } = await setup(t, { liveRouteIdentifier: live, resolveRoute: () => ({ id: 77 }) });
+  const sample = index => packet({
+    timestampMs: 1000 + index * 100, currentRaceTime: index, currentLap: index,
+    distanceTraveled: index * 650, positionX: 100 + index * 100, positionZ: 200 + index * 40,
+  });
+  let last;
+  for (let index = 0; index < 10; index++) last = runtime.process(sample(index), index * 100);
+  assert.equal(last.activeRoute.status, 'matched');
+  const before = live.state();
+  const unknown = runtime.process(packet({ carOrdinal: 0, timestampMs: 1917,
+    currentLap: 0, currentRaceTime: 0, lapNumber: 0, positionX: 0, positionZ: 0, distanceTraveled: 0,
+  }), 917);
+  assert.equal(unknown.sessionId, last.sessionId);
+  assert.equal(unknown.activeRoute.routeId, 77);
+  assert.deepEqual(live.state(), before, 'matcher ignores placeholder lap/position/time');
+  const resumed = runtime.process(sample(10), 1000);
+  assert.equal(resumed.sessionId, last.sessionId);
+  assert.equal(resumed.timelineBreak, 'resume');
+  assert.equal(resumed.activeRoute.routeId, 77);
+  await runtime.close('test-complete');
+  assert.equal(runtime.activeRoute, null);
+  assert.equal(live.state().sessionId, null);
+  const archive = await store.read(last.sessionId);
+  assert.equal(archive.packets.length, 11);
+  assert.ok(archive.packets.every(value => value.carOrdinal === 3445));
+  const afterClose = runtime.process(packet({ carOrdinal: 0 }), 1017);
+  assert.equal(afterClose.sessionId, null);
+  assert.equal(afterClose.activeRoute, null);
+  assert.equal(live.state().sampleCount, 0);
 });
 
 test('R31: compact schema exports boost as raw data with unknown unit and explicit migration', () => {

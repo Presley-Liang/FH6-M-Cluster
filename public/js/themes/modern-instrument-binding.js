@@ -27,7 +27,9 @@ export function createModernInstrumentBinding({ element, mount, project }) {
     const ev = ['ev', 'electric'].includes(String(context.powertrain || '').toLowerCase());
     const override = context.displayOverride;
     const sweep = number(override?.speed) !== null && number(override?.rpm) !== null;
-    const max = number(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : number(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
+    const gauge = context.rpmGauge;
+    const max = gauge == null ? number(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null
+      : gauge.available !== false && number(gauge.gaugeMax) > 0 ? gauge.gaugeMax : null;
     const rpm = sweep ? max === null ? null : clamp(override.rpm) * max : live ? number(model.rpm) : null;
     const speed = sweep ? speedAt(override.speed) : live ? number(model.speedKmh) : null;
     const power = live ? number(model.powerKw) : null;

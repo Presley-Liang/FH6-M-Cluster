@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createEscaladeAmericaInstrument } from '../public/js/themes/escalade-america-instrument.js';
+import { createVehicleStateController } from '../public/js/vehicle-state-controller.js';
+import { createRpmGaugeController } from '../public/js/rpm-gauge-controller.js';
 
 function harness() {
   const rise = Math.hypot(31,35), length = rise + 261;
@@ -69,4 +71,41 @@ test('Escalade sweep uses the shared reveal fraction and returns directly to new
   h.update({rpm:1300,engineMaxRpm:6500},{});
   assert.equal(h.fill.style.strokeDasharray,'20.000 100');
   assert.equal(h.values.get('drive').textContent,'1300');
+});
+
+test('Escalade controller confirmation gaps never rebuild from candidate or zeroed RPM limits',()=>{
+  const h=harness(),vehicles=createVehicleStateController(),gauge=createRpmGaugeController();
+  const update=(ordinal,max,now)=>{
+    const packet={carOrdinal:ordinal,engineMaxRpm:max,currentEngineRpm:3250};
+    const state=vehicles.update(packet,now);
+    h.update({rpm:3250,engineMaxRpm:max},{rpmGauge:gauge.update(packet,state)});
+  };
+  for(const now of [0,50,100,150])update(101,6300,now);
+  assert.equal(h.scale.children.at(-1).dataset.escValue,'6500');
+  update(202,12000,200);
+  assert.equal(h.scale.children.length,0);
+  assert.equal(h.fill.style.strokeDasharray,'0.000 100');
+  assert.equal(h.labels.get('scale').textContent,'×1000 r/min');
+  update(101,6300,250);
+  assert.equal(h.scale.children.at(-1).dataset.escValue,'6500');
+  update(0,0,300);
+  assert.equal(h.scale.children.length,0);
+  update(101,6300,350);
+  assert.equal(h.scale.children.at(-1).dataset.escValue,'6500');
+  for(const now of [400,450,500,550])update(202,12000,now);
+  assert.equal(h.scale.children.at(-1).dataset.escValue,'13000');
+});
+
+test('Escalade supplied unknown controller axis is authoritative, but EV input remains independent',()=>{
+  const h=harness();
+  for(const rpmGauge of [{available:false,gaugeMax:6500},{available:true,gaugeMax:null},{}]){
+    h.update({rpm:850,engineMaxRpm:8000},{rpmGauge});
+    assert.equal(h.scale.children.length,0);
+    assert.equal(h.fill.style.strokeDasharray,'0.000 100');
+  }
+  h.update({rpm:850,engineMaxRpm:8000},{});
+  assert.equal(h.scale.children.at(-1).dataset.escValue,'8000');
+  h.update({powerKw:100,throttlePercent:75},{powertrain:'ev',rpmGauge:{available:false,gaugeMax:null}});
+  assert.equal(h.scale.children.at(-1).dataset.escValue,'100');
+  assert.equal(h.fill.style.strokeDasharray,'75.000 100');
 });

@@ -9,6 +9,31 @@ import { createLfaJapanInstrument } from '../public/js/themes/lfa-japan-instrume
 import { createTaycanEuropeInstrument } from '../public/js/themes/taycan-europe-instrument.js';
 import { createClusterBindings } from '../public/js/cluster-bindings.js';
 
+test('legacy map ignores unknown route samples without clearing the active trace', () => {
+  const html = getDefaultHTML();
+  const start = html.indexOf('  function updateMapTrail(d)');
+  const end = html.indexOf('  // ── Session List', start);
+  assert.ok(start >= 0 && end > start);
+  const prior = [{ x: 10, z: 20, yaw: 0, lap: 1 }];
+  const context = vm.createContext({
+    liveTrail: prior, frameCount: 3, prevRaceOn: true, clientDriveMode: 'race',
+    mapCtx: { canvas: { getClientRects: () => [] } },
+    _drawMapBg() { throw new Error('Unattributed route sample must not draw'); },
+  });
+  vm.runInContext(html.slice(start, end), context);
+  for (const packet of [
+    { routeSampleAvailable: false, isRaceOn: 0, positionX: 0, positionZ: 0 },
+    { routeSampleAvailable: false, isRaceOn: 0, positionX: 99, positionZ: 88 },
+    { routeSampleAvailable: false, isRaceOn: 1, positionX: 99, positionZ: 88 },
+  ]) context.updateMapTrail(packet);
+  assert.equal(context.liveTrail, prior);
+  assert.equal(context.liveTrail.length, 1);
+  assert.equal(context.frameCount, 3);
+  assert.equal(context.prevRaceOn, true);
+  context.updateMapTrail({ isRaceOn: 1, positionX: 12, positionZ: 23, lapNumber: 1 });
+  assert.equal(context.frameCount, 4); // Legacy packets without the new marker still work.
+});
+
 // Lightweight SVG/DOM surface: run the shipped factories and inspect their
 // actual readouts and geometry without duplicating their calculations.
 function instrument(factory, prefix, themeId) {

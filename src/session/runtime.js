@@ -95,6 +95,8 @@ export class SessionRuntime {
     this.pendingSince = null;
     this.previousRecorded = null;
     this.lastId = snapshot.id;
+    this.liveRouteIdentifier?.reset();
+    this.activeRoute = null;
     const save = this.store.finalize(snapshot).catch(error => {
       this.failed.set(snapshot.id, snapshot);
       this.recordingError = error.message;
@@ -264,7 +266,14 @@ export class SessionRuntime {
         this.close('storage-queue-overflow').catch(() => {});
       }
     }
-    packet.sessionId = knownVehicle && this.active?.carOrdinal === rawOrdinal ? this.active.id : null;
+    // sessionId is the live context, not permission to archive this packet.
+    // Unknown identity cannot own a stored sample, but a short dropout must not
+    // erase the current route/ghost. A valid different car still gets its own
+    // session above, or no context if that sample is ineligible.
+    packet.sessionId = this.active && (!knownVehicle || this.active.carOrdinal === rawOrdinal) ? this.active.id : null;
+    // Keep raw telemetry intact. Only spatial/route consumers skip unverified
+    // samples, whose position/lap fields can also be menu placeholders.
+    packet.routeSampleAvailable = knownVehicle;
     packet.driveMode = this.driveMode;
     packet.modeVersion = this.version;
     packet.receiverInstanceId = this.receiverInstanceId;
@@ -274,7 +283,7 @@ export class SessionRuntime {
     packet.eventVersion = this.detected.eventVersion;
     packet.activeVehicle = this.activeVehicle;
     packet.boostState = this.activeBoost;
-    if (this.liveRouteIdentifier) {
+    if (this.liveRouteIdentifier && knownVehicle) {
       const identified = this.liveRouteIdentifier.update(packet);
       const row = identified.routeCatalogKey ? this.resolveRoute(identified.routeCatalogKey) : null;
       this.activeRoute = {
@@ -286,8 +295,12 @@ export class SessionRuntime {
         confidence: identified.confidence?.score ?? identified.confidence ?? null,
         version: identified.matchedForSession ? 1 : 0,
       };
-      packet.activeRoute = this.activeRoute;
     }
+    if (!knownVehicle && !this.active) {
+      this.liveRouteIdentifier?.reset();
+      this.activeRoute = null;
+    }
+    if (this.liveRouteIdentifier) packet.activeRoute = this.activeRoute;
     return packet;
   }
   tick(now = Date.now()) {

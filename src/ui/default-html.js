@@ -907,6 +907,7 @@ export function getDefaultHTML() {
   }
 
   function updateMapTrail(d) {
+    if (d.routeSampleAvailable === false) return;
     if (clientDriveMode === 'freeRoam') return;
     if (!mapCtx || (!d.positionX && !d.positionZ)) return;
     if (d.isRaceOn && !prevRaceOn) { liveTrail = []; frameCount = 0; }
@@ -1696,8 +1697,9 @@ export function getDefaultHTML() {
   });
   var mapSessionId = null;
   telemetryStore.subscribe(function(d) {
-    if (d.sessionId && d.sessionId !== mapSessionId) {
-      mapSessionId = d.sessionId;
+    var nextMapSessionId = d.sessionId == null ? null : d.sessionId;
+    if (nextMapSessionId !== mapSessionId) {
+      mapSessionId = nextMapSessionId;
       liveTrail = []; frameCount = 0; prevRaceOn = false;
     }
     updateMapTrail(d);

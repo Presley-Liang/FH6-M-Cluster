@@ -155,8 +155,22 @@ export function createLeafletAdapter(element, L, projectWorld, options = {}) {
   }
 
   function update(packet, state = {}) {
-    if (destroyed || !Number.isFinite(packet?.positionX) || !Number.isFinite(packet?.positionZ)) return false;
+    if (destroyed) return false;
     if (state.mode === 'race' || state.mode === 'freeRoam') setMode(state.mode);
+    const key = mode === 'race' ? String(state.sessionId ?? 'race-pending') : 'freeRoam-live';
+    if (contextKey !== key) {
+      if (routeOverlayContext == null && (routeOutline || ghostLayer)) routeOverlayContext = key;
+      else if (routeOverlayContext != null && routeOverlayContext !== key) clearRouteOverlay();
+      contextKey = key;
+      if (mode === 'race') {
+        clearTrail();
+        track?.clear?.();
+        camera?.resetRaceBounds();
+      }
+    }
+    // Context changes still clear overlays, but an unknown-car packet is not
+    // a trustworthy spatial sample (zero/menu coordinates are common).
+    if (packet?.routeSampleAvailable === false || !Number.isFinite(packet?.positionX) || !Number.isFinite(packet?.positionZ)) return false;
     const point = projectWorld(packet.positionX, packet.positionZ).latLng;
     const heading = Number.isFinite(packet.yaw) ? packet.yaw * 180 / Math.PI : 0;
     if (!marker) {
@@ -173,13 +187,6 @@ export function createLeafletAdapter(element, L, projectWorld, options = {}) {
     } else marker.setLatLng(point);
     const arrow = marker.getElement()?.querySelector('.fh6-vehicle-arrow');
     if (arrow) arrow.style.setProperty('--heading', heading + 'deg');
-    const key = mode === 'race' ? String(state.sessionId ?? 'race-pending') : 'freeRoam-live';
-    if (contextKey !== key) {
-      if (routeOverlayContext == null && (routeOutline || ghostLayer)) routeOverlayContext = key;
-      else if (routeOverlayContext != null && routeOverlayContext !== key) clearRouteOverlay();
-      contextKey = key;
-      if (mode === 'race') camera?.resetRaceBounds();
-    }
     if (track) {
       const trackState = track.push(packet, {
         mode,
