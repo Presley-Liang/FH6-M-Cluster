@@ -15,7 +15,15 @@ export function createGxJapanInstrument({ document, mount }) {
   identity.setAttribute('aria-hidden','true');
   identity.innerHTML = '<small>INSTRUMENT MODE</small><strong data-next-mode="race">RACE</strong><strong data-next-mode="freeRoam">FREE</strong>';
   mount.append(element,identity);
-  const bind = createModernInstrumentBinding({element,mount});
+  const bind = createModernInstrumentBinding({element,mount,project(values,labels,state){
+    if(state.mode!=='freeRoam')return;
+    labels.d='BRAKE';labels.dUnit='%';
+    values.d=state.live&&Number.isFinite(state.model.brakePercent)?String(Math.round(state.model.brakePercent)):'—';
+    if(state.ev){
+      labels.a='TORQUE';labels.aUnit='Nm';
+      values.a=state.live&&Number.isFinite(state.model.torque)?String(Math.round(state.model.torque)):'—';
+    }
+  }});
   const needle=element.querySelector('.gx-yaw-needle'),yawValue=element.querySelector('[data-gx-yaw]');
   let lastAngle=null;
   function update(model={},context={}) {

@@ -80,6 +80,7 @@
 .ae86-instrument[data-powertrain="ev"] .ae86-rpm-dial :is(.ae86-rpm-ticks,.ae86-needle,.ae86-needle-shadow,.ae86-hub,.ae86-hub-pin) { opacity:0; }
 .ae86-instrument[data-powertrain="ev"] .ae86-rpm-unit .ae86-dial-word { bottom:42%; left:17%; right:17%; }
 .ae86-instrument[data-powertrain="ev"] :is(.ae86-gear,.ae86-shift) { opacity:.12; }
+.ae86-instrument[data-powertrain="ev"] .ae86-power-info { display:none; }
 
 .ae86-mode-identity { position:absolute; z-index:15; left:32%; top:30%; width:36%; height:38%; display:none; flex-direction:column; align-items:center; justify-content:center; gap:.5cqw; pointer-events:none; color:#f4d39c; text-align:center; background:radial-gradient(ellipse,#070a07 20%,#070a07ee 58%,transparent 81%); }
 .ae86-mode-identity::before,.ae86-mode-identity::after { content:''; width:72%; height:1px; background:linear-gradient(90deg,transparent,#e5b777,transparent); }

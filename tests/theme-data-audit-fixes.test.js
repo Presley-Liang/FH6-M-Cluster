@@ -90,14 +90,17 @@ for (const [stem, name, prefix, id, speedKey, rpmKey] of themes) {
   });
 }
 
-test('R8 updates POWER/GEAR caption when only powertrain changes, and hides stale EV power', async () => {
+test('R8 updates TORQUE/GEAR caption when only powertrain changes, and hides stale EV readouts', async () => {
   const { createR8EuropeInstrument } = await import('../public/js/themes/r8-europe-instrument.js');
   const h = harness(createR8EuropeInstrument, 'r8', 'y2009_2014.europe');
   h.update({ powerKw: 80, gearLabel: '3' }, { mode: 'race' });
-  h.update({ powerKw: 80 }, { mode: 'race', powertrain: 'ev' });
-  assert.equal(h.element.querySelector('[data-r8-label="primary"]').textContent, 'POWER');
+  h.update({ powerKw: 80, torque: 420 }, { mode: 'race', powertrain: 'ev' });
+  assert.equal(h.element.querySelector('[data-r8-label="primary"]').textContent, 'TORQUE / Nm');
+  assert.equal(h.value('primary'), '420');
+  assert.equal(h.value('rpm'), '80');
   h.update({ powerKw: 80 }, { mode: 'race', powertrain: 'ev', stale: true });
   assert.equal(h.value('primary'), '—');
+  assert.equal(h.value('rpm'), '—');
   h.update({ gearLabel: '4' }, { mode: 'race', powertrain: 'combustion' });
   assert.equal(h.element.querySelector('[data-r8-label="primary"]').textContent, 'GEAR');
 });
@@ -212,7 +215,9 @@ test('Ford GT, Taycan and Panoramic show raw RPM without inventing an 8000 live 
 test('DS does not show stale POSITION, and Panoramic explicitly identifies its input meter', async () => {
   const { createDsEuropeInstrument } = await import('../public/js/themes/ds-europe-instrument.js');
   const ds = harness(createDsEuropeInstrument, 'ds', '');
-  ds.update({ rank: 12 }, { mode: 'race', racing: true, stale: true }); assert.equal(ds.value('footer'), 'NO SIGNAL');
+  ds.update({ rank: 12 }, { mode: 'race', racing: true, stale: true });
+  assert.equal(ds.value('footer'), '');
+  assert.equal(ds.element.querySelector('[data-ds-value="footer"]').hidden, true);
   const { createPanoramicEuropeInstrument } = await import('../public/js/themes/panoramic-europe-instrument.js');
   const pan = harness(createPanoramicEuropeInstrument, 'pan', '');
   for (const context of [{ mode: 'freeRoam' }, { mode: 'race', powertrain: 'ev' }]) {

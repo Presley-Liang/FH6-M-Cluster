@@ -103,15 +103,16 @@ export function createLfaJapanInstrument({ document, mount }) {
     element.dataset.mode = mode; element.dataset.powertrain = ev ? 'ev' : 'combustion';
     lastMode = mode;
     label('program', mode === 'race' ? 'SPORT' : 'CRUISE');
-    label('centerTitle', mode === 'race' ? (ev ? 'POWER / kW' : 'GEAR') : 'ROAD SPEED');
-    label('left1', mode === 'race' && !ev ? 'ENGINE POWER' : 'POWER');
+    label('centerTitle', mode === 'race' ? (ev ? 'POWER / kW' : 'GEAR') : 'SPEED · km/h');
+    label('left1', mode === 'race' && ev ? 'DRIVE TORQUE' : 'POWER');
+    label('left1unit', mode === 'race' && ev ? 'Nm' : 'kW');
     label('left2', mode === 'race' ? 'G / Y AXIS' : 'THROTTLE');
     label('left2unit', mode === 'race' ? 'g' : '%');
-    label('right1', mode === 'race' ? 'CURRENT LAP' : 'DRIVE STATUS');
-    label('right1unit', mode === 'race' ? 'TIME' : 'LIVE');
-    label('right2', mode === 'race' ? 'BEST LAP' : ev ? 'DRIVE POWER' : 'ENGINE SPEED');
-    label('right2unit', mode === 'race' ? 'TIME' : ev ? 'kW' : 'rpm');
-    label('drive', ev ? 'POWER / kW' : '×1000 r/min');
+    label('right1', mode === 'race' ? 'CURRENT LAP' : 'GEAR');
+    label('right1unit', mode === 'race' ? 'TIME' : '');
+    label('right2', mode === 'race' ? 'BEST LAP' : ev ? 'LATERAL G' : 'ENGINE SPEED');
+    label('right2unit', mode === 'race' ? 'TIME' : ev ? 'g' : 'rpm');
+    label('drive', ev ? mode === 'race' ? 'ELECTRIC DRIVE' : '' : '×1000 r/min');
     drawRpmScale(scale, ev);
     updateRedline(model, context, scale, ev);
     const rpmTarget = available ? finite(model.rpm) : null, speedTarget = available ? finite(model.speedKmh) : null;
@@ -123,12 +124,12 @@ export function createLfaJapanInstrument({ document, mount }) {
     const racing = mode === 'race' && Boolean(context.racing) && available;
     write('center', mode === 'race' ? ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—' : sweep ? whole(clamp(override.speed) * 280) : available ? whole(speedTarget) : '—');
     write('speed', sweep ? whole(clamp(override.speed) * 280) : available ? whole(speedTarget) : '—');
-    write('left1', available ? whole(model.powerKw) : '—');
+    write('left1', available ? whole(mode === 'race' && ev ? model.torque : model.powerKw) : '—');
     write('left2', mode === 'race' ? available ? signed(model.gY) : '—' : available ? whole(model.throttlePercent) : '—');
-    write('right1', mode === 'race' ? racing ? time(model.currentLap) : '—' : available ? ev ? 'E-DRIVE' : 'READY' : '—');
-    write('right2', mode === 'race' ? racing ? time(model.bestLap) : '—' : ev ? available ? whole(model.powerKw) : '—' : available ? whole(rpm) : '—');
+    write('right1', mode === 'race' ? racing ? time(model.currentLap) : '—' : available ? String(model.gearLabel ?? '—') : '—');
+    write('right2', mode === 'race' ? racing ? time(model.bestLap) : '—' : ev ? available ? signed(model.gX) : '—' : available ? whole(rpm) : '—');
     write('status', available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : 'NO SIGNAL');
-    write('footer', racing && finite(model.rank) > 0 ? 'POSITION ' + whole(model.rank) : available ? 'SPEED ' + whole(speedTarget) : 'NO SIGNAL');
+    write('footer', racing && finite(model.rank) > 0 ? 'POSITION ' + whole(model.rank) : available ? '' : 'NO SIGNAL');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

@@ -64,7 +64,7 @@ export function createClassicalEuropeInstrument({ document, mount }) {
         <div class="ce-info"><span>POSITION</span><strong data-ce-value="rank">—</strong><small>RACE ORDER</small></div>
       </div>
       <div class="ce-free-data">
-        <div class="ce-info"><span>PUISSANCE</span><strong data-ce-value="power">—</strong><small>POWER · kW</small></div>
+        <div class="ce-info"><span data-ce-label="output">PUISSANCE</span><strong data-ce-value="power">—</strong><small data-ce-label="outputUnit">POWER · kW</small></div>
         <div class="ce-info ce-fuel-info"><span>CARBURANT</span><strong data-ce-value="fuel">—</strong><small>FUEL RAW</small></div>
         <div class="ce-info"><span>ACCELERATEUR</span><strong data-ce-value="throttle">—</strong><small>THROTTLE · %</small></div>
       </div>
@@ -198,6 +198,8 @@ export function createClassicalEuropeInstrument({ document, mount }) {
     labels.driveTitle.textContent = ev ? 'POWER' : 'ENGINE';
     labels.driveUnit.textContent = ev ? 'kW' : 'r/min';
     labels.driveMark.textContent = ev ? 'PROPULSION · ELECTRIQUE' : 'MOTEUR · PRECISION';
+    labels.output.textContent = ev ? 'COUPLE' : 'PUISSANCE';
+    labels.outputUnit.textContent = ev ? 'TORQUE · Nm' : 'POWER · kW';
     drawRpmScale(scale, ev);
 
     const speedTarget = available ? finite(model.speedKmh) : null;
@@ -217,7 +219,7 @@ export function createClassicalEuropeInstrument({ document, mount }) {
     write('lap', race ? time(model.currentLap) : '—');
     write('best', race ? time(model.bestLap) : '—');
     write('rank', race && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
-    write('power', available ? whole(model.powerKw) : '—');
+    write('power', available ? whole(ev ? model.torque : model.powerKw) : '—');
     const fuel = finite(model.fuelRaw);
     write('fuel', available && fuel !== null ? fuel.toFixed(3) : '—');
     write('throttle', available ? whole(model.throttlePercent) : '—');

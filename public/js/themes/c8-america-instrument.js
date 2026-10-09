@@ -16,7 +16,7 @@ export function createC8AmericaInstrument({ document, mount }) {
         <div class="c8-side c8-side-left">
           <div class="c8-tile c8-race"><small>POSITION</small><strong data-c8-value="rank">—</strong><span>RACE ORDER</span></div>
           <div class="c8-tile c8-race"><small>CURRENT LAP</small><strong data-c8-value="lap">—</strong><span>SESSION TIME</span></div>
-          <div class="c8-tile c8-free"><small>POWER</small><strong data-c8-value="power">—</strong><span>kW · LIVE OUTPUT</span></div>
+          <div class="c8-tile c8-free"><small data-c8-label="output">POWER</small><strong data-c8-value="power">—</strong><span data-c8-label="outputUnit">kW · LIVE OUTPUT</span></div>
           <div class="c8-tile c8-free"><small>THROTTLE</small><strong data-c8-value="throttle">—</strong><span>PERCENT INPUT</span></div>
         </div>
         <div class="c8-core">
@@ -32,7 +32,7 @@ export function createC8AmericaInstrument({ document, mount }) {
           <div class="c8-tile c8-race"><small>BEST LAP</small><strong data-c8-value="best">—</strong><span>SESSION BEST</span></div>
           <div class="c8-tile c8-race"><small>G · X AXIS</small><strong data-c8-value="g">—</strong><span>LIVE ACCELERATION</span></div>
           <div class="c8-tile c8-free"><small>TOP SPEED</small><strong data-c8-value="top">—</strong><span>KM/H · SESSION</span></div>
-          <div class="c8-tile c8-free"><small>DRIVE STATE</small><strong data-c8-value="state">—</strong><span>CURRENT GEAR</span></div>
+          <div class="c8-tile c8-free"><small>BRAKE</small><strong data-c8-value="state">—</strong><span>PERCENT INPUT</span></div>
         </div>
       </div>
       <div class="c8-footer"><span>DRIVER INFORMATION CENTER</span><span class="c8-footer-bars"><i></i><i></i><i></i></span><span>AMERICAN PERFORMANCE / 2020—24</span></div>
@@ -107,6 +107,8 @@ export function createC8AmericaInstrument({ document, mount }) {
     labels.arc.textContent = mode === 'freeRoam' ? 'VEHICLE SPEED · KM/H' : ev ? 'DRIVE INPUT · %' : scanning && max === null ? 'DISPLAY SCAN' : 'ENGINE SPEED · r/min';
     labels.gear.textContent = ev ? 'DRIVE' : 'GEAR';
     labels.secondaryUnit.textContent = mode === 'race' ? 'KM/H' : ev ? 'kW' : 'RPM';
+    labels.output.textContent = ev ? 'TORQUE' : 'POWER';
+    labels.outputUnit.textContent = ev ? 'Nm · LIVE OUTPUT' : 'kW · LIVE OUTPUT';
     write('max', mode === 'freeRoam' ? '260' : ev ? '100%' : max === null ? '—' : whole(max));
     if (Math.abs(arcShown - fraction) > .002) {
       arcShown = fraction;
@@ -134,10 +136,10 @@ export function createC8AmericaInstrument({ document, mount }) {
     write('best', racing ? lap(model.bestLap) : '—');
     write('rank', racing && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
     write('g', available && finite(model.gX) !== null ? Math.abs(model.gX).toFixed(2) + ' G' : '—');
-    write('power', available ? whole(model.powerKw) : '—');
+    write('power', available ? whole(ev ? model.torque : model.powerKw) : '—');
     write('throttle', available ? whole(model.throttlePercent) : '—');
     write('top', available ? whole(context.topSpeed) : '—');
-    write('state', ev ? 'E-DRIVE' : available ? String(model.gearLabel ?? '—') : '—');
+    write('state', available ? whole(model.brakePercent) : '—');
   }
 
   return { element, update, destroy() { element.remove(); modeIdentity.remove(); } };

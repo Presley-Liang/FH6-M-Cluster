@@ -11,12 +11,12 @@ export function createCxEuropeInstrument({ document, mount }) {
     <div class="cx-crest"><span>LUNULE</span><i></i><b>CONTROLE DE ROUTE</b><i></i><span>1976—85</span></div>
     <div class="cx-warning-bank" aria-hidden="true"><span>◀</span><span>●</span><span>◉</span><strong>STOP</strong><span>◉</span><span>●</span><span>▶</span></div>
     <div class="cx-dashboard">
-      <div class="cx-aux cx-aux-left"><small data-cx-label="left">RAPPORT</small><strong data-cx-value="left">—</strong><em data-cx-label="leftUnit">VITESSE</em><div class="cx-aux-rule"></div><span data-cx-value="leftFoot">—</span></div>
+      <div class="cx-aux cx-aux-left"><small data-cx-label="left">RAPPORT</small><strong data-cx-value="left">—</strong><em data-cx-label="leftUnit">VITESSE</em></div>
       <div class="cx-drum-housing cx-drum-speed"><div class="cx-drum-cap">VITESSE</div><div class="cx-drum-slot"><div class="cx-drum-track" data-cx-track="speed"></div><div class="cx-drum-lens"></div><div class="cx-drum-reading"><strong data-cx-value="speed">—</strong><small>km/h</small></div></div><div class="cx-drum-base">ROUTE</div></div>
       <div class="cx-drum-housing cx-drum-rpm"><div class="cx-drum-cap" data-cx-label="drum">TOURS MOTEUR</div><div class="cx-drum-slot"><div class="cx-drum-track" data-cx-track="rpm"></div><div class="cx-drum-lens"></div><div class="cx-drum-reading"><strong data-cx-value="rpm">—</strong><small data-cx-label="rpmUnit">tr/min</small></div></div><div class="cx-drum-base" data-cx-label="rpmBase">MOTEUR</div></div>
       <div class="cx-aux cx-aux-right"><small data-cx-label="right">TEMPS AU TOUR</small><strong data-cx-value="right">—</strong><em data-cx-label="rightUnit">COURSE</em><div class="cx-aux-rule"></div><span data-cx-value="rightFoot">—</span></div>
     </div>
-    <div class="cx-bottom"><span>INSTRUMENTS  /  SERIE I</span><b data-cx-label="program">CONDUITE SPORT</b><span data-cx-value="status">NO SIGNAL</span></div>
+    <div class="cx-bottom"><span>INSTRUMENTS  /  SERIE I</span><b data-cx-label="program">CONDUITE SPORT</b><span data-cx-value="status">—</span></div>
   </div>`;
   const identity = document.createElement('div');
   identity.className = 'cx-mode-identity';
@@ -78,8 +78,8 @@ export function createCxEuropeInstrument({ document, mount }) {
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     lastMode = mode;
     label('program', mode === 'race' ? 'CONDUITE SPORT' : 'GRAND TOURISME');
-    label('left', mode === 'race' ? (ev ? 'PUISSANCE' : 'RAPPORT') : 'PUISSANCE');
-    label('leftUnit', mode === 'race' && !ev ? 'VITESSE' : 'kW');
+    label('left', ev ? 'COUPLE' : mode === 'race' ? 'RAPPORT' : 'PUISSANCE');
+    label('leftUnit', ev ? 'Nm' : mode === 'race' ? 'VITESSE' : 'kW');
     label('right', mode === 'race' ? 'TEMPS AU TOUR' : 'ACCÉLÉRATEUR');
     label('rightUnit', mode === 'race' ? 'COURSE' : '%');
     label('drum', ev ? 'PUISSANCE' : 'TOURS MOTEUR');
@@ -94,11 +94,12 @@ export function createCxEuropeInstrument({ document, mount }) {
     move('rpm', ev ? 0 : sweeping ? clamp(override.rpm) : rpm === null || rpmMax === null ? 0 : rpm / rpmMax);
     write('speed', sweeping || available ? whole(speed) : '—');
     write('rpm', ev ? available ? whole(model.powerKw) : '—' : sweeping || available ? whole(rpm) : '—');
-    write('left', mode === 'race' && !ev ? available ? String(model.gearLabel ?? '—') : '—' : available ? whole(model.powerKw) : '—');
-    write('leftFoot', mode === 'race' ? available ? 'RAPPORT ' + String(model.gearLabel ?? '—') : '—' : available ? 'VITESSE ' + whole(speedTarget) : '—');
+    write('left', ev ? available ? whole(model.torque) : '—' : mode === 'race' ? available ? String(model.gearLabel ?? '—') : '—' : available ? whole(model.powerKw) : '—');
     write('right', mode === 'race' ? Boolean(context.racing) && available ? lap(model.currentLap) : '—' : available ? whole(model.throttlePercent) : '—');
-    write('rightFoot', mode === 'race' ? Boolean(context.racing) && available ? 'MEILLEUR ' + lap(model.bestLap) : '—' : available ? (ev ? 'MOTEUR ÉLECTRIQUE' : 'MOTEUR EN SERVICE') : '—');
-    write('status', available ? ev ? 'E-DRIVE' : 'MOTEUR ' + String(model.gearLabel ?? '—') : 'NO SIGNAL');
+    values.rightFoot.hidden = mode !== 'race';
+    write('rightFoot', mode === 'race' && Boolean(context.racing) && available ? 'MEILLEUR ' + lap(model.bestLap) : '—');
+    values.status.hidden = mode !== 'freeRoam' || ev;
+    write('status', mode === 'freeRoam' && !ev && available ? 'RAPPORT ' + String(model.gearLabel ?? '—') : '');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

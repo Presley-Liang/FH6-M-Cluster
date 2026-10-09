@@ -17,7 +17,15 @@ export function createEscaladeAmericaInstrument({ document, mount }) {
   const scale = element.querySelector('.esc-drive-scale');
   let priorAxis = '';
   const number = value => typeof value === 'number' && Number.isFinite(value) ? value : null;
-  const update = createModernInstrumentBinding({element,mount});
+  const update = createModernInstrumentBinding({element,mount,project(values,labels,state){
+    if(state.mode!=='freeRoam')return;
+    labels.d='BRAKE';labels.dUnit='%';
+    values.d=state.live&&Number.isFinite(state.model.brakePercent)?String(Math.round(state.model.brakePercent)):'—';
+    if(state.ev){
+      labels.a='TORQUE';labels.aUnit='Nm';
+      values.a=state.live&&Number.isFinite(state.model.torque)?String(Math.round(state.model.torque)):'—';
+    }
+  }});
   function updateScale(model,context) {
     const ev = ['ev','electric'].includes(String(context.powertrain || '').toLowerCase());
     const max = number(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : number(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;

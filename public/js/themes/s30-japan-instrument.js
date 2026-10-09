@@ -10,9 +10,9 @@ export function createS30JapanInstrument({ document, mount }) {
   element.setAttribute('aria-label', '1960–1975 Japanese sports car instrument');
   element.innerHTML = `<div class="s30-dash"><div class="s30-header"><span>SPORTS CAR / 1971</span><i></i><span data-s30-label="mode">RACING</span></div><div class="s30-layout">
     <div class="s30-driver"><div class="s30-main-pair">
-      <div class="s30-main s30-speed"><div class="s30-bezel"><svg viewBox="0 0 400 400" aria-label="Road speed"><circle class="s30-face" cx="200" cy="200" r="182"/><g data-s30-ticks="speed"></g><path class="s30-needle" data-s30-needle="speed" d="M196 210 L200 66 L204 210 Z"/><circle class="s30-hub" cx="200" cy="200" r="14"/></svg><span class="s30-dial-title">km/h</span><div class="s30-readout"><strong data-s30-value="speed">—</strong><small>km/h</small></div></div><div class="s30-under s30-free-only"><span>ROAD SPEED</span><b data-s30-value="road">—</b></div></div>
-      <div class="s30-main s30-rpm"><div class="s30-bezel"><svg viewBox="0 0 400 400" aria-label="Engine speed"><circle class="s30-face" cx="200" cy="200" r="182"/><g data-s30-ticks="rpm"></g><path class="s30-needle" data-s30-needle="rpm" d="M196 210 L200 66 L204 210 Z"/><circle class="s30-hub" cx="200" cy="200" r="14"/></svg><span class="s30-dial-title" data-s30-label="drive">×1000 r/min</span><div class="s30-readout"><strong data-s30-value="rpm">—</strong><small data-s30-label="unit">rpm</small></div></div><div class="s30-under s30-race-only"><span>ENGINE SPEED</span><b data-s30-value="raceRpm">—</b></div></div>
-    </div><div class="s30-driver-bottom"><div class="s30-gear"><span data-s30-label="gear">GEAR</span><strong data-s30-value="gear">—</strong></div><div class="s30-drive-note"><span data-s30-label="note">TRACK PROGRAM</span><b data-s30-value="status">—</b></div><div class="s30-shift" aria-hidden="true"></div></div></div>
+      <div class="s30-main s30-speed"><div class="s30-bezel"><svg viewBox="0 0 400 400" aria-label="Road speed"><circle class="s30-face" cx="200" cy="200" r="182"/><g data-s30-ticks="speed"></g><path class="s30-needle" data-s30-needle="speed" d="M196 210 L200 66 L204 210 Z"/><circle class="s30-hub" cx="200" cy="200" r="14"/></svg><span class="s30-dial-title">km/h</span><div class="s30-readout"><strong data-s30-value="speed">—</strong><small>km/h</small></div></div></div>
+      <div class="s30-main s30-rpm"><div class="s30-bezel"><svg viewBox="0 0 400 400" aria-label="Engine speed"><circle class="s30-face" cx="200" cy="200" r="182"/><g data-s30-ticks="rpm"></g><path class="s30-needle" data-s30-needle="rpm" d="M196 210 L200 66 L204 210 Z"/><circle class="s30-hub" cx="200" cy="200" r="14"/></svg><span class="s30-dial-title" data-s30-label="drive">×1000 r/min</span><div class="s30-readout"><strong data-s30-value="rpm">—</strong><small data-s30-label="unit">rpm</small></div></div></div>
+    </div><div class="s30-driver-bottom"><div class="s30-gear"><span data-s30-label="gear">GEAR</span><strong data-s30-value="gear">—</strong></div><div class="s30-drive-note"><span data-s30-label="note">TRACK PROGRAM</span></div><div class="s30-shift" aria-hidden="true"></div></div></div>
     <div class="s30-aux"><div class="s30-aux-heading">TRIPLE INSTRUMENT <span>TYPE S30</span></div><div class="s30-aux-stack">
       <div class="s30-aux-pod"><span data-s30-label="aux1">POWER</span><strong data-s30-value="aux1">—</strong><small data-s30-label="aux1unit">kW</small></div>
       <div class="s30-aux-pod"><span data-s30-label="aux2">CURRENT LAP</span><strong data-s30-value="aux2">—</strong><small data-s30-label="aux2unit">TIME</small></div>
@@ -130,24 +130,24 @@ export function createS30JapanInstrument({ document, mount }) {
     lastRpmNeedle = needle(rpmNeedle, -130 + clamp(rpmFraction) * 260, lastRpmNeedle);
     const lit = !ev && available && mode === 'race' && finite(model.rpmRatio) !== null ? Math.max(0, Math.min(shift.length, Math.ceil((model.rpmRatio - .72) / .045))) : 0;
     shift.forEach((node, index) => { node.dataset.lit = String(index < lit); });
-    write('speed', sweep || available ? whole(speed) : '—'); write('road', available ? whole(speed) : '—');
+    write('speed', sweep || available ? whole(speed) : '—');
     write('rpm', ev ? available ? whole(model.powerKw) : '—' : sweep || available ? whole(rpm) : '—');
-    write('raceRpm', ev ? available ? whole(model.powerKw) : '—' : sweep || available ? whole(rpm) : '—');
     write('gear', ev ? 'EV' : available ? String(model.gearLabel ?? '—') : '—');
-    write('status', available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : '—');
     const racing = mode === 'race' && Boolean(context.racing) && available;
     if (mode === 'race') {
-      labels.aux1.textContent = 'POWER'; labels.aux1unit.textContent = 'kW'; write('aux1', available ? whole(model.powerKw) : '—');
+      labels.aux1.textContent = ev ? 'TORQUE' : 'POWER'; labels.aux1unit.textContent = ev ? 'Nm' : 'kW'; write('aux1', available ? whole(ev ? model.torque : model.powerKw) : '—');
       labels.aux2.textContent = 'CURRENT LAP'; labels.aux2unit.textContent = 'TIME'; write('aux2', racing ? time(model.currentLap) : '—');
       labels.aux3.textContent = 'BEST LAP'; labels.aux3unit.textContent = 'TIME'; write('aux3', racing ? time(model.bestLap) : '—');
     } else {
-      labels.aux1.textContent = 'POWER'; labels.aux1unit.textContent = 'kW'; write('aux1', available ? whole(model.powerKw) : '—');
+      labels.aux1.textContent = ev ? 'TORQUE' : 'POWER'; labels.aux1unit.textContent = ev ? 'Nm' : 'kW'; write('aux1', available ? whole(ev ? model.torque : model.powerKw) : '—');
       labels.aux2.textContent = 'THROTTLE'; labels.aux2unit.textContent = '%'; write('aux2', available ? whole(model.throttlePercent) : '—');
-      labels.aux3.textContent = ev ? 'DRIVE SYSTEM' : 'FUEL'; labels.aux3unit.textContent = ev ? 'STATUS' : 'RAW';
+      labels.aux3.textContent = ev ? 'BRAKE' : 'FUEL'; labels.aux3unit.textContent = ev ? '%' : 'RAW';
       const fuel = available ? finite(model.fuelRaw) : null;
-      write('aux3', ev ? 'E-DRIVE' : fuel === null ? '—' : fuel.toFixed(3));
+      write('aux3', ev ? available ? whole(model.brakePercent) : '—' : fuel === null ? '—' : fuel.toFixed(3));
     }
-    write('footer', racing && finite(model.rank) > 0 ? 'POSITION ' + whole(model.rank) : available ? 'SPEED ' + whole(speed) : 'NO SIGNAL');
+    const ranked = racing && finite(model.rank) > 0;
+    values.footer.hidden = !ranked;
+    write('footer', ranked ? 'POSITION ' + whole(model.rank) : '');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

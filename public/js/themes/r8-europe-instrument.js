@@ -10,7 +10,7 @@ export function createR8EuropeInstrument({ document, mount }) {
   element.setAttribute('aria-label', '2009–2014 European twin dial instrument');
   element.innerHTML = `<div class="r8-shroud"><div class="r8-head"><span>INSTRUMENT / 2012</span><i></i><span data-r8-label="mode">DYNAMIC</span></div><div class="r8-layout">
     <div class="r8-dial r8-speed"><svg viewBox="0 0 400 400" aria-label="Speedometer"><circle class="r8-rim" cx="200" cy="200" r="184"/><circle class="r8-face" cx="200" cy="200" r="166"/><g data-r8-ticks="speed"></g><path class="r8-needle" data-r8-needle="speed" d="M196 208 L200 72 L204 208 Z"/><circle class="r8-hub" cx="200" cy="200" r="12"/></svg><div class="r8-dial-title">km/h</div><div class="r8-speed-readout"><strong data-r8-value="speed">—</strong><small>km/h</small></div></div>
-    <div class="r8-center"><div class="r8-screen-border"><div class="r8-screen"><span class="r8-screen-heading" data-r8-label="screen">PERFORMANCE</span><div class="r8-primary"><small data-r8-label="primary">GEAR</small><strong data-r8-value="primary">—</strong></div><div class="r8-columns r8-race"><div><span>CURRENT LAP</span><b data-r8-value="lap">—</b></div><div><span>BEST LAP</span><b data-r8-value="best">—</b></div></div><div class="r8-columns r8-free"><div><span>POWER</span><b data-r8-value="power">—</b></div><div><span>THROTTLE</span><b data-r8-value="throttle">—</b></div></div><div class="r8-screen-footer"><span data-r8-label="signal">NO SIGNAL</span><span data-r8-value="status">—</span></div></div></div><div class="r8-lamps" aria-hidden="true"></div></div>
+    <div class="r8-center"><div class="r8-screen-border"><div class="r8-screen"><span class="r8-screen-heading" data-r8-label="screen">PERFORMANCE</span><div class="r8-primary"><small data-r8-label="primary">GEAR</small><strong data-r8-value="primary">—</strong></div><div class="r8-columns r8-race"><div><span>CURRENT LAP</span><b data-r8-value="lap">—</b></div><div><span>BEST LAP</span><b data-r8-value="best">—</b></div></div><div class="r8-columns r8-free"><div><span data-r8-label="freeOutput">POWER</span><b data-r8-value="power">—</b></div><div><span>THROTTLE</span><b data-r8-value="throttle">—</b></div></div><div class="r8-screen-footer"><span data-r8-label="signal">NO SIGNAL</span></div></div></div><div class="r8-lamps" aria-hidden="true"></div></div>
     <div class="r8-dial r8-tach"><svg viewBox="0 0 400 400" aria-label="Tachometer"><circle class="r8-rim" cx="200" cy="200" r="184"/><circle class="r8-face" cx="200" cy="200" r="166"/><g data-r8-ticks="rpm"></g><path class="r8-needle" data-r8-needle="rpm" d="M196 208 L200 72 L204 208 Z"/><circle class="r8-hub" cx="200" cy="200" r="12"/></svg><div class="r8-dial-title" data-r8-label="drive">×1000 r/min</div><div class="r8-rpm-readout"><strong data-r8-value="rpm">—</strong><small data-r8-label="unit">rpm</small></div></div>
   </div><div class="r8-foot"><span>EUROPEAN GT / TYPE 12</span><span data-r8-value="footer">—</span></div></div>`;
   const identity = document.createElement('div');
@@ -114,7 +114,7 @@ export function createR8EuropeInstrument({ document, mount }) {
     const scale = finite(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : finite(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
     element.dataset.mode = mode; element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = available ? 'live' : 'absent'; element.dataset.sweep = String(sweep);
-    if (mode !== lastMode || ev !== lastPowertrain) { lastMode = mode; lastPowertrain = ev; labels.mode.textContent = mode === 'race' ? 'DYNAMIC' : 'TOURING'; labels.screen.textContent = mode === 'race' ? 'PERFORMANCE' : 'DRIVE INFORMATION'; labels.primary.textContent = mode === 'race' ? (ev ? 'POWER' : 'GEAR') : 'ROAD SPEED'; }
+    if (mode !== lastMode || ev !== lastPowertrain) { lastMode = mode; lastPowertrain = ev; labels.mode.textContent = mode === 'race' ? 'DYNAMIC' : 'TOURING'; labels.screen.textContent = mode === 'race' ? 'PERFORMANCE' : 'DRIVE INFORMATION'; labels.primary.textContent = ev ? 'TORQUE / Nm' : 'GEAR'; labels.freeOutput.textContent = ev ? 'BRAKE' : 'POWER'; }
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.drive.textContent = ev ? 'POWER / kW' : '×1000 r/min'; labels.unit.textContent = ev ? 'kW' : 'rpm';
     drawRpmScale(scale, ev);
@@ -134,12 +134,13 @@ export function createR8EuropeInstrument({ document, mount }) {
     const racing = mode === 'race' && Boolean(context.racing) && available;
     setText('speed', sweep || available ? whole(speed) : '—');
     setText('rpm', ev ? (available ? whole(model.powerKw) : '—') : sweep || available ? whole(rpm) : '—');
-    setText('primary', mode === 'race' ? ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—' : sweep || available ? whole(speed) : '—');
+    setText('primary', available ? ev ? whole(model.torque) : String(model.gearLabel ?? '—') : '—');
     setText('lap', racing ? lapTime(model.currentLap) : '—'); setText('best', racing ? lapTime(model.bestLap) : '—');
-    setText('power', available ? whole(model.powerKw) + (finite(model.powerKw) === null ? '' : ' kW') : '—');
+    setText('power', available ? ev ? percent(model.brakePercent) : whole(model.powerKw) + (finite(model.powerKw) === null ? '' : ' kW') : '—');
     setText('throttle', available ? percent(model.throttlePercent) : '—');
-    setText('status', available ? (ev ? 'E-DRIVE' : String(model.gearLabel ?? '—')) : '—');
-    setText('footer', racing && finite(model.rank) > 0 ? 'POSITION ' + whole(model.rank) : 'SPEED / ' + (sweep || available ? whole(speed) : '—'));
+    const ranked = racing && finite(model.rank) > 0;
+    values.footer.hidden = !ranked;
+    setText('footer', ranked ? 'POSITION ' + whole(model.rank) : '');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

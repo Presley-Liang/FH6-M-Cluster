@@ -3,7 +3,15 @@ import { createModernInstrumentBinding } from './modern-instrument-binding.js';
 // Data projection for the three European layouts, serialized with the page.
 // Each instrument owns its geometry; animation and signal freshness stay shared.
 export function createEuropeanInstrumentBinding({ element, mount }) {
+  // Register sidebar input captions before the shared binding captures labels.
+  // The main EV drive meter keeps its own throttle-input readout and scan.
+  const sideInput = element.querySelector('[data-next-value="input"]');
+  const sideInputLabel = sideInput?.parentElement?.querySelector('span');
+  if (sideInputLabel) sideInputLabel.setAttribute('data-next-label', 'input');
   const bind = createModernInstrumentBinding({ element, mount, project(values, labels, state) {
+    labels.input = state.ev ? 'BRAKE' : 'THROTTLE';
+    const input = state.ev ? state.model.brakePercent : state.model.throttlePercent;
+    values.input = state.live && typeof input === 'number' && Number.isFinite(input) ? String(Math.round(input)) : '—';
     if (state.mode !== 'freeRoam') return;
     labels.b = 'LATERAL G'; labels.bUnit = 'g';
     values.b = state.live && Number.isFinite(state.model.gX) ? state.model.gX.toFixed(2) : '—';
@@ -27,11 +35,12 @@ export function createEuropeanInstrumentBinding({ element, mount }) {
     const index = Math.min(6, Math.floor(position));
     const speed = sweep ? stops[index] + (stops[index + 1] - stops[index]) * (position - index)
       : live && finite(model.speedKmh) ? model.speedKmh : null;
-    const input = live && finite(model.throttlePercent) ? model.throttlePercent : null;
+    const driveInput = live && finite(model.throttlePercent) ? model.throttlePercent : null;
+    const input = sideInput && ev ? live && finite(model.brakePercent) ? model.brakePercent : null : driveInput;
     const drive = sweep ? ev ? clamp(context.displayOverride.rpm) * 100 : max === null ? null : clamp(context.displayOverride.rpm) * max
-      : live ? ev ? input : finite(model.rpm) ? model.rpm : null : null;
+      : live ? ev ? driveInput : finite(model.rpm) ? model.rpm : null : null;
     const fraction = sweep ? clamp(context.displayOverride.rpm)
-      : ev ? clamp((input ?? 0) / 100) : max && drive !== null ? clamp(drive / max) : 0;
+      : ev ? clamp((driveInput ?? 0) / 100) : max && drive !== null ? clamp(drive / max) : 0;
     const temperatures = live ? (model.wheels || []).map(wheel => wheel.tempC).filter(finite) : [];
     const temperature = temperatures.length ? Math.max(...temperatures) : null;
     write('drive', drive === null ? '—' : String(Math.round(drive)));
@@ -40,6 +49,6 @@ export function createEuropeanInstrumentBinding({ element, mount }) {
     write('scale', ev ? '0—100 %' : max ? '0—' + Math.round(max) + ' RPM' : sweep ? 'DISPLAY SCAN' : '— RPM');
     write('temperature', temperature === null ? '—' : String(Math.round(temperature)));
     element.dataset.sweep = String(sweep);
-    return { speed, fraction, input, temperature, sweep, live, ev };
+    return { speed, fraction, input, driveInput, temperature, sweep, live, ev };
   };
 }

@@ -68,12 +68,12 @@ export function createPanoramicEuropeInstrument({ document, mount }) {
     label('midFoot', ev || mode === 'freeRoam' ? 'DRIVE INPUT · %' : sweeping && rpmMax === null ? 'DISPLAY SCAN' : rpmMax === null ? 'RPM RANGE UNKNOWN' : 'ENGINE SCALE · RPM');
     label('rightTop', mode === 'race' ? 'CURRENT LAP' : 'THROTTLE INPUT');
     label('rightTopUnit', mode === 'race' ? 'TIME' : '%');
-    label('rightBottom', mode === 'race' ? 'BEST LAP' : ev ? 'DRIVE INPUT' : 'ENGINE SPEED');
+    label('rightBottom', mode === 'race' ? 'BEST LAP' : ev ? 'BRAKE INPUT' : 'ENGINE SPEED');
     label('rightBottomUnit', mode === 'race' ? 'TIME' : ev ? '%' : 'RPM');
-    label('floatA', mode === 'race' ? 'LATERAL G' : 'DRIVE STATE');
-    label('floatAUnit', mode === 'race' ? 'g' : '');
-    label('floatB', mode === 'race' ? ev ? 'THROTTLE INPUT' : 'ENGINE OUTPUT' : ev ? 'DRIVE OUTPUT' : 'ENGINE OUTPUT');
-    label('floatBUnit', mode === 'race' && ev ? '%' : 'kW');
+    label('floatA', 'LATERAL G');
+    label('floatAUnit', 'g');
+    label('floatB', mode === 'race' ? ev ? 'THROTTLE INPUT' : 'ENGINE OUTPUT' : ev ? 'LONG. G' : 'BRAKE INPUT');
+    label('floatBUnit', mode === 'race' ? ev ? '%' : 'kW' : ev ? 'g' : '%');
     label('foot', mode === 'race' ? 'TRACK DATA' : 'ROAD DATA');
     write('status', available ? 'TELEMETRY LIVE' : 'NO SIGNAL');
     write('speed', sweeping || available ? whole(speed) : '—');
@@ -86,9 +86,9 @@ export function createPanoramicEuropeInstrument({ document, mount }) {
       meter.style.width = (fraction * 100).toFixed(2) + '%';
     }
     write('rightTop', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? whole(model.throttlePercent) : '—');
-    write('rightBottom', mode === 'race' ? racing ? lap(model.bestLap) : '—' : ev ? available ? whole(model.throttlePercent) : '—' : sweeping || available ? whole(rpm) : '—');
-    write('floatA', mode === 'race' ? available ? decimal(model.gX) : '—' : available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : '—');
-    write('floatB', available ? whole(mode === 'race' && ev ? model.throttlePercent : model.powerKw) : '—');
+    write('rightBottom', mode === 'race' ? racing ? lap(model.bestLap) : '—' : ev ? available ? whole(model.brakePercent) : '—' : sweeping || available ? whole(rpm) : '—');
+    write('floatA', available ? decimal(model.gX) : '—');
+    write('floatB', available ? mode === 'race' ? whole(ev ? model.throttlePercent : model.powerKw) : ev ? decimal(model.gZ) : whole(model.brakePercent) : '—');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

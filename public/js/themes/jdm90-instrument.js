@@ -23,7 +23,7 @@ export function createJdm90Instrument({ document, mount }) {
           <div class="jdm90-readout jdm90-thermal"><span>TYRE / MAX</span><strong data-jdm-value="tyre">—</strong><small>°C</small></div>
         </div>
         <div class="jdm90-free-data">
-          <div class="jdm90-readout jdm90-readout-primary"><span>POWER OUTPUT</span><strong data-jdm-value="freePower">—</strong><small>kW</small></div>
+          <div class="jdm90-readout jdm90-readout-primary"><span data-jdm-label="freeOutput">POWER OUTPUT</span><strong data-jdm-value="freePower">—</strong><small data-jdm-label="freeOutputUnit">kW</small></div>
           <div class="jdm90-readout jdm90-fuel"><span>FUEL RAW</span><strong data-jdm-value="fuel">—</strong><small>raw</small></div>
           <div class="jdm90-free-track"><span data-jdm-label="response">ENGINE RESPONSE</span><i data-jdm-bar="throttle"></i></div>
         </div>
@@ -49,8 +49,8 @@ export function createJdm90Instrument({ document, mount }) {
       <div class="jdm90-right">
         <div class="jdm90-mode-flag"><i></i><span data-jdm-label="mode">RACE SPEC</span><small>1995—2002</small></div>
         <div class="jdm90-speed-window"><span>VELOCITY</span><strong data-jdm-value="speed">—</strong><small>km/h</small><i class="jdm90-speed-stripe"></i></div>
-        <div class="jdm90-right-details jdm90-race-data"><div><span>POWER</span><strong data-jdm-value="racePower">—</strong><small>kW</small></div><div class="jdm90-boost"><span>BOOST</span><strong data-jdm-value="boost">—</strong><small>RAW</small></div></div>
-        <div class="jdm90-right-details jdm90-free-data"><div><span>THROTTLE</span><strong data-jdm-value="throttle">—</strong><small>%</small></div><div><span>DRIVE</span><strong data-jdm-value="drive">—</strong></div></div>
+        <div class="jdm90-right-details jdm90-race-data"><div><span data-jdm-label="raceOutput">POWER</span><strong data-jdm-value="racePower">—</strong><small data-jdm-label="raceOutputUnit">kW</small></div><div class="jdm90-boost"><span>BOOST</span><strong data-jdm-value="boost">—</strong><small>RAW</small></div></div>
+        <div class="jdm90-right-details jdm90-free-data"><div><span>THROTTLE</span><strong data-jdm-value="throttle">—</strong><small>%</small></div><div><span>BRAKE</span><strong data-jdm-value="drive">—</strong><small>%</small></div></div>
       </div>
       <div class="jdm90-status"><span><i class="jdm90-status-lamp"></i><b data-jdm-label="signal">NO SIGNAL</b></span><span>TYPE 02 <i>///</i> FUNCTION FIRST</span></div>
     </div>`;
@@ -184,6 +184,10 @@ export function createJdm90Instrument({ document, mount }) {
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.rpm.textContent = ev ? 'POWER / kW' : 'ENGINE / r/min';
     labels.response.textContent = ev ? 'DRIVE RESPONSE' : 'ENGINE RESPONSE';
+    labels.raceOutput.textContent = ev ? 'TORQUE' : 'POWER';
+    labels.raceOutputUnit.textContent = ev ? 'Nm' : 'kW';
+    labels.freeOutput.textContent = ev ? 'DRIVE TORQUE' : 'POWER OUTPUT';
+    labels.freeOutputUnit.textContent = ev ? 'Nm' : 'kW';
     dial.setAttribute('aria-label', ev ? 'Electric power readout' : 'Engine revolutions');
     drawRpmScale(rpmMax, ev);
 
@@ -221,14 +225,14 @@ export function createJdm90Instrument({ document, mount }) {
     write('rank', race && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
     const temperatures = Array.isArray(model.wheels) ? model.wheels.map(wheel => finite(wheel?.tempC)).filter(value => value !== null) : [];
     write('tyre', available && temperatures.length ? whole(Math.max(...temperatures)) : '—');
-    write('racePower', available ? decimal(model.powerKw, 0) : '—');
+    write('racePower', available ? decimal(ev ? model.torque : model.powerKw, 0) : '—');
     write('boost', available ? decimal(model.boostRaw, 2) : '—');
-    write('freePower', available ? decimal(model.powerKw, 0) : '—');
+    write('freePower', available ? decimal(ev ? model.torque : model.powerKw, 0) : '—');
     const fuel = finite(model.fuelRaw);
     write('fuel', available && fuel !== null ? decimal(fuel, 2) : '—');
     const throttle = available ? finite(model.throttlePercent) : null;
     write('throttle', whole(throttle));
-    write('drive', available ? String(model.gearLabel ?? '—') : '—');
+    write('drive', available ? whole(model.brakePercent) : '—');
     bar.style.transform = 'scaleX(' + (throttle === null ? 0 : clamp(throttle / 100)).toFixed(3) + ')';
   }
 

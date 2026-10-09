@@ -70,14 +70,14 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     label('centerFoot', mode === 'race' ? 'PERFORMANCE / RACE' : 'DRIVE / FREE');
     label('sideMain', ev ? 'DRIVE OUTPUT' : 'SELECTED GEAR');
     label('sideUnit', ev ? 'kW' : 'DRIVE');
-    label('sideSecond', mode === 'race' ? 'CURRENT LAP' : ev ? 'DRIVE INPUT' : 'ENGINE OUTPUT');
-    label('sideSecondUnit', mode === 'race' ? 'TIME' : ev ? '%' : 'kW');
-    label('foot1', mode === 'race' ? 'LATERAL G' : 'THROTTLE INPUT');
+    label('sideSecond', mode === 'race' ? 'CURRENT LAP' : ev ? 'SELECTED GEAR' : 'ENGINE OUTPUT');
+    label('sideSecondUnit', mode === 'race' ? 'TIME' : ev ? '' : 'kW');
+    label('foot1', mode === 'race' ? 'LATERAL G' : ev ? 'BRAKE INPUT' : 'THROTTLE INPUT');
     label('foot1Unit', mode === 'race' ? 'g' : '%');
-    label('foot2', mode === 'race' ? 'BEST LAP' : ev ? 'DRIVE OUTPUT' : 'ENGINE OUTPUT');
-    label('foot2Unit', mode === 'race' ? 'TIME' : 'kW');
-    label('foot3', mode === 'race' ? ev ? 'THROTTLE INPUT' : 'ENGINE OUTPUT' : 'DRIVE STATE');
-    label('foot3Unit', mode === 'race' ? ev ? '%' : 'kW' : '');
+    label('foot2', mode === 'race' ? 'BEST LAP' : ev ? 'LATERAL G' : 'BRAKE INPUT');
+    label('foot2Unit', mode === 'race' ? 'TIME' : ev ? 'g' : '%');
+    label('foot3', mode === 'race' ? ev ? 'BRAKE INPUT' : 'ENGINE OUTPUT' : ev ? 'LONG. G' : 'LATERAL G');
+    label('foot3Unit', mode === 'race' ? ev ? '%' : 'kW' : 'g');
     label('bottom', mode === 'race' ? 'TRACK INFORMATION' : 'DRIVE INFORMATION');
     write('status', available ? 'TELEMETRY LIVE' : 'NO SIGNAL');
     write('speed', sweeping || available ? whole(speed) : '—');
@@ -89,10 +89,10 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     write('drive', ev ? sweeping ? whole(clamp(override.rpm) * 100) : available ? whole(model.throttlePercent) : '—' : sweeping || available ? whole(rpm) : '—');
     write('sideMain', available ? ev ? whole(model.powerKw) : String(model.gearLabel ?? '—') : '—');
     const racing = mode === 'race' && Boolean(context.racing) && available;
-    write('sideSecond', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? ev ? whole(model.throttlePercent) : whole(model.powerKw) : '—');
-    write('foot1', mode === 'race' ? available ? decimal(model.gX) : '—' : available ? whole(model.throttlePercent) : '—');
-    write('foot2', mode === 'race' ? racing ? lap(model.bestLap) : '—' : available ? whole(model.powerKw) : '—');
-    write('foot3', mode === 'race' ? available ? whole(ev ? model.throttlePercent : model.powerKw) : '—' : available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : '—');
+    write('sideSecond', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? ev ? String(model.gearLabel ?? '—') : whole(model.powerKw) : '—');
+    write('foot1', mode === 'race' ? available ? decimal(model.gX) : '—' : available ? whole(ev ? model.brakePercent : model.throttlePercent) : '—');
+    write('foot2', mode === 'race' ? racing ? lap(model.bestLap) : '—' : available ? ev ? decimal(model.gX) : whole(model.brakePercent) : '—');
+    write('foot3', mode === 'race' ? available ? whole(ev ? model.brakePercent : model.powerKw) : '—' : available ? decimal(ev ? model.gZ : model.gX) : '—');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

@@ -147,12 +147,12 @@ export function createEarly911EuropeInstrument({ document, mount }) {
     if (priorMode !== mode) {
       priorMode = mode;
       label('program', mode === 'race' ? 'RACE PROGRAM' : 'TOURING PROGRAM');
-      label('outerLeft', mode === 'race' ? 'CURRENT LAP' : 'POWER');
-      label('outerLeftFoot', mode === 'race' ? 'TIMING / S' : 'OUTPUT / kW');
       label('outerRight', mode === 'race' ? 'POSITION' : 'BOOST');
     }
     label('signal', available ? 'TELEMETRY LIVE' : 'NO SIGNAL');
     label('driveTitle', ev ? 'ELECTRIC POWER' : '1/min · ×1000');
+    label('outerLeft', mode === 'race' ? 'CURRENT LAP' : ev ? 'TORQUE' : 'POWER');
+    label('outerLeftFoot', mode === 'race' ? 'TIMING / S' : ev ? 'OUTPUT / Nm' : 'OUTPUT / kW');
     drawRpmScale(scale, ev);
     updateRedline(model, context, scale, ev);
     const speedTarget = available ? finite(model.speedKmh) : null;
@@ -179,7 +179,7 @@ export function createEarly911EuropeInstrument({ document, mount }) {
       write('outerRight', racing && finite(model.rank) > 0 ? 'P' + integer(model.rank) : '—');
       label('outerRightFoot', 'BEST LAP · ' + (racing ? time(model.bestLap) : '—'));
     } else {
-      write('outerLeft', available ? integer(model.powerKw) : '—');
+      write('outerLeft', available ? integer(ev ? model.torque : model.powerKw) : '—');
       write('outerRight', available ? decimal(model.boostRaw, 2) : '—');
       label('outerRightFoot', 'RAW · FUEL ' + (available ? decimal(model.fuelRaw, 2) : '—'));
     }

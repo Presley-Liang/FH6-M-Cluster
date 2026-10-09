@@ -104,14 +104,14 @@ export function createFordGtAmericaInstrument({ document, mount }) {
     label('primaryUnit', mode === 'race' ? ev ? 'kW' : 'SELECTED' : 'KM/H');
     label('secondary', mode === 'race' ? 'ROAD SPEED' : ev ? 'DRIVE POWER' : 'GEAR');
     label('secondaryUnit', mode === 'race' ? 'KM/H' : ev ? 'kW' : 'SELECTED');
-    label('side', mode === 'race' ? ev ? 'DRIVE OUTPUT' : 'ENGINE OUTPUT' : 'THROTTLE');
-    label('sideUnit', mode === 'race' ? 'kW' : '%');
-    label('detail1', mode === 'race' ? 'CURRENT LAP' : ev ? 'DRIVE OUTPUT' : 'ENGINE OUTPUT');
-    label('detail1Unit', mode === 'race' ? 'TIME' : 'kW');
-    label('detail2', mode === 'race' ? 'BEST LAP' : 'THROTTLE INPUT');
-    label('detail2Unit', mode === 'race' ? 'TIME' : '%');
-    label('detail3', mode === 'race' ? 'G / Y AXIS' : 'DRIVE STATE');
-    label('detail3Unit', mode === 'race' ? 'g' : 'GEAR');
+    label('side', mode === 'race' ? ev ? 'TORQUE' : 'ENGINE OUTPUT' : ev ? 'BRAKE INPUT' : 'THROTTLE');
+    label('sideUnit', mode === 'race' ? ev ? 'Nm' : 'kW' : '%');
+    label('detail1', mode === 'race' ? 'CURRENT LAP' : ev ? 'TORQUE' : 'ENGINE OUTPUT');
+    label('detail1Unit', mode === 'race' ? 'TIME' : ev ? 'Nm' : 'kW');
+    label('detail2', mode === 'race' ? 'BEST LAP' : ev ? 'G / X AXIS' : 'BRAKE INPUT');
+    label('detail2Unit', mode === 'race' ? 'TIME' : ev ? 'g' : '%');
+    label('detail3', mode === 'race' || ev ? 'G / Y AXIS' : 'TORQUE');
+    label('detail3Unit', mode === 'race' || ev ? 'g' : 'Nm');
     label('footer', mode === 'race' ? 'TRACK CONFIGURATION' : 'ROAD CONFIGURATION');
     write('status', available ? 'TELEMETRY LIVE' : 'NO SIGNAL');
     if (priorScale !== max || priorEv !== ev) {
@@ -127,11 +127,11 @@ export function createFordGtAmericaInstrument({ document, mount }) {
     write('rpm', ev ? sweeping ? whole(clamp(override.rpm) * 100) : available ? whole(model.throttlePercent) : '—' : sweeping || available ? whole(rpm) : '—');
     write('primary', mode === 'race' ? ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—' : sweeping || available ? whole(speed) : '—');
     write('secondary', mode === 'race' ? sweeping || available ? whole(speed) : '—' : ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—');
-    write('side', mode === 'race' ? available ? whole(model.powerKw) : '—' : available ? whole(model.throttlePercent) : '—');
+    write('side', available ? mode === 'race' ? whole(ev ? model.torque : model.powerKw) : whole(ev ? model.brakePercent : model.throttlePercent) : '—');
     const racing = mode === 'race' && Boolean(context.racing) && available;
-    write('detail1', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? whole(model.powerKw) : '—');
-    write('detail2', mode === 'race' ? racing ? lap(model.bestLap) : '—' : available ? whole(model.throttlePercent) : '—');
-    write('detail3', mode === 'race' ? available ? decimal(model.gY) : '—' : available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : '—');
+    write('detail1', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? whole(ev ? model.torque : model.powerKw) : '—');
+    write('detail2', mode === 'race' ? racing ? lap(model.bestLap) : '—' : available ? ev ? decimal(model.gX) : whole(model.brakePercent) : '—');
+    write('detail3', available ? mode === 'race' || ev ? decimal(model.gY) : whole(model.torque) : '—');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

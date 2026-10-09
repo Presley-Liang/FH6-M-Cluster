@@ -23,7 +23,7 @@ export function createAe86JapanInstrument({ document, mount }) {
             <path class="ae86-needle" data-ae86-needle="speed" d="M197 209 L200 69 L203 209 Z"/>
             <circle class="ae86-hub" cx="200" cy="200" r="14"/><circle class="ae86-hub-pin" cx="200" cy="200" r="4"/>
           </svg><div class="ae86-dial-word"><span>SPEED</span><strong data-ae86-value="speed">—</strong><small>km/h</small></div></div>
-          <div class="ae86-dial-foot"><span>ROAD SPEED</span><b class="ae86-free-emphasis" data-ae86-value="freeSpeed">—</b><small>km/h</small></div>
+          <div class="ae86-dial-foot"><span>BRAKE INPUT</span><b class="ae86-free-emphasis" data-ae86-value="brake">—</b><small>%</small></div>
         </div>
         <div class="ae86-middle">
           <div class="ae86-gear"><span>GEAR</span><strong data-ae86-value="gear">—</strong></div>
@@ -40,10 +40,10 @@ export function createAe86JapanInstrument({ document, mount }) {
             <path class="ae86-needle" data-ae86-needle="rpm" d="M197 209 L200 69 L203 209 Z"/>
             <circle class="ae86-hub" cx="200" cy="200" r="14"/><circle class="ae86-hub-pin" cx="200" cy="200" r="4"/>
           </svg><div class="ae86-dial-word"><span data-ae86-label="rpmTitle">RPM</span><strong data-ae86-value="rpm">—</strong><small data-ae86-label="rpmUnit">r/min</small></div></div>
-          <div class="ae86-dial-foot"><span data-ae86-label="rpmFoot">ENGINE SPEED</span><b class="ae86-race-emphasis" data-ae86-value="raceRpm">—</b><small data-ae86-label="rpmFootUnit">r/min</small></div>
+          <div class="ae86-dial-foot"><span>TORQUE</span><b class="ae86-race-emphasis" data-ae86-value="torque">—</b><small>Nm</small></div>
         </div>
       </div>
-      <div class="ae86-bottom-rail"><span><i class="ae86-signal-lamp"></i><b data-ae86-label="signal">NO SIGNAL</b></span><div class="ae86-free-data"><span>POWER</span><b data-ae86-value="freePower">—</b><small>kW</small></div><div class="ae86-race-data"><span>POWER</span><b data-ae86-value="racePower">—</b><small>kW</small></div><span>MECHANICAL SERIES / JP</span></div>
+      <div class="ae86-bottom-rail"><span><i class="ae86-signal-lamp"></i><b data-ae86-label="signal">NO SIGNAL</b></span><div class="ae86-power-info"><span>POWER</span><b data-ae86-value="power">—</b><small>kW</small></div><span>MECHANICAL SERIES / JP</span></div>
     </div>`;
   const modeIdentity = document.createElement('div');
   modeIdentity.className = 'ae86-mode-identity';
@@ -156,8 +156,6 @@ export function createAe86JapanInstrument({ document, mount }) {
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.rpmTitle.textContent = ev ? 'POWER' : 'RPM';
     labels.rpmUnit.textContent = ev ? 'kW' : 'r/min';
-    labels.rpmFoot.textContent = ev ? 'OUTPUT POWER' : 'ENGINE SPEED';
-    labels.rpmFootUnit.textContent = ev ? 'kW' : 'r/min';
     rpmDial.setAttribute('aria-label', ev ? 'Electric power' : 'Engine revolutions');
     drawRpmScale(scale, ev);
     const speedTarget = available ? finite(model.speedKmh) : null;
@@ -178,16 +176,15 @@ export function createAe86JapanInstrument({ document, mount }) {
     lamps.forEach((lamp, index) => { lamp.dataset.lit = String(index < lit); });
 
     write('speed', sweep || available ? whole(speed) : '—');
-    write('freeSpeed', available ? whole(speed) : '—');
+    write('brake', available ? whole(model.brakePercent) : '—');
     write('rpm', ev ? available ? whole(model.powerKw) : '—' : sweep || available ? whole(rpm) : '—');
-    write('raceRpm', ev ? available ? whole(model.powerKw) : '—' : sweep || available ? whole(rpm) : '—');
+    write('torque', available ? whole(model.torque) : '—');
     write('gear', available && !ev ? String(model.gearLabel ?? '—') : '—');
     const racing = mode === 'race' && Boolean(context.racing) && available;
     write('lap', racing ? lapTime(model.currentLap) : '—');
     write('best', racing ? lapTime(model.bestLap) : '—');
     write('throttle', available ? whole(model.throttlePercent) : '—');
-    write('freePower', available ? whole(model.powerKw) : '—');
-    write('racePower', available ? whole(model.powerKw) : '—');
+    write('power', available ? whole(model.powerKw) : '—');
   }
   rotate('speed', 0);
   rotate('rpm', 0);

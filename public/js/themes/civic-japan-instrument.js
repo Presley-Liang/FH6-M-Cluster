@@ -27,7 +27,24 @@ export function createCivicJapanInstrument({ document, mount }) {
       tick.setAttribute('text-anchor', index === 0 ? 'start' : index === scaleTicks.length - 1 ? 'end' : 'middle');
     });
   }
-  const bind=createModernInstrumentBinding({element,mount});
+  const bind=createModernInstrumentBinding({element,mount,project(values,labels,state){
+    // The EV ribbon measures driver input; the main readout keeps actual power.
+    if(state.ev){
+      labels.drive='DRIVE INPUT';labels.driveUnit='%';
+      const scan=state.context.displayOverride;
+      values.drive=Number.isFinite(scan?.speed)&&Number.isFinite(scan?.rpm)?String(Math.round(Math.max(0,Math.min(1,scan.rpm))*100)):values.input;
+    }
+    if(state.mode!=='freeRoam')return;
+    if(state.ev){
+      labels.a='TORQUE';labels.aUnit='Nm';
+      values.a=state.live&&Number.isFinite(state.model.torque)?String(Math.round(state.model.torque)):'—';
+      labels.b='BRAKE';labels.bUnit='%';
+      values.b=state.live&&Number.isFinite(state.model.brakePercent)?String(Math.round(state.model.brakePercent)):'—';
+    }else{
+      labels.d='BRAKE';labels.dUnit='%';
+      values.d=state.live&&Number.isFinite(state.model.brakePercent)?String(Math.round(state.model.brakePercent)):'—';
+    }
+  }});
   const gDot=element.querySelector('.ctr-g-field i');const lamps=Array.from(element.querySelectorAll('.ctr-shift-lights i'));
   return {element, update(model={},context={}){bind(model,context);const valid=!Boolean(context.stale??model.stale)&&Number.isFinite(model.gX)&&Number.isFinite(model.gZ);gDot.style.opacity=valid?'1':'0';const ratio=!Boolean(context.stale??model.stale)&&element.dataset.powertrain!=='ev'&&Number.isFinite(model.rpmRatio)?model.rpmRatio:0;lamps.forEach((lamp,i)=>{const level=Math.min(i,7-i);lamp.dataset.lit=String(ratio>=.72+level*.07);});if(valid)gDot.style.transform='translate('+Math.max(-1,Math.min(1,model.gX/2))*3+'cqw,'+Math.max(-1,Math.min(1,model.gZ/2))*-3+'cqw)';}, destroy(){element.remove();identity.remove();}};
 }

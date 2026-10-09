@@ -25,7 +25,7 @@ export function createRx8JapanInstrument({ document, mount }) {
             <div class="rx8-side-caption"><span>FUEL / RAW</span><strong data-rx8-value="fuel">—</strong></div>
           </div>
           <div class="rx8-side-foot rx8-race-data"><span>BEST LAP</span><strong data-rx8-value="best">—</strong></div>
-          <div class="rx8-side-foot rx8-free-data"><span>POWER OUTPUT</span><strong data-rx8-value="power">—</strong><small>kW</small></div>
+          <div class="rx8-side-foot rx8-free-data"><span data-rx8-label="freeOutput">POWER OUTPUT</span><strong data-rx8-value="power">—</strong><small data-rx8-label="freeOutputUnit">kW</small></div>
         </div>
         <div class="rx8-center">
           <div class="rx8-shift" aria-hidden="true"><span>SHIFT</span><div class="rx8-shift-lamps"></div></div>
@@ -44,7 +44,6 @@ export function createRx8JapanInstrument({ document, mount }) {
             <div class="rx8-speed-window"><span>DIGITAL SPEED</span><div><strong data-rx8-value="speed">—</strong><small>km/h</small></div></div>
           </div>
           <div class="rx8-center-foot rx8-race-data"><span>CURRENT LAP</span><strong data-rx8-value="lap">—</strong><small data-rx8-value="rank">—</small></div>
-          <div class="rx8-center-foot rx8-free-data"><span>ROAD SPEED</span><strong data-rx8-value="freeSpeed">—</strong><small>km/h</small></div>
         </div>
         <div class="rx8-side rx8-side-right">
           <div class="rx8-side-bezel">
@@ -56,7 +55,7 @@ export function createRx8JapanInstrument({ document, mount }) {
             <div class="rx8-side-caption"><span>THROTTLE</span><strong data-rx8-value="throttle">—</strong><small>%</small></div>
           </div>
           <div class="rx8-side-foot rx8-race-data"><span>BOOST / RAW</span><strong data-rx8-value="boost">—</strong></div>
-          <div class="rx8-side-foot rx8-free-data"><span>DRIVE</span><strong data-rx8-value="drive">—</strong></div>
+          <div class="rx8-side-foot rx8-free-data"><span>BRAKE INPUT</span><strong data-rx8-value="brake">—</strong><small>%</small></div>
         </div>
       </div>
       <div class="rx8-status"><span><i></i><b data-rx8-label="signal">NO SIGNAL</b></span><span>INSTRUMENT SYSTEM / 2003</span></div>
@@ -203,7 +202,7 @@ export function createRx8JapanInstrument({ document, mount }) {
     }
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.drive.textContent = ev ? 'POWER / kW' : '×1000 r/min';
-    fuelCaption.textContent = ev ? 'POWER / kW' : 'FUEL / RAW';
+    fuelCaption.textContent = ev ? 'TORQUE / Nm' : 'FUEL / RAW';
     tachSvg.setAttribute('aria-label', ev ? 'Electric power readout' : 'Engine revolutions');
     drawRpmScale(scale, ev);
     updateRedline(model, context, scale, ev);
@@ -243,18 +242,19 @@ export function createRx8JapanInstrument({ document, mount }) {
     lamps.forEach((lamp, index) => { lamp.dataset.lit = String(index < lit); });
 
     write('speed', sweep || available ? whole(speed) : '—');
-    write('freeSpeed', available ? whole(speed) : '—');
     write('rpm', ev ? (available ? whole(model.powerKw) : '—') : sweep || available ? whole(rpm) : '—');
     write('gear', available && !ev ? String(model.gearLabel ?? '—') : '—');
-    write('fuel', ev ? available ? whole(model.powerKw) : '—' : fuelRaw === null ? '—' : decimal(fuelRaw, 2));
+    write('fuel', ev ? available ? whole(model.torque) : '—' : fuelRaw === null ? '—' : decimal(fuelRaw, 2));
     write('throttle', whole(throttle));
     const racing = mode === 'race' && Boolean(context.racing) && available;
     write('lap', racing ? time(model.currentLap) : '—');
     write('best', racing ? time(model.bestLap) : '—');
     write('rank', racing && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
     write('boost', available ? decimal(model.boostRaw, 2) : '—');
-    write('power', available ? whole(model.powerKw) : '—');
-    write('drive', ev ? 'E-DRIVE' : available ? String(model.gearLabel ?? '—') : '—');
+    labels.freeOutput.textContent = ev ? 'LATERAL G' : 'POWER OUTPUT';
+    labels.freeOutputUnit.textContent = ev ? 'g' : 'kW';
+    write('power', available ? ev ? decimal(model.gX, 2) : whole(model.powerKw) : '—');
+    write('brake', available ? whole(model.brakePercent) : '—');
   }
 
   return { element, update, destroy() { element.remove(); modeIdentity.remove(); } };

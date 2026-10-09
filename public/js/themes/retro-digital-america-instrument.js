@@ -26,7 +26,7 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
         <div class="rda-lower-row">
           <div class="rda-mode-plate"><span data-rda-label="program">RACE PROGRAM</span><strong data-rda-label="mode">RACE</strong><i></i></div>
           <div class="rda-race-data"><div class="rda-lower-cell"><span>CURRENT LAP</span><strong data-rda-value="lap">—</strong></div><div class="rda-lower-cell"><span>POSITION</span><strong data-rda-value="rank">—</strong></div></div>
-          <div class="rda-free-data"><div class="rda-lower-cell"><span>POWER OUTPUT</span><strong data-rda-value="power">—</strong><small>kW</small></div><div class="rda-lower-cell"><span>THROTTLE</span><strong data-rda-value="throttle">—</strong><small>%</small></div><div class="rda-lower-cell"><span>FUEL / RAW</span><strong data-rda-value="fuel">—</strong></div></div>
+          <div class="rda-free-data"><div class="rda-lower-cell"><span data-rda-label="output">POWER OUTPUT</span><strong data-rda-value="power">—</strong><small data-rda-label="output-unit">kW</small></div><div class="rda-lower-cell"><span>THROTTLE</span><strong data-rda-value="throttle">—</strong><small>%</small></div><div class="rda-lower-cell"><span>FUEL / RAW</span><strong data-rda-value="fuel">—</strong></div></div>
         </div>
         <div class="rda-bottom-legend"><span>VFD DIGITAL SYSTEM</span><span>1986 • 1994</span><span>UNIT 03</span></div>
       </div>
@@ -90,6 +90,8 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.rpm.textContent = ev ? 'POWER OUTPUT' : 'ENGINE RPM';
     labels['rpm-unit'].textContent = ev ? 'kW' : 'r/min';
+    labels.output.textContent = ev ? 'DRIVE TORQUE' : 'POWER OUTPUT';
+    labels['output-unit'].textContent = ev ? 'Nm' : 'kW';
 
     const overrideFraction = finite(override?.rpm);
     const segmentFraction = ev ? null : overrideFraction !== null ? clamp(overrideFraction) : available ? rpmFraction : null;
@@ -120,7 +122,7 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     const racing = available && mode === 'race' && Boolean(context.racing);
     write('lap', racing ? lapTime(model.currentLap) : '—');
     write('rank', racing && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
-    write('power', available ? decimal(model.powerKw, 0) : '—');
+    write('power', available ? decimal(ev ? model.torque : model.powerKw, 0) : '—');
     write('throttle', available ? whole(model.throttlePercent) : '—');
     write('fuel', available ? decimal(model.fuelRaw, 2) : '—');
   }
