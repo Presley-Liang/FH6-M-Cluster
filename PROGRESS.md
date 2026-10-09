@@ -12,7 +12,7 @@
 - [x] 已自动验证：[四套布局32组](docs/previews/all-instruments/pr6-oem-layout-followup-2026-10-09.json)零读数裁切／刻度碰撞／表框出界，圆表宽高差为0；保存375／1440px合成预览供审阅。
 - [x] 已自动验证：[全主题字号与原生缩放](docs/previews/all-instruments/fonts-escalade-followup-2026-10-09.json)包含396组CSS窗口、792组原生Chrome缩放、1188组EV扫描及48组Escalade路径几何。最终结果以报告源码摘要为准；桌面原欧装饰小字边界保留披露。
 - [x] 已自动验证：[全主题接管复验](docs/previews/all-instruments/pr6-followup-handoff-2026-10-09.json)99条换车／双向模式链路和10条EV／陈旧边界；底层Store持续更新，未代替实机验收。
-- 交付目标仍为[PR #6](https://github.com/Presley-Liang/FH6-M-Cluster/pull/6)，本轮补修待推送复审；未合并。
+- 本轮补修`ad11790`已推送至[PR #6](https://github.com/Presley-Liang/FH6-M-Cluster/pull/6)，待云端复审；未合并。
 - [ ] 原厂精细外观：本轮依据已定位的官方结构资料纠偏，未成功逐像素查看原厂照片，不宣称完全复刻。Crown官方修复项目含1955／1957混合件，年代精细几何仍待核对；其他候选保真项继续保留。
 - [ ] 用户已明确将实机验证放后面。文档整体收尾与新版Windows成品EXE本轮不实施。
 
