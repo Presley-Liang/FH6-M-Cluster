@@ -1552,10 +1552,11 @@ export function getDefaultHTML() {
       if (connectionGeneration === serverConnectionGeneration && instanceEpoch === serverInstanceEpoch) applyServerState(data);
     });
   }
-  fetchModeState().catch(function(error) { console.error('Initial mode sync failed:', error); });
-
   // ── Hook minimap into SSE ─────────────────────────────────────────
   connectSSE();
+  // Capture the active connection generation even if SSE never opens. The
+  // independent HTTP sync must remain usable when the event stream is blocked.
+  fetchModeState().catch(function(error) { console.error('Initial mode sync failed:', error); });
 
   function handleSSEMessage(e) {
     try { telemetryStore.publish(JSON.parse(e.data)); }

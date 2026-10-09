@@ -4,7 +4,39 @@
 /* A single recessed green driver-information tunnel, not a wall of numeric tiles. */
 .deville-instrument{--heritage-ink:#85d49b;--heritage-muted:#80a18c;--heritage-accent:#a1e8a7}.deville-instrument[data-mode="freeRoam"]{--heritage-accent:#92e8b2}
 .deville-dashboard{position:absolute;inset:0;background:linear-gradient(#463a32,#241d18 40%,#34291f)}.deville-tunnel{position:absolute;inset:15% 6% 12%;border-radius:7cqw 7cqw 2cqw 2cqw;background:linear-gradient(150deg,#58524b,#1b241e 8%,#030e0a 23%,#092218 77%,#172c23 92%,#706857);border:2px solid #596357;box-shadow:0 1cqw 3cqw #0009}
-.deville-tunnel header{position:absolute;top:10%;left:8%;right:8%}.deville-line{position:absolute;top:28%;left:8%;font-size:max(8px,.85cqw);letter-spacing:.15em}.deville-speed-window{position:absolute;inset:39% 39% 28% 8%;display:flex;align-items:center;gap:3cqw}.deville-speed-window .heritage-speed strong{font-size:max(24px,9cqw)}.deville-speed-window .heritage-gear{flex-direction:column;gap:0;border-left:1px solid #48634c;padding-left:2cqw}.deville-speed-window .heritage-gear b{font-size:max(18px,3.3cqw)}
-.deville-upper{position:absolute;inset:31% 8% 35% 68%;padding-left:2cqw;border-left:1px solid #3a624b}.deville-upper .heritage-track{height:1.5cqw;box-shadow:0 0 1cqw #7cdc8877}.deville-upper .heritage-drive-values b{font-size:max(18px,3.8cqw)}
-.deville-bottom{position:absolute;inset:78% 8% 5%;display:grid;grid-template-columns:1fr 18%;gap:3cqw;border-top:1px solid #3b674f;padding-top:.7cqw}.deville-bottom .heritage-info b{font-size:max(18px,2.5cqw)}.deville-bottom .heritage-temp b{font-size:max(18px,2.4cqw)}
-@media(max-width:759px){.deville-tunnel{inset:18% 2% 11%;border-radius:9cqw 9cqw 3cqw 3cqw}.deville-tunnel header{left:6%;right:6%;top:11%}.deville-line{left:6%;top:30%;font-size:8px;letter-spacing:.05em}.deville-speed-window{left:6%;right:36%;gap:2cqw}.deville-speed-window .heritage-speed strong{font-size:45px}.deville-speed-window .heritage-speed small{font-size:8px}.deville-upper{left:69%;right:5%;padding-left:2cqw;top:34%}.deville-upper .heritage-drive-values b{font-size:22px}.deville-upper .heritage-drive-values small{font-size:8px}.deville-upper .heritage-drive>span{font-size:8px}.deville-bottom{left:6%;right:6%;grid-template-columns:1fr 17%;gap:3cqw}.deville-bottom .heritage-info b,.deville-bottom .heritage-temp b{font-size:15px}.deville-bottom .heritage-temp span{font-size:8px}.deville-speed-window .heritage-gear b{font-size:22px}}
+/* GM 1999 DeVille digital cluster: speed in the center, gear beneath. */
+.deville-tunnel header{position:absolute;top:8%;left:6%;right:6%}
+.deville-line{position:absolute;top:22%;left:0;right:0;text-align:center;font-size:max(8px,.75cqw);letter-spacing:.08em}
+.deville-speed-window{position:absolute;inset:30% 28% 12%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqw}
+.deville-speed-window .heritage-speed{display:flex;flex-direction:column;align-items:center;gap:.2cqw}
+.deville-speed-window .heritage-speed strong{font-size:max(36px,10cqw);line-height:1}
+.deville-speed-window .heritage-speed small{font-size:max(8px,.8cqw)}
+.deville-speed-window .heritage-gear{display:flex;flex-direction:row;align-items:center;gap:1cqw;border:0;padding:.5cqw 1cqw;border-top:1px solid #3a624b}
+.deville-speed-window .heritage-gear span{font-size:max(8px,.75cqw)}
+.deville-speed-window .heritage-gear b{font-size:max(18px,2.5cqw)}
+.deville-upper{position:absolute;inset:32% 5% 13% 74%;border-left:1px solid #3a624b;padding-left:1cqw}
+.deville-upper .heritage-track{height:.7cqw;box-shadow:0 0 .5cqw #7cdc8844}
+.deville-upper .heritage-drive>span{font-size:max(8px,.7cqw)}
+.deville-upper .heritage-drive-values b{font-size:max(16px,2.6cqw)}
+.deville-bottom{display:contents}
+.deville-bottom .heritage-info{position:absolute;inset:33% 76% 13% 5%;display:flex;flex-direction:column;justify-content:center;gap:1.6cqw;border-right:1px solid #3a624b;padding-right:1cqw}
+.deville-bottom .heritage-info div{min-width:0;display:flex;flex-direction:column;gap:.3cqw}
+.deville-bottom .heritage-info span,.deville-bottom .heritage-info small{font-size:max(8px,.7cqw);letter-spacing:.02em;white-space:normal}
+.deville-bottom .heritage-info b{font-size:max(12px,1.8cqw);white-space:nowrap}
+.deville-bottom .heritage-temp{position:absolute;right:5%;bottom:14%;width:20%;display:flex;align-items:baseline;justify-content:center;gap:.4cqw}
+.deville-bottom .heritage-temp span{font-size:max(8px,.65cqw)}
+.deville-bottom .heritage-temp b{font-size:max(12px,1.5cqw)}
+@media(max-width:759px){
+ .deville-tunnel{inset:18% 2% 11%;border-radius:9cqw 9cqw 3cqw 3cqw}
+ .deville-tunnel header{top:9%;left:5%;right:5%}
+ .deville-line{top:25%;font-size:8px;letter-spacing:0}
+ .deville-speed-window{inset:32% 26% 10%}
+ .deville-speed-window .heritage-speed strong{font-size:45px}
+ .deville-speed-window .heritage-gear b{font-size:20px}
+ .deville-upper{inset:38% 3% 20% 74%;padding-left:4px}
+ .deville-upper .heritage-drive-values b{font-size:17px}
+ .deville-bottom .heritage-info{inset:37% 76% 12% 3%;padding-right:4px;gap:8px}
+ .deville-bottom .heritage-info b{font-size:11px}
+ .deville-bottom .heritage-temp{right:3%;width:23%;bottom:12%;gap:2px}
+ .deville-bottom .heritage-temp span{font-size:8px}
+}

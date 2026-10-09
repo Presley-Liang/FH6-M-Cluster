@@ -123,6 +123,17 @@ with sync_playwright() as p:
     controls[0].fulfill(content_type='application/json',body=json.dumps(dict(receiverInstanceId='receiver-B',version=4,modeControl='auto',driveMode='freeRoam')))
     third.wait_for_function('()=>!policyRequestInFlight&&!modeRequestInFlight');assert third.evaluate("clientModeControl==='auto'&&clientDriveMode==='freeRoam'&&queuedControlMode===null")
     report['checks']['R11_R24_followup']={'unseenOldGetCannotRetireCurrentReceiver':True,'confirmedStateSurvivesHttpFailure':True,'lastAutoChoiceSerializedAfterPendingRace':True}
+    # Initial HTTP state must apply even when EventSource cannot open.
+    blocked=browser.new_page(reduced_motion='reduce')
+    blocked.on('pageerror',lambda e:errors.append(str(e)))
+    blocked.route('**/events',lambda r:r.abort())
+    blocked.route('**/mode',lambda r:r.fulfill(content_type='application/json',body=json.dumps(dict(receiverInstanceId='http-only',version=0,modeControl='manual',driveMode='freeRoam'))))
+    blocked.goto(URL,wait_until='domcontentloaded')
+    blocked.wait_for_function("()=>clientModeControl==='manual'&&clientDriveMode==='freeRoam'")
+    assert blocked.locator('#control-manual-btn').evaluate("n=>n.classList.contains('is-active')")
+    assert blocked.locator('#mode-freeroam-btn').evaluate("n=>n.classList.contains('seg-active')")
+    report['checks']['PR6_initial_HTTP_without_SSE']={'mode':'freeRoam','policy':'manual','visibleButtonsMatch':True}
+    blocked.close()
     report['errors']=errors;assert not errors,errors
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

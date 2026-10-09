@@ -19,3 +19,11 @@
 /* Reference correction: black glass and a numbered tach beside the speed. */
 .esc-dashboard{background:linear-gradient(#17191b,#07090a)}.esc-slab{background:linear-gradient(155deg,#7e8385,#1b1e20 12%,#060708 75%,#4a4e50);padding:.35cqw}.esc-black-glass{background:linear-gradient(110deg,#090c10,#11171c 75%,#090d12);grid-template-columns:40% 38% 22%}.esc-driver-panel{display:grid;grid-template-columns:52% 48%;grid-template-rows:20% 24% 26% 18% 12%;padding:2cqw 1.1cqw;align-items:center}.esc-speed{grid-column:1;grid-row:1/5}.esc-speed strong{font-size:max(24px,6.5cqw)}.esc-driver-line{grid-column:2;grid-row:4;font-size:max(8px,.7cqw);gap:.4cqw;display:flex;justify-content:center;flex-wrap:wrap}.esc-drive-scale{grid-column:2;grid-row:2;display:flex;justify-content:space-between;font-size:max(8px,.68cqw);color:#d1d8dd}.esc-drive-track{grid-column:2;grid-row:3;width:100%;height:100%;background:none;margin:0;overflow:visible}.esc-drive-track path{fill:none;stroke:#39434d;stroke-width:2}.esc-drive-track .esc-drive-fill{stroke:var(--esc-accent);stroke-dasharray:0 100;stroke-width:3}.esc-scale-label{grid-column:2;grid-row:5;font-size:max(8px,.62cqw);text-align:center}.esc-instrument{--esc-accent:#cad7df}.esc-lower-dash{background:linear-gradient(#151717,#07090a)}
 @media(max-width:759px){.esc-driver-panel{padding:2cqw 1.3cqw;grid-template-columns:53% 47%}.esc-speed strong{font-size:max(24px,12cqw)}.esc-drive-scale{font-size:8px}.esc-scale-label{font-size:8px}.esc-driver-line{gap:1px}.esc-driver-line b{font-size:8px}.esc-driver-line span{font-size:8px}}
+/* The numbered scale and reveal stroke now share one calibrated SVG path. */
+.esc-drive-track{grid-row:2/4;min-height:0;overflow:visible}
+.esc-drive-scale{display:block;font:600 15px 'Bahnschrift',sans-serif;fill:#d1d8dd}
+.esc-drive-scale line{stroke:#a8b7c2;stroke-width:1.4}
+@media(max-width:759px){
+  .esc-drive-scale{font-size:46px}
+  .esc-drive-scale :is(text,line):not([data-esc-narrow]){visibility:hidden}
+}

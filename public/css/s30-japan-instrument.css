@@ -1,4 +1,4 @@
-/* S30 inspired driver binnacle plus three stacked center gauges. */
+/* S30 driver binnacle and horizontal upper-dashboard triple instruments. */
 #cluster:not([data-theme-id="y1960_1975.japan"]) :is(.s30-instrument,.s30-mode-identity){display:none}
 #cluster[data-theme-id="y1960_1975.japan"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
 #cluster[data-theme-id="y1960_1975.japan"] .cluster-stage{background:#0a0d0a!important;border:1px solid #6969548a;box-shadow:0 0 0 5px #090b08,0 28px 76px #000d;overflow:hidden}
@@ -45,7 +45,22 @@
 #cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument :is(.s30-main,.s30-aux-pod){animation:s30-relight .66s cubic-bezier(.22,.61,.36,1) both}
 @keyframes s30-relight{from{filter:brightness(.07)}to{filter:brightness(1)}}
 /* The narrow preview keeps a taller stage; size the two dials from its width. */
+.s30-layout{grid-template-columns:64% 34%}
+.s30-main{max-width:49%;height:auto;width:49%}
+.s30-aux{border-left:0;border-radius:2cqw 2cqw .5cqw .5cqw}
+.s30-aux-stack{flex:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4cqw;padding:1cqw .5cqw}
+.s30-aux-pod{width:100%;max-height:none;min-width:0}
+.s30-aux-pod span{font-size:max(8px,.55cqw);white-space:normal}
+.s30-aux-pod strong{font-size:max(10px,1cqw);max-width:90%}
+.s30-aux-foot{height:auto;margin-top:2cqw}
+.s30-aux::after{content:'';display:block;height:8cqw;margin:2cqw 1.5cqw;background:repeating-linear-gradient(0deg,#070a07 0 .55cqw,#3d4638 .6cqw .8cqw);border:1px solid #555e48;border-radius:.4cqw;box-shadow:inset 0 0 1cqw #000}
 @media(max-width:759px){
+  #cluster[data-theme-id="y1960_1975.japan"] .s30-layout{display:flex;flex-direction:column;gap:2%;inset:13% 4% 11%}
+  #cluster[data-theme-id="y1960_1975.japan"] .s30-aux{order:-1;height:29%;flex:none;display:block;background:none;border:0;box-shadow:none}
+  #cluster[data-theme-id="y1960_1975.japan"] .s30-aux-heading,.s30-aux-foot,.s30-aux::after{display:none}
+  #cluster[data-theme-id="y1960_1975.japan"] .s30-aux-stack{height:100%;padding:0;display:flex;flex-direction:row;gap:2%;justify-content:center}
+  #cluster[data-theme-id="y1960_1975.japan"] .s30-aux-pod{height:100%;width:auto;max-height:none;aspect-ratio:1}
+  #cluster[data-theme-id="y1960_1975.japan"] .s30-driver{height:69%}
   #cluster[data-theme-id="y1960_1975.japan"] .s30-main-pair{gap:2%}
   #cluster[data-theme-id="y1960_1975.japan"] .s30-main{flex:0 0 49%;width:49%;height:auto}
 }

@@ -9,11 +9,19 @@ const responsive = css('instrument-responsive.css');
 test('responsive adaptations load after theme styles and keep legacy changes in narrow-window rules', () => {
   const html = getDefaultHTML();
   assert.ok(html.lastIndexOf('/styles/instrument-responsive.css') > html.lastIndexOf('/styles/vehicle-info-card.css'));
-  const narrow = responsive.indexOf('@media (max-width:759px)');
+  const narrow = responsive.indexOf('@media (min-width:760px) and (max-width:1099px)');
   assert.ok(narrow > 0);
   assert.doesNotMatch(responsive.slice(0, narrow), /y2015_2019\.europe|\.instrument-shell|\.center-window|\.fixed-info/);
   assert.match(responsive.slice(narrow), /y2015_2019\.europe.*aux-scale/);
   assert.doesNotMatch(responsive, /\.instrument-shell\s*\{|\.center-window\s*\{|\.fixed-info\s*\{/);
+});
+
+test('SVG text floors use calibrated viewBox units and keep BOOST below RPM in small windows', () => {
+  assert.match(responsive, /\.boost-status\s*\{[^}]*font-size:40px/);
+  assert.match(responsive, /\.boost-module\s*\{[^}]*translateY\(50px\)/);
+  assert.match(responsive, /\.gauge-ticks text\s*\{[^}]*font-size:38px/);
+  assert.match(responsive, /\.ba-tick-number\s*\{[^}]*font-size:54px/);
+  assert.match(responsive, /\.pri-instrument \.pri-screens header small/);
 });
 
 test('AE86 keeps a bounded circular bezel and clears the bottom tick labels on narrow screens', () => {

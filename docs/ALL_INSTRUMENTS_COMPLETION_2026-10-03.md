@@ -4,7 +4,21 @@
 
 按用户要求，本地重点审查空间和动画，其余完整代码审阅交由 PR。独立画面接入、原厂外观核实、真实游戏和用户验收分别记录。
 
-## 最后八套与来源状态
+## 2026-10-09 参考结构补修
+
+以下为结构依据，未宣称原厂照片的像素、材质与座舱比例已全部验收：
+
+| 主题 | 实际取得的依据 | 本轮改动／边界 |
+|---|---|---|
+| LFA | [Lexus官方INSTRUMENTATION说明](https://media.lexus.co.uk/lexus-lfa/)：中央可移动环、四个侧小表、启动向两侧展开 | 中央移动环与左右四表；模式移动为应用适配；无真实油压／水温时使用游戏字段 |
+| S30 | [日产设计师说明](https://www.nissan-global.com/EN/STORIES/RELEASES/the-essence-of-z-ness-4/)：仪表台上方三表 | 三联改为上方横排；窄窗三联排在主表上方；主指针数学未改 |
+| AA | [Toyota UK实车说明](https://www.toyota.co.uk/discover-toyota/stories-news-events/where-it-all-began-aa)：深木纹、中央小镀铬表组 | 改中央小表组；RPM／挡位／圈时是游戏适配，不当成AA原车配置 |
+| 1999 DeVille | [GM官方手册](https://assets.gm.com/manuals/cadillac/1999_cadillac_deville_owners.pdf)印刷2-64，检索取得数字仪表图的结构转写 | 中央数字速度、下挡位和两侧信息；未下载原厂图作资产 |
+| Crown | [官方修复项目年式说明](https://toyotatimes.jp/en/series/crown_restoration/005_1.html)、[博物馆1955 RS照片报道](https://web.motormagazine.co.jp/_ct/17226421)已定位 | 官方修复车含1955／1957混合件；图片像素未成功查看，候选精细几何保持未验收 |
+
+[四套32组几何检查与八张合成预览](previews/all-instruments/pr6-oem-layout-followup-2026-10-09.json)核对读数、圆表宽高和表框边界；本地生成截图已目视复核，不等于原车图目视对照。远程图片浏览仍受工具超时／显示限制，未绕过拦截或复制第三方图片资产。
+
+## 最后八套与来源状态（2026-10-03历史；以上补修优先）
 
 | 编号 | 独立构图 | 实物核实状态 |
 |---|---|---|

@@ -8,6 +8,33 @@
 .ev-startup-scan { top:0; bottom:auto; line-height:1; }
 .ev-startup-scan>div { letter-spacing:.06em; }
 .ev-startup-scan>i { height:2px; margin-top:3px; }
+.pri-instrument :is(span,small) { font-size:max(8.2px,.7cqw); }
+.pri-instrument .pri-screens header small,.pri-instrument .pri-meter-number small { font-size:max(8.2px,.7cqw); }
+.ae86-dial-word :is(span,small),.ae86-dial-foot :is(span,small) { font-size:max(9px,.64cqw); }
+.ctr-tach-ticks text { font-size:18px; }
+.jdm90-gear-box small { font-size:max(12px,.64cqw); }
+.jdm90-center-readout>span { font-size:max(10px,.68cqw); }
+.early911-instrument[data-mode="freeRoam"] .e911-tube-three span { font-size:max(9px,.7cqw); }
+.rx8-instrument[data-mode="freeRoam"] :is(.rx8-main-bezel,.rx8-side-bezel) :is(span,small) { font-size:max(9px,.6cqw); }
+
+@media (min-width:760px) and (max-width:1099px) {
+  .well-drive-dial .heritage-ticks text { font-size:30px; }
+  .well-drive-dial .heritage-ticks text:nth-of-type(even):not(:last-of-type) { visibility:hidden; }
+  .camaro-dial .heritage-ticks text { font-size:24px; }
+  .camaro-dial .heritage-ticks text:nth-of-type(even):not(:last-of-type) { visibility:hidden; }
+  .e911-tick-label { font-size:26px; }
+  .e911-speed-ticks text:nth-of-type(even):not(:last-of-type) { visibility:hidden; }
+  .ba-tick-number { font-size:32px; }
+  .fgt-tach-labels text { font-size:30px; }
+  .ctr-tach-ticks text { font-size:34px; }
+  .ctr-tach-ticks text:nth-of-type(even):not(:last-of-type) { visibility:hidden; }
+  .esc-drive-scale { font-size:30px; }
+  .esc-drive-scale :is(text,line):not([data-esc-narrow]) { visibility:hidden; }
+  #cluster[data-theme-id="y2015_2019.europe"] :is(.aux-scale,.aux-caption,.mode-dial-label) { display:none; }
+  #cluster[data-theme-id="y2015_2019.europe"] :is(.unit,.aux-value) { font-size:20px; }
+  #cluster[data-theme-id="y2015_2019.europe"] .boost-label { display:none; }
+  #cluster[data-theme-id="y2015_2019.europe"] .boost-status { font-size:20px; }
+}
 
 @media (max-width:759px) {
   /* Remove repeat captions before increasing the retained driver data. */
@@ -134,7 +161,7 @@
   .r8-columns span { font-size:8px; letter-spacing:0; }
   .r8-columns b { font-size:11px; }
 
-  .lfa-body { grid-template-columns:minmax(0,42%) minmax(0,1fr); }
+  .lfa-body { grid-template-columns:minmax(0,23%) minmax(0,48%) minmax(0,23%);gap:3%; }
   .lfa-ring-content { inset:27% 20% 15%; }
   .lfa-ring-content>small { font-size:9px; letter-spacing:0; }
   .lfa-ring-content>strong { font-size:25px; }
@@ -143,7 +170,11 @@
   .lfa-metric small { font-size:8px; letter-spacing:0; white-space:normal; }
   .lfa-metric strong { font-size:12px; }
   .lfa-metric em { font-size:8px; }
-  .lfa-side { grid-template-columns:2px minmax(0,1fr) minmax(0,1fr); gap:2px 4px; padding:5px; }
+  .lfa-side { grid-template-columns:minmax(0,1fr);gap:5px;padding:0; }
+  .early911-instrument[data-mode="freeRoam"] .e911-tube-three span { font-size:9px; }
+  .rx8-instrument[data-mode="freeRoam"] .rx8-speed-window small,
+  .rx8-instrument[data-mode="freeRoam"] .rx8-side-bezel span { font-size:9px; }
+  #cluster[data-theme-id="y2015_2019.europe"] .fixed-info small { font-size:8px; }
   .tay-side strong { font-size:18px; }
   .tay-side-secondary strong { font-size:12px; letter-spacing:-.02em; }
   .fgt-tach-caption em,.pan-mid-heading small { font-size:8px; }
@@ -204,12 +235,15 @@
   .ae86-dial-number { font-size:35px; }
   .s30-tick-label { font-size:34px; }
   .e911-tick-label { font-size:28px; }
-  .ba-tick-number { font-size:46px; }
+  .ba-tick-number { font-size:54px; }
+  .ba-tick-number:nth-of-type(even) { visibility:hidden; }
+  .crown-dial .heritage-ticks text { font-size:20px; }
+  /* A small perspective transform reduces apparent size below the CSS size. */
   .jdm90-tick-label { font-size:46px; }
   .rx8-tach-number { font-size:38px; }
   .well-drive-dial .heritage-ticks text { font-size:32px; }
   .camaro-dial .heritage-ticks text { font-size:44px; }
-  .aa-dial .heritage-ticks text { font-size:20px; }
+  .aa-dial .heritage-ticks text { font-size:24px; }
   .mul-ticks text { font-size:20px; }
   .camaro-left .heritage-ticks text { font-size:32px; }
   .camaro-right .heritage-ticks text:not(:first-of-type):not(:nth-of-type(3)):not(:nth-of-type(5)):not(:last-of-type) { visibility:hidden; }
@@ -237,11 +271,11 @@
 
   /* Preserve the established cockpit while making its narrow-window data read. */
   #cluster[data-theme-id="y2015_2019.europe"] :is(.aux-scale,.aux-caption,.mode-dial-label) { display:none; }
-  #cluster[data-theme-id="y2015_2019.europe"] .gauge-ticks text { font-size:36px; }
-  #cluster[data-theme-id="y2015_2019.europe"] :is(.unit,.aux-value) { font-size:36px; letter-spacing:0; }
+  #cluster[data-theme-id="y2015_2019.europe"] .gauge-ticks text { font-size:38px; }
+  #cluster[data-theme-id="y2015_2019.europe"] :is(.unit,.aux-value) { font-size:38px; letter-spacing:0; }
   #cluster[data-theme-id="y2015_2019.europe"] .unit:not(.speed-unit) { transform:translateY(20px); }
   #cluster[data-theme-id="y2015_2019.europe"] .rpm-value { font-size:40px; }
-  #cluster[data-theme-id="y2015_2019.europe"] .boost-module { transform:translateY(16px); }
+  #cluster[data-theme-id="y2015_2019.europe"] .boost-module { transform:translateY(50px); }
   #cluster[data-theme-id="y2015_2019.europe"] .boost-label { display:none; }
-  #cluster[data-theme-id="y2015_2019.europe"] .boost-status { font-size:28px; transform:translateX(-20px); text-anchor:middle; letter-spacing:0; }
+  #cluster[data-theme-id="y2015_2019.europe"] .boost-status { font-size:40px; transform:translateX(-20px); text-anchor:middle; letter-spacing:0; }
 }

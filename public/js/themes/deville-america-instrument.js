@@ -1,6 +1,7 @@
 import { createHeritageInstrument, createHeritageDial } from './heritage-instrument-binding.js';
 
-// Independent era layout. OEM photo verification remains in the reference log.
+// Central digital speed / lower gear topology from the 1999 GM owner's manual,
+// printed page 2-64. Side fields use available game data rather than fake fuel/HVAC.
 export function createDevilleAmericaInstrument({ document, mount }) {
   return createHeritageInstrument({ document, mount, className: 'deville', label: 'AMERICA / 95—02 instrument', markup: `<div class="deville-dashboard">
     <div class="deville-tunnel next-body">
