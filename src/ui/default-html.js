@@ -1372,6 +1372,19 @@ export function getDefaultHTML() {
       if (clientModeControl === 'auto') desiredDriveMode = data.driveMode;
       applyMode(data.driveMode);
     }
+    // State broadcasts can close/restart a session without another UDP packet.
+    // Missing sessionId is a partial control response, not a close boundary.
+    if (Object.prototype.hasOwnProperty.call(data, 'sessionId')) {
+      var nextStateSessionId = data.sessionId == null ? null : data.sessionId;
+      if (nextStateSessionId !== mapSessionId) {
+        mapSessionId = nextStateSessionId;
+        liveTrail = []; frameCount = 0; prevRaceOn = false;
+        if (mapCtx && mapCtx.canvas.getClientRects().length && getComputedStyle(mapCtx.canvas).display !== 'none') _drawMapBg();
+      }
+      var boundarySample = { driveMode: clientDriveMode, sessionId: nextStateSessionId, routeSampleAvailable: false };
+      if (routeUI) routeUI.update(boundarySample);
+      if (leafletMap) leafletMap.update(boundarySample, { mode: clientDriveMode, sessionId: nextStateSessionId });
+    }
     if (typeof data.freeRoamRecording === 'boolean') applyRecordingState(data.freeRoamRecording);
     var info = document.getElementById('session-info');
     if (data.storageError || data.error) {

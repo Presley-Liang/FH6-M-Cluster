@@ -1,5 +1,5 @@
 import { formatTime } from './export.js';
-import { EventDetector } from './event-detector.js';
+import { EventDetector, EVENT_DETECTOR_DEFAULTS } from './event-detector.js';
 import { createVehicleStateController } from '../../public/js/vehicle-state-controller.js';
 import { BoostStateTracker } from '../telemetry/boost-state.js';
 import { randomUUID } from 'node:crypto';
@@ -27,6 +27,7 @@ export class SessionRuntime {
     this.modeControl = this.autoDriveMode ? 'auto' : 'manual';
     this.autoModeInitialized = false;
     this.awaitingInitialRaceConfirmation = false;
+    this.initialFreeEvidenceSince = null;
     this.appliedEventVersion = 0;
     this.modeSource = 'startup';
     this.freeRoamRecording = false;
@@ -147,6 +148,7 @@ export class SessionRuntime {
       this.autoDriveMode = true;
       this.autoModeInitialized = true;
       this.awaitingInitialRaceConfirmation = false;
+      this.initialFreeEvidenceSince = null;
       this.appliedEventVersion = this.detected.eventVersion;
       await this.transitionMode(this.detected.activity, 'auto');
     } else {
@@ -178,6 +180,7 @@ export class SessionRuntime {
         if (this.detected.pendingActivity === 'race') {
           this.autoModeInitialized = true;
           this.awaitingInitialRaceConfirmation = true;
+          this.initialFreeEvidenceSince = null;
         }
         else if (this.detected.pendingActivity === null) {
           this.autoModeInitialized = true;
@@ -188,7 +191,22 @@ export class SessionRuntime {
         // frame between the first Race packets reconcile back to that default.
         if (this.detected.activity === 'race') {
           this.awaitingInitialRaceConfirmation = false;
+          this.initialFreeEvidenceSince = null;
           this.appliedEventVersion = this.detected.eventVersion;
+        } else if (this.detected.evidence?.freeRoamEvidence && this.detected.evidence?.vehicleTelemetryReady) {
+          // Startup Race evidence may be cancelled before the detector ever
+          // confirms Race. Only a sustained, real vehicle stream can release
+          // this protection; neutral/unknown pause frames cannot do so.
+          if (this.initialFreeEvidenceSince === null) this.initialFreeEvidenceSince = now;
+          const exitMs = this.eventDetector.config?.exitMs ?? EVENT_DETECTOR_DEFAULTS.exitMs;
+          if (now - this.initialFreeEvidenceSince >= exitMs) {
+            this.awaitingInitialRaceConfirmation = false;
+            this.initialFreeEvidenceSince = null;
+            this.appliedEventVersion = this.detected.eventVersion;
+            autoTarget = 'freeRoam';
+          }
+        } else {
+          this.initialFreeEvidenceSince = null;
         }
       } else if (this.detected.pendingActivity === null) {
         // Reconcile the settled detector state on every packet. Event versions

@@ -7,11 +7,11 @@ import { SessionStore } from '../src/session/store.js';
 import { SessionRuntime, effectiveTimeline } from '../src/session/runtime.js';
 import { EventDetector } from '../src/session/event-detector.js';
 
-async function setup(t) {
+async function setup(t, options = {}) {
   const directory = await mkdtemp(resolve(tmpdir(), 'fh6-runtime-test-'));
   const store = new SessionStore(directory);
   await store.init();
-  const runtime = new SessionRuntime(store);
+  const runtime = new SessionRuntime(store, options);
   t.after(() => runtime.shutdown());
   return { store, runtime };
 }
@@ -160,6 +160,52 @@ test('AUTO: a one-frame race evidence dropout does not inherit startup Free Roam
   const resumed = runtime.process(packet({ currentRaceTime: 40 }), 34);
   assert.equal(resumed.driveMode, 'race');
   assert.equal(resumed.sessionId, first.sessionId);
+});
+
+test('AUTO: cancelled startup Race confirmation releases only after sustained real Free Roam evidence', async t => {
+  const { runtime, store } = await setup(t, { autoDriveMode: true });
+  const first = runtime.process(packet({ engineMaxRpm: 8000 }), 0);
+  const roaming = packet({ engineMaxRpm: 8000, racePosition: 0, currentLap: 0, currentRaceTime: 0 });
+  assert.equal(runtime.process(roaming, 100).driveMode, 'race');
+  assert.equal(runtime.process({ ...roaming }, 1299).driveMode, 'race');
+  const confirmed = runtime.process({ ...roaming }, 1300);
+  assert.equal(confirmed.driveMode, 'freeRoam');
+  assert.equal(confirmed.sessionId, null);
+  assert.equal(runtime.awaitingInitialRaceConfirmation, false);
+  assert.equal(runtime.state().modeSource, 'auto');
+  await Promise.allSettled([...runtime.saves]);
+  const archive = await store.read(first.sessionId);
+  assert.equal(archive.closeReason, 'activity-change');
+  assert.equal(archive.packets.length, 1);
+});
+
+test('AUTO: startup pause and rewind remain protected until Race actually confirms', async t => {
+  const { runtime } = await setup(t, { autoDriveMode: true });
+  const first = runtime.process(packet({ engineMaxRpm: 8000 }), 0);
+  const neutral = packet({ isRaceOn: 0, carOrdinal: 0, engineMaxRpm: 0,
+    racePosition: 0, currentLap: 0, currentRaceTime: 5 });
+  assert.equal(runtime.process(neutral, 17).driveMode, 'race');
+  assert.equal(runtime.process({ ...neutral, currentRaceTime: 4 }, 1500).driveMode, 'race');
+  const resumed = runtime.process(packet({ engineMaxRpm: 8000, currentRaceTime: 4 }), 1517);
+  assert.equal(resumed.sessionId, first.sessionId);
+  assert.equal(resumed.driveMode, 'race');
+  const confirmed = runtime.process(packet({ engineMaxRpm: 8000, currentRaceTime: 4.5 }), 2017);
+  assert.equal(confirmed.driveMode, 'race');
+  assert.equal(confirmed.detectedActivity, 'race');
+  assert.equal(runtime.awaitingInitialRaceConfirmation, false);
+});
+
+test('AUTO: unknown startup frames interrupt Free evidence rather than completing its exit debounce', async t => {
+  const { runtime } = await setup(t, { autoDriveMode: true });
+  runtime.process(packet({ engineMaxRpm: 8000 }), 0);
+  const roaming = packet({ engineMaxRpm: 8000, racePosition: 0, currentLap: 0, currentRaceTime: 0 });
+  runtime.process(roaming, 100);
+  runtime.process({ ...roaming }, 1000);
+  assert.equal(runtime.process({ ...roaming, carOrdinal: 0, engineMaxRpm: 0, positionX: 0, positionZ: 0 }, 1100).driveMode, 'race');
+  assert.equal(runtime.initialFreeEvidenceSince, null);
+  runtime.process({ ...roaming }, 1200);
+  assert.equal(runtime.process({ ...roaming }, 2399).driveMode, 'race');
+  assert.equal(runtime.process({ ...roaming }, 2400).driveMode, 'freeRoam');
 });
 
 test('P8: runtime publishes fail-closed live route identity without coupling it to recording', async t => {

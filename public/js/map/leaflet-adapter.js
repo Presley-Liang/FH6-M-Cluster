@@ -207,6 +207,7 @@ export function createLeafletAdapter(element, L, projectWorld, options = {}) {
     mode = nextMode;
     contextKey = null;
     clearTrail();
+    track?.clear?.();
     clearRouteOverlay();
     camera?.setMode(mode);
     return true;
