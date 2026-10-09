@@ -1,0 +1,408 @@
+{
+  "generatedAt": "2026-10-08T13:36:53.805Z",
+  "scope": "Synthetic direct SessionRuntime/controller simulation with a JSON-snapshot in-memory store; no UDP, HTTP, browser or real FH6 capture; production code unchanged.",
+  "assumptions": "Default confirmFrames=4, confirmMs=150; old car A is stable before B. Candidate B is sustained at 60Hz. Race samples deliberately retain race eligibility; Free samples have manual recording enabled.",
+  "source": [
+    "src/session/runtime.js:200-207",
+    "src/session/runtime.js:210-242",
+    "public/js/vehicle-state-controller.js:25-30",
+    "public/js/race-feedback-controller.js:4-19"
+  ],
+  "conclusion": "Until ordinal B confirms at +150ms, eligible candidate packets are appended to the A session. Race-ineligible menu packets are not appended; Manual Free recording also appends menu samples. All input telemetry remains processed. The first synthetic race candidate can also compare B rank with A rank and emit feedback under A session.",
+  "limitations": "This proves the code path under stated fields, not that a real FH6 car switch produces sustained race-eligible B samples. The raw packet preserves its B ordinal; archive session metadata remains A. Product policy must decide whether these transition samples belong in a mixed raw archive or a separate boundary segment.",
+  "cases": [
+    {
+      "name": "race-eligible-continuous-candidate",
+      "mode": "race",
+      "recording": false,
+      "oldSessionId": 1,
+      "rawPacketCount": 17,
+      "processedPacketCount": 17,
+      "confirmationAt": 650,
+      "rows": [
+        {
+          "at": 500,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            1
+          ],
+          "feedbackEvents": [
+            {
+              "id": "1:position:5",
+              "type": "position-loss",
+              "tone": "caution",
+              "rank": 8,
+              "delta": -6
+            }
+          ]
+        },
+        {
+          "at": 633.333333,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            1
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 650,
+          "carOrdinal": 2002,
+          "sessionId": 2,
+          "vehicleStatus": "locked",
+          "vehicleChanged": true,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            2
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 683.333333,
+          "carOrdinal": 2002,
+          "sessionId": 2,
+          "vehicleStatus": "locked",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            2
+          ],
+          "feedbackEvents": []
+        }
+      ],
+      "archives": [
+        {
+          "sessionId": 1,
+          "carOrdinal": 1001,
+          "closeReason": "car-change",
+          "packetCount": 14,
+          "packetOrdinalCounts": {
+            "1001": 5,
+            "2002": 9
+          },
+          "foreignPackets": [
+            {
+              "timestampMs": 500,
+              "carOrdinal": 2002,
+              "sessionId": 1,
+              "isRaceOn": 1,
+              "racePosition": 8
+            },
+            {
+              "timestampMs": 633.333333,
+              "carOrdinal": 2002,
+              "sessionId": 1,
+              "isRaceOn": 1,
+              "racePosition": 8
+            }
+          ],
+          "foreignPacketCount": 9
+        },
+        {
+          "sessionId": 2,
+          "carOrdinal": 2002,
+          "closeReason": "shutdown",
+          "packetCount": 3,
+          "packetOrdinalCounts": {
+            "2002": 3
+          },
+          "foreignPackets": [],
+          "foreignPacketCount": 0
+        }
+      ],
+      "candidateSummary": {
+        "packetCount": 12,
+        "priorToConfirmationCount": 9,
+        "allPriorToConfirmationHaveOldSessionId": true,
+        "priorToConfirmationArchivedUnderOldSessionCount": 9
+      }
+    },
+    {
+      "name": "race-ineligible-menu-candidate",
+      "mode": "race",
+      "recording": false,
+      "oldSessionId": 1,
+      "rawPacketCount": 17,
+      "processedPacketCount": 17,
+      "confirmationAt": 650,
+      "rows": [
+        {
+          "at": 500,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [],
+          "feedbackEvents": []
+        },
+        {
+          "at": 633.333333,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [],
+          "feedbackEvents": []
+        },
+        {
+          "at": 650,
+          "carOrdinal": 2002,
+          "sessionId": null,
+          "vehicleStatus": "locked",
+          "vehicleChanged": true,
+          "timelineBreak": null,
+          "archivedSessionIds": [],
+          "feedbackEvents": []
+        },
+        {
+          "at": 683.333333,
+          "carOrdinal": 2002,
+          "sessionId": null,
+          "vehicleStatus": "locked",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [],
+          "feedbackEvents": []
+        }
+      ],
+      "archives": [
+        {
+          "sessionId": 1,
+          "carOrdinal": 1001,
+          "closeReason": "car-change",
+          "packetCount": 5,
+          "packetOrdinalCounts": {
+            "1001": 5
+          },
+          "foreignPackets": [],
+          "foreignPacketCount": 0
+        }
+      ],
+      "candidateSummary": {
+        "packetCount": 12,
+        "priorToConfirmationCount": 9,
+        "allPriorToConfirmationHaveOldSessionId": true,
+        "priorToConfirmationArchivedUnderOldSessionCount": 0
+      }
+    },
+    {
+      "name": "free-recording-continuous-candidate",
+      "mode": "freeRoam",
+      "recording": true,
+      "oldSessionId": 1,
+      "rawPacketCount": 17,
+      "processedPacketCount": 17,
+      "confirmationAt": 650,
+      "rows": [
+        {
+          "at": 500,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            1
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 633.333333,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            1
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 650,
+          "carOrdinal": 2002,
+          "sessionId": 2,
+          "vehicleStatus": "locked",
+          "vehicleChanged": true,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            2
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 683.333333,
+          "carOrdinal": 2002,
+          "sessionId": 2,
+          "vehicleStatus": "locked",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            2
+          ],
+          "feedbackEvents": []
+        }
+      ],
+      "archives": [
+        {
+          "sessionId": 1,
+          "carOrdinal": 1001,
+          "closeReason": "car-change",
+          "packetCount": 14,
+          "packetOrdinalCounts": {
+            "1001": 5,
+            "2002": 9
+          },
+          "foreignPackets": [
+            {
+              "timestampMs": 500,
+              "carOrdinal": 2002,
+              "sessionId": 1,
+              "isRaceOn": 1,
+              "racePosition": 0
+            },
+            {
+              "timestampMs": 633.333333,
+              "carOrdinal": 2002,
+              "sessionId": 1,
+              "isRaceOn": 1,
+              "racePosition": 0
+            }
+          ],
+          "foreignPacketCount": 9
+        },
+        {
+          "sessionId": 2,
+          "carOrdinal": 2002,
+          "closeReason": "shutdown",
+          "packetCount": 3,
+          "packetOrdinalCounts": {
+            "2002": 3
+          },
+          "foreignPackets": [],
+          "foreignPacketCount": 0
+        }
+      ],
+      "candidateSummary": {
+        "packetCount": 12,
+        "priorToConfirmationCount": 9,
+        "allPriorToConfirmationHaveOldSessionId": true,
+        "priorToConfirmationArchivedUnderOldSessionCount": 9
+      }
+    },
+    {
+      "name": "free-recording-menu-candidate",
+      "mode": "freeRoam",
+      "recording": true,
+      "oldSessionId": 1,
+      "rawPacketCount": 17,
+      "processedPacketCount": 17,
+      "confirmationAt": 650,
+      "rows": [
+        {
+          "at": 500,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            1
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 633.333333,
+          "carOrdinal": 2002,
+          "sessionId": 1,
+          "vehicleStatus": "changing",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            1
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 650,
+          "carOrdinal": 2002,
+          "sessionId": 2,
+          "vehicleStatus": "locked",
+          "vehicleChanged": true,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            2
+          ],
+          "feedbackEvents": []
+        },
+        {
+          "at": 683.333333,
+          "carOrdinal": 2002,
+          "sessionId": 2,
+          "vehicleStatus": "locked",
+          "vehicleChanged": false,
+          "timelineBreak": null,
+          "archivedSessionIds": [
+            2
+          ],
+          "feedbackEvents": []
+        }
+      ],
+      "archives": [
+        {
+          "sessionId": 1,
+          "carOrdinal": 1001,
+          "closeReason": "car-change",
+          "packetCount": 14,
+          "packetOrdinalCounts": {
+            "1001": 5,
+            "2002": 9
+          },
+          "foreignPackets": [
+            {
+              "timestampMs": 500,
+              "carOrdinal": 2002,
+              "sessionId": 1,
+              "isRaceOn": 0,
+              "racePosition": 0
+            },
+            {
+              "timestampMs": 633.333333,
+              "carOrdinal": 2002,
+              "sessionId": 1,
+              "isRaceOn": 0,
+              "racePosition": 0
+            }
+          ],
+          "foreignPacketCount": 9
+        },
+        {
+          "sessionId": 2,
+          "carOrdinal": 2002,
+          "closeReason": "shutdown",
+          "packetCount": 3,
+          "packetOrdinalCounts": {
+            "2002": 3
+          },
+          "foreignPackets": [],
+          "foreignPacketCount": 0
+        }
+      ],
+      "candidateSummary": {
+        "packetCount": 12,
+        "priorToConfirmationCount": 9,
+        "allPriorToConfirmationHaveOldSessionId": true,
+        "priorToConfirmationArchivedUnderOldSessionCount": 9
+      }
+    }
+  ]
+}

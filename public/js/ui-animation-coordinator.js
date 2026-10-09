@@ -67,12 +67,30 @@ export function createUIAnimationCoordinator(options = {}) {
   let latestMode = body?.dataset.driveMode || 'race';
   let applyTheme = null;
 
+  function clearFeedback() {
+    feedbackGeneration += 1;
+    if (feedbackTimer) cancelSchedule(feedbackTimer);
+    feedbackTimer = null;
+    const panel = options.feedbackElement;
+    if (panel) { panel.dataset.visible = 'false'; panel.setAttribute('aria-hidden', 'true'); }
+  }
+  function evPosition(value) {
+    if (!root) return;
+    root.dataset.evScanPosition = String(value);
+    root.style?.setProperty('--ev-scan-position', String((value + 1) / 2));
+  }
+  function electric() {
+    return ['EV', 'ELECTRIC'].includes(powertrain(latestVehicle || {})) ||
+      ['ev', 'electric'].includes(String(root?.dataset.powertrain || '').toLowerCase());
+  }
   function clear() {
     generation += 1;
     timers.forEach(cancelSchedule);
     timers = [];
     if (cancelFrame) animationFrames.forEach(cancelFrame);
     animationFrames.clear();
+    clearFeedback();
+    if (root) root.dataset.evScan = 'false';
   }
   function later(token, ms, fn) {
     timers.push(schedule(() => { if (token === generation) fn(); }, ms));
@@ -148,17 +166,23 @@ export function createUIAnimationCoordinator(options = {}) {
     activeVehicle = false;
     display?.setDisplayOverride?.(null);
     cardVisible(false);
+    if (root) root.dataset.evScan = 'false';
     const queuedMode = queuedVehicleMode;
     queuedVehicleMode = null;
     if (queuedMode && queuedMode !== latestMode) switchMode(queuedMode, applyTheme);
   }
   function sweep(token, era, startedAt = performance.now(), durationMs = SWEEP_MS) {
     const extent = sweepExtent(era);
+    const ev = electric();
+    if (root) root.dataset.evScan = String(ev);
     const step = () => {
       if (token !== generation || (root && root.dataset.ignitionPhase !== 'scan')) return;
       const t = Math.min(1, (performance.now() - startedAt) / durationMs);
       const fraction = sweepCurve(era, t) * extent;
-      display?.setDisplayOverride?.({ speed: fraction, rpm: fraction });
+      // Signed startup decoration is independent of unavailable real regen data.
+      const signed = t < .45 ? -Math.sin(Math.PI * t / .45) : sweepCurve(era, (t - .45) / .55);
+      if (ev) evPosition(signed);
+      display?.setDisplayOverride?.({ speed: fraction, rpm: ev ? Math.max(0, signed) : fraction });
       if (t < 1) nextFrame(token, step);
     };
     step();
@@ -177,8 +201,11 @@ export function createUIAnimationCoordinator(options = {}) {
       const live = readLive() || {};
       const speed = Number.isFinite(live.speed) ? Math.max(0, Math.min(1, live.speed)) : 0;
       const rpm = Number.isFinite(live.rpm) ? Math.max(0, Math.min(1, live.rpm)) : 0;
+      const rpmFrom = electric() ? 1 : from;
       if (t < 1) {
-        display?.setDisplayOverride?.({ speed: from + (speed - from) * eased, rpm: from + (rpm - from) * eased });
+        const currentRpm = rpmFrom + (rpm - rpmFrom) * eased;
+        if (electric()) evPosition(currentRpm);
+        display?.setDisplayOverride?.({ speed: from + (speed - from) * eased, rpm: currentRpm });
         nextFrame(token, step);
       } else display?.setDisplayOverride?.(null);
     };
@@ -313,7 +340,8 @@ export function createUIAnimationCoordinator(options = {}) {
     feedbackTimer=schedule(()=>{if(token===feedbackGeneration){panel.dataset.visible='false';panel.setAttribute('aria-hidden','true');}},event.type==='new-best'?2400:1700);
   }
   return {
-    switchMode, wake, feedback,
+    switchMode, wake, feedback, clearFeedback,
+    refreshMotionPreference() { if (reducedMotion() && root?.dataset.ignitionPhase !== 'live') { clear(); settle(); } },
     cancel() { clear(); activeVehicle = false; vehicleThemeApplied = false; queuedVehicleMode = null; cardVisible(false); display?.setDisplayOverride?.(null); phase('live'); },
     state: () => ({ generation, phase: root?.dataset.ignitionPhase || 'live', vehicle: latestVehicle, mode: latestMode }),
   };

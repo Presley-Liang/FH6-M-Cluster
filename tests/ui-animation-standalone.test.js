@@ -76,6 +76,55 @@ test('reduced motion settles mode and vehicle changes immediately without blacko
   assert.deepEqual(h.phases, ['live', 'live']);
 });
 
+test('R12 changing the motion preference during a sweep immediately cancels queued writes', () => {
+  let reduce = false;
+  const h = browserAnimation({ reducedMotion: () => reduce, frameCadence: 16 });
+  h.coordinator.switchMode('freeRoam', h.applyTheme);
+  h.advance(3000);
+  assert.equal(h.root.dataset.ignitionPhase, 'scan');
+  reduce = true;
+  h.coordinator.refreshMotionPreference();
+  assert.equal(h.root.dataset.ignitionPhase, 'live');
+  assert.equal(h.tasks.size, 0);
+  assert.equal(h.overrides.at(-1), null);
+  assert.equal(h.body.dataset.driveMode, 'freeRoam');
+  const count = h.overrides.length;
+  h.advance(10000);
+  assert.equal(h.overrides.length, count);
+});
+
+test('R29 EV sweep travels through regen and power without creating real negative telemetry', () => {
+  let reduce = true;
+  const h = browserAnimation({ frameCadence: 10, reducedMotion: () => reduce });
+  h.coordinator.wake({ themeEra: 'y2015_2019', metadata: { powertrainType: 'EV' } }, 'race', h.applyTheme);
+  reduce = false;
+  h.coordinator.switchMode('freeRoam', h.applyTheme);
+  h.advance(3000);
+  assert.equal(h.root.dataset.evScan, 'true');
+  assert.ok(Number(h.root.dataset.evScanPosition) < -.9);
+  assert.equal(h.overrides.at(-1).rpm, 0);
+  h.advance(3950);
+  assert.ok(Number(h.root.dataset.evScanPosition) > .95);
+  h.setLive({ speed: .4, rpm: .3 });
+  h.advance(4550);
+  assert.equal(h.root.dataset.evScan, 'false');
+  assert.equal(h.overrides.at(-1), null);
+  assert.ok(h.overrides.every(v => !v || v.rpm >= 0 && v.rpm <= 1));
+});
+
+test('R26 vehicle and mode transitions dismiss race feedback and cancel its expiry', () => {
+  const panel = { dataset: {}, setAttribute() {}, querySelector() { return { textContent: '' }; } };
+  const h = browserAnimation({ feedbackElement: panel });
+  h.coordinator.feedback({ type: 'new-best', seconds: 60 });
+  assert.equal(panel.dataset.visible, 'true');
+  h.coordinator.switchMode('freeRoam', h.applyTheme);
+  assert.equal(panel.dataset.visible, 'false');
+  h.advance(5000);
+  h.coordinator.feedback({ type: 'new-best', seconds: 59 });
+  h.coordinator.wake({ themeEra: 'y1995_2002' }, 'race', h.applyTheme);
+  assert.equal(panel.dataset.visible, 'false');
+});
+
 test('enabling reduced motion cancels an active vehicle sweep and its queued mode', () => {
   let reduce = false;
   const h = browserAnimation({ reducedMotion: () => reduce });

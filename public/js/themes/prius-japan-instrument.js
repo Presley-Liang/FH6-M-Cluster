@@ -18,7 +18,14 @@ export function createPriusJapanInstrument({ document, mount }) {
   identity.setAttribute('aria-hidden', 'true');
   identity.innerHTML = '<small>DISPLAY MODE</small><strong data-next-mode="race">RACE</strong><strong data-next-mode="freeRoam">FREE</strong>';
   mount.append(element, identity);
-  const bind = createModernInstrumentBinding({ element, mount });
+  const bind = createModernInstrumentBinding({ element, mount, project(values, labels, state) {
+    if (state.mode !== 'freeRoam') return;
+    const input = state.ev ? state.model.gX : state.model.throttlePercent;
+    labels.a = state.ev ? 'LATERAL G' : 'THROTTLE'; labels.aUnit = state.ev ? 'g' : '%';
+    values.a = state.live && Number.isFinite(input) ? state.ev ? input.toFixed(2) : String(Math.round(input)) : '—';
+    labels.b = 'TYRE MAX'; labels.bUnit = '°C';
+    values.b = state.temps.length ? String(Math.round(Math.max(...state.temps))) : '—';
+  } });
   const caption = element.querySelector('[data-pri-caption]');
   const value = element.querySelector('[data-pri-drive]');
   const unit = element.querySelector('[data-pri-unit]');
@@ -30,21 +37,11 @@ export function createPriusJapanInstrument({ document, mount }) {
     const override = context.displayOverride;
     const sweep = finite(override?.speed) && finite(override?.rpm);
     const max = finite(context.rpmGauge?.gaugeMax) && context.rpmGauge.gaugeMax > 0 ? context.rpmGauge.gaugeMax : finite(model.engineMaxRpm) && model.engineMaxRpm > 0 ? model.engineMaxRpm : null;
-    const drive = sweep ? Math.max(0, Math.min(1, override.rpm)) * (ev ? 100 : max ?? 8000) : live ? ev ? model.throttlePercent : model.rpm : null;
-    caption.textContent = ev ? 'DRIVE INPUT' : 'ENGINE SPEED';
+    const drive = sweep ? ev ? Math.max(0, Math.min(1, override.rpm)) * 100 : max === null ? null : Math.max(0, Math.min(1, override.rpm)) * max : live ? ev ? model.throttlePercent : model.rpm : null;
+    caption.textContent = ev ? 'DRIVE INPUT' : sweep && max === null ? 'DISPLAY SCAN' : 'ENGINE SPEED';
     value.textContent = finite(drive) ? String(Math.round(drive)) : '—';
     unit.textContent = ev ? '%' : 'RPM';
     element.querySelector('header small[data-next-label="driveUnit"]').textContent = ev ? '%' : '×1000 r/min';
-    if (element.dataset.mode === 'freeRoam') {
-      const temperatures = live ? (model.wheels || []).map(w => w.tempC).filter(finite) : [];
-      element.querySelector('[data-next-label="a"]').textContent = ev ? 'LATERAL G' : 'THROTTLE';
-      element.querySelector('[data-next-value="a"]').textContent = live && finite(ev ? model.gX : model.throttlePercent)
-        ? ev ? model.gX.toFixed(2) : String(Math.round(model.throttlePercent)) : '—';
-      element.querySelector('[data-next-label="aUnit"]').textContent = ev ? 'g' : '%';
-      element.querySelector('[data-next-label="b"]').textContent = 'TYRE MAX';
-      element.querySelector('[data-next-value="b"]').textContent = temperatures.length ? String(Math.round(Math.max(...temperatures))) : '—';
-      element.querySelector('[data-next-label="bUnit"]').textContent = '°C';
-    }
     element.dataset.sweep = String(sweep);
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };

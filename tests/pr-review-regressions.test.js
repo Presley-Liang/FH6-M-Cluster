@@ -93,7 +93,8 @@ test('server control updates reconcile both directions without posting a policy 
   const nodes = { 'session-info': {}, status: {} };
   const saved = [], wakes = [], controls = [];
   const context = vm.createContext({
-    serverVersion: -1, clientModeControl: 'auto', clientDriveMode: 'race', desiredDriveMode: 'race',
+    serverVersion: -1, serverInstanceId: null, serverInstanceEpoch: 0, retiredServerInstances: new Set(), policyAuthorityRevision: 0,
+    clientModeControl: 'auto', clientDriveMode: 'race', desiredDriveMode: 'race',
     manualThemeChosen: false, latestVehicleState: null,
     localStorage: { setItem: (...args) => saved.push(args) },
     document: { getElementById: id => nodes[id] },

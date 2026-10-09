@@ -39,7 +39,7 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     const lower = Math.min(speedStops.length - 2, Math.floor(index));
     return speedStops[lower] + (speedStops[lower + 1] - speedStops[lower]) * (index - lower);
   };
-  let priorMode = 'race', lastSweep = null, handoff = null, shownDrive = -1;
+  let priorMode = 'race', lastSweep = null, shownDrive = -1;
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live';
@@ -55,27 +55,17 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available && !ev ? finite(model.rpm) : null;
     if (sweeping) {
-      lastSweep = { speed: speedFromFraction(override.speed), rpm: clamp(override.rpm) * (rpmMax ?? 8000) };
-      handoff = null;
-    } else if (lastSweep) {
-      handoff = { ...lastSweep, at: Date.now() };
-      lastSweep = null;
+      lastSweep = { speed: speedFromFraction(override.speed), rpm: rpmMax === null ? null : clamp(override.rpm) * rpmMax };
     }
     let speed = sweeping ? lastSweep.speed : speedTarget;
     let rpm = sweeping ? lastSweep.rpm : rpmTarget;
-    if (!sweeping && handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - (1 - t) ** 3;
-      speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      rpm = handoff.rpm + ((rpmTarget ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     element.dataset.mode = mode;
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = available ? 'live' : 'absent';
     label('mode', mode === 'race' ? 'RACE' : 'FREE');
-    label('drive', ev ? 'DRIVE INPUT' : 'ENGINE SPEED');
-    label('driveUnit', ev ? '%' : 'RPM');
-    label('driveNote', ev ? 'ELECTRIC DRIVE' : 'POWERTRAIN');
+    label('drive', ev ? 'DRIVE INPUT' : sweeping && rpmMax === null ? 'DISPLAY SCAN' : 'ENGINE SPEED');
+    label('driveUnit', ev ? '%' : sweeping && rpmMax === null ? '' : 'RPM');
+    label('driveNote', ev ? 'ELECTRIC DRIVE' : rpmMax === null ? 'RPM RANGE UNKNOWN' : 'POWERTRAIN');
     label('speedHeading', mode === 'race' ? 'VELOCITY / TRACK' : 'ROAD SPEED');
     label('centerFoot', mode === 'race' ? 'PERFORMANCE / RACE' : 'DRIVE / FREE');
     label('sideMain', ev ? 'DRIVE OUTPUT' : 'SELECTED GEAR');
@@ -91,7 +81,7 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     label('bottom', mode === 'race' ? 'TRACK INFORMATION' : 'DRIVE INFORMATION');
     write('status', available ? 'TELEMETRY LIVE' : 'NO SIGNAL');
     write('speed', sweeping || available ? whole(speed) : '—');
-    const driveFraction = ev ? sweeping ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0 : rpm === null ? 0 : clamp(rpm / (rpmMax ?? 8000));
+    const driveFraction = ev ? sweeping ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0 : sweeping ? clamp(override.rpm) : rpm === null || rpmMax === null ? 0 : clamp(rpm / rpmMax);
     if (Math.abs(driveFraction - shownDrive) > .002) {
       shownDrive = driveFraction;
       meter.style.height = (driveFraction * 100).toFixed(2) + '%';

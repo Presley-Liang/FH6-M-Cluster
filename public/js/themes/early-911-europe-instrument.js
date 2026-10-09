@@ -60,23 +60,16 @@ export function createEarly911EuropeInstrument({ document, mount }) {
     group.append(text);
     return text;
   }
-  const rpmNumbers = [];
   const speedGroup = element.querySelector('.e911-speed-ticks');
   const rpmGroup = element.querySelector('.e911-rpm-ticks');
   const throttleGroup = element.querySelector('.e911-throttle-ticks');
   for (let i = 0; i <= 28; i += 1) {
     const angle = -130 + i * 260 / 28;
     makeTick(speedGroup, angle, i % 4 === 0, i % 4 === 0 ? String(i * 10) : '');
-    const tach = makeTick(rpmGroup, angle, i % 4 === 0, '—', i >= 24);
-    if (tach) rpmNumbers.push(tach);
     if (i % 2 === 0) makeTick(throttleGroup, angle, i % 7 === 0, i % 7 === 0 ? String(Math.round(i * 100 / 28)) : '');
   }
-  for (let i = 0; i < 4; i += 1) makeTick(element.querySelector('.e911-redline'), 100 + i * 8, false, '', true);
 
   let priorMode = null;
-  let priorScale = null;
-  let wasSweep = false;
-  let handoff = null;
   let sweepSpeed = 0;
   let sweepRpm = 0;
   function aim(name, fraction) {
@@ -86,6 +79,53 @@ export function createEarly911EuropeInstrument({ document, mount }) {
       needles[name].setAttribute('transform', transform);
       shadows[name].setAttribute('transform', transform);
     }
+  }
+
+  const redlineLayer = element.querySelector('.e911-redline');
+  let priorRedline = '';
+  function updateRedline(model, context, scale, ev) {
+    const engineMax = finite(context.rpmGauge?.engineMaxRpm) ?? finite(model.engineMaxRpm);
+    const start = ev || !scale ? null : finite(context.rpmGauge?.redlineStartFraction) ?? (engineMax > 0 ? .9 * engineMax / scale : null);
+    const end = ev || !scale ? null : finite(context.rpmGauge?.redlineEndFraction) ?? (engineMax > 0 ? engineMax / scale : null);
+    const valid = start !== null && end !== null && start >= 0 && end >= start && end > 0;
+    const key = valid ? clamp(start) + ':' + clamp(end) : 'unknown';
+    if (key === priorRedline) return;
+    priorRedline = key;
+    redlineLayer.innerHTML = '';
+    redlineLayer.setAttribute('data-redline-start', valid ? String(clamp(start)) : '');
+    redlineLayer.setAttribute('data-redline-end', valid ? String(clamp(end)) : '');
+    if (!valid) return;
+    for (let index = 0; index <= 6; index += 1) {
+      const angle = -130 + (clamp(start) + (clamp(end) - clamp(start)) * index / 6) * 260;
+      makeTick(redlineLayer, angle, false, '', true);
+    }
+  }
+
+  let priorRpmAxis = '';
+  function drawRpmScale(max, ev) {
+    const key = ev ? 'ev' : String(max);
+    if (key === priorRpmAxis) return;
+    priorRpmAxis = key;
+    rpmGroup.innerHTML = '';
+    // Whole-thousand major ticks and an exact partial endpoint use the same
+    // physical fractions as the pointer. Minor marks interpolate each interval.
+    const axisMax = max ?? 8000;
+    const step = axisMax <= 9000 ? 1000 : 2000;
+    const stops = [];
+    for (let value = 0; value <= axisMax; value += step) stops.push(value);
+    if (stops.at(-1) !== axisMax) stops.push(axisMax);
+    const markAt = (value, major) => {
+      const angle = -130 + value / axisMax * 260;
+      const caption = ev || max === null ? '' : String(Number((value / 1000).toFixed(2)));
+      makeTick(rpmGroup, angle, major, caption, false);
+    };
+    for (let index = 0; index < stops.length; index += 1) {
+      markAt(stops[index], true);
+      if (index === stops.length - 1) continue;
+      for (let minor = 1; minor < 4; minor += 1) markAt(stops[index] + (stops[index + 1] - stops[index]) * minor / 4, false);
+    }
+    rpmGroup.setAttribute('data-rpm-axis-max', ev || max === null ? '' : String(max));
+
   }
 
   function update(model = {}, context = {}) {
@@ -113,30 +153,16 @@ export function createEarly911EuropeInstrument({ document, mount }) {
     }
     label('signal', available ? 'TELEMETRY LIVE' : 'NO SIGNAL');
     label('driveTitle', ev ? 'ELECTRIC POWER' : '1/min · ×1000');
-    if (priorScale !== scale) {
-      priorScale = scale;
-      rpmNumbers.forEach((node, i) => { node.textContent = scale === null ? '—' : String(Math.round(i * scale / 7000)); });
-    }
+    drawRpmScale(scale, ev);
+    updateRedline(model, context, scale, ev);
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available ? finite(model.rpm) : null;
     if (sweep) {
       sweepSpeed = clamp(override.speed) * 280;
       sweepRpm = scale === null ? null : clamp(override.rpm) * scale;
-      wasSweep = true;
-      handoff = null;
-    } else if (wasSweep) {
-      handoff = { start: Date.now(), speed: sweepSpeed, rpm: sweepRpm };
-      wasSweep = false;
     }
     let speed = sweep ? sweepSpeed : speedTarget;
     let rpm = sweep ? sweepRpm : rpmTarget;
-    if (!sweep && handoff && available) {
-      const t = clamp((Date.now() - handoff.start) / 480);
-      const ease = 1 - Math.pow(1 - t, 3);
-      if (speedTarget !== null) speed = handoff.speed + (speedTarget - handoff.speed) * ease;
-      if (rpmTarget !== null && handoff.rpm !== null) rpm = handoff.rpm + (rpmTarget - handoff.rpm) * ease;
-      if (t >= 1) handoff = null;
-    } else if (!available && !sweep) handoff = null;
     aim('speed', speed === null ? 0 : speed / 280);
     aim('rpm', ev || scale === null || rpm === null ? 0 : rpm / scale);
     const throttle = available ? finite(model.throttlePercent) : null;

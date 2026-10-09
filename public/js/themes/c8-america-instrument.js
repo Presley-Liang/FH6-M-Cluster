@@ -75,7 +75,6 @@ export function createC8AmericaInstrument({ document, mount }) {
   const write = (key, value) => { if (refs[key] && refs[key].textContent !== value) refs[key].textContent = value; };
   let lastMode = 'race';
   let lastSweep = null;
-  let handoff = null;
   let arcShown = -1;
 
   function update(model = {}, context = {}) {
@@ -97,7 +96,7 @@ export function createC8AmericaInstrument({ document, mount }) {
     const fraction = mode === 'freeRoam'
       ? clamp(scanning ? override.speed : available && finite(model.speedKmh) !== null ? model.speedKmh / 260 : 0)
       : ev ? (scanning ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0)
-        : clamp(finite(context.gaugeFraction) ?? finite(model.rpmRatio) ?? 0);
+        : scanning ? clamp(override.rpm) : max === null ? 0 : clamp(finite(context.gaugeFraction) ?? (available && finite(model.rpm) !== null ? model.rpm / max : 0));
     element.dataset.mode = mode;
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = available ? 'live' : 'absent';
@@ -105,7 +104,7 @@ export function createC8AmericaInstrument({ document, mount }) {
     labels.mode.textContent = mode === 'race' ? 'TRACK' : 'TOUR';
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.primary.textContent = mode === 'freeRoam' ? 'VELOCITY / KM/H' : ev ? 'POWER / kW' : 'ENGINE / RPM';
-    labels.arc.textContent = mode === 'freeRoam' ? 'VEHICLE SPEED · KM/H' : ev ? 'DRIVE INPUT · %' : 'ENGINE SPEED · r/min';
+    labels.arc.textContent = mode === 'freeRoam' ? 'VEHICLE SPEED · KM/H' : ev ? 'DRIVE INPUT · %' : scanning && max === null ? 'DISPLAY SCAN' : 'ENGINE SPEED · r/min';
     labels.gear.textContent = ev ? 'DRIVE' : 'GEAR';
     labels.secondaryUnit.textContent = mode === 'race' ? 'KM/H' : ev ? 'kW' : 'RPM';
     write('max', mode === 'freeRoam' ? '260' : ev ? '100%' : max === null ? '—' : whole(max));
@@ -117,24 +116,14 @@ export function createC8AmericaInstrument({ document, mount }) {
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available ? finite(model.rpm) : null;
     if (scanning) {
-      lastSweep = { speed: clamp(override.speed) * 260, rpm: clamp(override.rpm) * (max ?? 8000) };
-      handoff = null;
-    } else if (lastSweep) {
-      handoff = { ...lastSweep, started: Date.now() };
-      lastSweep = null;
+      lastSweep = { speed: clamp(override.speed) * 260, rpm: max === null ? null : clamp(override.rpm) * max };
     }
     let speed = speedTarget;
     let rpm = rpmTarget;
     if (scanning) {
       speed = lastSweep.speed;
       rpm = lastSweep.rpm;
-    } else if (handoff && available) {
-      const t = clamp((Date.now() - handoff.started) / 480);
-      const ease = t * t * (3 - 2 * t);
-      if (speedTarget !== null) speed = handoff.speed + (speedTarget - handoff.speed) * ease;
-      if (rpmTarget !== null) rpm = handoff.rpm + (rpmTarget - handoff.rpm) * ease;
-      if (t >= 1) handoff = null;
-    } else if (!available) handoff = null;
+    }
     const speedDisplay = (available || scanning) && speed !== null ? whole(speed) : '—';
     const driveDisplay = ev ? available ? whole(model.powerKw) : '—' : (available || scanning) && rpm !== null ? whole(rpm) : '—';
     write('rpm', mode === 'freeRoam' ? speedDisplay : driveDisplay);

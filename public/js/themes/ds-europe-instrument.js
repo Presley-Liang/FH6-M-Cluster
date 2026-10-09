@@ -35,7 +35,7 @@ export function createDsEuropeInstrument({ document, mount }) {
   const lap = n => finite(n) === null || n <= 0 ? '—' : Math.floor(n / 60) + ':' + (n % 60).toFixed(2).padStart(5, '0');
   const write = (key, value) => { if (values[key] && values[key].textContent !== value) values[key].textContent = value; };
   const label = (key, value) => { if (labels[key] && labels[key].textContent !== value) labels[key].textContent = value; };
-  let lastMode = null, lastNeedle = '', wasSweep = false, sweepSpeed = null, handoff = null;
+  let lastMode = null, lastNeedle = '', sweepSpeed = null;
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live', kind = root?.dataset.ignitionKind || '';
@@ -54,14 +54,8 @@ export function createDsEuropeInstrument({ document, mount }) {
     label('right', mode === 'race' ? 'TEMPS AU TOUR' : 'ACCÉLÉRATEUR');
     label('rightUnit', mode === 'race' ? 'COURSE' : '%');
     const speedTarget = available ? finite(model.speedKmh) : null;
-    if (sweep) { sweepSpeed = clamp(override.speed) * 280; wasSweep = true; handoff = null; }
-    else if (wasSweep) { handoff = { at: Date.now(), speed: sweepSpeed }; wasSweep = false; }
+    if (sweep) { sweepSpeed = clamp(override.speed) * 280; }
     let speed = sweep ? sweepSpeed : speedTarget;
-    if (!sweep && handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - (1 - t) ** 3;
-      speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      if (t >= 1) handoff = null;
-    }
     const fraction = sweep ? clamp(override.speed) : speed === null ? 0 : clamp(speed / 280);
     const nextNeedle = (8 + fraction * 84).toFixed(2) + '%';
     if (lastNeedle !== nextNeedle) { speedNeedle.style.left = nextNeedle; lastNeedle = nextNeedle; }
@@ -70,7 +64,7 @@ export function createDsEuropeInstrument({ document, mount }) {
     write('left', mode === 'race' && !ev ? sweep ? finite(context.rpmGauge?.gaugeMax) > 0 ? whole(clamp(override.rpm) * context.rpmGauge.gaugeMax) : '—' : available ? whole(model.rpm) : '—' : available ? whole(model.powerKw) : '—');
     write('right', mode === 'race' ? Boolean(context.racing) && available ? lap(model.currentLap) : '—' : available && finite(model.throttlePercent) !== null ? whole(model.throttlePercent) : '—');
     write('status', available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : 'NO SIGNAL');
-    write('footer', mode === 'race' && Boolean(context.racing) && finite(model.rank) > 0 ? 'POSITION ' + whole(model.rank) : available ? 'VITESSE ' + whole(speed) : 'NO SIGNAL');
+    write('footer', mode === 'race' && Boolean(context.racing) && available && finite(model.rank) > 0 ? 'POSITION ' + whole(model.rank) : available ? 'VITESSE ' + whole(speed) : 'NO SIGNAL');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

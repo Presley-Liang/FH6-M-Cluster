@@ -99,7 +99,7 @@ export function createBelairAmericaInstrument({ document, mount }) {
   const write = (key, value) => { if (refs[key] && refs[key].textContent !== value) refs[key].textContent = value; };
   let lastMode = 'race';
   let lastFraction = -1;
-  let wasSweep = false, sweepMph = 0, sweepRpm = null, handoff = null;
+  let sweepMph = 0, sweepRpm = null;
 
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
@@ -119,20 +119,9 @@ export function createBelairAmericaInstrument({ document, mount }) {
     if (sweeping) {
       sweepMph = clamp(override.speed) * 160;
       sweepRpm = rpmScale === null ? null : clamp(override.rpm) * rpmScale;
-      wasSweep = true;
-      handoff = null;
-    } else if (wasSweep) {
-      handoff = { start: Date.now(), mph: sweepMph, rpm: sweepRpm };
-      wasSweep = false;
     }
     let shownMph = speedMph, shownRpm = available ? finite(model.rpm) : null;
     if (sweeping) { shownMph = sweepMph; shownRpm = sweepRpm; }
-    else if (handoff) {
-      const t = clamp((Date.now() - handoff.start) / 480), eased = 1 - Math.pow(1 - t, 3);
-      shownMph = handoff.mph + ((speedMph ?? 0) - handoff.mph) * eased;
-      if (handoff.rpm !== null) shownRpm = handoff.rpm + ((shownRpm ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     const fraction = sweeping ? clamp(override.speed) : clamp((shownMph ?? 0) / 160);
     if (Math.abs(fraction - lastFraction) > .001) { placeNeedle(fraction); lastFraction = fraction; }
     element.dataset.mode = mode;

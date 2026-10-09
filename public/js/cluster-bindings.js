@@ -79,7 +79,9 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     const container = doc.getElementById(rail.name + '-ticks');
     container.replaceChildren();
     values.forEach((value,i) => {
-      const p = position(rail, i/(values.length-1));
+      const fraction = rail.name === 'rpm' && Number.isFinite(value) && Number.isFinite(values.at(-1)) && values.at(-1) > 0
+        ? value / values.at(-1) : i / (values.length - 1);
+      const p = position(rail, fraction);
       const mark = doc.createElementNS(namespace,'line');
       mark.style.setProperty('--tick-delay', (i/(values.length-1)*650)+'ms');
       mark.setAttribute('x1',p.x); mark.setAttribute('y1',p.y);
@@ -91,7 +93,11 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     });
     for (let i=0;i<(values.length-1)*5;i++) {
       if(i%5===0)continue;
-      const p=position(rail,i/((values.length-1)*5));
+      const interval = Math.floor(i / 5), step = i % 5;
+      const tickValue = Number(values[interval]) + (Number(values[interval+1])-Number(values[interval])) * step / 5;
+      const fraction = rail.name === 'rpm' && Number.isFinite(tickValue) && values.at(-1) > 0
+        ? tickValue / values.at(-1) : i / ((values.length - 1) * 5);
+      const p=position(rail,fraction);
       const mark=doc.createElementNS(namespace,'line');
       mark.style.setProperty('--tick-delay', (i/((values.length-1)*5)*650)+'ms');
       mark.setAttribute('x1',p.x);mark.setAttribute('y1',p.y);mark.setAttribute('x2',p.x+p.nx*5);mark.setAttribute('y2',p.y+p.ny*5);container.append(mark);
@@ -124,7 +130,7 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     const confirmedCar = stableVehicle?.carOrdinal ?? model.carId;
     if (car !== confirmedCar) { car=confirmedCar; topSpeed=0; displayedRpm=0; speedVelocity=0; rpmVelocity=0; }
     if (!stale) topSpeed=Math.max(topSpeed,model.speedKmh || 0);
-    const max = rpmGauge?.available ? rpmGauge.scaleVersion + ':' + rpmGauge.gaugeMax : null;
+    const max = rpmGauge?.available ? [rpmGauge.scaleVersion, rpmGauge.gaugeMax, rpmGauge.redlineStartFraction, rpmGauge.redlineEndFraction].join(':') : null;
     if (max !== maximum) {
       maximum=max;
       ticks(rails[1], rpmGauge?.available ? rpmGauge.majorTicks : Array(9).fill('—'));
@@ -147,16 +153,13 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     frame=requestAnimationFrame(render);
     const race = doc.body.dataset.driveMode !== 'freeRoam';
     const racing = race && raw.isRaceOn && (raw.racePosition > 0 || raw.currentLap > 0);
-    const animationPhase = root.dataset.ignitionPhase || 'live';
-    const animateCustom = root.dataset.instrumentVariant === 'custom' &&
-      (displayOverride !== null || root.dataset.ignitionKind === 'mode' && animationPhase !== 'live');
     const renderInstrument = () => options.onRender?.(model, {
       stale, mode: race ? 'race' : 'freeRoam', racing, topSpeed,
       displayOverride, gaugeFraction: displayedRpm, speedFraction: displayedSpeed, rpmGauge,
     });
     // The animation display must follow browser frames. Slow telemetry/details
     // keep their own 50ms cadence and never throttle a sweep or mode relight.
-    if (animateCustom) renderInstrument();
+    if (root.dataset.instrumentVariant === 'custom') renderInstrument();
     if (now-lastDetails<50) return;
     lastDetails=now;
     root.dataset.stale=String(stale);
@@ -222,8 +225,8 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     const gTravel = value => Math.max(-19, Math.min(19, value * 11));
     doc.getElementById('g-dot').style.transform = gAvailable ? `translate(${gTravel(model.gX)}px,${gTravel(-model.gZ)}px)` : 'translate(0px,0px)';
     text('g-magnitude', gAvailable ? Math.hypot(model.gX, model.gZ).toFixed(2) + ' G' : '—');
-    if (!animateCustom) renderInstrument();
+    if (root.dataset.instrumentVariant !== 'custom') renderInstrument();
   }
   frame=requestAnimationFrame(render);
-  return {update(packet){raw=packet;received=Date.now();vehicleState=vehicleController?.update?.(packet,received) ?? null;if(vehicleState?.changed)options.onVehicleChange?.(vehicleState);rpmGauge=rpmController?.update?.(packet,vehicleState,false) ?? {available:true,gaugeFraction:selectTelemetry(packet,false).rpmRatio,rpmRatio:selectTelemetry(packet,false).rpmRatio,majorTicks:Array.from({length:9},(_,i)=>i),gaugeMax:8000,scaleVersion:0,redlineStartFraction:.9,redlineEndFraction:1};const events=raceFeedbackController?.update?.(packet,{active:doc.body.dataset.driveMode!=='freeRoam',stale:false})??[];if(events[0])options.onRaceFeedback?.(events[0]);},setRaceSecondary(value){raceSecondary=value || null;},setDisplayOverride(value){displayOverride=value&&Number.isFinite(value.speed)&&Number.isFinite(value.rpm)?{speed:bound(value.speed),rpm:bound(value.rpm)}:null;},getLiveFractions(){const model=selectTelemetry(raw,false);const ev=root.dataset.instrumentVariant==='custom'&&['ev','electric'].includes(String(root.dataset.powertrain||'').toLowerCase());return {speed:Number.isFinite(model.speedKmh)?speedRatio(model.speedKmh):0,rpm:ev?(Number.isFinite(model.throttlePercent)?bound(model.throttlePercent/100):0):(Number.isFinite(rpmGauge?.gaugeFraction)?bound(rpmGauge.gaugeFraction):0)};},destroy(){cancelAnimationFrame(frame);clearTimeout(gearAnimationTimer);}};
+  return {update(packet){raw=packet;received=Date.now();vehicleState=vehicleController?.update?.(packet,received) ?? null;options.onVehicleState?.(vehicleState);if(vehicleState?.changed)options.onVehicleChange?.(vehicleState);rpmGauge=rpmController?.update?.(packet,vehicleState,false) ?? {available:true,gaugeFraction:selectTelemetry(packet,false).rpmRatio,rpmRatio:selectTelemetry(packet,false).rpmRatio,majorTicks:Array.from({length:9},(_,i)=>i),gaugeMax:8000,scaleVersion:0,redlineStartFraction:.9,redlineEndFraction:1};const events=raceFeedbackController?.update?.(packet,{active:doc.body.dataset.driveMode!=='freeRoam'&&vehicleState?.status!=='changing',stale:false})??[];if(events[0])options.onRaceFeedback?.(events[0]);},setRaceSecondary(value){raceSecondary=value || null;},setDisplayOverride(value){displayOverride=value&&Number.isFinite(value.speed)&&Number.isFinite(value.rpm)?{speed:bound(value.speed),rpm:bound(value.rpm)}:null;},getLiveFractions(){const model=selectTelemetry(raw,false);const ev=root.dataset.instrumentVariant==='custom'&&['ev','electric'].includes(String(root.dataset.powertrain||'').toLowerCase());return {speed:Number.isFinite(model.speedKmh)?speedRatio(model.speedKmh):0,speedKmh:model.speedKmh,rpm:ev?(Number.isFinite(model.throttlePercent)?bound(model.throttlePercent/100):0):(Number.isFinite(rpmGauge?.gaugeFraction)?bound(rpmGauge.gaugeFraction):0)};},destroy(){cancelAnimationFrame(frame);clearTimeout(gearAnimationTimer);}};
 }

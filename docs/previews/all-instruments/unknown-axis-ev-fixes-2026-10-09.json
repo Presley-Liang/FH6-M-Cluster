@@ -1,0 +1,971 @@
+{
+  "generatedAt": "2026-10-09T00:11:23.772609+00:00",
+  "scope": "Restarted isolated production HTTP3030; ten actual-duration synthetic coordinator paths. Five fuel unknown-axis vehicle startups inject null gaugeMax/engineMax and an unavailable axis into production theme context, plus synthetic stale/resume after live; actual raw RPM still changes continuously. Five EV mode switches use correctly named throttle=190/255, changing actual power, forced EV context, and explicit REGEN→POWER scan direction. Store publishes every40ms throughout. The injection is a focused fallback/overlay check, not real-game UDP, automatic EV recognition or frame-rate/visual acceptance. R8 hides its fuel needle in EV and is checked for actual power/input readouts rather than a calibrated EV pointer.",
+  "summary": {
+    "caseCount": 10,
+    "expectedCaseCount": 10,
+    "passedSyntheticCount": 10,
+    "browserErrorCount": 0,
+    "taskFailureCount": 0,
+    "reviewCases": []
+  },
+  "cases": [
+    {
+      "theme": "y2020_2024.europe",
+      "kind": "unknown",
+      "path": "vehicle",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "vehicle-blackout",
+        "vehicle-card",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 200,
+      "detail": {
+        "overrideSamples": 160,
+        "fabricatedRpmSamples": [],
+        "unknownAxisNumericLabels": [],
+        "scanCaption": [
+          "DISPLAY SCAN"
+        ],
+        "liveRpmSamples": 168,
+        "maxLiveRawRpmError": 0.4978,
+        "staleLiveSamples": 44,
+        "badStaleValues": [],
+        "maximumUnknownLiveDriveFraction": 0
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 6514.2,
+        "model": {
+          "speedKmh": 132.91044158908042,
+          "rpm": 3741.639494444432,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 208.49726517253123,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-tay-value:drive",
+            "value": "3742",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 8022.5,
+        "model": {
+          "speedKmh": 120.64636465051728,
+          "rpm": 3514.456304832478,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 150.85491239018998,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-tay-value:drive",
+            "value": "3514",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": {
+        "phase": "live",
+        "atMs": 7121.7,
+        "model": {
+          "speedKmh": 105.88488240460981,
+          "rpm": 4532.874577676982,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 191.32648693290722,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-tay-value:drive",
+            "value": "—",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": true,
+        "override": null
+      },
+      "errors": []
+    },
+    {
+      "theme": "y2025plus.europe",
+      "kind": "unknown",
+      "path": "vehicle",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "vehicle-blackout",
+        "vehicle-card",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 200,
+      "detail": {
+        "overrideSamples": 162,
+        "fabricatedRpmSamples": [],
+        "unknownAxisNumericLabels": [],
+        "scanCaption": [
+          "DISPLAY SCAN"
+        ],
+        "liveRpmSamples": 168,
+        "maxLiveRawRpmError": 0.4833,
+        "staleLiveSamples": 44,
+        "badStaleValues": [],
+        "maximumUnknownLiveDriveFraction": 0
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 6521.6,
+        "model": {
+          "speedKmh": 132.8856153649378,
+          "rpm": 3748.95139805588,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 208.5873234054781,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-pan-value:main",
+            "value": "3749",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 8030,
+        "model": {
+          "speedKmh": 120.9247598746771,
+          "rpm": 3519.411239756282,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 150.94420461401782,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-pan-value:main",
+            "value": "3519",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": {
+        "phase": "live",
+        "atMs": 7127.7,
+        "model": {
+          "speedKmh": 105.67874642425612,
+          "rpm": 4530.716539947776,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 191.04812842905145,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-pan-value:main",
+            "value": "—",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": true,
+        "override": null
+      },
+      "errors": []
+    },
+    {
+      "theme": "y2015_2019.america",
+      "kind": "unknown",
+      "path": "vehicle",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "vehicle-blackout",
+        "vehicle-card",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 201,
+      "detail": {
+        "overrideSamples": 161,
+        "fabricatedRpmSamples": [],
+        "unknownAxisNumericLabels": [],
+        "scanCaption": [
+          "DISPLAY SCAN"
+        ],
+        "liveRpmSamples": 167,
+        "maxLiveRawRpmError": 0.471,
+        "staleLiveSamples": 44,
+        "badStaleValues": [],
+        "maximumUnknownLiveDriveFraction": 0
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 6512.4,
+        "model": {
+          "speedKmh": 132.8454680257582,
+          "rpm": 3759.358670388461,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 208.7097080641794,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-fgt-value:rpm",
+            "value": "3759",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 8020.6,
+        "model": {
+          "speedKmh": 123.39822767887118,
+          "rpm": 3572.6517113435852,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 151.9661812148169,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-fgt-value:rpm",
+            "value": "3573",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": {
+        "phase": "live",
+        "atMs": 7126.2,
+        "model": {
+          "speedKmh": 105.45391218499294,
+          "rpm": 4528.1976384169175,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 190.74065910335742,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-fgt-value:rpm",
+            "value": "—",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": true,
+        "override": null
+      },
+      "errors": []
+    },
+    {
+      "theme": "y2020_2024.america",
+      "kind": "unknown",
+      "path": "vehicle",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "vehicle-blackout",
+        "vehicle-card",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 201,
+      "detail": {
+        "overrideSamples": 157,
+        "fabricatedRpmSamples": [],
+        "unknownAxisNumericLabels": [],
+        "scanCaption": [
+          "DISPLAY SCAN"
+        ],
+        "liveRpmSamples": 166,
+        "maxLiveRawRpmError": 0.4774,
+        "staleLiveSamples": 44,
+        "badStaleValues": [],
+        "maximumUnknownLiveDriveFraction": 0
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 6519.2,
+        "model": {
+          "speedKmh": 132.9403078526036,
+          "rpm": 3731.42700958378,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 208.36565796026085,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-c8-value:rpm",
+            "value": "3731",
+            "visible": true,
+            "class": "c8-rpm"
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 8028.4,
+        "model": {
+          "speedKmh": 122.59746678947148,
+          "rpm": 3553.522624957949,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 151.5878160254872,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-c8-value:rpm",
+            "value": "3554",
+            "visible": true,
+            "class": "c8-rpm"
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": {
+        "phase": "live",
+        "atMs": 7126.1,
+        "model": {
+          "speedKmh": 106.19188012243637,
+          "rpm": 4535.827331721046,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 191.73499028700877,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-c8-value:rpm",
+            "value": "—",
+            "visible": true,
+            "class": "c8-rpm"
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": true,
+        "override": null
+      },
+      "errors": []
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "kind": "unknown",
+      "path": "vehicle",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "vehicle-blackout",
+        "vehicle-card",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 229,
+      "detail": {
+        "overrideSamples": 214,
+        "fabricatedRpmSamples": [],
+        "unknownAxisNumericLabels": [],
+        "scanCaption": [
+          "DISPLAY SCAN"
+        ],
+        "liveRpmSamples": 270,
+        "maxLiveRawRpmError": 0.4984,
+        "staleLiveSamples": 44,
+        "badStaleValues": [],
+        "maximumUnknownLiveDriveFraction": 0
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 6972,
+        "model": {
+          "speedKmh": 115.65986199613546,
+          "rpm": 4505.549696796153,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 201.78848075856905,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-cx-value:rpm",
+            "value": "4506",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 9142,
+        "model": {
+          "speedKmh": 101.14797003965519,
+          "rpm": 3974.377519472978,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 209.7591965739183,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-cx-value:rpm",
+            "value": "3974",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": {
+        "phase": "live",
+        "atMs": 7580.5,
+        "model": {
+          "speedKmh": 98.35759553890094,
+          "rpm": 3821.6862596263272,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 161.0000357475431,
+          "engineMaxRpm": null
+        },
+        "values": [
+          {
+            "key": "data-cx-value:rpm",
+            "value": "—",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0,
+        "staleInjected": true,
+        "override": null
+      },
+      "errors": []
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "kind": "ev",
+      "path": "free-to-race",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "center",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 130,
+      "detail": {
+        "livePowerSamples": 78,
+        "maxLivePowerErrorKw": 0.4873,
+        "liveInputSamples": 78,
+        "expectedInputPercent": 74.50980392156863,
+        "maxLiveInputErrorPercent": 0.4902,
+        "liveInputMeterSamples": 0,
+        "maxLiveInputMeterFractionError": null,
+        "noEvInputMeter": "R8 hides fuel needle and uses actual power/input readouts",
+        "evScanDirection": {
+          "sampleCount": 99,
+          "minimum": -1.0,
+          "maximum": 1,
+          "negativeThenPositive": true
+        }
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 4566.9,
+        "model": {
+          "speedKmh": 122.34150827311309,
+          "rpm": 3867.6175603548413,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 208.52311927893751,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-r8-value:primary",
+            "value": "209",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-r8-value:throttle",
+            "value": "75%",
+            "visible": false,
+            "class": null
+          }
+        ],
+        "driveFraction": null,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 5171.4,
+        "model": {
+          "speedKmh": 125.15091203543172,
+          "rpm": 3760.9352209891426,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 170.10755719577384,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-r8-value:primary",
+            "value": "170",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-r8-value:throttle",
+            "value": "75%",
+            "visible": false,
+            "class": null
+          }
+        ],
+        "driveFraction": null,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": null,
+      "errors": []
+    },
+    {
+      "theme": "y2015_2019.america",
+      "kind": "ev",
+      "path": "free-to-race",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "center",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 130,
+      "detail": {
+        "livePowerSamples": 81,
+        "maxLivePowerErrorKw": 0.4958,
+        "liveInputSamples": 81,
+        "expectedInputPercent": 74.50980392156863,
+        "maxLiveInputErrorPercent": 0.4902,
+        "liveInputMeterSamples": 81,
+        "maxLiveInputMeterFractionError": 0.001974,
+        "noEvInputMeter": null,
+        "evScanDirection": {
+          "sampleCount": 97,
+          "minimum": -0.9997,
+          "maximum": 1,
+          "negativeThenPositive": true
+        }
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 4559.4,
+        "model": {
+          "speedKmh": 121.33718628903274,
+          "rpm": 3905.0710119171326,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 208.9144623417511,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-fgt-value:rpm",
+            "value": "75",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-fgt-value:primary",
+            "value": "209",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0.7470722623022777,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 5160.9,
+        "model": {
+          "speedKmh": 127.67797879727982,
+          "rpm": 3662.7644758264105,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 174.06089309346083,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-fgt-value:rpm",
+            "value": "75",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-fgt-value:primary",
+            "value": "174",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0.7470722623022777,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": null,
+      "errors": []
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "kind": "ev",
+      "path": "free-to-race",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "center",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 129,
+      "detail": {
+        "livePowerSamples": 81,
+        "maxLivePowerErrorKw": 0.471,
+        "liveInputSamples": 81,
+        "expectedInputPercent": 74.50980392156863,
+        "maxLiveInputErrorPercent": 0.4902,
+        "liveInputMeterSamples": 81,
+        "maxLiveInputMeterFractionError": 0.001502,
+        "noEvInputMeter": null,
+        "evScanDirection": {
+          "sampleCount": 97,
+          "minimum": -0.9998,
+          "maximum": 1,
+          "negativeThenPositive": true
+        }
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 4565.8,
+        "model": {
+          "speedKmh": 122.9767200253029,
+          "rpm": 3843.7373139450815,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 208.23902401693073,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-tay-value:drive",
+            "value": "75",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-tay-value:sideMain",
+            "value": "208",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0.7465999999999999,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 5167,
+        "model": {
+          "speedKmh": 126.38089072003129,
+          "rpm": 3713.4012985742556,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 171.93918524494907,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-tay-value:drive",
+            "value": "75",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-tay-value:sideMain",
+            "value": "172",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0.7465999999999999,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": null,
+      "errors": []
+    },
+    {
+      "theme": "y2025plus.europe",
+      "kind": "ev",
+      "path": "free-to-race",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "center",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 129,
+      "detail": {
+        "livePowerSamples": 83,
+        "maxLivePowerErrorKw": 0.4635,
+        "liveInputSamples": 83,
+        "expectedInputPercent": 74.50980392156863,
+        "maxLiveInputErrorPercent": 0.4902,
+        "liveInputMeterSamples": 83,
+        "maxLiveInputMeterFractionError": 0.001402,
+        "noEvInputMeter": null,
+        "evScanDirection": {
+          "sampleCount": 96,
+          "minimum": -0.9994,
+          "maximum": 1,
+          "negativeThenPositive": true
+        }
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 4566.9,
+        "model": {
+          "speedKmh": 124.317834271042,
+          "rpm": 3792.8517663015978,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 207.53649743775344,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-pan-value:main",
+            "value": "208",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-pan-value:floatB",
+            "value": "75",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0.7465,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 5167.5,
+        "model": {
+          "speedKmh": 125.12116237534073,
+          "rpm": 3762.078916957288,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 170.06508523807503,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-pan-value:main",
+            "value": "170",
+            "visible": true,
+            "class": null
+          },
+          {
+            "key": "data-pan-value:floatB",
+            "value": "75",
+            "visible": true,
+            "class": null
+          }
+        ],
+        "driveFraction": 0.7465,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": null,
+      "errors": []
+    },
+    {
+      "theme": "y2020_2024.america",
+      "kind": "ev",
+      "path": "free-to-race",
+      "assessment": "passed-synthetic",
+      "phaseOrder": [
+        "off-needles",
+        "off-frames",
+        "off-center",
+        "center",
+        "frames",
+        "scan",
+        "return",
+        "live"
+      ],
+      "returnPhaseCount": 1,
+      "storeUpdateDelta": 130,
+      "detail": {
+        "livePowerSamples": 87,
+        "maxLivePowerErrorKw": 0.497,
+        "liveInputSamples": 87,
+        "expectedInputPercent": 74.50980392156863,
+        "maxLiveInputErrorPercent": 0.4902,
+        "liveInputMeterSamples": 87,
+        "maxLiveInputMeterFractionError": 0.000796,
+        "noEvInputMeter": null,
+        "evScanDirection": {
+          "sampleCount": 96,
+          "minimum": -0.9995,
+          "maximum": 1,
+          "negativeThenPositive": true
+        }
+      },
+      "firstLive": {
+        "phase": "live",
+        "atMs": 4572.4,
+        "model": {
+          "speedKmh": 123.92473806278372,
+          "rpm": 3807.831195404902,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 207.75771844168793,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-c8-value:throttle",
+            "value": "75",
+            "visible": false,
+            "class": null
+          },
+          {
+            "key": "data-c8-value:rpm",
+            "value": "208",
+            "visible": true,
+            "class": "c8-rpm"
+          }
+        ],
+        "driveFraction": 0.7458944793882276,
+        "staleInjected": false,
+        "override": null
+      },
+      "settledLive": {
+        "phase": "live",
+        "atMs": 5202.2,
+        "model": {
+          "speedKmh": 123.5159440043023,
+          "rpm": 3823.3526890088533,
+          "throttlePercent": 74.50980392156863,
+          "powerKw": 167.88270729376623,
+          "engineMaxRpm": 6300
+        },
+        "values": [
+          {
+            "key": "data-c8-value:throttle",
+            "value": "75",
+            "visible": false,
+            "class": null
+          },
+          {
+            "key": "data-c8-value:rpm",
+            "value": "168",
+            "visible": true,
+            "class": "c8-rpm"
+          }
+        ],
+        "driveFraction": 0.7458944793882276,
+        "staleInjected": false,
+        "override": null
+      },
+      "firstStaleLive": null,
+      "errors": []
+    }
+  ],
+  "browserErrors": [],
+  "taskFailures": []
+}

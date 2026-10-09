@@ -54,7 +54,7 @@
 @keyframes pan-float-relight{from{opacity:.08;transform:translateY(.6cqw)}to{opacity:1;transform:translateY(0)}}
 #cluster[data-theme-id="y2025plus.europe"][data-ignition-phase="scan"] .pan-sweep-beam{animation:pan-sweep-across 1.17s ease-in-out both}
 @keyframes pan-sweep-across{0%{opacity:0;transform:translateX(0)}12%{opacity:.7}90%{opacity:.7}100%{opacity:0;transform:translateX(900%)}}
-@media(max-width:1000px){.pan-projection-left,.pan-projection-middle,.pan-projection-right{padding-left:1.1cqw;padding-right:.7cqw}.pan-speed strong{font-size:6.7cqw}.pan-projection-right{gap:0}.pan-right-bottom{padding-left:.5cqw}.pan-projection-right strong{font-size:2.2cqw}.pan-float{width:39%;right:7%}}
+@media(max-width:1000px){.pan-projection-left,.pan-projection-middle,.pan-projection-right{padding-left:1.1cqw;padding-right:.7cqw}.pan-speed strong{font-size:max(24px,6.7cqw)}.pan-projection-right{gap:0}.pan-right-bottom{padding-left:.5cqw}.pan-projection-right strong{font-size:max(18px,2.2cqw)}.pan-float{width:39%;right:7%}}
 /* The app's side browser can be narrower than the legacy 760px cluster floor. */
 @media(max-width:759px){
   #cluster[data-theme-id="y2025plus.europe"]{width:100%;max-width:100%;min-width:0;padding:8px 9px 12px}
@@ -70,7 +70,7 @@
   .pan-gear{gap:.4cqw}.pan-gear span{font-size:8px;letter-spacing:.05em}.pan-gear b,.pan-instrument[data-mode="race"] .pan-gear b{font-size:14px}
   .pan-instrument[data-powertrain="ev"] .pan-gear{flex-direction:column;align-items:flex-start;gap:0}
   .pan-projection-middle>strong,.pan-instrument[data-mode="freeRoam"] .pan-projection-middle>strong,.pan-instrument[data-powertrain="ev"] .pan-projection-middle>strong{font-size:clamp(28px,7.3cqw,37px)}
-  .pan-mid-foot{font-size:7px;letter-spacing:.05em}.pan-power-track{margin:.2cqw 0 .5cqw}
+  .pan-mid-foot{font-size:8px;letter-spacing:.05em}.pan-power-track{margin:.2cqw 0 .5cqw}
   .pan-projection-right{grid-template-columns:minmax(0,1fr);grid-template-rows:1fr 1fr;padding:1cqw 1.3cqw 1cqw .8cqw}
   .pan-right-bottom{border-left:0;border-top:1px solid #a7d7df2e;padding-left:0}
   .pan-projection-right>div{min-height:0}.pan-projection-right strong{font-size:clamp(13px,3.2cqw,17px);line-height:1}.pan-projection-right small{font-size:8px}
@@ -81,10 +81,10 @@
 }
 @media(max-width:420px){
   .pan-speed strong{font-size:clamp(34px,10cqw,43px)}
-  .pan-projection-right span,.pan-projection-right small{font-size:7px}.pan-projection-right strong{font-size:14px}
+  .pan-projection-right span,.pan-projection-right small{font-size:8px}.pan-projection-right strong{font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){.pan-instrument,.pan-instrument *,.pan-mode-identity,.pan-mode-identity *{animation:none!important;transition:none!important}}
 /* One coherent projection strip; supplementary values no longer float on the dash. */
-.pan-projection-right{grid-template-rows:1fr .8fr;gap:.6cqw .4cqw}.pan-projection-right .pan-float{position:static;grid-column:1/-1;grid-row:2;width:auto;height:auto;display:block;padding:0;background:none;border:0;clip-path:none;box-shadow:none}.pan-float-head,.pan-float-foot{display:none}.pan-float-grid{border-bottom:0;border-top:1px solid #83acb830;padding-top:.4cqw}.pan-float-grid>div{padding:.2cqw .4cqw}.pan-float-grid strong{font-size:1.8cqw}.pan-float-grid span,.pan-float-grid small{font-size:.62cqw;letter-spacing:.03em}.pan-cockpit{background:linear-gradient(#0b141c,#070c11 55%,#0c131a);inset:52% 0 0}.pan-cockpit-line{top:2%;height:55%;border-top-color:#8caeba42;box-shadow:0 -2px 5px #afc6d00a,0 7px 12px #0006}.pan-cockpit-shadow{width:100%;left:0;background:radial-gradient(ellipse at 50% 0,#020609aa,transparent 65%)}
-@media(max-width:759px){.pan-projection{grid-template-columns:28% 31% 41%}.pan-projection-right{padding-left:1.3cqw;padding-right:1cqw}.pan-projection-right strong{font-size:3.5cqw}.pan-projection-right .pan-float{width:auto;height:auto;padding:0}.pan-float-grid strong{font-size:3.5cqw}.pan-float-grid span,.pan-float-grid small{font-size:6px}.pan-float-grid span{white-space:normal}.pan-float-grid{gap:.5cqw}.pan-projection-middle>strong{font-size:7cqw}}
-@media(max-width:759px){.pan-projection-right{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr .8fr}.pan-projection-right span{font-size:6px;letter-spacing:0;white-space:normal}.pan-projection-right small{font-size:6px}.pan-float-grid>div{padding:.2cqw 0}.pan-float-grid strong{font-size:3.5cqw}}
+.pan-projection-right{grid-template-rows:1fr .8fr;gap:.6cqw .4cqw}.pan-projection-right .pan-float{position:static;grid-column:1/-1;grid-row:2;width:auto;height:auto;display:block;padding:0;background:none;border:0;clip-path:none;box-shadow:none}.pan-float-head,.pan-float-foot{display:none}.pan-float-grid{border-bottom:0;border-top:1px solid #83acb830;padding-top:.4cqw}.pan-float-grid>div{padding:.2cqw .4cqw}.pan-float-grid strong{font-size:max(12px,1.8cqw)}.pan-float-grid span,.pan-float-grid small{font-size:max(8px,.62cqw);letter-spacing:.03em}.pan-cockpit{background:linear-gradient(#0b141c,#070c11 55%,#0c131a);inset:52% 0 0}.pan-cockpit-line{top:2%;height:55%;border-top-color:#8caeba42;box-shadow:0 -2px 5px #afc6d00a,0 7px 12px #0006}.pan-cockpit-shadow{width:100%;left:0;background:radial-gradient(ellipse at 50% 0,#020609aa,transparent 65%)}
+@media(max-width:759px){.pan-projection{grid-template-columns:28% 31% 41%}.pan-projection-right{padding-left:1.3cqw;padding-right:1cqw}.pan-projection-right strong{font-size:max(18px,3.5cqw)}.pan-projection-right .pan-float{width:auto;height:auto;padding:0}.pan-float-grid strong{font-size:max(18px,3.5cqw)}.pan-float-grid span,.pan-float-grid small{font-size:8px}.pan-float-grid span{white-space:normal}.pan-float-grid{gap:.5cqw}.pan-projection-middle>strong{font-size:max(24px,7cqw)}}
+@media(max-width:759px){.pan-projection-right{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr .8fr}.pan-projection-right span{font-size:8px;letter-spacing:0;white-space:normal}.pan-projection-right small{font-size:8px}.pan-float-grid>div{padding:.2cqw 0}.pan-float-grid strong{font-size:max(18px,3.5cqw)}}

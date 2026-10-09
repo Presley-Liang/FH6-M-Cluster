@@ -1,0 +1,376 @@
+{
+  "generatedAt": "2026-10-08T13:21:55.573934+00:00",
+  "scope": "Isolated receiver HTTP3018/random UDP, production page and real UI clicks for request failure. Reduced-motion change while production coordinator runs. Four synthetic car packets through production binding, then same-ordinal upgrade. No game telemetry or user service touched. HTTP500 intentionally injected.",
+  "requestFailure": {
+    "initial": {
+      "pending": true,
+      "control": "manual",
+      "theme": "y2015_2019.europe",
+      "state": {
+        "generation": 3,
+        "phase": "live",
+        "vehicle": {
+          "vehicle": {},
+          "metadata": {
+            "brand": "BRAND UNKNOWN",
+            "modelName": "MODEL UNKNOWN",
+            "year": null,
+            "drivetrain": "—",
+            "classPi": "—",
+            "powertrainType": "UNKNOWN"
+          },
+          "themeEra": "pre1949",
+          "themeRegion": "japan",
+          "themeId": "pre1949.japan",
+          "intervalMs": 560
+        },
+        "mode": "race"
+      }
+    },
+    "card": {
+      "control": "auto",
+      "cardEra": "PRE 1949",
+      "cardRegion": "JAPAN",
+      "state": {
+        "generation": 3,
+        "phase": "vehicle-card",
+        "vehicle": {
+          "vehicle": {},
+          "metadata": {
+            "brand": "BRAND UNKNOWN",
+            "modelName": "MODEL UNKNOWN",
+            "year": null,
+            "drivetrain": "—",
+            "classPi": "—",
+            "powertrainType": "UNKNOWN"
+          },
+          "themeEra": "pre1949",
+          "themeRegion": "japan",
+          "themeId": "pre1949.japan",
+          "intervalMs": 560
+        },
+        "mode": "race"
+      }
+    },
+    "final": {
+      "control": "auto",
+      "theme": "y2015_2019.europe",
+      "instrumentEra": "mechanical",
+      "state": {
+        "generation": 3,
+        "phase": "live",
+        "vehicle": {
+          "vehicle": {},
+          "metadata": {
+            "brand": "BRAND UNKNOWN",
+            "modelName": "MODEL UNKNOWN",
+            "year": null,
+            "drivetrain": "—",
+            "classPi": "—",
+            "powertrainType": "UNKNOWN"
+          },
+          "themeEra": "pre1949",
+          "themeRegion": "japan",
+          "themeId": "pre1949.japan",
+          "intervalMs": 560
+        },
+        "mode": "race"
+      }
+    }
+  },
+  "midAnimationReducedMotion": {
+    "prefersReduced": true,
+    "phase": "scan",
+    "writesAfterPreferenceChange": [
+      {
+        "at": 11066.29999999702,
+        "phase": "scan",
+        "value": {
+          "speed": 0.0004172372048246329,
+          "rpm": 0.0004172372048246329
+        }
+      },
+      {
+        "at": 11068.79999999702,
+        "phase": "scan",
+        "value": {
+          "speed": 0.0005693348175967573,
+          "rpm": 0.0005693348175967573
+        }
+      },
+      {
+        "at": 11075.70000000298,
+        "phase": "scan",
+        "value": {
+          "speed": 0.0011099161725595854,
+          "rpm": 0.0011099161725595854
+        }
+      },
+      {
+        "at": 11088.09999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.0025217506336828207,
+          "rpm": 0.0025217506336828207
+        }
+      },
+      {
+        "at": 11091.5,
+        "phase": "scan",
+        "value": {
+          "speed": 0.002991613490897868,
+          "rpm": 0.002991613490897868
+        }
+      },
+      {
+        "at": 11096.39999999106,
+        "phase": "scan",
+        "value": {
+          "speed": 0.0037780478971378524,
+          "rpm": 0.0037780478971378524
+        }
+      },
+      {
+        "at": 11103.5,
+        "phase": "scan",
+        "value": {
+          "speed": 0.0050476974079999995,
+          "rpm": 0.0050476974079999995
+        }
+      },
+      {
+        "at": 11110.29999999702,
+        "phase": "scan",
+        "value": {
+          "speed": 0.006430108188030741,
+          "rpm": 0.006430108188030741
+        }
+      },
+      {
+        "at": 11117.59999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.008093147102823094,
+          "rpm": 0.008093147102823094
+        }
+      },
+      {
+        "at": 11124.20000000298,
+        "phase": "scan",
+        "value": {
+          "speed": 0.009754294443791599,
+          "rpm": 0.009754294443791599
+        }
+      },
+      {
+        "at": 11131.20000000298,
+        "phase": "scan",
+        "value": {
+          "speed": 0.011677600950101941,
+          "rpm": 0.011677600950101941
+        }
+      },
+      {
+        "at": 11138.09999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.013734106216651203,
+          "rpm": 0.013734106216651203
+        }
+      },
+      {
+        "at": 11144.89999999106,
+        "phase": "scan",
+        "value": {
+          "speed": 0.01591489996093696,
+          "rpm": 0.01591489996093696
+        }
+      },
+      {
+        "at": 11152,
+        "phase": "scan",
+        "value": {
+          "speed": 0.018353043072,
+          "rpm": 0.018353043072
+        }
+      },
+      {
+        "at": 11158.89999999106,
+        "phase": "scan",
+        "value": {
+          "speed": 0.020878173975253524,
+          "rpm": 0.020878173975253524
+        }
+      },
+      {
+        "at": 11165.89999999106,
+        "phase": "scan",
+        "value": {
+          "speed": 0.023594604556815845,
+          "rpm": 0.023594604556815845
+        }
+      },
+      {
+        "at": 11173.20000000298,
+        "phase": "scan",
+        "value": {
+          "speed": 0.02659116384074515,
+          "rpm": 0.02659116384074515
+        }
+      },
+      {
+        "at": 11180,
+        "phase": "scan",
+        "value": {
+          "speed": 0.029530772096,
+          "rpm": 0.029530772096
+        }
+      },
+      {
+        "at": 11186.79999999702,
+        "phase": "scan",
+        "value": {
+          "speed": 0.03261143528617121,
+          "rpm": 0.03261143528617121
+        }
+      },
+      {
+        "at": 11193.59999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.035831221541053324,
+          "rpm": 0.035831221541053324
+        }
+      },
+      {
+        "at": 11200.70000000298,
+        "phase": "scan",
+        "value": {
+          "speed": 0.039339430413791655,
+          "rpm": 0.039339430413791655
+        }
+      },
+      {
+        "at": 11207.59999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.04289003240032933,
+          "rpm": 0.04289003240032933
+        }
+      },
+      {
+        "at": 11214.59999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.046632239263570026,
+          "rpm": 0.046632239263570026
+        }
+      },
+      {
+        "at": 11221.59999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.05051350389321252,
+          "rpm": 0.05051350389321252
+        }
+      },
+      {
+        "at": 11228.89999999106,
+        "phase": "scan",
+        "value": {
+          "speed": 0.05470695646299782,
+          "rpm": 0.05470695646299782
+        }
+      },
+      {
+        "at": 11235.29999999702,
+        "phase": "scan",
+        "value": {
+          "speed": 0.05850405122687788,
+          "rpm": 0.05850405122687788
+        }
+      },
+      {
+        "at": 11242.29999999702,
+        "phase": "scan",
+        "value": {
+          "speed": 0.06278419935866177,
+          "rpm": 0.06278419935866177
+        }
+      },
+      {
+        "at": 11249.20000000298,
+        "phase": "scan",
+        "value": {
+          "speed": 0.06713114308491268,
+          "rpm": 0.06713114308491268
+        }
+      },
+      {
+        "at": 11256.20000000298,
+        "phase": "scan",
+        "value": {
+          "speed": 0.07166879839120698,
+          "rpm": 0.07166879839120698
+        }
+      },
+      {
+        "at": 11263.09999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.07626547517447271,
+          "rpm": 0.07626547517447271
+        }
+      },
+      {
+        "at": 11270.09999999404,
+        "phase": "scan",
+        "value": {
+          "speed": 0.08105232807932762,
+          "rpm": 0.08105232807932762
+        }
+      },
+      {
+        "at": 11277,
+        "phase": "scan",
+        "value": {
+          "speed": 0.085890547072,
+          "rpm": 0.085890547072
+        }
+      }
+    ]
+  },
+  "sameVehicleUpgrade": {
+    "before": {
+      "brand": "Porsche",
+      "modelName": "Taycan Turbo S",
+      "year": 2020,
+      "drivetrain": "RWD",
+      "classPi": "A 700",
+      "powertrainType": "UNKNOWN"
+    },
+    "after": {
+      "card": {
+        "brand": "Porsche",
+        "modelName": "Taycan Turbo S",
+        "year": 2020,
+        "drivetrain": "RWD",
+        "classPi": "A 700",
+        "powertrainType": "UNKNOWN"
+      },
+      "presentationPowertrain": "combustion"
+    },
+    "latestPacket": {
+      "carOrdinal": 3445,
+      "engineMaxRpm": 6500,
+      "engineIdleRpm": 850,
+      "currentEngineRpm": 1900,
+      "carClass": 4,
+      "carPi": 850,
+      "drivetrainType": 2,
+      "speedKmh": 50,
+      "isRaceOn": 0
+    }
+  },
+  "errors": []
+}

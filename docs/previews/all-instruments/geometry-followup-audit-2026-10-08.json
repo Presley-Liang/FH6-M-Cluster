@@ -1,0 +1,308 @@
+{
+  "generatedAt": "2026-10-08T13:49:28.336509+00:00",
+  "scope": "Production factories/CSS in static isolated page for geometry, motion disabled. Separate production receiver page with synthetic binding packets for legacy6500 scale. No real game telemetry. Shadow snapshots inspect final off-needles CSS state, not complete timed animation.",
+  "foldedScales": [
+    {
+      "theme": "y2020_2024.japan",
+      "inputRpm": 1000,
+      "gaugeMax": 8000,
+      "fillDasharray": "12.5, 100",
+      "svgBox": {
+        "x": 159.40625,
+        "y": 312.625,
+        "width": 1121.1875,
+        "height": 49.9375,
+        "top": 312.625,
+        "right": 1280.59375,
+        "bottom": 362.5625,
+        "left": 159.40625
+      },
+      "points": [
+        {
+          "label": "0",
+          "fraction": 0,
+          "labelCenterX": 196.7578125,
+          "pathFrontX": 165.0121875,
+          "pathFrontY": 358.12361111111113,
+          "xDifference": -31.74562499999999,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "1",
+          "fraction": 0.125,
+          "labelCenterX": 331.7734375,
+          "pathFrontX": 292.511954788208,
+          "pathFrontY": 328.709516509374,
+          "xDifference": -39.261482711791984,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "2",
+          "fraction": 0.25,
+          "labelCenterX": 466.7890625,
+          "pathFrontX": 430.95116986465456,
+          "pathFrontY": 323.72222222222223,
+          "xDifference": -35.83789263534544,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "3",
+          "fraction": 0.375,
+          "labelCenterX": 601.8046875,
+          "pathFrontX": 571.6240006637573,
+          "pathFrontY": 323.72222222222223,
+          "xDifference": -30.18068683624267,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "4",
+          "fraction": 0.5,
+          "labelCenterX": 736.8203125,
+          "pathFrontX": 712.2967288150787,
+          "pathFrontY": 323.72222222222223,
+          "xDifference": -24.523583684921277,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "5",
+          "fraction": 0.625,
+          "labelCenterX": 871.8203125,
+          "pathFrontX": 852.9695253982544,
+          "pathFrontY": 323.72222222222223,
+          "xDifference": -18.850787101745595,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "6",
+          "fraction": 0.75,
+          "labelCenterX": 1006.8359375,
+          "pathFrontX": 993.6422877655029,
+          "pathFrontY": 323.72222222222223,
+          "xDifference": -13.193649734497058,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "7",
+          "fraction": 0.875,
+          "labelCenterX": 1141.8515625,
+          "pathFrontX": 1134.3150501327514,
+          "pathFrontY": 323.72222222222223,
+          "xDifference": -7.536512367248633,
+          "labelWidth": 7.453125
+        },
+        {
+          "label": "8",
+          "fraction": 1,
+          "labelCenterX": 1276.8671875,
+          "pathFrontX": 1274.9878125,
+          "pathFrontY": 323.72222222222223,
+          "xDifference": -1.8793749999999818,
+          "labelWidth": 7.453125
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.america",
+      "inputRpm": 1000,
+      "gaugeMax": 8000,
+      "fillDasharray": "12.5, 100",
+      "svgBox": {
+        "x": 344.4541015625,
+        "y": 434.9420166015625,
+        "width": 231.1561279296875,
+        "height": 80.303466796875,
+        "top": 434.9420166015625,
+        "right": 575.6102294921875,
+        "bottom": 515.2454833984375,
+        "left": 344.4541015625
+      },
+      "points": [
+        {
+          "label": "0",
+          "fraction": 0,
+          "labelCenterX": 346.92161560058594,
+          "pathFrontX": 350.77764566229155,
+          "pathFrontY": 510.0503158352729,
+          "xDifference": 3.85603006170561,
+          "labelWidth": 4.935028076171875
+        },
+        {
+          "label": "1",
+          "fraction": 0.125,
+          "labelCenterX": 375.04978942871094,
+          "pathFrontX": 370.3309109436168,
+          "pathFrontY": 463.4068227660745,
+          "xDifference": -4.718878485094137,
+          "labelWidth": 4.942047119140625
+        },
+        {
+          "label": "2",
+          "fraction": 0.25,
+          "labelCenterX": 403.2331848144531,
+          "pathFrontX": 397.6812079624145,
+          "pathFrontY": 453.0944412806692,
+          "xDifference": -5.551976852038649,
+          "labelWidth": 4.94903564453125
+        },
+        {
+          "label": "3",
+          "fraction": 0.375,
+          "labelCenterX": 431.4411926269531,
+          "pathFrontX": 427.1717545922132,
+          "pathFrontY": 452.7547601583736,
+          "xDifference": -4.269438034739949,
+          "labelWidth": 4.9560546875
+        },
+        {
+          "label": "4",
+          "fraction": 0.5,
+          "labelCenterX": 459.7046661376953,
+          "pathFrontX": 456.66228952464536,
+          "pathFrontY": 452.4150791708118,
+          "xDifference": -3.042376613049953,
+          "labelWidth": 4.963104248046875
+        },
+        {
+          "label": "5",
+          "fraction": 0.625,
+          "labelCenterX": 487.99285888671875,
+          "pathFrontX": 486.15282445707754,
+          "pathFrontY": 452.07539818325,
+          "xDifference": -1.8400344296412072,
+          "labelWidth": 4.97015380859375
+        },
+        {
+          "label": "6",
+          "fraction": 0.75,
+          "labelCenterX": 516.3212585449219,
+          "pathFrontX": 515.6433710868763,
+          "pathFrontY": 451.7357170609544,
+          "xDifference": -0.6778874580455749,
+          "labelWidth": 4.97723388671875
+        },
+        {
+          "label": "7",
+          "fraction": 0.875,
+          "labelCenterX": 544.7054138183594,
+          "pathFrontX": 545.1339060193085,
+          "pathFrontY": 451.3960360733926,
+          "xDifference": 0.42849220094910834,
+          "labelWidth": 4.98431396484375
+        },
+        {
+          "label": "8",
+          "fraction": 1,
+          "labelCenterX": 573.1145324707031,
+          "pathFrontX": 574.6244409517407,
+          "pathFrontY": 451.05635508583083,
+          "xDifference": 1.5099084810375416,
+          "labelWidth": 4.99139404296875
+        }
+      ]
+    }
+  ],
+  "cxDrum": {
+    "rpm": "3250",
+    "gaugeMax": 6500,
+    "transform": "translateY(-15.62cqw)",
+    "slotCenterY": 501.421875,
+    "marks": [
+      {
+        "text": "5",
+        "centerY": 501.40525817871094,
+        "distance": 0.0166168212890625
+      },
+      {
+        "text": "6",
+        "centerY": 540.7646484375,
+        "distance": 39.3427734375
+      },
+      {
+        "text": "4",
+        "centerY": 462.0458679199219,
+        "distance": 39.376007080078125
+      }
+    ]
+  },
+  "classicalRpmClamp": {
+    "inputRpm": 9000,
+    "gaugeMax": 8500,
+    "displayedRpm": "8500"
+  },
+  "shadowSnapshots": [
+    {
+      "theme": "pre1949.europe",
+      "phase": "off-needles",
+      "needleOpacity": "0",
+      "shadowOpacity": "1",
+      "shadowFill": "rgba(49, 33, 22, 0.49)",
+      "parentOpacity": "1"
+    },
+    {
+      "theme": "y1950_1959.america",
+      "phase": "off-needles",
+      "needleOpacity": "0",
+      "shadowOpacity": "1",
+      "shadowFill": "rgba(0, 0, 0, 0.533)",
+      "parentOpacity": "1"
+    }
+  ],
+  "legacyRpmTicks": {
+    "theme": "y2015_2019.europe",
+    "inputRpm": 6000,
+    "gaugeMax": 6500,
+    "displayedRpm": "6000",
+    "fillFraction": 0.9241234339892002,
+    "labels": [
+      {
+        "value": 0,
+        "indexFraction": 0,
+        "expectedFraction": 0,
+        "impliedRpmAtLabel": 0
+      },
+      {
+        "value": 1000,
+        "indexFraction": 0.14285714285714285,
+        "expectedFraction": 0.15384615384615385,
+        "impliedRpmAtLabel": 928.5714285714286
+      },
+      {
+        "value": 2000,
+        "indexFraction": 0.2857142857142857,
+        "expectedFraction": 0.3076923076923077,
+        "impliedRpmAtLabel": 1857.142857142857
+      },
+      {
+        "value": 3000,
+        "indexFraction": 0.42857142857142855,
+        "expectedFraction": 0.46153846153846156,
+        "impliedRpmAtLabel": 2785.714285714286
+      },
+      {
+        "value": 4000,
+        "indexFraction": 0.5714285714285714,
+        "expectedFraction": 0.6153846153846154,
+        "impliedRpmAtLabel": 3714.285714285714
+      },
+      {
+        "value": 5000,
+        "indexFraction": 0.7142857142857143,
+        "expectedFraction": 0.7692307692307693,
+        "impliedRpmAtLabel": 4642.857142857143
+      },
+      {
+        "value": 6000,
+        "indexFraction": 0.8571428571428571,
+        "expectedFraction": 0.9230769230769231,
+        "impliedRpmAtLabel": 5571.428571428572
+      },
+      {
+        "value": 6500,
+        "indexFraction": 1,
+        "expectedFraction": 1,
+        "impliedRpmAtLabel": 6500
+      }
+    ]
+  },
+  "errors": []
+}

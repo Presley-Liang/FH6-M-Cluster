@@ -55,10 +55,8 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     return speedStops[index] + (speedStops[index + 1] - speedStops[index]) * (position - index);
   };
 
-  let handoff = null;
   let lastSweepSpeed = 0;
   let lastSweepRpm = 0;
-  let hadOverride = false;
   let shownMode = 'race';
 
   function update(model = {}, context = {}) {
@@ -80,9 +78,6 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     const scan = active && phase === 'scan';
     const override = context.displayOverride || null;
     const gaugeMax = finite(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : finite(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
-    // An unconnected preview has no vehicle RPM limit. Give the startup sweep
-    // a display scale without presenting it as live engine telemetry.
-    const sweepGaugeMax = gaugeMax ?? 8000;
     const rpmFraction = finite(context.gaugeFraction) ?? finite(model.rpmRatio);
 
     element.dataset.mode = mode;
@@ -91,7 +86,7 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     element.dataset.scan = scan ? 'true' : 'false';
     labels.mode.textContent = mode === 'race' ? 'RACE' : 'FREE';
     labels.program.textContent = mode === 'race' ? 'RACE PROGRAM' : 'FREE DRIVE';
-    labels.range.textContent = ev ? 'POWER TRACE' : mode === 'race' ? 'SHIFT RANGE' : 'ENGINE RANGE';
+    labels.range.textContent = ev ? 'POWER TRACE' : override && gaugeMax === null ? 'DISPLAY SCAN' : mode === 'race' ? 'SHIFT RANGE' : 'ENGINE RANGE';
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.rpm.textContent = ev ? 'POWER OUTPUT' : 'ENGINE RPM';
     labels['rpm-unit'].textContent = ev ? 'kW' : 'r/min';
@@ -109,25 +104,15 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     const hasOverride = override && finite(override.speed) !== null;
     if (hasOverride) {
       lastSweepSpeed = Math.round(speedFromFraction(override.speed));
-      lastSweepRpm = Math.round(clamp(overrideFraction ?? 0) * sweepGaugeMax);
-      handoff = null;
-    } else if (hadOverride) {
-      handoff = { start: Date.now(), speed: lastSweepSpeed, rpm: lastSweepRpm };
+      lastSweepRpm = gaugeMax === null ? null : Math.round(clamp(overrideFraction ?? 0) * gaugeMax);
     }
-    hadOverride = Boolean(hasOverride);
 
     let speed = speedTarget;
     let rpm = rpmTarget;
     if (hasOverride) {
       speed = lastSweepSpeed;
       rpm = lastSweepRpm;
-    } else if (handoff && available) {
-      const t = clamp((Date.now() - handoff.start) / 480);
-      const ease = t * t * (3 - 2 * t);
-      if (speedTarget !== null) speed = handoff.speed + (speedTarget - handoff.speed) * ease;
-      if (rpmTarget !== null) rpm = handoff.rpm + (rpmTarget - handoff.rpm) * ease;
-      if (t >= 1) handoff = null;
-    } else if (!available) handoff = null;
+    }
 
     write('speed', available || override ? whole(speed) : '—');
     write('rpm', ev ? available ? decimal(model.powerKw, 0) : '—' : available || override ? whole(rpm) : '—');

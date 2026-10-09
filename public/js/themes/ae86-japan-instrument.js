@@ -29,7 +29,7 @@ export function createAe86JapanInstrument({ document, mount }) {
           <div class="ae86-gear"><span>GEAR</span><strong data-ae86-value="gear">—</strong></div>
           <div class="ae86-divider"><i></i><i></i><i></i></div>
           <div class="ae86-central-data ae86-race-data"><span>CURRENT LAP</span><strong data-ae86-value="lap">—</strong><small>BEST <b data-ae86-value="best">—</b></small></div>
-          <div class="ae86-central-data ae86-free-data"><span>ENGINE LOAD</span><strong data-ae86-value="throttle">—</strong><small>THROTTLE %</small></div>
+          <div class="ae86-central-data ae86-free-data"><span>THROTTLE INPUT</span><strong data-ae86-value="throttle">—</strong><small>THROTTLE %</small></div>
           <div class="ae86-shift" aria-hidden="true"><span>SHIFT</span><div class="ae86-shift-lamps"></div></div>
         </div>
         <div class="ae86-dial-unit ae86-rpm-unit">
@@ -57,7 +57,6 @@ export function createAe86JapanInstrument({ document, mount }) {
   const speedTicks = element.querySelector('.ae86-speed-ticks');
   const rpmTicks = element.querySelector('.ae86-rpm-ticks');
   const rpmDial = element.querySelector('.ae86-rpm-dial');
-  const rpmNumbers = [];
   const lampsRoot = element.querySelector('.ae86-shift-lamps');
   const lamps = Array.from({ length: 7 }, () => { const lamp = document.createElement('i'); lampsRoot.append(lamp); return lamp; });
   const finite = value => typeof value === 'number' && Number.isFinite(value) ? value : null;
@@ -84,19 +83,16 @@ export function createAe86JapanInstrument({ document, mount }) {
     label.setAttribute('class', 'ae86-dial-number');
     label.textContent = content;
     layer.append(label);
-    if (isRpm) rpmNumbers.push(label);
   };
   for (let i = 0; i <= 56; i += 1) {
     const degree = -130 + i * (260 / 56), major = i % 7 === 0;
     addTick(speedTicks, degree, major ? 135 : 144, 160, major ? 'ae86-tick-major' : 'ae86-tick-minor');
-    addTick(rpmTicks, degree, major ? 135 : 144, 160, major ? 'ae86-tick-major' : 'ae86-tick-minor');
     if (major) {
       addNumber(speedTicks, degree, String(i * 5), false);
-      addNumber(rpmTicks, degree, '—', true);
     }
   }
 
-  let lastMode = null, lastScale = undefined, wasSweep = false, sweepSpeed = null, sweepRpm = null, handoff = null;
+  let lastMode = null, sweepSpeed = null, sweepRpm = null;
   const needleState = { speed: '', rpm: '' };
   function rotate(name, fraction) {
     // One coordinate system: the SVG path and its transform share center (200,200).
@@ -106,6 +102,34 @@ export function createAe86JapanInstrument({ document, mount }) {
     needles[name].setAttribute('transform', transform);
     needles[name + '-shadow'].setAttribute('transform', transform);
     needleState[name] = transform;
+  }
+
+  let priorRpmAxis = '';
+  function drawRpmScale(max, ev) {
+    const key = ev ? 'ev' : String(max);
+    if (key === priorRpmAxis) return;
+    priorRpmAxis = key;
+    rpmTicks.innerHTML = '';
+    // Whole-thousand major ticks and an exact partial endpoint use the same
+    // physical fractions as the pointer. Minor marks interpolate each interval.
+    const axisMax = max ?? 8000;
+    const step = axisMax <= 9000 ? 1000 : 2000;
+    const stops = [];
+    for (let value = 0; value <= axisMax; value += step) stops.push(value);
+    if (stops.at(-1) !== axisMax) stops.push(axisMax);
+    const markAt = (value, major) => {
+      const angle = -130 + value / axisMax * 260;
+      const caption = ev || max === null ? '' : String(Number((value / 1000).toFixed(2)));
+      addTick(rpmTicks, angle, major ? 135 : 144, 160, major ? 'ae86-tick-major' : 'ae86-tick-minor');
+      if (major) addNumber(rpmTicks, angle, caption, true);
+    };
+    for (let index = 0; index < stops.length; index += 1) {
+      markAt(stops[index], true);
+      if (index === stops.length - 1) continue;
+      for (let minor = 1; minor < 7; minor += 1) markAt(stops[index] + (stops[index + 1] - stops[index]) * minor / 7, false);
+    }
+    rpmTicks.setAttribute('data-rpm-axis-max', ev || max === null ? '' : String(max));
+
   }
 
   function update(model = {}, context = {}) {
@@ -135,33 +159,18 @@ export function createAe86JapanInstrument({ document, mount }) {
     labels.rpmFoot.textContent = ev ? 'OUTPUT POWER' : 'ENGINE SPEED';
     labels.rpmFootUnit.textContent = ev ? 'kW' : 'r/min';
     rpmDial.setAttribute('aria-label', ev ? 'Electric power' : 'Engine revolutions');
-    if (lastScale !== scale) {
-      lastScale = scale;
-      rpmNumbers.forEach((node, index) => { node.textContent = scale === null ? '—' : String(Math.round(index * scale / 8000)); });
-    }
+    drawRpmScale(scale, ev);
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available ? finite(model.rpm) : null;
     if (sweep) {
       sweepSpeed = clamp(override.speed) * 280;
       sweepRpm = scale === null ? null : clamp(override.rpm) * scale;
-      wasSweep = true;
-      handoff = null;
-    } else if (wasSweep) {
-      handoff = { start: Date.now(), speed: sweepSpeed, rpm: sweepRpm };
-      wasSweep = false;
     }
     let speed = speedTarget, rpm = rpmTarget;
     if (sweep) { speed = sweepSpeed; rpm = sweepRpm; }
-    else if (handoff) {
-      const t = clamp((Date.now() - handoff.start) / 480), eased = 1 - Math.pow(1 - t, 3);
-      if (handoff.speed !== null) speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      if (handoff.rpm !== null) rpm = handoff.rpm + ((rpmTarget ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
 
     const speedFraction = sweep ? clamp(override.speed) : speed !== null ? clamp(speed / 280) : 0;
-    const rpmFraction = sweep ? clamp(override.rpm) : handoff && scale && rpm !== null ? clamp(rpm / scale)
-      : finite(context.gaugeFraction) ?? (scale && rpm !== null ? clamp(rpm / scale) : 0);
+    const rpmFraction = sweep ? clamp(override.rpm) : finite(context.gaugeFraction) ?? (scale && rpm !== null ? clamp(rpm / scale) : 0);
     rotate('speed', speedFraction);
     rotate('rpm', ev ? 0 : rpmFraction);
     const lit = !ev && available && mode === 'race' && finite(model.rpmRatio) !== null

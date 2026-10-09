@@ -12,7 +12,9 @@
 
 日系、欧系与剩余八套已整合到同一批：[构图、来源、模拟预览和本地布局／动画检查](docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md)。审查修正与复核结果见进度表，[PR #4](https://github.com/Presley-Liang/FH6-M-Cluster/pull/4) 记录发布与合并状态；缺少原厂资料的主题标为候选。
 
-最新状态、未完成事项和验收边界见[进度表](PROGRESS.md)。主题设计约束见[33 套设计基准](docs/ERA_REGION_33_DESIGN_EXPECTATIONS.md)，待集中修复的问题见[旧主题审查记录](docs/ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)。
+最新状态、未完成事项和验收边界见[进度表](PROGRESS.md)。主题设计约束见[33 套设计基准](docs/ERA_REGION_33_DESIGN_EXPECTATIONS.md)，R01–R36返修与验收记录见[主题审查记录](docs/ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)。
+
+本轮补齐真实窗口、Chrome原生100%–200%缩放、字体／刻度／数字边界检查；修正扫表接管、车型与模式边界、记录与回放。33套主题数量与原欧系桌面构图保持。EV启动有独立的REGEN／POWER方向扫描装饰，真实再生／SOC仍不推测。
 
 ## 启动
 

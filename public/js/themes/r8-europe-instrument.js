@@ -42,9 +42,8 @@ export function createR8EuropeInstrument({ document, mount }) {
     }
   };
   for (let i = 0; i <= 28; i++) makeTick(speedTicks, -130 + i * 260 / 28, i % 4 === 0, i % 4 === 0 ? i * 10 : null, false);
-  for (let i = 0; i <= 32; i++) makeTick(rpmTicks, -130 + i * 260 / 32, i % 4 === 0, i % 4 === 0 ? i / 4 : null, i >= 28);
-  let lastMode = null, lastScale = undefined, lastSpeedAngle = '', lastRpmAngle = '';
-  let sweeping = false, sweepSpeed = null, sweepRpm = null, handoff = null;
+  let lastMode = null, lastPowertrain = null, lastSpeedAngle = '', lastRpmAngle = '';
+  let sweepSpeed = null, sweepRpm = null;
   const setText = (key, value) => { const node = values[key]; if (node && node.textContent !== value) node.textContent = value; };
   const whole = n => finite(n) === null ? '—' : String(Math.round(n));
   const percent = n => finite(n) === null ? '—' : Math.round(n) + '%';
@@ -54,6 +53,54 @@ export function createR8EuropeInstrument({ document, mount }) {
     if (next !== old) node.setAttribute('transform', next);
     return next;
   };
+  const redlineLayer = document.createElementNS(ns, 'g');
+  rpmTicks.append(redlineLayer);
+  let priorRedline = '';
+  function updateRedline(model, context, scale, ev) {
+    const engineMax = finite(context.rpmGauge?.engineMaxRpm) ?? finite(model.engineMaxRpm);
+    const start = ev || !scale ? null : finite(context.rpmGauge?.redlineStartFraction) ?? (engineMax > 0 ? .9 * engineMax / scale : null);
+    const end = ev || !scale ? null : finite(context.rpmGauge?.redlineEndFraction) ?? (engineMax > 0 ? engineMax / scale : null);
+    const valid = start !== null && end !== null && start >= 0 && end >= start && end > 0;
+    const key = valid ? clamp(start) + ':' + clamp(end) : 'unknown';
+    if (key === priorRedline) return;
+    priorRedline = key;
+    redlineLayer.innerHTML = '';
+    redlineLayer.setAttribute('data-redline-start', valid ? String(clamp(start)) : '');
+    redlineLayer.setAttribute('data-redline-end', valid ? String(clamp(end)) : '');
+    if (!valid) return;
+    for (let index = 0; index <= 6; index += 1) {
+      const angle = -130 + (clamp(start) + (clamp(end) - clamp(start)) * index / 6) * 260;
+      makeTick(redlineLayer, angle, false, null, true);
+    }
+  }
+
+  let priorRpmAxis = '';
+  function drawRpmScale(max, ev) {
+    const key = ev ? 'ev' : String(max);
+    if (key === priorRpmAxis) return;
+    priorRpmAxis = key;
+    rpmTicks.innerHTML = '';
+    // Whole-thousand major ticks and an exact partial endpoint use the same
+    // physical fractions as the pointer. Minor marks interpolate each interval.
+    const axisMax = max ?? 8000;
+    const step = axisMax <= 9000 ? 1000 : 2000;
+    const stops = [];
+    for (let value = 0; value <= axisMax; value += step) stops.push(value);
+    if (stops.at(-1) !== axisMax) stops.push(axisMax);
+    const markAt = (value, major) => {
+      const angle = -130 + value / axisMax * 260;
+      const caption = ev || max === null ? '' : String(Number((value / 1000).toFixed(2)));
+      makeTick(rpmTicks, angle, major, major ? caption : null, false);
+    };
+    for (let index = 0; index < stops.length; index += 1) {
+      markAt(stops[index], true);
+      if (index === stops.length - 1) continue;
+      for (let minor = 1; minor < 4; minor += 1) markAt(stops[index] + (stops[index + 1] - stops[index]) * minor / 4, false);
+    }
+    rpmTicks.setAttribute('data-rpm-axis-max', ev || max === null ? '' : String(max));
+    rpmTicks.append(redlineLayer);
+  }
+
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live';
@@ -67,30 +114,19 @@ export function createR8EuropeInstrument({ document, mount }) {
     const scale = finite(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : finite(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
     element.dataset.mode = mode; element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = available ? 'live' : 'absent'; element.dataset.sweep = String(sweep);
-    if (mode !== lastMode) { lastMode = mode; labels.mode.textContent = mode === 'race' ? 'DYNAMIC' : 'TOURING'; labels.screen.textContent = mode === 'race' ? 'PERFORMANCE' : 'DRIVE INFORMATION'; labels.primary.textContent = mode === 'race' ? (ev ? 'POWER' : 'GEAR') : 'ROAD SPEED'; }
+    if (mode !== lastMode || ev !== lastPowertrain) { lastMode = mode; lastPowertrain = ev; labels.mode.textContent = mode === 'race' ? 'DYNAMIC' : 'TOURING'; labels.screen.textContent = mode === 'race' ? 'PERFORMANCE' : 'DRIVE INFORMATION'; labels.primary.textContent = mode === 'race' ? (ev ? 'POWER' : 'GEAR') : 'ROAD SPEED'; }
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.drive.textContent = ev ? 'POWER / kW' : '×1000 r/min'; labels.unit.textContent = ev ? 'kW' : 'rpm';
-    if (lastScale !== scale) {
-      lastScale = scale;
-      element.dataset.scale = scale ? 'known' : 'unknown';
-      Array.from(rpmTicks.querySelectorAll('.r8-tick-label')).forEach((node, index) => {
-        node.textContent = scale === null ? '—' : String(Math.round(index * scale / 8000));
-      });
-    }
+    drawRpmScale(scale, ev);
+    element.dataset.scale = scale ? 'known' : 'unknown';
+    updateRedline(model, context, scale, ev);
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available ? finite(model.rpm) : null;
-    if (sweep) { sweepSpeed = clamp(override.speed) * 280; sweepRpm = scale === null ? null : clamp(override.rpm) * scale; sweeping = true; handoff = null; }
-    else if (sweeping) { handoff = { at: Date.now(), speed: sweepSpeed, rpm: sweepRpm }; sweeping = false; }
+    if (sweep) { sweepSpeed = clamp(override.speed) * 280; sweepRpm = scale === null ? null : clamp(override.rpm) * scale; }
     let speed = speedTarget, rpm = rpmTarget;
     if (sweep) { speed = sweepSpeed; rpm = sweepRpm; }
-    else if (handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - Math.pow(1 - t, 3);
-      if (handoff.speed !== null) speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      if (handoff.rpm !== null) rpm = handoff.rpm + ((rpmTarget ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     const speedFraction = sweep ? clamp(override.speed) : speed === null ? 0 : clamp(speed / 280);
-    const rpmFraction = sweep ? clamp(override.rpm) : handoff && scale && rpm !== null ? clamp(rpm / scale) : finite(context.gaugeFraction) ?? (scale && rpm !== null ? clamp(rpm / scale) : 0);
+    const rpmFraction = sweep ? clamp(override.rpm) : finite(context.gaugeFraction) ?? (scale && rpm !== null ? clamp(rpm / scale) : 0);
     lastSpeedAngle = setNeedle(speedNeedle, -130 + speedFraction * 260, lastSpeedAngle);
     lastRpmAngle = setNeedle(rpmNeedle, -130 + clamp(rpmFraction) * 260, lastRpmAngle);
     const lit = !ev && available && mode === 'race' && finite(model.rpmRatio) !== null ? Math.max(0, Math.min(7, Math.ceil((model.rpmRatio - .7) / .04))) : 0;
@@ -98,7 +134,7 @@ export function createR8EuropeInstrument({ document, mount }) {
     const racing = mode === 'race' && Boolean(context.racing) && available;
     setText('speed', sweep || available ? whole(speed) : '—');
     setText('rpm', ev ? (available ? whole(model.powerKw) : '—') : sweep || available ? whole(rpm) : '—');
-    setText('primary', mode === 'race' ? ev ? whole(model.powerKw) : available ? String(model.gearLabel ?? '—') : '—' : sweep || available ? whole(speed) : '—');
+    setText('primary', mode === 'race' ? ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—' : sweep || available ? whole(speed) : '—');
     setText('lap', racing ? lapTime(model.currentLap) : '—'); setText('best', racing ? lapTime(model.bestLap) : '—');
     setText('power', available ? whole(model.powerKw) + (finite(model.powerKw) === null ? '' : ' kW') : '—');
     setText('throttle', available ? percent(model.throttlePercent) : '—');

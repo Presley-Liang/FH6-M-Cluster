@@ -50,14 +50,60 @@ export function createS30JapanInstrument({ document, mount }) {
   for (let i = 0; i <= 56; i++) {
     const angle = -130 + i * 260 / 56, major = i % 7 === 0;
     addTick(speedTicks, angle, major, major ? i * 5 : null, false);
-    addTick(rpmTicks, angle, major, major ? '—' : null, i >= 49);
   }
-  const rpmNumbers = Array.from(rpmTicks.querySelectorAll('.s30-tick-label'));
   const write = (key, value) => { if (values[key] && values[key].textContent !== value) values[key].textContent = value; };
   const time = n => finite(n) === null || n <= 0 ? '—' : Math.floor(n / 60) + ':' + (n % 60).toFixed(3).padStart(6, '0');
-  let lastMode = null, lastScale = undefined, lastSpeedNeedle = '', lastRpmNeedle = '';
-  let wasSweep = false, sweepSpeed = null, sweepRpm = null, handoff = null;
+  let lastMode = null, lastSpeedNeedle = '', lastRpmNeedle = '';
+  let sweepSpeed = null, sweepRpm = null;
   const needle = (node, angle, old) => { const next = `rotate(${angle.toFixed(2)} 200 200)`; if (next !== old) node.setAttribute('transform', next); return next; };
+  const redlineLayer = document.createElementNS(ns, 'g');
+  rpmTicks.append(redlineLayer);
+  let priorRedline = '';
+  function updateRedline(model, context, scale, ev) {
+    const engineMax = finite(context.rpmGauge?.engineMaxRpm) ?? finite(model.engineMaxRpm);
+    const start = ev || !scale ? null : finite(context.rpmGauge?.redlineStartFraction) ?? (engineMax > 0 ? .9 * engineMax / scale : null);
+    const end = ev || !scale ? null : finite(context.rpmGauge?.redlineEndFraction) ?? (engineMax > 0 ? engineMax / scale : null);
+    const valid = start !== null && end !== null && start >= 0 && end >= start && end > 0;
+    const key = valid ? clamp(start) + ':' + clamp(end) : 'unknown';
+    if (key === priorRedline) return;
+    priorRedline = key;
+    redlineLayer.innerHTML = '';
+    redlineLayer.setAttribute('data-redline-start', valid ? String(clamp(start)) : '');
+    redlineLayer.setAttribute('data-redline-end', valid ? String(clamp(end)) : '');
+    if (!valid) return;
+    for (let index = 0; index <= 6; index += 1) {
+      const angle = -130 + (clamp(start) + (clamp(end) - clamp(start)) * index / 6) * 260;
+      addTick(redlineLayer, angle, false, null, true);
+    }
+  }
+
+  let priorRpmAxis = '';
+  function drawRpmScale(max, ev) {
+    const key = ev ? 'ev' : String(max);
+    if (key === priorRpmAxis) return;
+    priorRpmAxis = key;
+    rpmTicks.innerHTML = '';
+    // Whole-thousand major ticks and an exact partial endpoint use the same
+    // physical fractions as the pointer. Minor marks interpolate each interval.
+    const axisMax = max ?? 8000;
+    const step = axisMax <= 9000 ? 1000 : 2000;
+    const stops = [];
+    for (let value = 0; value <= axisMax; value += step) stops.push(value);
+    if (stops.at(-1) !== axisMax) stops.push(axisMax);
+    const markAt = (value, major) => {
+      const angle = -130 + value / axisMax * 260;
+      const caption = ev || max === null ? '' : String(Number((value / 1000).toFixed(2)));
+      addTick(rpmTicks, angle, major, major ? caption : null, false);
+    };
+    for (let index = 0; index < stops.length; index += 1) {
+      markAt(stops[index], true);
+      if (index === stops.length - 1) continue;
+      for (let minor = 1; minor < 7; minor += 1) markAt(stops[index] + (stops[index + 1] - stops[index]) * minor / 7, false);
+    }
+    rpmTicks.setAttribute('data-rpm-axis-max', ev || max === null ? '' : String(max));
+    rpmTicks.append(redlineLayer);
+  }
+
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live', kind = root?.dataset.ignitionKind || '';
@@ -72,20 +118,14 @@ export function createS30JapanInstrument({ document, mount }) {
     if (lastMode !== mode) { lastMode = mode; labels.mode.textContent = mode === 'race' ? 'RACING' : 'TOURING'; labels.note.textContent = mode === 'race' ? 'TRACK PROGRAM' : 'ROAD PROGRAM'; }
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.drive.textContent = ev ? 'POWER / kW' : '×1000 r/min'; labels.unit.textContent = ev ? 'kW' : 'rpm'; labels.gear.textContent = ev ? 'DRIVE' : 'GEAR';
-    if (lastScale !== scale) { lastScale = scale; rpmNumbers.forEach((node, i) => { node.textContent = scale === null ? '—' : String(Math.round(i * scale / 8000)); }); }
+    drawRpmScale(scale, ev);
+    updateRedline(model, context, scale, ev);
     const speedTarget = available ? finite(model.speedKmh) : null, rpmTarget = available ? finite(model.rpm) : null;
-    if (sweep) { sweepSpeed = clamp(override.speed) * 280; sweepRpm = scale === null ? null : clamp(override.rpm) * scale; wasSweep = true; handoff = null; }
-    else if (wasSweep) { handoff = { at: Date.now(), speed: sweepSpeed, rpm: sweepRpm }; wasSweep = false; }
+    if (sweep) { sweepSpeed = clamp(override.speed) * 280; sweepRpm = scale === null ? null : clamp(override.rpm) * scale; }
     let speed = speedTarget, rpm = rpmTarget;
     if (sweep) { speed = sweepSpeed; rpm = sweepRpm; }
-    else if (handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - Math.pow(1 - t, 3);
-      if (handoff.speed !== null) speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      if (handoff.rpm !== null) rpm = handoff.rpm + ((rpmTarget ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     const speedFraction = sweep ? clamp(override.speed) : speed === null ? 0 : clamp(speed / 280);
-    const rpmFraction = sweep ? clamp(override.rpm) : handoff && scale && rpm !== null ? clamp(rpm / scale) : finite(context.gaugeFraction) ?? (scale && rpm !== null ? clamp(rpm / scale) : 0);
+    const rpmFraction = sweep ? clamp(override.rpm) : finite(context.gaugeFraction) ?? (scale && rpm !== null ? clamp(rpm / scale) : 0);
     lastSpeedNeedle = needle(speedNeedle, -130 + speedFraction * 260, lastSpeedNeedle);
     lastRpmNeedle = needle(rpmNeedle, -130 + clamp(rpmFraction) * 260, lastRpmNeedle);
     const lit = !ev && available && mode === 'race' && finite(model.rpmRatio) !== null ? Math.max(0, Math.min(shift.length, Math.ceil((model.rpmRatio - .72) / .045))) : 0;

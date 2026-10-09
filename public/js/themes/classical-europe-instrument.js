@@ -81,7 +81,6 @@ export function createClassicalEuropeInstrument({ document, mount }) {
   const driveShadow = element.querySelector('.ce-drive-needle-shadow');
   const speedTicks = element.querySelector('.ce-speed-ticks');
   const driveTicks = element.querySelector('.ce-drive-ticks');
-  const driveNumbers = [];
   const finite = value => typeof value === 'number' && Number.isFinite(value) ? value : null;
   const clamp = value => Math.max(0, Math.min(1, value));
   const whole = value => finite(value) === null ? '—' : String(Math.round(value));
@@ -123,14 +122,8 @@ export function createClassicalEuropeInstrument({ document, mount }) {
     const major = index % 5 === 0;
     addTick(speedTicks, degree, major, major ? String(speedStops[index / 5]) : '');
   }
-  for (let index = 0; index <= 40; index += 1) {
-    const degree = -120 + index * 6;
-    const major = index % 5 === 0;
-    const driveLabel = addTick(driveTicks, degree, major, '—');
-    if (driveLabel) driveNumbers.push(driveLabel);
-  }
 
-  let lastScale;
+
   let lastMode;
   const write = (key, value) => {
     if (refs[key] && refs[key].textContent !== value) refs[key].textContent = value;
@@ -149,6 +142,33 @@ export function createClassicalEuropeInstrument({ document, mount }) {
     needle.setAttribute('d', path);
     shadow.setAttribute('d', path);
   };
+
+  let priorRpmAxis = '';
+  function drawRpmScale(max, ev) {
+    const key = ev ? 'ev' : String(max);
+    if (key === priorRpmAxis) return;
+    priorRpmAxis = key;
+    driveTicks.innerHTML = '';
+    // Whole-thousand major ticks and an exact partial endpoint use the same
+    // physical fractions as the pointer. Minor marks interpolate each interval.
+    const axisMax = max ?? 8000;
+    const step = axisMax <= 9000 ? 1000 : 2000;
+    const stops = [];
+    for (let value = 0; value <= axisMax; value += step) stops.push(value);
+    if (stops.at(-1) !== axisMax) stops.push(axisMax);
+    const markAt = (value, major) => {
+      const angle = -120 + value / axisMax * 240;
+      const caption = ev || max === null ? '' : String(Number((value / 1000).toFixed(2)));
+      addTick(driveTicks, angle, major, caption);
+    };
+    for (let index = 0; index < stops.length; index += 1) {
+      markAt(stops[index], true);
+      if (index === stops.length - 1) continue;
+      for (let minor = 1; minor < 5; minor += 1) markAt(stops[index] + (stops[index + 1] - stops[index]) * minor / 5, false);
+    }
+    driveTicks.setAttribute('data-rpm-axis-max', ev || max === null ? '' : String(max));
+
+  }
 
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
@@ -178,22 +198,19 @@ export function createClassicalEuropeInstrument({ document, mount }) {
     labels.driveTitle.textContent = ev ? 'POWER' : 'ENGINE';
     labels.driveUnit.textContent = ev ? 'kW' : 'r/min';
     labels.driveMark.textContent = ev ? 'PROPULSION · ELECTRIQUE' : 'MOTEUR · PRECISION';
-    if (lastScale !== scale) {
-      lastScale = scale;
-      driveNumbers.forEach((node, index) => { node.textContent = scale === null ? '—' : String(Math.round(index * scale / 8000)); });
-    }
+    drawRpmScale(scale, ev);
 
     const speedTarget = available ? finite(model.speedKmh) : null;
     const driveTarget = available ? finite(ev ? model.powerKw : model.rpm) : null;
     const speedFraction = finite(context.speedFraction) ?? (sweep ? clamp(override.speed) : 0);
     const driveFraction = finite(context.gaugeFraction) ?? (sweep ? clamp(override.rpm) : 0);
     const speed = sweep ? speedFromLegacyFraction(speedFraction) : speedTarget;
-    const drive = ev ? driveTarget : scale === null ? null : driveFraction * scale;
+    const drive = sweep && !ev ? scale === null ? null : clamp(override.rpm) * scale : driveTarget;
     needleAt(speedNeedle, speedShadow, speedFraction);
     needleAt(driveNeedle, driveShadow, driveFraction);
     write('speed', (sweep || available) && (sweep || speedTarget !== null) ? whole(speed) : '—');
     write('drive', ev ? (available ? whole(driveTarget) : '—')
-      : (sweep || available) && (sweep || driveTarget !== null) && scale !== null ? whole(drive) : '—');
+      : (sweep || available) && (sweep || driveTarget !== null) ? whole(drive) : '—');
     write('gear', available ? String(model.gearLabel ?? '—') : '—');
 
     const race = mode === 'race' && Boolean(context.racing) && available;

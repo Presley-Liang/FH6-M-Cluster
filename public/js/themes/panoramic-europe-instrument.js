@@ -37,7 +37,7 @@ export function createPanoramicEuropeInstrument({ document, mount }) {
     const lower = Math.min(speedStops.length - 2, Math.floor(index));
     return speedStops[lower] + (speedStops[lower + 1] - speedStops[lower]) * (index - lower);
   };
-  let priorMode = 'race', lastSweep = null, handoff = null, shownFraction = -1;
+  let priorMode = 'race', lastSweep = null, shownFraction = -1;
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live';
@@ -53,20 +53,10 @@ export function createPanoramicEuropeInstrument({ document, mount }) {
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available && !ev ? finite(model.rpm) : null;
     if (sweeping) {
-      lastSweep = { speed: speedFromFraction(override.speed), rpm: clamp(override.rpm) * (rpmMax ?? 8000) };
-      handoff = null;
-    } else if (lastSweep) {
-      handoff = { ...lastSweep, at: Date.now() };
-      lastSweep = null;
+      lastSweep = { speed: speedFromFraction(override.speed), rpm: rpmMax === null ? null : clamp(override.rpm) * rpmMax };
     }
     let speed = sweeping ? lastSweep.speed : speedTarget;
     let rpm = sweeping ? lastSweep.rpm : rpmTarget;
-    if (!sweeping && handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - (1 - t) ** 3;
-      speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      rpm = handoff.rpm + ((rpmTarget ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     element.dataset.mode = mode;
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = available ? 'live' : 'absent';
@@ -75,7 +65,7 @@ export function createPanoramicEuropeInstrument({ document, mount }) {
     label('gear', ev ? 'ELECTRIC DRIVE' : mode === 'race' ? 'SELECTED GEAR' : 'GEAR');
     label('main', mode === 'race' ? ev ? 'DRIVE OUTPUT' : 'ENGINE SPEED' : 'DRIVE OUTPUT');
     label('mainUnit', mode === 'race' && !ev ? 'RPM' : 'kW');
-    label('midFoot', mode === 'race' ? 'VISION / PERFORMANCE' : 'VISION / ROAD');
+    label('midFoot', ev || mode === 'freeRoam' ? 'DRIVE INPUT · %' : sweeping && rpmMax === null ? 'DISPLAY SCAN' : rpmMax === null ? 'RPM RANGE UNKNOWN' : 'ENGINE SCALE · RPM');
     label('rightTop', mode === 'race' ? 'CURRENT LAP' : 'THROTTLE INPUT');
     label('rightTopUnit', mode === 'race' ? 'TIME' : '%');
     label('rightBottom', mode === 'race' ? 'BEST LAP' : ev ? 'DRIVE INPUT' : 'ENGINE SPEED');
@@ -90,7 +80,7 @@ export function createPanoramicEuropeInstrument({ document, mount }) {
     write('gear', available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : '—');
     const main = mode === 'race' && !ev ? rpm : available ? finite(model.powerKw) : null;
     write('main', mode === 'race' && !ev ? sweeping || available ? whole(main) : '—' : available ? whole(main) : '—');
-    const fraction = ev ? sweeping ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0 : mode === 'race' ? rpm === null ? 0 : clamp(rpm / (rpmMax ?? 8000)) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0;
+    const fraction = ev ? sweeping ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0 : mode === 'race' ? sweeping ? clamp(override.rpm) : rpm === null || rpmMax === null ? 0 : clamp(rpm / rpmMax) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0;
     if (Math.abs(fraction - shownFraction) > .002) {
       shownFraction = fraction;
       meter.style.width = (fraction * 100).toFixed(2) + '%';

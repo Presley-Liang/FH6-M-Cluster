@@ -286,11 +286,21 @@ export const BRAND_REGION_DEFAULTS = Object.freeze({
   'Wuling': Object.freeze({ region: 'japan', confidence: 'medium' }),
 });
 
-// Only literal EV markers in the catalog count. No fuel, boost, nationality, or
-// unmarked model names are used to infer powertrain type.
-export const VERIFIED_EV_ORDINALS = Object.freeze(Object.entries(VEHICLE_MODEL_BY_ORDINAL)
+// Exact catalog ordinals confirmed against manufacturer sources. This is not a
+// brand/name heuristic: other models and unverified conversions stay unknown.
+export const VERIFIED_EV_SOURCES = Object.freeze({
+  3359: 'https://www.audi-mediacenter.com/en/photos/detail/audi-e-tron-55-quattro-68666',
+  3445: 'https://newsroom.porsche.com/en_US/products/taycan/powertrain-18555.html',
+  3625: 'https://www.rimac-automobili.com/nevera/',
+  3657: 'https://assets.rivian.com/2md5qhoeajym/qPvr9g8P9P8LsY9VwHrDI/e3f8ab3d005b938c14232ab81da10c40/r1t-erg-en-us-20240610.pdf',
+  3737: 'https://www.bmwusa.com/vehicles/bmw-i-series.html',
+  3755: 'https://media.ford.com/content/fordmedia/feu/gb/en/news/2022/06/23/here_s-how-to-accelerate-a-business-2-000-ps-wild-styled-ford.html',
+  3811: 'https://lucidmotors.com/air',
+  3827: 'https://www.hyundai-n.com/en/models/n/ioniq-5-n',
+});
+export const VERIFIED_EV_ORDINALS = Object.freeze([...new Set([...Object.keys(VERIFIED_EV_SOURCES).map(Number), ...Object.entries(VEHICLE_MODEL_BY_ORDINAL)
   .filter(([, name]) => /\bEV\b/i.test(name) && !/\bEV\s+Edition\b/i.test(name))
-  .map(([ordinal]) => Number(ordinal)));
+  .map(([ordinal]) => Number(ordinal))])]);
 
 export const YEAR_BANDS = Object.freeze([
   { id: 'pre-1949', label: '1949以前｜古典机械', minYear: null, maxYear: 1949 },
@@ -406,7 +416,8 @@ const metadataEntries = Object.entries(VEHICLE_MODEL_BY_ORDINAL).map(([ordinal, 
     regionConfidence: region.confidence,
     country: resolvedCountry,
     powertrain,
-    source: evOrdinals.has(ordinal) && powertrain === 'electric' ? 'local-ordinal-name-ev-marker' : 'local-ordinal-name',
+    powertrainSource: VERIFIED_EV_SOURCES[ordinal] || (powertrain === 'electric' ? 'local-ordinal-name-ev-marker' : 'unknown'),
+    source: VERIFIED_EV_SOURCES[ordinal] ? 'local-ordinal-manufacturer-verified-ev' : evOrdinals.has(ordinal) && powertrain === 'electric' ? 'local-ordinal-name-ev-marker' : 'local-ordinal-name',
   })];
 });
 
