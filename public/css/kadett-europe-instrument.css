@@ -19,3 +19,27 @@
 .kad-footer{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3cqw;border-top:1px solid var(--kad-dim)}.kad-footer>div{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5cqw}.kad-footer span{margin-right:auto;font-size:clamp(8px,.8cqw,12px)}.kad-footer b{font-size:clamp(17px,2cqw,30px)}.kad-footer small{font-size:clamp(8px,.7cqw,11px)}
 #cluster:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .kad-meter{opacity:0}
 @media(max-width:759px){.kad-hood{inset:15% 2% 12%;padding:2cqw}.kad-face{padding:3cqw}.kad-main{gap:2cqw;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr)}.kad-drive-line{flex-wrap:wrap;gap:0 3px}.kad-drive-line span{width:100%;font-size:8px}.kad-drive-line b{font-size:22px}.kad-drive-line small{font-size:8px}.kad-drive{grid-template-rows:56% 30% 14%}.kad-speed strong{font-size:clamp(42px,12cqw,70px)}.kad-small{align-items:center}.kad-small>div{flex-wrap:wrap;gap:0 3px}.kad-small span{width:100%;font-size:8px}.kad-small b{font-size:19px}.kad-footer span{width:100%;font-size:8px}.kad-footer b{font-size:17px}.kad-footer small{font-size:8px}}
+
+/* Combat: black LCD, phosphor-green ladder and white speed. */
+#cluster .kad-instrument[data-mode="race"]{--kad-lit:var(--race-accent);--kad-dim:#23351d;color:var(--race-ink)}
+#cluster .kad-instrument[data-mode="race"] .kad-hood{background:linear-gradient(145deg,#3b4149,#11171d 14%,#060a0e 78%,#343c44)}
+#cluster .kad-instrument[data-mode="race"] .kad-face{background:radial-gradient(ellipse at 38% 40%,#101b12,#040706 80%);border-color:#6c7e70;box-shadow:inset 0 0 2cqw #000}
+#cluster .kad-instrument[data-mode="race"] .kad-meter path[data-lit="true"]{filter:drop-shadow(0 0 2px var(--race-accent))}
+#cluster .kad-instrument[data-mode="race"] :is(.kad-drive-line b,.kad-small b){color:var(--race-accent-light)}
+#cluster .kad-instrument[data-mode="race"] .kad-small>div:first-child{padding:.2cqw .65cqw;background:#122018;border-left:2px solid var(--race-accent)}
+#cluster .kad-instrument[data-mode="race"] .kad-speed strong{color:var(--race-ink);text-shadow:0 0 .6cqw #ffffff19}
+#cluster .kad-instrument[data-mode="race"] :is(.kad-face header small,.kad-scale){color:var(--race-muted)}
+#cluster .kad-instrument[data-mode="race"] :is(.kad-face header,.kad-footer){border-color:#456143}
+/* Four ladder banks reveal only their telemetry-owned fill. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .kad-instrument[data-mode="race"] .kad-meter path{animation:kad-combat-latch .24s steps(2,end) backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .kad-instrument[data-mode="race"] .kad-meter path:nth-child(n+7){animation-delay:.1s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .kad-instrument[data-mode="race"] .kad-meter path:nth-child(n+13){animation-delay:.2s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .kad-instrument[data-mode="race"] .kad-meter path:nth-child(n+19){animation-delay:.3s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .kad-instrument[data-mode="race"] .kad-small{animation:kad-combat-readout .32s .3s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .kad-instrument[data-mode="freeRoam"] .kad-speed-column{animation:kad-cruise-window .56s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .kad-instrument[data-mode="freeRoam"] .kad-meter svg{animation:kad-cruise-ladder .62s ease-out}
+@keyframes kad-combat-latch{from{opacity:0}60%{opacity:.42}to{opacity:1}}
+@keyframes kad-combat-readout{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes kad-cruise-window{from{opacity:.15;filter:brightness(.35)}to{opacity:1;filter:brightness(1)}}
+@keyframes kad-cruise-ladder{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){.kad-instrument,.kad-instrument *{animation:none!important;transition:none!important}}

@@ -1,0 +1,3968 @@
+{
+  "scope": "Synthetic browser coordinator boundary checks; no UDP injection or live game acceptance.",
+  "rows": [
+    {
+      "theme": "pre1949.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 6100,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 9002,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 7052,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2250,
+          "phase": "off-center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1250,
+          "phase": "off-center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1250,
+          "phase": "off-center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.europe",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.europe",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.europe",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.europe",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.america",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.america",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.america",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.america",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.japan",
+      "scenario": "rapid",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 2810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5550,
+          "phase": "return",
+          "mode": "race"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.japan",
+      "scenario": "vehicle-interrupt",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 5470,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 8552,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.japan",
+      "scenario": "queued-mode",
+      "phase": "live",
+      "mode": "freeRoam",
+      "expected": "freeRoam",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 3520,
+          "phase": "vehicle-card",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 6602,
+          "phase": "return",
+          "mode": "freeRoam"
+        }
+      ]
+    },
+    {
+      "theme": "y2025plus.japan",
+      "scenario": "reduced-motion",
+      "phase": "live",
+      "mode": "race",
+      "expected": "race",
+      "override": null,
+      "cardVisible": "false",
+      "queue": 0,
+      "trace": [
+        {
+          "now": 0,
+          "phase": "live",
+          "mode": "freeRoam"
+        },
+        {
+          "now": 1810,
+          "phase": "center",
+          "mode": "race"
+        },
+        {
+          "now": 1950,
+          "phase": "frames",
+          "mode": "race"
+        }
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "theme": "pre1949.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "pre1949.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "pre1949.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1950_1959.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#2F8FFF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1960_1975.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#2F8FFF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#45E0FF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1976_1985.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#7AFF35",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#7AFF35",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1986_1994.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#45E0FF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#7AFF35",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1995_2002.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#7AFF35",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#2F8FFF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2003_2008.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2009_2014.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#2F8FFF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2015_2019.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#2F8FFF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#7AFF35",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#2F8FFF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2020_2024.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#FF3045",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2025plus.europe",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#45E0FF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2025plus.america",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#2F8FFF",
+      "oldTheme": "y2015_2019.europe"
+    },
+    {
+      "theme": "y2025plus.japan",
+      "phase": "vehicle-card",
+      "visible": "true",
+      "accent": "#7AFF35",
+      "oldTheme": "y2015_2019.europe"
+    }
+  ],
+  "errors": []
+}

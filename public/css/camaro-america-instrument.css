@@ -11,3 +11,35 @@
 .camaro-quad{position:absolute;inset:68% 13% 16%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1cqw}.camaro-quad>div{padding:.6cqw .8cqw;background:#112730;border:1px solid #718f93;border-radius:.5cqw;min-width:0}.camaro-quad .heritage-track{display:none}.camaro-quad .heritage-drive>span{font-size:max(8px,.7cqw)}.camaro-quad .heritage-drive-values b,.camaro-quad .heritage-temp b,.camaro-quad .heritage-input b{font-size:max(18px,2.2cqw)}.camaro-quad .heritage-drive>small{font-size:max(8px,.6cqw)}.camaro-output{display:flex;align-items:baseline;flex-wrap:wrap;gap:.5cqw}.camaro-output span{width:100%;font-size:max(8px,.8cqw);color:var(--heritage-muted)}.camaro-output b{font:500 2.2cqw 'Oxanium',monospace;color:var(--heritage-accent)}.camaro-output small{font-size:max(8px,.7cqw)}
 .camaro-binnacle>.heritage-info{position:absolute;inset:87% 13% 3%;grid-template-columns:1fr 1fr}.camaro-binnacle>.heritage-info>div{grid-template-columns:auto 1fr auto;gap:1cqw}.camaro-binnacle>.heritage-info span{grid-column:auto;font-size:max(8px,.7cqw)}.camaro-binnacle>.heritage-info b{font-size:max(12px,1.8cqw);text-align:right}.camaro-binnacle>.heritage-info small{font-size:max(8px,.6cqw)}
 @media(max-width:759px){.camaro-binnacle{inset:13% 2% 6%}.camaro-left,.camaro-right{border-width:2px}.camaro-center{left:39%;right:39%;padding:.5cqw}.camaro-center .heritage-speed strong{font-size:25px}.camaro-center .heritage-speed small{font-size:8px}.camaro-center .heritage-gear b{font-size:16px}.camaro-center .heritage-gear span{font-size:8px}.camaro-dial-label,.camaro-speed-label{font-size:8px}.camaro-quad{left:5%;right:5%;top:68%;bottom:16%;gap:1.2cqw}.camaro-quad>div{padding:1cqw}.camaro-quad .heritage-drive>span,.camaro-quad .heritage-temp span,.camaro-quad .heritage-input span,.camaro-output span{font-size:8px}.camaro-quad .heritage-drive-values b,.camaro-quad .heritage-temp b,.camaro-quad .heritage-input b,.camaro-output b{font-size:14px}.camaro-quad .heritage-drive>small{font-size:8px}.camaro-output small{font-size:8px}.camaro-binnacle>.heritage-info{left:5%;right:5%;top:86%;bottom:2%;gap:3cqw}.camaro-binnacle>.heritage-info>div{grid-template-columns:1fr auto;gap:0 1cqw}.camaro-binnacle>.heritage-info span{grid-column:1/-1;font-size:8px}.camaro-binnacle>.heritage-info b{font-size:14px}.camaro-binnacle>.heritage-info small{font-size:8px}}
+
+/* Race: black twin binnacles and auxiliary cells with red driving accents. */
+#cluster .camaro-instrument[data-mode="race"]{--heritage-accent:var(--race-red);--heritage-ink:var(--race-ink);--heritage-muted:#ababab}
+#cluster .camaro-instrument[data-mode="race"] .camaro-dashboard{background:linear-gradient(#282828,#111111 45%,#292929)}
+#cluster .camaro-instrument[data-mode="race"] .camaro-binnacle{background:linear-gradient(160deg,#606060,#1e1e1e 7%,#111111 75%,#505050);border-color:#797979}
+#cluster .camaro-instrument[data-mode="race"] :is(.camaro-left,.camaro-right){background:#141414;border-color:#a7a7a7}
+#cluster .camaro-instrument[data-mode="race"] .camaro-dial .heritage-face{fill:#191919;stroke:#b1b1b1}
+#cluster .camaro-instrument[data-mode="race"] .camaro-center{background:#232323;border-color:#6c6c6c}
+#cluster .camaro-instrument[data-mode="race"] .camaro-quad>div{background:linear-gradient(#1f1f1f,#111111);border-color:#757575}
+#cluster .camaro-instrument[data-mode="race"] :is(.camaro-dial-label,.camaro-speed-label){color:#cecece}
+#cluster .camaro-instrument[data-mode="race"] .heritage-speed strong{color:var(--race-ink)}
+
+/* Combat transition: independent dial illumination, then four auxiliary windows. */
+#cluster .camaro-instrument[data-mode="race"]{--heritage-accent:var(--race-accent,#2f8fff);--heritage-ink:var(--race-ink,#f4f6f8)}
+#cluster .camaro-instrument[data-mode="race"] .camaro-left{border-color:color-mix(in srgb,var(--heritage-accent) 55%,#a7a7a7)}
+#cluster .camaro-instrument[data-mode="race"] .camaro-center .heritage-gear b{color:var(--heritage-accent)}
+.camaro-left:after,.camaro-right:after{content:'';position:absolute;inset:1%;border:2px solid var(--heritage-accent);border-radius:inherit;opacity:0;pointer-events:none}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-left:after{animation:camaro-combat-cabin .43s ease-out both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-right:after{animation:camaro-combat-cabin .43s ease-out .08s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div{animation:camaro-combat-window .35s ease-out .16s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div:nth-child(2){animation-delay:.22s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div:nth-child(3){animation-delay:.28s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div:nth-child(4){animation-delay:.34s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-right:after{animation-delay:0s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-left:after{animation-delay:.08s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div{animation-delay:.34s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div:nth-child(2){animation-delay:.28s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div:nth-child(3){animation-delay:.22s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-quad>div:nth-child(4){animation-delay:.16s}
+@keyframes camaro-combat-cabin{0%{opacity:0;clip-path:inset(0 50% 90%)}40%{opacity:.7;clip-path:inset(0)}100%{opacity:0;clip-path:inset(0)}}
+@keyframes camaro-combat-window{from{opacity:0;clip-path:inset(0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-instrument *,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-instrument *::before,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .camaro-instrument *::after{animation:none!important}}

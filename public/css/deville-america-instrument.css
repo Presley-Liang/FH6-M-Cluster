@@ -40,3 +40,23 @@
  .deville-bottom .heritage-temp{right:3%;width:23%;bottom:12%;gap:2px}
  .deville-bottom .heritage-temp span{font-size:8px}
 }
+
+/* Combat: phosphor-green information tunnel and white speed. */
+#cluster .deville-instrument[data-mode="race"]{--heritage-ink:var(--race-ink);--heritage-muted:#a3b6ae;--heritage-accent:var(--race-accent)}
+#cluster .deville-instrument[data-mode="race"] .deville-dashboard{background:linear-gradient(#283138,#10171c 40%,#1d282a)}
+#cluster .deville-instrument[data-mode="race"] .deville-tunnel{background:linear-gradient(150deg,#46544f,#17271e 8%,#030c07 23%,#0a1d11 77%,#1c3021 92%,#62746a);border-color:#6b8670;box-shadow:0 1cqw 3cqw #0009,inset 0 0 4cqw #07180b}
+#cluster .deville-instrument[data-mode="race"] :is(.deville-speed-window .heritage-gear,.deville-upper,.deville-bottom .heritage-info){border-color:#38643c}
+#cluster .deville-instrument[data-mode="race"] .deville-speed-window .heritage-gear b{color:var(--race-accent-light);text-shadow:0 0 .6cqw #7aff3544}
+#cluster .deville-instrument[data-mode="race"] .deville-upper .heritage-track{box-shadow:0 0 .5cqw #7aff3533}
+#cluster .deville-instrument[data-mode="race"] .deville-speed-window .heritage-speed strong{color:var(--race-ink)}
+#cluster .deville-instrument[data-mode="race"] .heritage-track{background:#26472c33;border-color:#6a906255}
+/* Light resolves at the back of the tunnel before its lateral text planes open. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .deville-instrument[data-mode="race"] .deville-speed-window{animation:deville-combat-depth .56s cubic-bezier(.2,.8,.3,1)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .deville-instrument[data-mode="race"] .deville-upper{animation:deville-combat-right .42s .18s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .deville-instrument[data-mode="race"] .deville-bottom .heritage-info{animation:deville-combat-left .42s .18s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .deville-instrument[data-mode="freeRoam"] .deville-speed-window{animation:deville-cruise-depth .6s ease-out}
+@keyframes deville-combat-depth{from{opacity:0;filter:brightness(.15);transform:scale(.96)}to{opacity:1;filter:brightness(1);transform:none}}
+@keyframes deville-combat-right{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes deville-combat-left{from{opacity:0;clip-path:inset(0 0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@keyframes deville-cruise-depth{from{opacity:0;filter:brightness(.2)}to{opacity:1;filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.deville-instrument,.deville-instrument *{animation:none!important;transition:none!important}}

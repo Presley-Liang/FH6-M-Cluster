@@ -86,7 +86,7 @@
 .rx8-instrument[data-signal="live"] .rx8-status i { background:#ffc476; box-shadow:0 0 8px #f4ae61a5; }
 .rx8-instrument[data-fuel-valid="false"] [data-rx8-needle="fuel"],.rx8-instrument[data-throttle-valid="false"] [data-rx8-needle="throttle"] { opacity:0; }
 .rx8-instrument[data-mode="race"] .rx8-free-data,.rx8-instrument[data-mode="freeRoam"] .rx8-race-data { display:none; }
-.rx8-instrument[data-mode="race"] .rx8-center-foot strong { color:#f6c284; }
+.rx8-instrument[data-mode="race"] .rx8-center-foot strong { color:#ff3045; }
 .rx8-instrument[data-mode="freeRoam"] { --rx8-warm:#a9dce1; }
 .rx8-instrument[data-mode="freeRoam"] .rx8-main-bezel { transform:scale(.91) translateY(-1.3%); }
 .rx8-instrument[data-mode="freeRoam"] .rx8-side-bezel { transform:scale(.92); }
@@ -134,3 +134,42 @@
 @keyframes rx8-relight { from{filter:brightness(.06)} to{filter:brightness(1)} }
 .rx8-pod-row { transition:filter .35s ease; }
 @media(prefers-reduced-motion:reduce) { .rx8-instrument,.rx8-instrument *,.rx8-mode-identity,.rx8-mode-identity * { animation:none!important; transition:none!important; } }
+
+/* Combat: black rotary tach pod, white markings and performance-red cues. */
+#cluster .rx8-instrument[data-mode="race"]{--rx8-warm:var(--race-accent);--rx8-cold:var(--race-accent-light);background:radial-gradient(ellipse 54% 85% at 50% 40%,#24313c 0%,#101921 66%,#060b11 100%)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-side-bezel{background:radial-gradient(circle,#101b25 0 63%,#2c3b48 69%,#080d14 72%,#6b7d8d 74%,#050a10 78%,transparent 79%)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-main-bezel{background:radial-gradient(circle,#101b25 0 62%,#2c3b48 65%,#070d14 69%,#80919d 72%,#080f17 75%,transparent 77%)}
+#cluster .rx8-instrument[data-mode="race"] :is(.rx8-tach-face,.rx8-side-face){fill:#0b141e;stroke:#728593}
+#cluster .rx8-instrument[data-mode="race"] :is(.rx8-tach-track,.rx8-side-track){stroke:#8498a5}
+#cluster .rx8-instrument[data-mode="race"] .rx8-tach-number{fill:var(--race-ink)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-tach-major{stroke:var(--race-ink)}
+#cluster .rx8-instrument[data-mode="race"] :is(.rx8-tach-needle,.rx8-side-needle){fill:var(--race-accent)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-tach-needle{filter:drop-shadow(0 0 3px #ff304566)}
+#cluster[data-theme-id="y2003_2008.japan"][data-ignition-phase="scan"] .rx8-instrument[data-mode="race"] .rx8-tach-needle{filter:drop-shadow(0 0 6px #fff) drop-shadow(0 0 12px #ff304566)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-speed-window{background:#11202cd9;border-color:#6a7e8e;box-shadow:inset 0 0 0 2px #080f17,0 0 9px #ffffff14}
+#cluster .rx8-instrument[data-mode="race"] .rx8-speed-window strong{color:var(--race-ink);text-shadow:0 0 7px #ffffff22}
+#cluster .rx8-instrument[data-mode="race"] .rx8-speed-window :is(span,small){color:var(--race-muted)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-gear strong{color:var(--race-accent-light);text-shadow:0 0 8px #ff304544}
+#cluster .rx8-instrument[data-mode="race"] :is(.rx8-center-foot strong,.rx8-center-foot small){color:var(--race-accent-light)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-shift-lamps i{background:#18242f;border-color:#5a6c7b}
+#cluster .rx8-instrument[data-mode="race"] .rx8-shift-lamps i[data-lit="true"]{background:var(--race-ink);border-color:#eef4fa;box-shadow:0 0 7px #ffffff66}
+#cluster .rx8-instrument[data-mode="race"] .rx8-shift-lamps i:nth-child(n+6)[data-lit="true"]{background:var(--race-accent);border-color:#ffa4af;box-shadow:0 0 8px #ff304577}
+#cluster .rx8-instrument[data-mode="race"][data-powertrain="ev"] .rx8-drive-readout strong{color:var(--race-accent-light)}
+#cluster[data-theme-id="y2003_2008.japan"][data-target-mode="race"] .rx8-mode-identity{color:var(--race-accent-light);background:radial-gradient(ellipse at center,#09111afb 28%,#09111af0 55%,transparent 78%);text-shadow:0 0 10px #ff304544}
+#cluster[data-theme-id="y2003_2008.japan"][data-target-mode="race"] .rx8-mode-identity::before,#cluster[data-theme-id="y2003_2008.japan"][data-target-mode="race"] .rx8-mode-identity::after{background:linear-gradient(90deg,transparent,var(--race-accent),transparent)}
+/* Focus main-pod backlight, keeping its SVG ticks and needle together. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rx8-instrument[data-mode="race"] .rx8-main-bezel{animation:rx8-combat-focus .64s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rx8-instrument[data-mode="race"] .rx8-gear{animation:rx8-combat-gear .34s .23s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rx8-instrument[data-mode="freeRoam"] .rx8-side-foot{animation:rx8-cruise-wings .6s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rx8-instrument[data-mode="freeRoam"] .rx8-speed-window strong{animation:rx8-cruise-speed .55s ease-out}
+@keyframes rx8-combat-focus{from{box-shadow:0 22px 33px #000d,0 0 0 1px #b2b7b244,inset 0 0 65px #000;filter:brightness(.2)}to{box-shadow:0 22px 33px #000d,0 0 0 1px #b2b7b244,inset 0 0 35px #000b;filter:brightness(1)}}
+@keyframes rx8-combat-gear{from{opacity:0;filter:brightness(.1)}to{opacity:1;filter:brightness(1)}}
+@keyframes rx8-cruise-wings{from{opacity:0;transform:translateY(.6cqw)}to{opacity:1;transform:none}}
+@keyframes rx8-cruise-speed{from{opacity:.1;filter:brightness(.2)}to{opacity:1;filter:brightness(1)}}
+
+/* Redline remains a warning; connection status uses a neutral steady lamp. */
+#cluster .rx8-instrument[data-mode="race"] .rx8-redline-tick{stroke:var(--race-accent)}
+#cluster .rx8-instrument[data-mode="race"] .rx8-tach-hub{fill:#283641;stroke:#acbac4}
+#cluster .rx8-instrument[data-mode="race"] .rx8-tach-pin{fill:#dce5ec}
+#cluster .rx8-instrument[data-mode="race"] .rx8-status i{background:#41555f;border-color:#869eaa}
+#cluster .rx8-instrument[data-mode="race"][data-signal="live"] .rx8-status i{background:#b1c8c7;box-shadow:0 0 6px #b1c8c744}

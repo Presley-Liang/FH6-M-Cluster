@@ -12,3 +12,37 @@
 @media(max-width:759px){.v84-case{inset:15% 2% 10%}.v84-status-panel{left:39%;right:39%;padding:2cqw 1cqw}.v84-status-panel .heritage-temp b,.v84-status-panel .heritage-input b{font-size:16px}.v84-speed-panel .heritage-speed strong{font-size:29px}.v84-speed-panel .heritage-speed small{font-size:8px}.v84-speed-caption{font-size:8px;left:7%}.v84-drive-panel .heritage-drive-values{flex-wrap:wrap;gap:0}.v84-drive-panel .heritage-drive-values b{font-size:23px}.v84-drive-panel .heritage-drive-values small{width:100%}.v84-drive-panel .heritage-drive>span{font-size:8px}.v84-drive-panel .heritage-drive>small{font-size:8px}.v84-status-panel .heritage-gear{flex-direction:column;gap:0}.v84-status-panel .heritage-gear b{font-size:22px}}
 
 .v84-speed-panel .heritage-speed{display:grid;grid-template-columns:1fr;align-content:center;align-items:center;justify-items:center;row-gap:.8cqw}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .v84-instrument[data-mode="race"]{--heritage-ink:#f3f9ff;--heritage-muted:#9ab1ca;--heritage-accent:var(--race-accent)}
+#cluster .v84-instrument[data-mode="race"] .v84-dashboard{background:radial-gradient(ellipse at 50% 70%,#193348,#06101e 80%)}
+#cluster .v84-instrument[data-mode="race"] .v84-case{background:linear-gradient(160deg,#385d7b,#102b43 9%,#071c31 50%,#193d59 92%,#507792);border-color:#7399bc}
+#cluster .v84-instrument[data-mode="race"] :is(.v84-speed-panel,.v84-drive-panel){background:linear-gradient(#133958,#071d35);border-color:#6294bd}
+#cluster .v84-instrument[data-mode="race"] .v84-speed-arc{stroke:#d8edff}
+#cluster .v84-instrument[data-mode="race"] .heritage-speed strong{color:#f2f9ff}
+#cluster .v84-instrument[data-mode="race"] .heritage-gear b{color:#f2f9ff}
+#cluster .v84-instrument[data-mode="race"] .v84-status-panel{border-color:#7195b8}
+#cluster .v84-instrument[data-mode="race"] .v84-status-panel :is(.heritage-temp b,.heritage-input b){color:#d2e3f6}
+#cluster .v84-instrument[data-mode="race"] .v84-mountain{background:repeating-linear-gradient(90deg,var(--race-accent) 0 5%,#123149 5% 5.7%)}
+#cluster .v84-instrument[data-mode="race"] .heritage-info b{color:#edf7ff}
+#cluster .v84-instrument[data-mode="race"] .heritage-track{background:#406a8c33;border-color:#89b9d855}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument .v84-drive-panel::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;background:repeating-linear-gradient(90deg,#b2e3ff55 0 1px,transparent 1px 10%),linear-gradient(#7aff3512,transparent);}
+#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument[data-mode="race"] .v84-drive-panel::after{animation:corvette84_america_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument[data-mode="freeRoam"] .v84-drive-panel::after{animation:corvette84_america_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes corvette84_america_combat_in{0%{clip-path:inset(0 100% 0 0);opacity:0}35%{opacity:.8}85%{clip-path:inset(0);opacity:.4}100%{opacity:0}}
+@keyframes corvette84_america_combat_out{0%{clip-path:inset(0);opacity:0}35%{opacity:.5}85%{clip-path:inset(0 100% 0 0);opacity:.3}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument .v84-drive-panel::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument :is(.v84-speed-panel,.v84-status-panel){animation:v84_combat_supply .46s ease-out;animation-fill-mode:backwards}
+#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument .v84-status-panel{animation-delay:.06s}
+#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument[data-mode="race"] .v84-drive-panel::after,#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .v84-instrument[data-mode="freeRoam"] .v84-speed-panel{animation-delay:.12s}
+@keyframes v84_combat_supply{from{opacity:.3;filter:brightness(.45)}to{opacity:1;filter:brightness(1)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1976_1985.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Real high-RPM state remains a distinct warning, never the decorative green. */
+#cluster .v84-instrument[data-mode="race"][data-shift="true"] .v84-mountain{background:repeating-linear-gradient(90deg,#ff3045 0 5%,#123149 5% 5.7%)}

@@ -1,6 +1,6 @@
 # 全部仪表接入与本轮布局／动画交付
 
-2026-10-03首次交付，2026-10-09更新。共有 **33 套独立主画面，0 个未实现共享壳入口**：32 套自定义主题加原有 2015–2019 欧系基准。PR #4、PR #5已合并；本轮R01–R36返修与窗口缩放复验已提交[PR #6](https://github.com/Presley-Liang/FH6-M-Cluster/pull/6)，尚未合并，详见[当前进度](../PROGRESS.md)及[逐项返修记录](ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)。
+2026-10-03首次交付，2026-10-09更新。共有 **33 套独立主画面，0 个未实现共享壳入口**：32 套自定义主题加原有 2015–2019 欧系基准。PR #4、PR #5已合并；本轮R01–R36返修与窗口缩放复验已提交[PR #6](https://github.com/Presley-Liang/FH6-M-Cluster/pull/6)，尚未合并，详见[当前进度](../../../PROGRESS.md)及[逐项返修记录](../../ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)。
 
 按用户要求，本地重点审查空间和动画，其余完整代码审阅交由 PR。独立画面接入、原厂外观核实、真实游戏和用户验收分别记录。
 
@@ -16,7 +16,7 @@
 | 1999 DeVille | [GM官方手册](https://assets.gm.com/manuals/cadillac/1999_cadillac_deville_owners.pdf)印刷2-64，检索取得数字仪表图的结构转写 | 中央数字速度、下挡位和两侧信息；未下载原厂图作资产 |
 | Crown | [官方修复项目年式说明](https://toyotatimes.jp/en/series/crown_restoration/005_1.html)、[博物馆1955 RS照片报道](https://web.motormagazine.co.jp/_ct/17226421)已定位 | 官方修复车含1955／1957混合件；图片像素未成功查看，候选精细几何保持未验收 |
 
-[四套32组几何检查与八张合成预览](previews/all-instruments/pr6-oem-layout-followup-2026-10-09.json)核对读数、圆表宽高和表框边界；本地生成截图已目视复核，不等于原车图目视对照。远程图片浏览仍受工具超时／显示限制，未绕过拦截或复制第三方图片资产。
+[四套32组几何检查与八张合成预览](../previews/all-instruments/pr6-oem-layout-followup-2026-10-09.json)核对读数、圆表宽高和表框边界；本地生成截图已目视复核，不等于原车图目视对照。远程图片浏览仍受工具超时／显示限制，未绕过拦截或复制第三方图片资产。
 
 ## 最后八套与来源状态（2026-10-03历史；以上补修优先）
 
@@ -61,11 +61,11 @@
 
 12 套非复古数字主题的重新点灯由分步亮度改为连续曲线；古典欧系、AE86、JDM90 改为在实际熄灭的对应层点亮。JDM90 的 panel 与 chassis 是并列层，二者同时渐暗／渐亮。RX8 补齐表舱渐暗；公共数字／填充和 C4 侧表在 center 阶段保持熄灭并逐渐出现。复古数字的分段扫描仍保留。
 
-- [全部 33 套双向模式节奏记录](previews/all-instruments/mode-motion-checks.json)：**66 次**，完整八阶段、内容交接时刻和逐帧更新断言通过，无脚本错误。首次配置主题使用减少动画方式快速定位；被测的两次模式切换均为完整动画，并使用目标年代的扫表时间。
-- [六套重新点灯记录](previews/all-instruments/mode-relight-checks.json)：古典欧系、AE86、JDM90、RX8、R8、C4，共 **12 次**；**14 组**亮度层均至少出现五个采样值、最终亮度超过 .95、相邻 50ms 采样最大增幅小于 .3。证明所测层连续渐亮，不代表全部视觉细节已由用户认可。
-- [三套修改前后对比](previews/all-instruments/mode-motion-comparison.json)：R8／C4／JDM90 的平均扫表更新间隔由约 **55.5ms** 降至约 **6.9–7.1ms**。本机浏览器出帧约 7ms，全主题记录中仍存在出帧波动；未把浏览器回调频率当成游戏 FPS。
-- 代码回归 **210/210**、核验离线回归 **12/12**、打包通过；13 套复跑 [156 组布局](previews/all-instruments/mode-layout-checks.json)及 [117 组 CSS 阶段](previews/all-instruments/mode-css-phase-checks.json)检查通过。
-- [本轮汇总](previews/all-instruments/mode-motion-summary.json)独立于 PR #4 历史证据。隔离接收器使用独立 HTTP／UDP，检查期间没有操作用户的 3000／3002 接收器模式。修复通过 [PR #5](https://github.com/Presley-Liang/FH6-M-Cluster/pull/5) 的 Codex 云端审核（最新 head `9b8e10f` 未发现重大问题），已按用户授权合并主分支为 `ad6bc02` 并同步本地源码。真实 FH6 驾驶、持续帧率、用户视觉验收及新版可执行文件仍待完成。
+- [全部 33 套双向模式节奏记录](../previews/all-instruments/mode-motion-checks.json)：**66 次**，完整八阶段、内容交接时刻和逐帧更新断言通过，无脚本错误。首次配置主题使用减少动画方式快速定位；被测的两次模式切换均为完整动画，并使用目标年代的扫表时间。
+- [六套重新点灯记录](../previews/all-instruments/mode-relight-checks.json)：古典欧系、AE86、JDM90、RX8、R8、C4，共 **12 次**；**14 组**亮度层均至少出现五个采样值、最终亮度超过 .95、相邻 50ms 采样最大增幅小于 .3。证明所测层连续渐亮，不代表全部视觉细节已由用户认可。
+- [三套修改前后对比](../previews/all-instruments/mode-motion-comparison.json)：R8／C4／JDM90 的平均扫表更新间隔由约 **55.5ms** 降至约 **6.9–7.1ms**。本机浏览器出帧约 7ms，全主题记录中仍存在出帧波动；未把浏览器回调频率当成游戏 FPS。
+- 代码回归 **210/210**、核验离线回归 **12/12**、打包通过；13 套复跑 [156 组布局](../previews/all-instruments/mode-layout-checks.json)及 [117 组 CSS 阶段](../previews/all-instruments/mode-css-phase-checks.json)检查通过。
+- [本轮汇总](../previews/all-instruments/mode-motion-summary.json)独立于 PR #4 历史证据。隔离接收器使用独立 HTTP／UDP，检查期间没有操作用户的 3000／3002 接收器模式。修复通过 [PR #5](https://github.com/Presley-Liang/FH6-M-Cluster/pull/5) 的 Codex 云端审核（最新 head `9b8e10f` 未发现重大问题），已按用户授权合并主分支为 `ad6bc02` 并同步本地源码。真实 FH6 驾驶、持续帧率、用户视觉验收及新版可执行文件仍待完成。
 
 ### 2026-10-08 复审补项与最终证据
 
@@ -75,7 +75,7 @@
 - 修正 Windows 的 UTF-8 HTML／CSS 读取，布局与阶段报告增加生成时间戳。
 - 重新运行 **208/208** 代码测试、**12/12** 离线核验回归及打包，均通过；再次完成 **156 组**布局及加强后的 **117 组** CSS 阶段检查。
 - 欧系独立脚本同步 UTF-8 文本读写、生产 CSS 顺序、完整采样与逐表点亮断言，在本机另通过 **36 组**布局及 **27 组**阶段检查。[独立记录](EUROPE_REMAINING_REFERENCE_AND_IMPLEMENTATION_2026-10-03.md)。
-- [验证汇总](previews/all-instruments/verification-summary.json)由本日测试输出和当前浏览器记录重建；补充检查为 C4 Race 起步，布局／CSS 证据已更新为本日复跑。
+- [验证汇总](../previews/all-instruments/verification-summary.json)由本日测试输出和当前浏览器记录重建；补充检查为 C4 Race 起步，布局／CSS 证据已更新为本日复跑。
 - 链接的两份 JSON 已替换为本日最终复跑结果：Free 初始 **40 次切换／334 个阶段／148 组熄灯采样**、Race 初始 **4 次切换／34 个阶段／16 组熄灯采样** 全通过，无脚本／资源错误。多出的一次均为返回原基准，以核验最后主题退出。此为本轮 13 套浏览器自动复核，实际游戏与全部主题视觉验收另计。
 
 ### 2026-10-07 审查反馈复核
@@ -93,12 +93,12 @@
 - 本轮 **13 套 × 3 宽度（375／469／1440）× 2 模式 × 2 动力 = 156** 组浏览器文字边界／两两重叠检查；按生产页面实际 CSS 顺序加载，全部通过。
 - **13 套 × 9 阶段 = 117** 组减少动画下的 CSS 终态检查：退场时读数／表针隐藏，车型卡时仪表隐藏，实时阶段恢复。
 - 实际本地接收服务：**13 次换表、26 次 Race／Free 切换、325 次阶段观察**。覆盖退场、黑屏、车型卡、构建、扫表、回落、接管；各次完成后只显示一套仪表，模式标题退出。HTTP 200，无脚本／资源错误。
-- 拱顶半圆几何更新后追加两次实际模式切换：[复核记录](previews/all-instruments/crown-animation-recheck.json)。
+- 拱顶半圆几何更新后追加两次实际模式切换：[复核记录](../previews/all-instruments/crown-animation-recheck.json)。
 - 修正实际检查发现的 Camaro 窄窗量程说明／信息栏重叠、两套宽屏速度／单位间距、拱顶指针／数字遮挡。使用截图并排核对八套宽／窄屏构图。
 
-[文字布局记录](previews/all-instruments/layout-checks.json)、[CSS 阶段记录](previews/all-instruments/css-phase-checks.json)、[实际切换记录](previews/all-instruments/live-animation-checks.json)。长读数使用模拟速度 350、RPM 11980／量程 13000、挡位 10、圈时 59:59.99、负输出和 EV 输入。
+[文字布局记录](../previews/all-instruments/layout-checks.json)、[CSS 阶段记录](../previews/all-instruments/css-phase-checks.json)、[实际切换记录](../previews/all-instruments/live-animation-checks.json)。长读数使用模拟速度 350、RPM 11980／量程 13000、挡位 10、圈时 59:59.99、负输出和 EV 输入。
 
-未对既有 20 套再次进行全部空间／动画审查；[旧主题问题](ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)中的其余历史项目继续保留。未接入真实 FH6 驾驶包，未做持续帧率和真实 EV 验收，也未完成全部原厂照片／用户视觉验收。
+未对既有 20 套再次进行全部空间／动画审查；[旧主题问题](../../ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)中的其余历史项目继续保留。未接入真实 FH6 驾驶包，未做持续帧率和真实 EV 验收，也未完成全部原厂照片／用户视觉验收。
 
 ## 模拟预览
 
@@ -106,14 +106,14 @@
 
 | 年代／地区 | Race 1440 | Free 375 |
 |---|---|---|
-| 1949 前美系 | ![](previews/all-instruments/shield-race-1440.png) | ![](previews/all-instruments/shield-freeRoam-375.png) |
-| 1949 前日系 | ![](previews/all-instruments/aa-race-1440.png) | ![](previews/all-instruments/aa-freeRoam-375.png) |
-| 1950–1959 日系 | ![](previews/all-instruments/crown-race-1440.png) | ![](previews/all-instruments/crown-freeRoam-375.png) |
-| 1960–1975 美系 | ![](previews/all-instruments/portal-race-1440.png) | ![](previews/all-instruments/portal-freeRoam-375.png) |
-| 1976–1985 美系 | ![](previews/all-instruments/v84-race-1440.png) | ![](previews/all-instruments/v84-freeRoam-375.png) |
-| 1995–2002 美系 | ![](previews/all-instruments/deville-race-1440.png) | ![](previews/all-instruments/deville-freeRoam-375.png) |
-| 2003–2008 美系 | ![](previews/all-instruments/well-race-1440.png) | ![](previews/all-instruments/well-freeRoam-375.png) |
-| 2009–2014 美系 | ![](previews/all-instruments/camaro-race-1440.png) | ![](previews/all-instruments/camaro-freeRoam-375.png) |
+| 1949 前美系 | ![](../previews/all-instruments/shield-race-1440.png) | ![](../previews/all-instruments/shield-freeRoam-375.png) |
+| 1949 前日系 | ![](../previews/all-instruments/aa-race-1440.png) | ![](../previews/all-instruments/aa-freeRoam-375.png) |
+| 1950–1959 日系 | ![](../previews/all-instruments/crown-race-1440.png) | ![](../previews/all-instruments/crown-freeRoam-375.png) |
+| 1960–1975 美系 | ![](../previews/all-instruments/portal-race-1440.png) | ![](../previews/all-instruments/portal-freeRoam-375.png) |
+| 1976–1985 美系 | ![](../previews/all-instruments/v84-race-1440.png) | ![](../previews/all-instruments/v84-freeRoam-375.png) |
+| 1995–2002 美系 | ![](../previews/all-instruments/deville-race-1440.png) | ![](../previews/all-instruments/deville-freeRoam-375.png) |
+| 2003–2008 美系 | ![](../previews/all-instruments/well-race-1440.png) | ![](../previews/all-instruments/well-freeRoam-375.png) |
+| 2009–2014 美系 | ![](../previews/all-instruments/camaro-race-1440.png) | ![](../previews/all-instruments/camaro-freeRoam-375.png) |
 
 ## 复跑
 

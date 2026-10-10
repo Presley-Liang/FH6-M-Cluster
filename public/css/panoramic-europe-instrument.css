@@ -88,3 +88,40 @@
 .pan-projection-right{grid-template-rows:1fr .8fr;gap:.6cqw .4cqw}.pan-projection-right .pan-float{position:static;grid-column:1/-1;grid-row:2;width:auto;height:auto;display:block;padding:0;background:none;border:0;clip-path:none;box-shadow:none}.pan-float-head,.pan-float-foot{display:none}.pan-float-grid{border-bottom:0;border-top:1px solid #83acb830;padding-top:.4cqw}.pan-float-grid>div{padding:.2cqw .4cqw}.pan-float-grid strong{font-size:max(12px,1.8cqw)}.pan-float-grid span,.pan-float-grid small{font-size:max(8px,.62cqw);letter-spacing:.03em}.pan-cockpit{background:linear-gradient(#0b141c,#070c11 55%,#0c131a);inset:52% 0 0}.pan-cockpit-line{top:2%;height:55%;border-top-color:#8caeba42;box-shadow:0 -2px 5px #afc6d00a,0 7px 12px #0006}.pan-cockpit-shadow{width:100%;left:0;background:radial-gradient(ellipse at 50% 0,#020609aa,transparent 65%)}
 @media(max-width:759px){.pan-projection{grid-template-columns:28% 31% 41%}.pan-projection-right{padding-left:1.3cqw;padding-right:1cqw}.pan-projection-right strong{font-size:max(18px,3.5cqw)}.pan-projection-right .pan-float{width:auto;height:auto;padding:0}.pan-float-grid strong{font-size:max(18px,3.5cqw)}.pan-float-grid span,.pan-float-grid small{font-size:8px}.pan-float-grid span{white-space:normal}.pan-float-grid{gap:.5cqw}.pan-projection-middle>strong{font-size:max(24px,7cqw)}}
 @media(max-width:759px){.pan-projection-right{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr .8fr}.pan-projection-right span{font-size:8px;letter-spacing:0;white-space:normal}.pan-projection-right small{font-size:8px}.pan-float-grid>div{padding:.2cqw 0}.pan-float-grid strong{font-size:max(18px,3.5cqw)}}
+
+/* Race: transparent black-gray projection with red driving accents. */
+#cluster[data-theme-id="y2025plus.europe"]:has(.pan-instrument[data-mode="race"]):not([data-ignition-phase="vehicle-blackout"]):not([data-ignition-phase="vehicle-card"]) .cluster-stage{background:radial-gradient(ellipse at 50% 9%,#212121 0,#121212 35%,#080808 74%)!important;border-color:#5f5f5f}
+#cluster .pan-instrument[data-mode="race"]{--pan-accent:var(--race-red);--pan-value:var(--race-ink)}
+#cluster .pan-instrument[data-mode="race"] .pan-windshield{background:linear-gradient(180deg,#191919ae,#26262657 45%,#121212a8 100%)}
+#cluster .pan-instrument[data-mode="race"] .pan-windshield:before{background:linear-gradient(103deg,#c9c9c907,transparent 22%,#e3e3e306 45%,transparent 64%,#c6c6c607)}
+#cluster .pan-instrument[data-mode="race"] .pan-horizon{background:linear-gradient(90deg,transparent,#a6a6a63d 28%,#a6a6a63d 72%,transparent)}
+#cluster .pan-instrument[data-mode="race"] .pan-projection{background:linear-gradient(180deg,#0c0c0c00,#131313b7 55%,#141414e8);border-bottom-color:#888888b3;box-shadow:0 13px 20px -14px var(--pan-accent),inset 0 -8px 22px #ff33440a}
+#cluster .pan-instrument[data-mode="race"] .pan-projection:before{background:repeating-linear-gradient(90deg,transparent 0 15%,#bebebe05 15.1% 15.2%,transparent 15.3% 30%)}
+#cluster .pan-instrument[data-mode="race"] :is(.pan-projection-left,.pan-projection-middle,.pan-right-bottom,.pan-float-grid,.pan-float-grid>div+div){border-color:#96969635}
+#cluster .pan-instrument[data-mode="race"] :is(.pan-kicker,.pan-mid-heading,.pan-mid-foot,.pan-gear span,.pan-projection-right span,.pan-float-grid span){color:#a7a7a7}
+#cluster .pan-instrument[data-mode="race"] .pan-speed strong{text-shadow:0 0 1.6cqw #ff334450}
+#cluster .pan-instrument[data-mode="race"] .pan-power-track{background:#35353578}
+#cluster .pan-instrument[data-mode="race"] .pan-power-track>span{border-right-color:#1c1c1c}
+#cluster .pan-instrument[data-mode="race"] .pan-sweep-beam{background:linear-gradient(90deg,transparent,#cfcfcf25,transparent)}
+#cluster .pan-instrument[data-mode="race"] .pan-cockpit{background:linear-gradient(#131313,#0a0a0a 55%,#121212)}
+#cluster .pan-instrument[data-mode="race"] .pan-cockpit-line{border-top-color:#9d9d9d42;box-shadow:0 -2px 5px #bbbbbb0a,0 7px 12px #0006}
+#cluster[data-theme-id="y2025plus.europe"][data-target-mode="race"] .pan-mode-identity{background:radial-gradient(ellipse,#141414f0 10%,#141414dd 52%,transparent 80%)}
+#cluster[data-theme-id="y2025plus.europe"][data-target-mode="race"] .pan-mode-identity strong{color:var(--race-red-light)}
+#cluster[data-theme-id="y2025plus.europe"][data-target-mode="race"] .pan-mode-identity span i{background:var(--race-red)}
+
+/* Combat transition: refocus the projection and pass one short connection beam. */
+#cluster .pan-instrument[data-mode="race"]{--pan-accent:var(--race-accent,#45e0ff);--pan-value:var(--race-ink,#f4f6f8)}
+#cluster .pan-instrument[data-mode="race"] .pan-projection{box-shadow:0 13px 20px -14px var(--pan-accent),inset 0 -8px 22px color-mix(in srgb,var(--pan-accent) 4%,transparent)}
+#cluster .pan-instrument[data-mode="race"] .pan-speed strong{text-shadow:0 0 1.6cqw color-mix(in srgb,var(--pan-accent) 25%,transparent)}
+.pan-projection:after{content:'';position:absolute;top:0;bottom:0;left:0;width:9%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--pan-accent) 15%,transparent),transparent);opacity:0;pointer-events:none}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection:after{animation:pan-combat-beam .68s ease-in-out both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection:after{animation-name:pan-combat-beam-back}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.pan-projection-left,.pan-projection-middle,.pan-projection-right){animation:pan-combat-focus .5s cubic-bezier(.2,.75,.25,1) both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection-middle{animation-delay:.08s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection-right{animation-delay:.17s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection-left{animation-delay:.17s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-projection-right{animation-delay:0s}
+@keyframes pan-combat-beam{0%{opacity:0;transform:translateX(0)}15%,75%{opacity:.8}100%{opacity:0;transform:translateX(1100%)}}
+@keyframes pan-combat-beam-back{0%{opacity:0;transform:translateX(1100%)}15%,75%{opacity:.8}100%{opacity:0;transform:translateX(0)}}
+@keyframes pan-combat-focus{from{opacity:0;transform:translateY(.45cqw) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-instrument *,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-instrument *::before,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pan-instrument *::after{animation:none!important}}

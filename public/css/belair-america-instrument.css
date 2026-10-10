@@ -83,3 +83,44 @@
 @keyframes ba-mode-name{from{opacity:0;transform:translateY(.9cqw) scale(.87)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes ba-identity-exit{0%,55%{opacity:1}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.belair-america-instrument,.belair-america-instrument *{animation:none!important;transition:none!important}}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .belair-america-instrument[data-mode="race"]{--ba-lamp:var(--race-accent-light);--ba-accent:var(--race-accent);--ba-ink:#f0f6ff;background:#07111e}
+#cluster .belair-america-instrument[data-mode="race"] .ba-enamel{border-color:#8caacb;background:radial-gradient(ellipse at 50% 62%,#244564 0,#183047 37%,#0c1c31 78%,#061324 100%);box-shadow:inset 0 0 0 3px #14263b,inset 0 0 0 5px #b9cbe1,inset 0 15px 24px #ffffff13,inset 0 -17px 36px #031020d9,0 8px 15px #000c}
+#cluster .belair-america-instrument[data-mode="race"] .ba-grille{background:repeating-linear-gradient(0deg,#d7e9ff7d 0 1px,#1a304b 1px 4px,transparent 4px 11px)}
+#cluster .belair-america-instrument[data-mode="race"] .ba-main-housing{background:linear-gradient(155deg,#f2f7ff 0,#5f7998 2%,#d5e5f8 4%,#283e59 6%,#102339 8%,#071628 83%,#d3e2f6 88%,#4f6888 91%,#edf5ff 95%);box-shadow:inset 0 1px #fff9,inset 0 0 0 3px #7594b7,0 4px #dbe7f8,0 10px 12px #000b,0 20px 22px #0007}
+#cluster .belair-america-instrument[data-mode="race"] .ba-wing{border-color:#b4c9e3;background:linear-gradient(#93aac9 0,#284461 13%,#152a43 35%,#0b1c30 75%,#a1b7d1 100%)}
+#cluster .belair-america-instrument[data-mode="race"] .ba-speed-window{border-color:#ccd9ea;background:radial-gradient(ellipse at 50% 72%,#1a2e46 0,#0d1e32 50%,#040f20 100%);box-shadow:inset 0 0 0 2px #405873,inset 0 0 0 5px #a1b6d0,inset 0 7px 13px #000d,0 0 0 3px #667f9e,0 8px 17px #000a}
+#cluster .belair-america-instrument[data-mode="race"] :is(.ba-tick-major,.ba-tick-minor){stroke:#edf4ff}
+#cluster .belair-america-instrument[data-mode="race"] .ba-tick-number{fill:#f2f7ff;stroke:#061528}
+#cluster .belair-america-instrument[data-mode="race"] .ba-speed-needle{fill:var(--race-accent);stroke:var(--race-accent-light);filter:drop-shadow(0 1px 2px #000)}
+#cluster .belair-america-instrument[data-mode="race"] .ba-side{border-color:#d7e6f8;background:radial-gradient(ellipse,#1b3654,#071b32 75%);box-shadow:inset 0 0 0 2px #6083ad,inset 0 0 0 5px #112841,0 0 0 2px #8aabc9,0 4px 12px #000c}
+#cluster .belair-america-instrument[data-mode="race"] .ba-side strong{text-shadow:0 0 5px color-mix(in srgb,var(--race-accent) 25%,transparent)}
+#cluster .belair-america-instrument[data-mode="race"] .ba-speed-readout{background:linear-gradient(#e9f0fb,#f6f9ff 35%,#bdcfe6);border-color:#8ca6c8;color:#172d47}
+#cluster .belair-america-instrument[data-mode="race"] .ba-gear{background:linear-gradient(#f2f6fd,#c7d5e8);border-color:#7f9abd;color:#1a2f4b;box-shadow:inset 0 2px #fff9,inset 0 -3px #697e99}
+#cluster .belair-america-instrument[data-mode="race"] .ba-mode-data{background:linear-gradient(#173653d9,#071b2dde);border-color:#7a9ac0}
+#cluster .belair-america-instrument[data-mode="race"] .ba-mode-data>div{border-right-color:#85a1c15c}
+#cluster .belair-america-instrument[data-mode="race"] :is(.ba-side span,.ba-side small,.ba-speed-caption,.ba-speed-scale,.ba-mode-data span,.ba-mode-data small,.ba-footer,.ba-plaque){color:#b5cae5;text-shadow:none}
+#cluster .belair-america-instrument[data-mode="race"] .ba-speed-hub{fill:#dbe7f9;stroke:#617e9f}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument .ba-wing::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;background:linear-gradient(90deg,transparent,#f4f9ff80,transparent);}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument[data-mode="race"] .ba-wing::after{animation:belair_america_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument[data-mode="freeRoam"] .ba-wing::after{animation:belair_america_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes belair_america_combat_in{0%{transform:translateX(-30%);opacity:0}45%{opacity:.9}100%{transform:translateX(30%);opacity:0}}
+@keyframes belair_america_combat_out{0%{transform:translateX(30%);opacity:0}45%{opacity:.6}100%{transform:translateX(-30%);opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument .ba-wing::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument[data-mode="race"] .ba-wing-right::after{animation-name:belair_america_combat_out}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument[data-mode="freeRoam"] .ba-wing-right::after{animation-name:belair_america_combat_in}
+#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .belair-america-instrument .ba-mode-data>div{animation:ba_combat_text .46s ease-out .12s;animation-fill-mode:backwards}
+@keyframes ba_combat_text{from{opacity:0;transform:translateY(.45cqw)}to{opacity:1;transform:translateY(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1950_1959.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .belair-america-instrument[data-mode="race"] .ba-enamel::before{border-color:#d5e8ff38}
+#cluster .belair-america-instrument[data-mode="race"] .ba-enamel::after{background:linear-gradient(90deg,transparent,#f2f7ffb5 6%,#819aba 47%,#f2f7ffb5 94%,transparent)}
+#cluster .belair-america-instrument[data-mode="race"] .ba-plaque i{background:linear-gradient(90deg,transparent,#c4d8f2,transparent)}

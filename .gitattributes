@@ -1,2 +1,4 @@
 # Keep generated browser evidence available while focusing PR diffs on source.
 docs/previews/all-instruments/*.json linguist-generated=true
+docs/previews/race-combat-2026-10-10/*.json linguist-generated=true
+docs/archive/previews/**/*.json linguist-generated=true

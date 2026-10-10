@@ -65,3 +65,44 @@
   #cluster[data-theme-id="y1960_1975.japan"] .s30-main{flex:0 0 49%;width:49%;height:auto}
 }
 @media(prefers-reduced-motion:reduce){.s30-instrument,.s30-instrument *,.s30-mode-identity{animation:none!important;transition:none!important}}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .s30-instrument[data-mode="race"]{--s30-accent:var(--race-accent);background:linear-gradient(#141d2b,#07101b 44%,#0a1421);color:#f0f5ff}
+#cluster .s30-instrument[data-mode="race"] .s30-dash{background:radial-gradient(ellipse 76% 78% at 32% 20%,#283449 0%,#121f31 52%,#091422 100%);border-color:#8d9fbc63}
+#cluster .s30-instrument[data-mode="race"] .s30-face{fill:#071220;stroke:#879cb9}
+#cluster .s30-instrument[data-mode="race"] :is(.s30-tick,.s30-tick-major){stroke:#edf4ff}
+#cluster .s30-instrument[data-mode="race"] .s30-tick-label{fill:#edf4ff}
+#cluster .s30-instrument[data-mode="race"] .s30-tick-red{stroke:#ff3045}
+#cluster .s30-instrument[data-mode="race"] .s30-rpm .s30-needle{fill:var(--race-accent)}
+#cluster .s30-instrument[data-mode="race"] .s30-speed .s30-needle{fill:#f2f7ff}
+#cluster .s30-instrument[data-mode="race"] .s30-hub{fill:#3f5572;stroke:#b6c8e2}
+#cluster .s30-instrument[data-mode="race"] .s30-readout{background:#11223a;border-color:#6583aa}
+#cluster .s30-instrument[data-mode="race"] .s30-aux{background:linear-gradient(105deg,#0b192b,#20324b 25%,#0e1e34);border-right-color:#607e9f}
+#cluster .s30-instrument[data-mode="race"] .s30-aux-pod{background:radial-gradient(circle,#0d1c30 0 63%,#5e7798 65%,#b2c8e4 68%,#10233b 72%,transparent 76%)}
+#cluster .s30-instrument[data-mode="race"] .s30-aux::after{background:repeating-linear-gradient(0deg,#061120 0 .55cqw,#2c4566 .6cqw .8cqw);border-color:#6589b5}
+#cluster .s30-instrument[data-mode="race"] :is(.s30-header,.s30-footer,.s30-aux-heading,.s30-dial-title,.s30-under,.s30-drive-note span,.s30-gear span,.s30-aux-pod span){color:#a1b6d2}
+#cluster .s30-instrument[data-mode="race"] .s30-aux-pod strong{color:#f2f7ff}
+#cluster .s30-instrument[data-mode="race"] .s30-shift i[data-lit="true"]{background:#edf5ff;box-shadow:0 0 .4cqw #dbeaff66}
+#cluster .s30-instrument[data-mode="race"] .s30-shift i:nth-child(n+5)[data-lit="true"]{background:#ff3045;box-shadow:0 0 .4cqw #ff304570}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument[data-mode="race"] .s30-aux-pod strong{animation:s30_japan_combat_in .58s cubic-bezier(.22,.8,.28,1);animation-fill-mode:backwards}
+#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument[data-mode="freeRoam"] .s30-aux-pod strong{animation:s30_japan_combat_out .58s cubic-bezier(.22,.8,.28,1);animation-fill-mode:backwards}
+@keyframes s30_japan_combat_in{0%{clip-path:inset(0 100% 0 0);opacity:0}100%{clip-path:inset(0);opacity:1}}
+@keyframes s30_japan_combat_out{0%{clip-path:inset(0 0 0 100%);opacity:0}100%{clip-path:inset(0);opacity:1}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument .s30-aux-pod strong{animation:none!important;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument .s30-aux-pod:nth-child(2) strong{animation-delay:.06s}
+#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument[data-mode="race"] .s30-aux-pod:nth-child(3) strong,#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument[data-mode="freeRoam"] .s30-aux-pod:nth-child(1) strong{animation-delay:.12s}
+#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .s30-instrument[data-mode="freeRoam"] .s30-aux-pod:nth-child(3) strong{animation-delay:0s}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1960_1975.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .s30-instrument[data-mode="race"] .s30-bezel{background:radial-gradient(circle,#071422 0 67%,#3e5775 68%,#b8cae0 70%,#293e59 72%,#081323 76%,transparent 78%)}
+#cluster .s30-instrument[data-mode="race"] .s30-readout small{color:#a9bdd8}
+#cluster .s30-instrument[data-mode="race"] .s30-gear strong{color:#f5f9ff}
+#cluster .s30-instrument[data-mode="race"] .s30-driver-bottom{border-top-color:#7390b55c}
+#cluster .s30-instrument[data-mode="race"] .s30-shift i{background:#172740;border-color:#597ba5}

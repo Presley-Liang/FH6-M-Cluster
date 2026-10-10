@@ -2,7 +2,7 @@
 
 ## 2026-10-09 · 集中返修状态
 
-L03重复读数现已集中精简；32套自定义主题384组可见读数／框体及128组陈旧数据检查见[本轮证据](previews/all-instruments/readout-dedup-2026-10-09.json)。原厂精细拟真按用户最新要求取消，真实驾驶仍待游戏数据。
+L03重复读数现已集中精简；32套自定义主题384组可见读数／框体及128组陈旧数据检查见[本轮证据](archive/previews/all-instruments/readout-dedup-2026-10-09.json)。原厂精细拟真按用户最新要求取消，真实驾驶仍待游戏数据。
 
 已提交[PR #6](https://github.com/Presley-Liang/FH6-M-Cluster/pull/6)，修复提交`305f25a`；未合并，云端审核结果另行记录。
 
@@ -46,7 +46,7 @@ R01–R36已完成对应源码修复，动态接管99/99、未知轴／有效EV�
 | R35 | 暂停／关闭／离开地图停计时器，旧加载失效 | 关闭／暂停／交错加载Chrome回归 |
 | R36 | 不可见旧地图不画，liveTrail上限2048 | 12000包直接调用，绘图0次、2048点上限 |
 
-新的[公共生产页证据](previews/all-instruments/postfix-production-audit-2026-10-09.json)、[窗口／缩放证据](previews/all-instruments/responsive-fixes-2026-10-08.json)、[99条接管](previews/all-instruments/handoff-fixes-2026-10-09.json)、[未知轴／有效EV边界](previews/all-instruments/unknown-axis-ev-fixes-2026-10-09.json)独立保存；返修前证据不覆盖。可复跑公共页面核验脚本 `scripts/verify-audit-fixes.py`，需提供隔离接收器URL和输出路径。
+新的[公共生产页证据](archive/previews/all-instruments/postfix-production-audit-2026-10-09.json)、[窗口／缩放证据](archive/previews/all-instruments/responsive-fixes-2026-10-08.json)、[99条接管](archive/previews/all-instruments/handoff-fixes-2026-10-09.json)、[未知轴／有效EV边界](archive/previews/all-instruments/unknown-axis-ev-fixes-2026-10-09.json)独立保存；返修前证据不覆盖。可复跑公共页面核验脚本 `scripts/verify-audit-fixes.py`，需提供隔离接收器URL和输出路径。
 
 ## 2026-10-08 · 第四轮补查（R28–R36，只记录）
 
@@ -56,19 +56,19 @@ R01–R36已完成对应源码修复，动态接管99/99、未知轴／有效EV�
 
 | 编号／优先级 | 条件、事实与影响 | 证据及处理方向 |
 |---|---|---|
-| R28／P3 | 375px下，真实目录#4084 Datsun的长车型名使6个1949前／1950年代主题的卡尾被裁掉9.3–16.7px。古典欧系卡片高244px，内容高264px；截图可见底部VEHICLE PROFILE／INSTRUMENT PREPARING不完整。 | [车型卡证据](previews/all-instruments/vehicle-card-longname-audit-2026-10-08.json)。`public/css/vehicle-info-card.css:7、15、69`：max-height76%与clip-path遇到多行标题，无内容超高适配。卡片按可用高度调节标题／间距／布局。#1601 Gallardo的Performante另在3个小屏卡变PERFORMA…，没有完整名称入口，作为同项低优先补充。不是将所有省略号视为重大故障。 |
-| R29／P2（设计缺项） | EV启动仍采用按年代的非负0→最大比例扫表，没有实现规定的REGEN←0→POWER方向扫描。动力类型参与资料／布局，但没有改变扫描轨迹。 | [非零接管与EV轨迹](previews/all-instruments/nonzero-handoff-audit-2026-10-08.json)和`public/js/ui-animation-coordinator.js:34–45、155–161、226–260`：机械extent0.64，其余1，speed／rpm同一非负比例；无EV分支。应增加EV专用启动展示状态，仅用于装饰扫描；真实REGEN／SOC缺失继续显示未知，不伪造遥测或功率量程。 |
-| R30／P2 | 记录列表把已按秒保存的最佳圈再次除1000。归档与Compact最佳圈为60秒，Session库显示Best0.060s；详情页则正确显示60.000s。 | [存储／导出证据](previews/all-instruments/storage-boundary-audit-2026-10-08.json)。`src/ui/default-html.js:971`与正确详情`:1010`。生产loadSessions函数在最小DOM环境复现，归档和导出另由实际隔离HTTP确认；本项不是声称完整用户浏览器验收。统一使用秒并共用圈时格式化。 |
+| R28／P3 | 375px下，真实目录#4084 Datsun的长车型名使6个1949前／1950年代主题的卡尾被裁掉9.3–16.7px。古典欧系卡片高244px，内容高264px；截图可见底部VEHICLE PROFILE／INSTRUMENT PREPARING不完整。 | [车型卡证据](archive/previews/all-instruments/vehicle-card-longname-audit-2026-10-08.json)。`public/css/vehicle-info-card.css:7、15、69`：max-height76%与clip-path遇到多行标题，无内容超高适配。卡片按可用高度调节标题／间距／布局。#1601 Gallardo的Performante另在3个小屏卡变PERFORMA…，没有完整名称入口，作为同项低优先补充。不是将所有省略号视为重大故障。 |
+| R29／P2（设计缺项） | EV启动仍采用按年代的非负0→最大比例扫表，没有实现规定的REGEN←0→POWER方向扫描。动力类型参与资料／布局，但没有改变扫描轨迹。 | [非零接管与EV轨迹](archive/previews/all-instruments/nonzero-handoff-audit-2026-10-08.json)和`public/js/ui-animation-coordinator.js:34–45、155–161、226–260`：机械extent0.64，其余1，speed／rpm同一非负比例；无EV分支。应增加EV专用启动展示状态，仅用于装饰扫描；真实REGEN／SOC缺失继续显示未知，不伪造遥测或功率量程。 |
+| R30／P2 | 记录列表把已按秒保存的最佳圈再次除1000。归档与Compact最佳圈为60秒，Session库显示Best0.060s；详情页则正确显示60.000s。 | [存储／导出证据](archive/previews/all-instruments/storage-boundary-audit-2026-10-08.json)。`src/ui/default-html.js:971`与正确详情`:1010`。生产loadSessions函数在最小DOM环境复现，归档和导出另由实际隔离HTTP确认；本项不是声称完整用户浏览器验收。统一使用秒并共用圈时格式化。 |
 | R31／P2 | Compact把增压原始值直接导出为maxBoostPsi／avgBoostPsi／boostPsi；模拟raw1.5原样成为PSI字段，没有换算／单位核实。 | `src/session/export.js:64、151、177`、`docs/TELEMETRY_FIELD_MATRIX.md:41`；存储证据已确认生产导出。与项目raw／物理单位未确认约定矛盾。改为raw字段与单位说明；如果后续核实物理单位，再显式换算并处理导出兼容。不能据此宣布游戏真实Boost单位一定不是PSI。 |
 | R32／P2（注入边界） | 一个Session跨越u32时间戳回绕或游戏时间戳重置时，归档／JSON／Compact时长可为负。模拟4294967280→17、接收间隔33ms，三份时长均为−4294967263ms；5000→20重置得到−4980ms。 | `src/session/store.js:183`、`export.js:53–56、218–221`；存储证据。需区分回绕／重置／回溯，使用分段或已验证单调时间累计。未观察真实FH6发生此边界，不将注入结果当实际运行事故。 |
 | R33／P3 | Compact每圈十等分只处理floor(包数/10)×10包，尾部余数遗漏。17包仅10包计入分段统计；最后324km/h的样本不在任何分段中，分段最大值仍72，摘要则为324。 | `export.js:97–100、136`；存储证据。最后一段应覆盖余数或按分段边界完整分配；这里是按包分块，不是游戏官方Sector。输出lap为位置索引0，lapStats使用真实lapNumber2，还需明确两者编号关联，避免误读。原始档案没有丢掉这7包。 |
-| R34／P2 | 历史回放时间按包索引／60固定估算，播放每100ms仅进3包，未使用记录时间戳。模拟20Hz、601包覆盖30秒，末尾显示0:10；实际播放约1.1秒已推进记录中的1.65秒。60Hz连续包则名义播放仅约半速，无速度说明。 | [生产浏览器回放证据](previews/all-instruments/replay-runtime-audit-2026-10-08.json)。`default-html.js:1115–1129`。用记录的有效时间轴计算标签并按指定播放倍率调度，处理断流／回溯边界；模拟20Hz不代表游戏实际频率固定20Hz。 |
+| R34／P2 | 历史回放时间按包索引／60固定估算，播放每100ms仅进3包，未使用记录时间戳。模拟20Hz、601包覆盖30秒，末尾显示0:10；实际播放约1.1秒已推进记录中的1.65秒。60Hz连续包则名义播放仅约半速，无速度说明。 | [生产浏览器回放证据](archive/previews/all-instruments/replay-runtime-audit-2026-10-08.json)。`default-html.js:1115–1129`。用记录的有效时间轴计算标签并按指定播放倍率调度，处理断流／回溯边界；模拟20Hz不代表游戏实际频率固定20Hz。 |
 | R35／P3 | 关闭历史回放窗口后，播放计时器仍工作并持续重画地图。实测关闭后1.05秒，索引33→66，累计drawReplayMap调用12→23，overlayHidden=true、playing=true。 | 回放证据；`default-html.js:950–952、1120–1129`。关闭／切出回放时停止不可见渲染，保存可恢复游标和播放状态；打开其他Session时另确认是否应重置状态。此项确认多余工作，不直接认定肉眼掉帧。 |
-| R36／P2（持续渲染成本） | 新仪表下旧minimap canvas已display:none、尺寸0×0，但Race数据仍推进旧地图。模拟3600个有效位置包产生1201次重画、1201个轨迹点、724203次lineTo；轨迹持续增长，没有长度上限，每次从头重画。 | [隐藏地图证据](previews/all-instruments/hidden-map-audit-2026-10-08.json)。`default-html.js:902–936、1627–1628`。保留底层数据更新，停掉不可见旧画布的绘制；轨迹按用途限制容量／抽样或增量绘制。测试调用生产地图路径，不是游戏帧率测试，尚不能将其认定为实际掉帧根因。 |
+| R36／P2（持续渲染成本） | 新仪表下旧minimap canvas已display:none、尺寸0×0，但Race数据仍推进旧地图。模拟3600个有效位置包产生1201次重画、1201个轨迹点、724203次lineTo；轨迹持续增长，没有长度上限，每次从头重画。 | [隐藏地图证据](archive/previews/all-instruments/hidden-map-audit-2026-10-08.json)。`default-html.js:902–936、1627–1628`。保留底层数据更新，停掉不可见旧画布的绘制；轨迹按用途限制容量／抽样或增量绘制。测试调用生产地图路径，不是游戏帧率测试，尚不能将其认定为实际掉帧根因。 |
 
 ### 本轮检查范围与未完成项
 
-- **非零变化遥测114条链路**：[生产页面DOM记录](previews/all-instruments/nonzero-handoff-audit-2026-10-08.json)覆盖33套换车、33套Free→Race、33套Race→Free，共99条，未采集主题为0；另有五套EV缺输入、五套EV有效输入、五套合成stale上下文边界，共15条。按实际时长采集数字、指针transform和填充样式，无脚本错误／任务失败；没有发现需要另编号的物理数值问题，**既有R01／R02实际复现，不能将114条记成全部通过**。例R8刚进入live时真实128.1km/h而画面191，C8真实128.8而画面178，随后仍执行本地回落。原表弹簧带来的正常滞后未当成新缺陷。
+- **非零变化遥测114条链路**：[生产页面DOM记录](archive/previews/all-instruments/nonzero-handoff-audit-2026-10-08.json)覆盖33套换车、33套Free→Race、33套Race→Free，共99条，未采集主题为0；另有五套EV缺输入、五套EV有效输入、五套合成stale上下文边界，共15条。按实际时长采集数字、指针transform和填充样式，无脚本错误／任务失败；没有发现需要另编号的物理数值问题，**既有R01／R02实际复现，不能将114条记成全部通过**。例R8刚进入live时真实128.1km/h而画面191，C8真实128.8而画面178，随后仍执行本地回落。原表弹簧带来的正常滞后未当成新缺陷。
 - EV有效输入另使用190／255（74.5098%），代表表最终输入条约74.5%，功率数字跟随模拟150–210kW变化；动力上下文是主动注入，绕过当前R13自动元数据识别缺漏，不代表自动EV识别通过。五条stale是修改投影上下文而底层包继续，不是实际拔网／UDP断流。部分主题数字采集标签不同，保留其真实transform记录，不声称所有节点都完成一致性断言。
 - **车型卡792个稳定状态**：33主题×4宽度（375／469／768／1440）×6档案；132个缺失档案场景正确显示年份／动力为`—`，真实最长品牌Casey Currie Motorsports换行正常。上述裁切仅在375px出现。生产HTML／CSS／协调器填充，禁动画测量，不代替完整动画验收。
 - **存储异常的正常结果**：注入保存失败后重试，已接收包保留且没有重复；低容量队列溢出会停止录制、记录drop=1、保留已接收包，底层包处理继续，重试可恢复；宽限内恢复保留Session并标resume，超时后另开Session。仅对这些隔离条件成立。
@@ -101,9 +101,9 @@ R01–R36已完成对应源码修复，动态接管99/99、未知轴／有效EV�
 
 ### 本轮检查结果、证据与边界
 
-- [几何与熄灯证据](previews/all-instruments/geometry-followup-audit-2026-10-08.json)：Civic／Escalade折线坐标、CX鼓轮、古典RPM超量程、两套阴影及原欧系6500刻度。几何页面禁用过渡；原欧系使用实际接收服务页面和注入Store数据。无真实游戏输入。
-- [切换与重连证据](previews/all-instruments/transition-followup-audit-2026-10-08.json)：同车红线、旧车反馈残留、延迟网络失败、实际隔离接收器重启和四种交错切换。**四种交错场景均落到最后一次目标，车型卡退场、单一目标宿主激活，无脚本错误**；前三种分别记录176／302／171次Store更新，动画没有阻止这批模拟Store数据流。没有据此宣布所有针位置／非零回落或33套完整动画通过。
-- [Session换车边界证据](previews/all-instruments/session-boundary-audit-2026-10-08.json)：Race有效驾驶、Race无效菜单、Free手动录制驾驶／菜单四种输入；每种17个输入包均完成处理。属于内存归档模拟，没有真实UDP录包，不代表游戏切换必定触发R27。
+- [几何与熄灯证据](archive/previews/all-instruments/geometry-followup-audit-2026-10-08.json)：Civic／Escalade折线坐标、CX鼓轮、古典RPM超量程、两套阴影及原欧系6500刻度。几何页面禁用过渡；原欧系使用实际接收服务页面和注入Store数据。无真实游戏输入。
+- [切换与重连证据](archive/previews/all-instruments/transition-followup-audit-2026-10-08.json)：同车红线、旧车反馈残留、延迟网络失败、实际隔离接收器重启和四种交错切换。**四种交错场景均落到最后一次目标，车型卡退场、单一目标宿主激活，无脚本错误**；前三种分别记录176／302／171次Store更新，动画没有阻止这批模拟Store数据流。没有据此宣布所有针位置／非零回落或33套完整动画通过。
+- [Session换车边界证据](archive/previews/all-instruments/session-boundary-audit-2026-10-08.json)：Race有效驾驶、Race无效菜单、Free手动录制驾驶／菜单四种输入；每种17个输入包均完成处理。属于内存归档模拟，没有真实UDP录包，不代表游戏切换必定触发R27。
 - **Escalade仅记录精度候选：**本次标签与填充前端最大水平差约5.55px，比Civic小得多，不将其等同于39px错位或声称已发生严重遮挡。
 - **缺失量程的降级边界（源码确认，实际条件待验）：**普通燃油实时状态有RPM但无gaugeMax／engineMax时，Ford GT、CX、Taycan、Panoramic仍默认8000推进转速条／鼓轮。这不是仅预览默认轴。后续应明确隐藏未知轴、显示未知量程或使用已核实固定轴；没有真实游戏缺失最高转速的样本，本项不额外计入R编号。
 - **后台恢复仍待验：**本次CDP frozen／active未使观察到的扫表RAF停止；双标签前台切换也均返回visible。不能把这两个尝试记成真实后台暂停／恢复通过，也没有据此新增故障结论。
@@ -142,8 +142,8 @@ R01–R36已完成对应源码修复，动态接管99/99、未知轴／有效EV�
 
 ### 证据、待复现项与验收边界
 
-- [全主题布局与数据证据](previews/all-instruments/expanded-audit-2026-10-08.json)：330组布局、256组数据状态；附DS断流页脚、Panoramic低功率满输入条和R8低量程红线证据。无浏览器脚本错误，但发现问题，**不是586组通过声明**。布局阶段禁用过渡以测最终位置，不等于换车／模式动画已验收。
-- [生命周期复现证据](previews/all-instruments/lifecycle-audit-2026-10-08.json)：HTTP500为主动注入；真实按钮操作复现卡片／目标错配，另确认减少动画期间仍扫表和同车改装后的卡片旧参数。全部是隔离／模拟条件，没有真实游戏遥测。
+- [全主题布局与数据证据](archive/previews/all-instruments/expanded-audit-2026-10-08.json)：330组布局、256组数据状态；附DS断流页脚、Panoramic低功率满输入条和R8低量程红线证据。无浏览器脚本错误，但发现问题，**不是586组通过声明**。布局阶段禁用过渡以测最终位置，不等于换车／模式动画已验收。
+- [生命周期复现证据](archive/previews/all-instruments/lifecycle-audit-2026-10-08.json)：HTTP500为主动注入；真实按钮操作复现卡片／目标错配，另确认减少动画期间仍扫表和同车改装后的卡片旧参数。全部是隔离／模拟条件，没有真实游戏遥测。
 - 本轮未发现新的指针旋转中心错配，现有SVG轴心与轮毂坐标一致；这不替代真实遥测动态角度、所有窗口比例及换车全过程验收。
 - **本段候选状态后续已更新：**古典欧／Bel Air阴影和Civic折线错位已由上方第三轮确认，见R22／R23；Escalade保留精度候选，后台恢复仍未可靠复现。
 - 同主题重复点击目前会重播完整换车，属于调试交互取舍，暂不当成缺陷。车型卡内品牌目前为文字，图形Logo是否补齐另按素材验收。
@@ -176,7 +176,7 @@ R01–R36已完成对应源码修复，动态接管99/99、未知轴／有效EV�
 
 ### 本轮浏览器证据与边界
 
-- [24 组可读性记录](previews/all-instruments/readability-audit-2026-10-08.json)包含实际计算字号、窗口宽度与省略检查，无浏览器脚本错误。使用模拟 100km/h、11980RPM、10挡、59:59.99圈时；没有游戏遥测。
+- [24 组可读性记录](archive/previews/all-instruments/readability-audit-2026-10-08.json)包含实际计算字号、窗口宽度与省略检查，无浏览器脚本错误。使用模拟 100km/h、11980RPM、10挡、59:59.99圈时；没有游戏遥测。
 - 本批没有复现 S30／CX 的圈时省略；源码仍保留 ellipsis，需在更长格式、其他字体及实际设备上继续核对，不能仅凭规则存在就宣布当前已经截断。
 - 浏览器字号低于7px只用作本轮筛查线索，不是声称满足或违反某个可访问性标准。上述约2px的具体标签和截图是本轮确认依据。
 - PR #5 的 66 次检查确认阶段、模式交接与更新次数；没有断言每套指针的实际角度、速度／RPM与刻度一致，也没有覆盖 live 后第二轮 handoff。应增加带非零且变化遥测的全链路检查，以及实际指针轴心／角度与量程检查。

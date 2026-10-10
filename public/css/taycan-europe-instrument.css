@@ -53,3 +53,37 @@
 @media(max-width:1000px){.tay-top{font-size:8px}.tay-drive{grid-template-columns:minmax(0,1fr) 14%}.tay-lower{gap:.2cqw}.tay-lower>div{gap:.35cqw}.tay-lower span{font-size:8px}.tay-lower strong{font-size:max(12px,1.5cqw)}.tay-side strong{font-size:max(24px,4cqw)}}
 @media(max-width:759px){.tay-eyebrow,.tay-drive-note,.tay-side span{font-size:8px;letter-spacing:.04em}.tay-drive-face strong{font-size:clamp(20px,5cqw,30px)}.tay-speed-number{gap:.3cqw}.tay-speed-number strong,.tay-instrument[data-mode="race"] .tay-speed-number strong{font-size:clamp(52px,15cqw,68px)}.tay-speed-number small{font-size:9px;letter-spacing:0}.tay-side small,.tay-lower span,.tay-lower small{font-size:8px;letter-spacing:0}.tay-lower strong{font-size:9px}.tay-bottom{font-size:8px;letter-spacing:.06em}}
 @media(prefers-reduced-motion:reduce){.tay-instrument,.tay-instrument *,.tay-mode-identity,.tay-mode-identity *{animation:none!important;transition:none!important}}
+
+/* Race: floating black glass with red driving accents and a white speed figure. */
+#cluster[data-theme-id="y2020_2024.europe"]:has(.tay-instrument[data-mode="race"]):not([data-ignition-phase="vehicle-blackout"]):not([data-ignition-phase="vehicle-card"]) .cluster-stage{background:radial-gradient(ellipse at 50% 76%,#2a2a2a 0,#161616 33%,#0a0a0a 74%)!important}
+#cluster .tay-instrument[data-mode="race"]{--tay-accent:var(--race-red);--tay-quiet:#a2a2a2}
+#cluster .tay-instrument[data-mode="race"] .tay-glass{background:linear-gradient(106deg,#1e1e1e 0,#0d0d0d 22%,#191919 52%,#0c0c0c 78%,#282828 100%);border-color:#7d7d7d85;box-shadow:inset 0 1px 0 #cbcbcb65,inset 0 -2px 8px #0009,inset 15px 0 24px #c4c4c409,inset -15px 0 24px #c4c4c409,0 19px 35px #000a,0 34px 12px -33px #ff334443}
+#cluster .tay-instrument[data-mode="race"] .tay-glass:before{background:linear-gradient(180deg,#e1e1e109,transparent 20%,transparent 80%,#bdbdbd0c),linear-gradient(105deg,transparent 20%,#e5e5e506 34%,transparent 48%,#e5e5e504 63%,transparent 80%)}
+#cluster .tay-instrument[data-mode="race"] :is(.tay-top,.tay-body,.tay-drive,.tay-side,.tay-side-main,.tay-lower,.tay-lower>div){border-color:#7f7f7f50}
+#cluster .tay-instrument[data-mode="race"] .tay-drive-track{background:#3f3f3f}
+#cluster .tay-instrument[data-mode="race"] .tay-drive-track i{background:linear-gradient(0deg,#5d5d5d,var(--tay-accent))}
+#cluster .tay-instrument[data-mode="race"] .tay-drive-graduations i{background:#898989}
+#cluster .tay-instrument[data-mode="race"] .tay-lower{background:linear-gradient(90deg,transparent,#85858517 50%,transparent)}
+#cluster .tay-instrument[data-mode="race"] :is(.tay-top,.tay-eyebrow,.tay-speed-heading,.tay-side span,.tay-lower span,.tay-bottom){color:#a5a5a5}
+#cluster[data-theme-id="y2020_2024.europe"][data-drive-mode="race"][data-ignition-phase="scan"] .tay-glass{box-shadow:inset 0 1px 0 #dcdcdca8,inset 0 -2px 8px #0009,0 19px 35px #000a,0 0 1.7cqw #ff334423}
+#cluster[data-theme-id="y2020_2024.europe"][data-target-mode="race"] .tay-mode-identity{background:radial-gradient(ellipse,#101010ed 13%,#101010d9 54%,transparent 78%)}
+#cluster[data-theme-id="y2020_2024.europe"][data-target-mode="race"] .tay-mode-identity strong{color:var(--race-red-light)}
+#cluster[data-theme-id="y2020_2024.europe"][data-target-mode="race"] .tay-mode-identity span i{background:var(--race-red)}
+
+/* Combat transition: light relays across the single curved glass surface. */
+#cluster .tay-instrument[data-mode="race"]{--tay-accent:var(--race-accent,#2f8fff)}
+#cluster .tay-instrument[data-mode="race"] .tay-glass{box-shadow:inset 0 1px 0 #cbcbcb65,inset 0 -2px 8px #0009,inset 15px 0 24px #c4c4c409,inset -15px 0 24px #c4c4c409,0 19px 35px #000a,0 34px 12px -33px color-mix(in srgb,var(--tay-accent) 25%,transparent)}
+#cluster[data-theme-id="y2020_2024.europe"][data-drive-mode="race"][data-ignition-phase="scan"] .tay-glass{box-shadow:inset 0 1px 0 #dcdcdca8,inset 0 -2px 8px #0009,0 19px 35px #000a,0 0 1.7cqw color-mix(in srgb,var(--tay-accent) 14%,transparent)}
+.tay-glass:after{content:'';position:absolute;left:4%;top:8%;width:17%;height:1px;background:linear-gradient(90deg,transparent,var(--tay-accent),transparent);opacity:0;pointer-events:none}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-glass:after{animation:tay-combat-relay .67s ease-out both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-glass:after{animation-name:tay-combat-relay-back}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-drive{animation:tay-combat-region .42s ease-out both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-side{animation:tay-combat-region .42s ease-out .18s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-lower{animation:tay-combat-lower .44s ease-out .24s both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-drive{animation-delay:.18s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-side{animation-delay:0s}
+@keyframes tay-combat-relay{0%{opacity:0;transform:translateX(0)}15%,75%{opacity:.9}100%{opacity:0;transform:translateX(430%)}}
+@keyframes tay-combat-relay-back{0%{opacity:0;transform:translateX(430%)}15%,75%{opacity:.9}100%{opacity:0;transform:translateX(0)}}
+@keyframes tay-combat-region{from{opacity:0;transform:translateY(.4cqw)}to{opacity:1;transform:translateY(0)}}
+@keyframes tay-combat-lower{from{opacity:0;clip-path:inset(0 50%)}to{opacity:1;clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-instrument *,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-instrument *::before,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .tay-instrument *::after{animation:none!important}}

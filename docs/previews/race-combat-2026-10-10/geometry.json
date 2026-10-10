@@ -1,0 +1,2261 @@
+{
+  "scope": "Synthetic nonzero values; finite SVG world transforms and matching needle/shadow rotation pivots (shadow shapes intentionally differ). Does not replace user visual or live game acceptance.",
+  "rows": [
+    {
+      "theme": "pre1949.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-speed-needle",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "path": "M364.65 88.67 L303.83 301.17 L293.86 320.08 L296.17 298.83 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle",
+          "path": "M364.65 88.67 L303.83 301.17 L293.86 320.08 L296.17 298.83 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-speed-needle",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "path": "M364.65 88.67 L303.83 301.17 L293.86 320.08 L296.17 298.83 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle",
+          "path": "M364.65 88.67 L303.83 301.17 L293.86 320.08 L296.17 298.83 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-speed-needle",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "path": "M363.88 88.43 L303.83 301.16 L293.93 320.10 L296.17 298.84 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle",
+          "path": "M363.88 88.43 L303.83 301.16 L293.93 320.10 L296.17 298.84 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-speed-needle",
+          "path": "M432.56 123.17 L303.20 302.40 L287.40 316.80 L296.80 297.60 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "path": "M363.88 88.43 L303.83 301.16 L293.93 320.10 L296.17 298.84 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-drive-needle",
+          "path": "M363.88 88.43 L303.83 301.16 L293.93 320.10 L296.17 298.84 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-hub",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ce-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ce-speed-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ce-drive-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "pre1949.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "pre1949.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "pre1949.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ba-speed-needle",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ba-speed-needle",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ba-speed-needle",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "ba-speed-needle",
+          "path": "M480.71 128.54 L506.99 471.61 L501.63 500.95 L493.01 472.39 Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ba-speed-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(27.64285714285714 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(27.64285714285714 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(27.64285714285714 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1950_1959.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(27.64285714285714 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M194 209 L200 56 L206 209 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M196 209 L200 53 L204 209 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M194 209 L200 56 L206 209 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M196 209 L200 53 L204 209 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M194 209 L200 56 L206 209 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M196 209 L200 53 L204 209 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M194 209 L200 56 L206 209 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M196 209 L200 53 L204 209 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "path": "M195 207 L200 66 L205 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        },
+        {
+          "name": "e911-needle",
+          "path": "M197 207 L200 64 L203 207 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "e911-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "s30-needle",
+          "path": "M196 210 L200 66 L204 210 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1976_1985.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "path": "M195 211 L200 71 L205 211 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        },
+        {
+          "name": "ae86-needle",
+          "path": "M197 209 L200 69 L203 209 Z",
+          "transform": "rotate(-130.00 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        },
+        {
+          "name": "ae86-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1986_1994.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "mul-needle next-readout",
+          "path": null,
+          "transform": "rotate(-7 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "mul-needle next-readout",
+          "path": null,
+          "transform": "rotate(-7 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "mul-needle next-readout",
+          "path": null,
+          "transform": "rotate(-7 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "mul-needle next-readout",
+          "path": null,
+          "transform": "rotate(-7 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "jdm90-needle-shadow",
+          "path": "M350 377 L360 96 L370 377 Z",
+          "transform": "rotate(17.01 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle",
+          "path": "M354 379 L360 91 L366 379 Z",
+          "transform": "rotate(17.01 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-cap",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "jdm90-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "jdm90-needle-shadow",
+          "path": "M350 377 L360 96 L370 377 Z",
+          "transform": "rotate(17.01 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle",
+          "path": "M354 379 L360 91 L366 379 Z",
+          "transform": "rotate(17.01 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-cap",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "jdm90-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "jdm90-needle-shadow",
+          "path": "M350 377 L360 96 L370 377 Z",
+          "transform": "rotate(-120.00 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle",
+          "path": "M354 379 L360 91 L366 379 Z",
+          "transform": "rotate(-120.00 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-cap",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "jdm90-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "jdm90-needle-shadow",
+          "path": "M350 377 L360 96 L370 377 Z",
+          "transform": "rotate(-120.00 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle",
+          "path": "M354 379 L360 91 L366 379 Z",
+          "transform": "rotate(-120.00 360 360)",
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-cap",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "jdm90-needle-pin",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "jdm90-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.42750000000001 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.42750000000001 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.19999999999999 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.19999999999999 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(-120.00 180 180)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle-shadow",
+          "path": "M293 315 L300 70 L307 315 Z",
+          "transform": "rotate(17.72 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle",
+          "path": "M296 310 L300 66 L304 310 Z",
+          "transform": "rotate(17.72 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(16.80 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "rx8-tach-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(-120.00 180 180)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle-shadow",
+          "path": "M293 315 L300 70 L307 315 Z",
+          "transform": "rotate(17.72 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle",
+          "path": "M296 310 L300 66 L304 310 Z",
+          "transform": "rotate(17.72 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(16.80 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "rx8-tach-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(-120.00 180 180)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle-shadow",
+          "path": "M293 315 L300 70 L307 315 Z",
+          "transform": "rotate(17.50 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle",
+          "path": "M296 310 L300 66 L304 310 Z",
+          "transform": "rotate(17.50 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(16.80 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "rx8-tach-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y2003_2008.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(-120.00 180 180)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle-shadow",
+          "path": "M293 315 L300 70 L307 315 Z",
+          "transform": "rotate(17.50 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-tach-needle",
+          "path": "M296 310 L300 66 L304 310 Z",
+          "transform": "rotate(17.50 300 300)",
+          "finite": true
+        },
+        {
+          "name": "rx8-side-needle",
+          "path": "M176 188 L180 73 L184 188 Z",
+          "transform": "rotate(16.80 180 180)",
+          "finite": true
+        }
+      ],
+      "shadows": [
+        {
+          "name": "rx8-tach-needle-shadow",
+          "matching": true
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(-15.79 200 200)",
+          "finite": true
+        },
+        {
+          "name": "r8-needle",
+          "path": "M196 208 L200 72 L204 208 Z",
+          "transform": "rotate(18.20 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.42750000000001 150 150)",
+          "finite": true
+        },
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.42750000000001 150 150)",
+          "finite": true
+        },
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.19999999999999 150 150)",
+          "finite": true
+        },
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(18.19999999999999 150 150)",
+          "finite": true
+        },
+        {
+          "name": "heritage-needle",
+          "path": null,
+          "transform": "rotate(39.928571428571445 150 150)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "lfa-needle",
+          "path": "M196 211 L200 58 L204 211 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "lfa-needle",
+          "path": "M196 211 L200 58 L204 211 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "lfa-needle",
+          "path": "M196 211 L200 58 L204 211 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "lfa-needle",
+          "path": "M196 211 L200 58 L204 211 Z",
+          "transform": "rotate(18.43 200 200)",
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "gauge-needle",
+          "path": "M318.1603656316108 600.8311998421876 L311.6645069447164 533.1031124639079 L313.56914928594364 601.1153344357859 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "gauge-needle",
+          "path": "M1286.4308241051824 601.1153371330631 L1288.3355946565084 533.1031187517546 L1281.8396082951465 600.8311938845457 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "gauge-needle",
+          "path": "M318.1603656316108 600.8311998421876 L311.6645069447164 533.1031124639079 L313.56914928594364 601.1153344357859 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "gauge-needle",
+          "path": "M1286.4308241051824 601.1153371330631 L1288.3355946565084 533.1031187517546 L1281.8396082951465 600.8311938845457 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "gauge-needle",
+          "path": "M318.1603656316108 600.8311998421876 L311.6645069447164 533.1031124639079 L313.56914928594364 601.1153344357859 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "gauge-needle",
+          "path": "M1286.4308241051824 601.1153371330631 L1288.3355946565084 533.1031187517546 L1281.8396082951465 600.8311938845457 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "gauge-needle",
+          "path": "M318.1603656316108 600.8311998421876 L311.6645069447164 533.1031124639079 L313.56914928594364 601.1153344357859 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "gauge-needle",
+          "path": "M1286.4308241051824 601.1153371330631 L1288.3355946565084 533.1031187517546 L1281.8396082951465 600.8311938845457 Z",
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        },
+        {
+          "name": "aux-needle parked",
+          "path": null,
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2015_2019.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2020_2024.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.europe",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.europe",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.europe",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.europe",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.america",
+      "ev": false,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.america",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.america",
+      "ev": true,
+      "mode": "race",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.america",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.japan",
+      "ev": false,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "gx-yaw-needle",
+          "path": "M50 18L45 56L50 50L55 56Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.japan",
+      "ev": false,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "gx-yaw-needle",
+          "path": "M50 18L45 56L50 50L55 56Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.japan",
+      "ev": true,
+      "mode": "race",
+      "needles": [
+        {
+          "name": "gx-yaw-needle",
+          "path": "M50 18L45 56L50 50L55 56Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    },
+    {
+      "theme": "y2025plus.japan",
+      "ev": true,
+      "mode": "freeRoam",
+      "needles": [
+        {
+          "name": "gx-yaw-needle",
+          "path": "M50 18L45 56L50 50L55 56Z",
+          "transform": null,
+          "finite": true
+        }
+      ],
+      "shadows": []
+    }
+  ]
+}

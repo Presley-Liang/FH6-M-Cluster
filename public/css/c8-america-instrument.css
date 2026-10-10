@@ -71,3 +71,31 @@
 @keyframes c8-relight{0%{opacity:.1}35%{opacity:.58}100%{opacity:1}}
 @media(max-width:1000px){.c8-tile{padding:4% 5%}.c8-tile strong{font-size:clamp(14px,2cqw,28px)}.c8-main-pair{width:82%}.c8-side{gap:4%}}
 @media(prefers-reduced-motion:reduce){.c8-america-instrument,.c8-america-instrument *, .c8-mode-identity,.c8-mode-identity *{animation:none!important;transition:none!important}}
+
+/* Race: charcoal facets with focused red arc, gear and auxiliary accents. */
+#cluster .c8-america-instrument[data-mode="race"]{--c8-accent:var(--race-red);--c8-soft:var(--race-red-light)}
+#cluster .c8-america-instrument[data-mode="race"] .c8-housing{background:linear-gradient(135deg,#1e1e1e 0,#090909 13%,#0d0d0d 82%,#1e1e1e);border-color:#8787875e}
+#cluster .c8-america-instrument[data-mode="race"] .c8-core{background:radial-gradient(ellipse 72% 77% at 50% 65%,#222222 0,#111111 58%,#090909 100%);border-color:#76767675;box-shadow:inset 0 0 0 3px #0a0a0a,inset 0 0 0 4px #75757552,inset 0 15px 45px #000b}
+#cluster .c8-america-instrument[data-mode="race"] .c8-core:before{border-color:#7f7f7f66}
+#cluster .c8-america-instrument[data-mode="race"] .c8-tile{background:linear-gradient(135deg,#222222c9,#0e0e0e 72%);border-color:#7a7a7a8c}
+#cluster .c8-america-instrument[data-mode="race"] .c8-arc-bed{stroke:#373737}
+#cluster .c8-america-instrument[data-mode="race"] .c8-arc-minor{stroke:#8a8a8a}
+#cluster .c8-america-instrument[data-mode="race"] :is(.c8-main-pair,.c8-gear){border-color:#7b7b7b6e}
+#cluster .c8-america-instrument[data-mode="race"] :is(.c8-header,.c8-footer,.c8-tile small,.c8-arc-caption){color:#ababab}
+#cluster[data-theme-id="y2020_2024.america"][data-target-mode="race"] .c8-mode-identity{background:radial-gradient(ellipse at center,#191919fa 0,#0b0b0be6 55%,transparent 78%)}
+#cluster[data-theme-id="y2020_2024.america"][data-target-mode="race"] .c8-mode-identity [data-c8-mode="race"]{color:var(--race-red)}
+#cluster[data-theme-id="y2020_2024.america"][data-target-mode="race"] .c8-mode-identity span i{background:var(--race-red)}
+
+/* Combat transition: opposing diagonal shutters follow the existing angled cards. */
+#cluster .c8-america-instrument[data-mode="race"]{--c8-accent:var(--race-accent,#ff3045);--c8-soft:var(--race-accent-light,#ff7582)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c8-side-left .c8-tile{animation:c8-combat-shutter-left .57s cubic-bezier(.2,.8,.25,1) both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c8-side-right .c8-tile{animation:c8-combat-shutter-right .57s cubic-bezier(.2,.8,.25,1) .08s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c8-main-readout{animation:c8-combat-readout .5s ease-out .12s both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .c8-side-left .c8-tile{animation-name:c8-combat-shutter-left-back}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .c8-side-right .c8-tile{animation-name:c8-combat-shutter-right-back}
+@keyframes c8-combat-shutter-left{from{opacity:0;clip-path:polygon(0 0,0 0,0 12%,0 100%,0 100%)}to{opacity:1;clip-path:polygon(0 0,94% 0,100% 12%,100% 100%,0 100%)}}
+@keyframes c8-combat-shutter-right{from{opacity:0;clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%,100% 12%)}to{opacity:1;clip-path:polygon(6% 0,100% 0,100% 100%,0 100%,0 12%)}}
+@keyframes c8-combat-shutter-left-back{from{opacity:0;clip-path:polygon(100% 0,100% 0,100% 12%,100% 100%,100% 100%)}to{opacity:1;clip-path:polygon(0 0,94% 0,100% 12%,100% 100%,0 100%)}}
+@keyframes c8-combat-shutter-right-back{from{opacity:0;clip-path:polygon(0 0,0 0,0 100%,0 100%,0 12%)}to{opacity:1;clip-path:polygon(6% 0,100% 0,100% 100%,0 100%,0 12%)}}
+@keyframes c8-combat-readout{from{opacity:0;clip-path:inset(0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c8-america-instrument :is(.c8-tile,.c8-main-readout){animation:none!important}}

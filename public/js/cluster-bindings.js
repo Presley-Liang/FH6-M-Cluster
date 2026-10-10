@@ -2,6 +2,7 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
   const lookupVehicleModel = options.vehicleModelLookup || (() => null);
   let raw = {}, received = 0, frame = 0, previous = 0, lastDetails = 0, displayedSpeed = 0, displayedRpm = 0, speedVelocity = 0, rpmVelocity = 0, maximum = null, topSpeed = 0, car = null;
   let previousGearLabel = null, gearAnimationTimer = null, pendingNeutralSince = null;
+  let displayedGearLabel = null, gearVehicle = null, lastGearSampleAt = 0;
   let raceSecondary = null;
   let displayOverride = null;
   let boostPresentationKey = null;
@@ -20,13 +21,33 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     const value = Number(label);
     return Number.isFinite(value) ? value : null;
   }
-  function renderGear(label, stale, now) {
+  function resetGearDisplay() {
+    displayedGearLabel = null; pendingNeutralSince = null; gearVehicle = null; lastGearSampleAt = 0;
+    previousGearLabel = null;
+    clearTimeout(gearAnimationTimer);
+    doc.getElementById('gear')?.classList.remove('gear-shift-up','gear-shift-down');
+  }
+  function updateGearDisplay(model, now) {
+    const label = model.gearLabel;
+    if (gearVehicle !== model.carId || (lastGearSampleAt && now - lastGearSampleAt > 2000)) resetGearDisplay();
+    if (gearValue(label) === null) {
+      resetGearDisplay();
+      return;
+    }
+    gearVehicle = model.carId; lastGearSampleAt = now;
+    // Process every received packet, including gears between browser frames.
+    // A lone neutral packet cannot mature just because the RAF clock advances.
+    if (label === 'N' && displayedGearLabel !== null && displayedGearLabel !== 'N') {
+      if (pendingNeutralSince === null) pendingNeutralSince = now;
+      if (now - pendingNeutralSince >= (options.neutralHoldMs ?? 180)) displayedGearLabel = label;
+    } else {
+      pendingNeutralSince = null;
+      displayedGearLabel = label;
+    }
+  }
+  function renderGear(label, stale) {
     const el = doc.getElementById('gear');
     if (!el || el.textContent === String(label)) return;
-    if (!stale && label === 'N' && previousGearLabel !== null && previousGearLabel !== 'N') {
-      if (pendingNeutralSince === null) pendingNeutralSince = now;
-      if (now - pendingNeutralSince < (options.neutralHoldMs ?? 180)) return;
-    } else pendingNeutralSince = null;
     const prior = previousGearLabel;
     el.textContent = label;
     if (!stale && prior !== null && gearValue(prior) !== null && gearValue(label) !== null) {
@@ -129,6 +150,8 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     const dt = previous ? Math.min(100,now-previous) : 16; previous=now;
     const confirmedCar = stableVehicle?.carOrdinal ?? model.carId;
     if (car !== confirmedCar) { car=confirmedCar; topSpeed=0; displayedRpm=0; speedVelocity=0; rpmVelocity=0; }
+    if (stale && lastGearSampleAt) resetGearDisplay();
+    model.gearLabel = stale ? '—' : displayedGearLabel ?? model.gearLabel;
     if (!stale) topSpeed=Math.max(topSpeed,model.speedKmh || 0);
     const max = rpmGauge?.available ? [rpmGauge.scaleVersion, rpmGauge.gaugeMax, rpmGauge.redlineStartFraction, rpmGauge.redlineEndFraction].join(':') : null;
     if (max !== maximum) {
@@ -164,7 +187,7 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     lastDetails=now;
     root.dataset.stale=String(stale);
     text('data-freshness', stale ? (received ? 'STALE · LAST VALUES' : 'NO SIGNAL') : 'CONNECTED');
-    text('speed',number(model.speedKmh)); text('rpm',number(model.rpm)); renderGear(model.gearLabel,stale,now);
+    text('speed',number(model.speedKmh)); text('rpm',number(model.rpm)); renderGear(model.gearLabel,stale);
     // The packet's fuel unit is unverified; keep the E/F needle parked and
     // show the raw value without assigning percentage or warning thresholds.
     const fuelFraction = null;
@@ -228,5 +251,5 @@ export function createClusterBindings(doc, selectTelemetry, options = {}) {
     if (root.dataset.instrumentVariant !== 'custom') renderInstrument();
   }
   frame=requestAnimationFrame(render);
-  return {update(packet){raw=packet;received=Date.now();vehicleState=vehicleController?.update?.(packet,received) ?? null;options.onVehicleState?.(vehicleState);if(vehicleState?.changed)options.onVehicleChange?.(vehicleState);rpmGauge=rpmController?.update?.(packet,vehicleState,false) ?? {available:true,gaugeFraction:selectTelemetry(packet,false).rpmRatio,rpmRatio:selectTelemetry(packet,false).rpmRatio,majorTicks:Array.from({length:9},(_,i)=>i),gaugeMax:8000,scaleVersion:0,redlineStartFraction:.9,redlineEndFraction:1};const events=raceFeedbackController?.update?.(packet,{active:doc.body.dataset.driveMode!=='freeRoam'&&vehicleState?.status!=='changing',stale:false})??[];if(events[0])options.onRaceFeedback?.(events[0]);},setRaceSecondary(value){raceSecondary=value || null;},setDisplayOverride(value){displayOverride=value&&Number.isFinite(value.speed)&&Number.isFinite(value.rpm)?{speed:bound(value.speed),rpm:bound(value.rpm)}:null;},getLiveFractions(){const model=selectTelemetry(raw,false);const ev=root.dataset.instrumentVariant==='custom'&&['ev','electric'].includes(String(root.dataset.powertrain||'').toLowerCase());return {speed:Number.isFinite(model.speedKmh)?speedRatio(model.speedKmh):0,speedKmh:model.speedKmh,rpm:ev?(Number.isFinite(model.throttlePercent)?bound(model.throttlePercent/100):0):(Number.isFinite(rpmGauge?.gaugeFraction)?bound(rpmGauge.gaugeFraction):0)};},destroy(){cancelAnimationFrame(frame);clearTimeout(gearAnimationTimer);}};
+  return {update(packet){raw=packet;received=Date.now();updateGearDisplay(selectTelemetry(packet,false),received);vehicleState=vehicleController?.update?.(packet,received) ?? null;options.onVehicleState?.(vehicleState);if(vehicleState?.changed)options.onVehicleChange?.(vehicleState);rpmGauge=rpmController?.update?.(packet,vehicleState,false) ?? {available:true,gaugeFraction:selectTelemetry(packet,false).rpmRatio,rpmRatio:selectTelemetry(packet,false).rpmRatio,majorTicks:Array.from({length:9},(_,i)=>i),gaugeMax:8000,scaleVersion:0,redlineStartFraction:.9,redlineEndFraction:1};const events=raceFeedbackController?.update?.(packet,{active:doc.body.dataset.driveMode!=='freeRoam'&&vehicleState?.status!=='changing',stale:false})??[];if(events[0])options.onRaceFeedback?.(events[0]);},setRaceSecondary(value){raceSecondary=value || null;},setDisplayOverride(value){displayOverride=value&&Number.isFinite(value.speed)&&Number.isFinite(value.rpm)?{speed:bound(value.speed),rpm:bound(value.rpm)}:null;},getLiveFractions(){const model=selectTelemetry(raw,false);const ev=root.dataset.instrumentVariant==='custom'&&['ev','electric'].includes(String(root.dataset.powertrain||'').toLowerCase());return {speed:Number.isFinite(model.speedKmh)?speedRatio(model.speedKmh):0,speedKmh:model.speedKmh,rpm:ev?(Number.isFinite(model.throttlePercent)?bound(model.throttlePercent/100):0):(Number.isFinite(rpmGauge?.gaugeFraction)?bound(rpmGauge.gaugeFraction):0)};},destroy(){cancelAnimationFrame(frame);clearTimeout(gearAnimationTimer);}};
 }

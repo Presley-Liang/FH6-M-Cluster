@@ -14,3 +14,24 @@
 @media(max-width:759px){.well-casing{inset:14% 2% 10%}.well-left,.well-center,.well-right{border-width:2px;top:22%;bottom:27%;padding:1cqw}.well-left .heritage-drive-values b{font-size:18px}.well-left .heritage-drive-values small{font-size:8px}.well-center .heritage-speed strong{font-size:39px}.well-right .heritage-gear b{font-size:26px}.well-right .heritage-temp b{font-size:18px}.well-right .heritage-temp span{font-size:8px}.well-casing>.heritage-info{top:81%}}
 
 .well-center .heritage-speed{display:grid;grid-template-columns:1fr;align-content:center;align-items:center;justify-items:center;row-gap:.8cqw}
+
+/* Combat: brushed-grey steel, black wells, white figures and performance red. */
+#cluster .well-instrument[data-mode="race"]{--heritage-accent:var(--race-accent);--heritage-ink:var(--race-ink);--heritage-muted:var(--race-muted)}
+#cluster .well-instrument[data-mode="race"] .well-dashboard{background:linear-gradient(#29343e,#4b5966 42%,#101820)}
+#cluster .well-instrument[data-mode="race"] .well-casing{background:repeating-linear-gradient(0deg,#ffffff03 0 1px,transparent 1px 3px),linear-gradient(145deg,#6c7b86,#354550 11%,#1c2b35 70%,#657783);border-color:#a1b0b9}
+#cluster .well-instrument[data-mode="race"] :is(.well-left,.well-center,.well-right){background:linear-gradient(160deg,#16232d,#080e15 75%);border-color:#b0bec8}
+#cluster .well-instrument[data-mode="race"] .well-drive-dial .heritage-face{fill:#0c151e;stroke:#8a9ba7}
+#cluster .well-instrument[data-mode="race"] .well-drive-dial .heritage-ticks{stroke:#f1f5f9}
+#cluster .well-instrument[data-mode="race"] .well-drive-dial .heritage-ticks text{fill:#f1f5f9}
+#cluster .well-instrument[data-mode="race"] .well-drive-dial .heritage-needle path{fill:var(--race-accent)}
+#cluster .well-instrument[data-mode="race"] .heritage-speed strong{color:var(--race-ink)}
+#cluster .well-instrument[data-mode="race"] .well-right .heritage-gear b{color:var(--race-accent-light)}
+/* Complete wells receive light in order; gauge geometry stays together. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .well-instrument[data-mode="race"] .well-left{animation:well-combat-ignition .38s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .well-instrument[data-mode="race"] .well-right{animation:well-combat-ignition .38s .13s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .well-instrument[data-mode="race"] .well-center{animation:well-combat-ignition .38s .26s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .well-instrument[data-mode="freeRoam"] .well-center{animation:well-cruise-ignition .42s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .well-instrument[data-mode="freeRoam"] :is(.well-left,.well-right){animation:well-cruise-ignition .42s .2s ease-out backwards}
+@keyframes well-combat-ignition{from{opacity:0;filter:brightness(.08)}60%{opacity:.85;filter:brightness(.78)}to{opacity:1;filter:brightness(1)}}
+@keyframes well-cruise-ignition{from{opacity:.15;filter:brightness(.25)}to{opacity:1;filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.well-instrument,.well-instrument *{animation:none!important;transition:none!important}}

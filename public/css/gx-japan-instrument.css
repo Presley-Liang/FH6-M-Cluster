@@ -27,3 +27,42 @@
 /* Reference correction: Type 3 black face, small upper speed, restrained cowl. */
 .gx-bezel{background:linear-gradient(#333a3e,#080a0c 20%,#06080a 85%,#3b4144);padding:.35cqw}.gx-screen{background:#070c12;box-shadow:inset 0 1px 8px #000;border-color:#1f2930}.gx-instrument[data-mode="race"] .gx-screen{background:#0b0d11}.gx-heading-column,.gx-drive-column{border:0!important}.gx-speed-column{justify-content:flex-start;padding-top:.6cqw}.gx-speed strong{font-size:max(24px,5.3cqw)}.gx-speed span{font-size:max(8px,.8cqw)}.gx-gear b{font-size:max(12px,1.8cqw)}.gx-driver-rule{margin:2cqw 0 .8cqw}.gx-pair{border-bottom:1px solid #53616a55;padding-bottom:.7cqw;margin-bottom:1cqw}.gx-heading-dial{width:8cqw;height:8cqw}.gx-heading-column,.gx-drive-column{padding-top:2cqw}.gx-drive-dial{width:10cqw;height:7.5cqw}.gx-drive-column>b{top:35%}.gx-drive-column>small:nth-of-type(1){top:46%}
 @media(max-width:759px){.gx-speed strong{font-size:max(24px,10cqw)}.gx-gear b{font-size:14px}.gx-heading-dial{width:15cqw;height:15cqw}.gx-drive-dial{width:18cqw;height:13.5cqw}.gx-drive-column>b{font-size:11px!important}.gx-speed-column{padding-top:1.3cqw}.gx-pair{margin-top:auto}}
+
+/* Race: matte black LCD with red power accents and neutral heading axes. */
+#cluster .gx-instrument[data-mode="race"]{--gx-accent:var(--race-red)}
+#cluster .gx-instrument[data-mode="race"] .gx-cowl{background:linear-gradient(180deg,#484848,#222222 12%,#151515 28%,#0b0b0b 80%,#303030)}
+#cluster .gx-instrument[data-mode="race"] .gx-screen{background:radial-gradient(ellipse at 25% 50%,#1f1f1f,#101010 45%,#0a0a0a 85%);border-color:#3e3e3e}
+#cluster .gx-instrument[data-mode="race"] .gx-screen:after{background:linear-gradient(110deg,#e3e3e305,transparent 45%,#e3e3e303)}
+#cluster .gx-instrument[data-mode="race"] .gx-info-column{background:linear-gradient(100deg,#83838313,transparent);border-left-color:#83838333}
+#cluster .gx-instrument[data-mode="race"] :is(.gx-top,.gx-bottom,.gx-pair,.gx-info-column>div){border-color:#6f6f6f35}
+#cluster .gx-instrument[data-mode="race"] :is(.gx-top,.gx-bottom,.gx-heading-column>span,.gx-drive-column>span,.gx-pair span,.gx-info-column span,.gx-info-column header){color:#a6a6a6}
+#cluster .gx-instrument[data-mode="race"] .gx-driver-rule{background:linear-gradient(90deg,transparent,#9f9f9f70,transparent)}
+#cluster .gx-instrument[data-mode="race"] .gx-drive-dial path{stroke:#424242}
+#cluster .gx-instrument[data-mode="race"] .gx-drive-dial .gx-drive-fill,#cluster .gx-instrument[data-mode="race"][data-powertrain="ev"] .gx-drive-dial .gx-drive-fill{stroke:var(--gx-accent)}
+#cluster .gx-instrument[data-mode="race"] .gx-drive-track{background:linear-gradient(90deg,#212121,#464646);border-color:#656565}
+#cluster .gx-instrument[data-mode="race"] .gx-drive-track i{background:linear-gradient(0deg,#727272,var(--gx-accent))}
+#cluster .gx-instrument[data-mode="race"] .gx-heading-dial circle{stroke:#787878}
+#cluster .gx-instrument[data-mode="race"] .gx-heading-ticks{stroke:#ababab}
+#cluster .gx-instrument[data-mode="race"] .gx-yaw-needle{fill:var(--race-red-light)}
+
+/* Combat transition: lock data brackets; the live yaw needle keeps its own pivot. */
+#cluster .gx-instrument[data-mode="race"]{--gx-accent:var(--race-accent,#7aff35)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-speed-column{position:relative}
+.gx-speed-column:before,.gx-speed-column:after{content:'';position:absolute;top:8%;bottom:9%;width:1cqw;border-top:1px solid var(--gx-accent);border-bottom:1px solid var(--gx-accent);opacity:0;pointer-events:none}
+.gx-speed-column:before{left:3%;border-left:1px solid var(--gx-accent)}
+.gx-speed-column:after{right:3%;border-right:1px solid var(--gx-accent)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-speed-column:before{animation:gx-combat-bracket-left .62s ease-out both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-speed-column:after{animation:gx-combat-bracket-right .62s ease-out both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-speed-column:before{animation-name:gx-combat-release-left}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-speed-column:after{animation-name:gx-combat-release-right}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-drive-dial{animation:gx-combat-drive .48s ease-out .14s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.gx-pair,.gx-heading-column>strong,.gx-drive-column>strong){animation:gx-combat-data .43s ease-out .24s both}
+@keyframes gx-combat-bracket-left{0%{opacity:0;transform:translateX(-1.4cqw)}50%{opacity:.9;transform:translateX(0)}100%{opacity:0;transform:translateX(0)}}
+@keyframes gx-combat-bracket-right{0%{opacity:0;transform:translateX(1.4cqw)}50%{opacity:.9;transform:translateX(0)}100%{opacity:0;transform:translateX(0)}}
+@keyframes gx-combat-release-left{0%{opacity:0;transform:translateX(0)}30%{opacity:.9}100%{opacity:0;transform:translateX(-1.4cqw)}}
+@keyframes gx-combat-release-right{0%{opacity:0;transform:translateX(0)}30%{opacity:.9}100%{opacity:0;transform:translateX(1.4cqw)}}
+@keyframes gx-combat-drive{from{opacity:0;clip-path:inset(100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes gx-combat-data{from{opacity:0;transform:translateY(.4cqw)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-instrument *,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-instrument *::before,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .gx-instrument *::after{animation:none!important}}
+#cluster .gx-instrument[data-mode="race"] .gx-heading-dial .gx-heading-hub{fill:#2c2c2c;stroke:#8f8f8f}
+#cluster .gx-instrument[data-mode="race"] .gx-speed strong{color:var(--race-ink)}

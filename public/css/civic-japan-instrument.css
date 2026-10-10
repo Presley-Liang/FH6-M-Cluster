@@ -21,3 +21,33 @@
 /* Reference correction: +R continuous rising tach, gear notch, three lower zones. */
 .ctr-lcd{grid-template-rows:9% 28% 55% 8%}.ctr-tach{grid-template-rows:46% 25% 29%;position:relative}.ctr-scale{grid-row:2;grid-column:1;padding-left:3%;align-items:center}.ctr-tach-track{grid-row:1;grid-column:1;width:100%;height:100%;background:none;overflow:visible}.ctr-tach-track path{fill:none;stroke:#343c43;stroke-width:13}.ctr-tach-track .ctr-tach-fill{stroke:var(--ctr-accent);stroke-dasharray:0 100}.ctr-tach-caption{grid-row:3;grid-column:1}.ctr-main{grid-template-columns:30% 40% 30%;padding-top:0}.ctr-primary{justify-content:flex-start;border:0;position:relative}.ctr-gear-notch{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:60%;height:52%;border-top:2px solid var(--ctr-accent);clip-path:polygon(10% 0,90% 0,100% 13%,100% 100%,0 100%,0 13%);background:linear-gradient(#67272b66,transparent)}.ctr-gear-notch span{font-size:max(8px,.75cqw);color:#b9c3c9}.ctr-gear-notch strong{font-size:max(24px,5.8cqw);color:var(--ctr-accent);line-height:1}.ctr-gear-notch small{font-size:max(8px,.8cqw)}.ctr-driver-data{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5cqw;flex:1}.ctr-driver-data span,.ctr-driver-data small{font-size:max(8px,.8cqw);color:#adb9c1}.ctr-driver-data b{font-size:max(18px,2.6cqw)}.ctr-right{display:flex;flex-direction:column;justify-content:center;gap:.3cqw;text-align:center;align-items:center}.ctr-right strong{font-size:max(12px,1.8cqw)}.ctr-g-field{position:relative;width:8cqw;height:8cqw;border:1px solid #65747e;border-radius:50%;margin:.5cqw;background:linear-gradient(transparent 49.5%,#70828b66 49.5% 50.5%,transparent 50.5%),linear-gradient(90deg,transparent 49.5%,#70828b66 49.5% 50.5%,transparent 50.5%)}.ctr-g-field i{position:absolute;width:.55cqw;height:.55cqw;min-width:3px;min-height:3px;border-radius:50%;background:#f4f7f9;left:50%;top:50%;margin:-2px}.ctr-shift-lights i[data-lit="true"]{background:#f3caa0}.ctr-shift-lights i:nth-child(4)[data-lit="true"],.ctr-shift-lights i:nth-child(5)[data-lit="true"]{background:#f36b70}
 @media(max-width:759px){.ctr-lcd{grid-template-rows:10% 26% 56% 8%}.ctr-gear-notch strong{font-size:max(24px,12cqw)}.ctr-gear-notch span,.ctr-gear-notch small,.ctr-driver-data span,.ctr-driver-data small{font-size:8px}.ctr-driver-data b{font-size:13px}.ctr-g-field{width:16cqw;height:16cqw}.ctr-heading .ctr-speed b{font-size:max(24px,6cqw)}.ctr-heading .ctr-speed small{font-size:8px}}
+
+/* Race: black +R field, red driving accents, white timing and speed readouts. */
+#cluster .ctr-instrument[data-mode="race"]{--ctr-accent:var(--race-red)}
+#cluster .ctr-instrument[data-mode="race"] .ctr-hood{background:linear-gradient(175deg,#3a3a3a 0,#1d1d1d 10%,#0a0a0a 24%,#1e1e1e 85%,#3d3d3d)}
+#cluster .ctr-instrument[data-mode="race"] .ctr-lcd{background:radial-gradient(ellipse at 50% 90%,#1e1e1e,#0b0b0b 65%);border-color:#2e2e2e}
+#cluster .ctr-instrument[data-mode="race"] .ctr-lcd:after{background:linear-gradient(115deg,#cecece05 0,transparent 32%,#cecece03 48%,transparent 65%)}
+#cluster .ctr-instrument[data-mode="race"] .ctr-gear-notch{background:linear-gradient(#58585866,transparent)}
+#cluster .ctr-instrument[data-mode="race"] .ctr-tach-track path{stroke:#373737}
+#cluster .ctr-instrument[data-mode="race"] .ctr-tach-track .ctr-tach-fill{stroke:var(--ctr-accent)}
+#cluster .ctr-instrument[data-mode="race"] :is(.ctr-heading,.ctr-primary){border-color:#6b6b6b44}
+#cluster .ctr-instrument[data-mode="race"] .ctr-g-field{border-color:#767676;background:linear-gradient(transparent 49.5%,#87878766 49.5% 50.5%,transparent 50.5%),linear-gradient(90deg,transparent 49.5%,#87878766 49.5% 50.5%,transparent 50.5%)}
+#cluster .ctr-instrument[data-mode="race"] :is(.ctr-left span,.ctr-right span,.ctr-footer,.ctr-tach-caption){color:#aaaaaa}
+#cluster .ctr-instrument[data-mode="race"] .ctr-shift-lights i{background:#2e2e2e}
+#cluster .ctr-instrument[data-mode="race"] .ctr-shift-lights i[data-lit="true"]{background:var(--race-red-light)}
+#cluster .ctr-instrument[data-mode="race"] .ctr-shift-lights i:nth-child(n+4)[data-lit="true"],#cluster .ctr-instrument[data-mode="race"][data-shift="true"] .ctr-shift-lights i{background:var(--race-red)}
+
+/* Combat transition: trace the sloping rail, lock the central gear notch. */
+#cluster .ctr-instrument[data-mode="race"]{--ctr-accent:var(--race-accent,#ff3045)}
+.ctr-tach-track .ctr-combat-rail{fill:none;stroke:var(--ctr-accent);stroke-width:1.5;stroke-dasharray:100;stroke-dashoffset:100;opacity:0;pointer-events:none}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-gear-notch{position:relative}
+.ctr-gear-notch:after{content:'';position:absolute;inset:1%;border:1px solid var(--ctr-accent);opacity:0;pointer-events:none}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-combat-rail{animation:ctr-combat-rail .64s ease-out both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-combat-rail{animation-name:ctr-combat-rail-back}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-gear-notch:after{animation:ctr-combat-lock .48s ease-out .12s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.ctr-left,.ctr-right){animation:ctr-combat-page .44s ease-out .22s both}
+@keyframes ctr-combat-rail{0%{opacity:0;stroke-dashoffset:100}14%{opacity:.9}75%{stroke-dashoffset:0;opacity:.9}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ctr-combat-rail-back{0%{opacity:0;stroke-dashoffset:-100}14%{opacity:.9}75%{stroke-dashoffset:0;opacity:.9}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes ctr-combat-lock{0%{opacity:0;transform:scaleX(1.25)}55%{opacity:.8;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+@keyframes ctr-combat-page{from{opacity:0;clip-path:inset(0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-instrument *,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-instrument *::before,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-instrument *::after{animation:none!important}}

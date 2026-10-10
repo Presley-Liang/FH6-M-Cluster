@@ -90,29 +90,29 @@
 #cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument { animation:none; }
 #cluster[data-theme-id="y1986_1994.america"][data-ignition-kind="mode"]:is([data-ignition-phase="frames"],[data-ignition-phase="scan"],[data-ignition-phase="return"],[data-ignition-phase="live"]) .rda-mode-identity { display:none; animation:none; }
 #cluster[data-theme-id="y1986_1994.america"][data-ignition-phase="scan"] .retro-digital-america-instrument[data-scan="true"] .rda-speed-number strong { color:#e5fff2; text-shadow:0 0 11px #fff,0 0 35px #8affcf; }
-#cluster[data-theme-id="y1986_1994.america"][data-ignition-phase="scan"] .retro-digital-america-instrument[data-mode="race"][data-scan="true"] .rda-speed-number strong { color:#fff1d6; text-shadow:0 0 10px #fff0d0,0 0 34px #ff923d; }
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-phase="scan"] .retro-digital-america-instrument[data-mode="race"][data-scan="true"] .rda-speed-number strong { color:#fff1d6; text-shadow:0 0 10px #eef4fa,0 0 34px #45e0ff; }
 @keyframes rda-power-up { 0%,11%{opacity:0;filter:brightness(0);clip-path:inset(50% 0)} 12%,24%{opacity:.35;filter:brightness(.25);clip-path:inset(25% 0)} 25%,40%{opacity:.05;filter:brightness(.05);clip-path:inset(10% 0)} 41%,67%{opacity:.75;filter:brightness(.7);clip-path:inset(2% 0)} 68%,100%{opacity:1;filter:brightness(1);clip-path:inset(0)} }
 
 /* Free keeps the cool VFD speed display. Race brings the gearbox and tach into
    focus with amber/red phosphor; the underlying telemetry fields stay shared. */
-.retro-digital-america-instrument[data-mode="race"] .rda-bezel { background:radial-gradient(ellipse 75% 50% at 48% 38%,#281405,#090805 82%); border-color:#67412b; }
-.retro-digital-america-instrument[data-mode="race"] .rda-rpm-zone { border-top-color:#b76d36; background:linear-gradient(180deg,#4a240b66,#0000); }
-.retro-digital-america-instrument[data-mode="race"] :is(.rda-system,.rda-era,.rda-rpm-heading,.rda-rpm-heading small,.rda-rpm-scale,.rda-speed-label,.rda-speed-footer,.rda-mode-plate span,.rda-lower-cell span,.rda-bottom-legend) { color:#cb9b6c; }
-.retro-digital-america-instrument[data-mode="race"] .rda-header-rule { background:linear-gradient(90deg,#f89e4e,#4a2615); }
-.retro-digital-america-instrument[data-mode="race"] .rda-segment-track { background:#170b05; border-color:#92542e; }
-.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i { background:#422212; border-color:#a4522f77; }
-.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-lit="true"] { background:#ffac5b; border-color:#ffd39a; box-shadow:0 0 5px #ffb262,0 0 16px #f56a29a0,inset 0 0 5px #fff1c4; }
-.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i:nth-child(n+28)[data-lit="true"] { background:#ff5c3e; border-color:#ffb69c; box-shadow:0 0 12px #ff5029; }
-.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-scan-head="true"] { background:#fff1d3; box-shadow:0 0 8px #fff,0 0 24px #ffb052; }
+.retro-digital-america-instrument[data-mode="race"] .rda-bezel { background:radial-gradient(ellipse 75% 50% at 48% 38%,#16191d,#090805 82%); border-color:#eef4fa; }
+.retro-digital-america-instrument[data-mode="race"] .rda-rpm-zone { border-top-color:#45e0ff; background:linear-gradient(180deg,#282b2f66,#0000); }
+.retro-digital-america-instrument[data-mode="race"] :is(.rda-system,.rda-era,.rda-rpm-heading,.rda-rpm-heading small,.rda-rpm-scale,.rda-speed-label,.rda-speed-footer,.rda-mode-plate span,.rda-lower-cell span,.rda-bottom-legend) { color:#45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] .rda-header-rule { background:linear-gradient(90deg,#45e0ff,#2c2f33); }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track { background:#0d1014; border-color:#45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i { background:#272a2e; border-color:#45e0ff77; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-lit="true"] { background:#45e0ff; border-color:#45e0ff; box-shadow:0 0 5px #45e0ff,0 0 16px #45e0ffa0,inset 0 0 5px #eef4fa; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i:nth-child(n+28)[data-lit="true"] { background:#45e0ff; border-color:#45e0ff; box-shadow:0 0 12px #45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-scan-head="true"] { background:#eef4fa; box-shadow:0 0 8px #fff,0 0 24px #45e0ff; }
 .retro-digital-america-instrument[data-mode="race"] .rda-main-row { grid-template-columns:32% 1fr; }
-.retro-digital-america-instrument[data-mode="race"] :is(.rda-gear-window,.rda-speed-window) { background:radial-gradient(ellipse at center,#321605,#160b05 76%); border-color:#b06b38; box-shadow:inset 0 0 0 3px #0e0704,inset 0 0 0 4px #8c4c24aa,inset 0 0 40px #000a,0 0 14px #a7502066; }
-.retro-digital-america-instrument[data-mode="race"] .rda-gear-window strong { color:#ffe0ab; font-size:max(24px,9.2cqw); text-shadow:0 0 8px #ffcf96,0 0 26px #ff6f2e; }
-.retro-digital-america-instrument[data-mode="race"] .rda-speed-number strong { color:#ffd19b; font-size:max(24px,10.8cqw); text-shadow:0 0 6px #ffc489,0 0 26px #ec773b,0 0 57px #a93a1eaa; }
-.retro-digital-america-instrument[data-mode="race"] .rda-rpm-heading strong { color:#ffdbaf; text-shadow:0 0 6px #ffcf9b,0 0 20px #ff823b; }
-.retro-digital-america-instrument[data-mode="race"] :is(.rda-mode-plate,.rda-lower-cell) { background:#241207; border-color:#98552e; }
-.retro-digital-america-instrument[data-mode="race"] .rda-mode-plate strong { color:#ffb05d; text-shadow:0 0 14px #ff6e36; }
-.retro-digital-america-instrument[data-mode="race"] .rda-mode-plate i { background:#ff6c43; box-shadow:0 0 13px #ff663a; }
-.retro-digital-america-instrument[data-mode="race"] .rda-lower-cell strong { color:#ffd9a4; text-shadow:0 0 11px #fb8737aa; }
+.retro-digital-america-instrument[data-mode="race"] :is(.rda-gear-window,.rda-speed-window) { background:radial-gradient(ellipse at center,#1a1d21,#0d1014 76%); border-color:#45e0ff; box-shadow:inset 0 0 0 3px #0e0704,inset 0 0 0 4px #45e0ffaa,inset 0 0 40px #000a,0 0 14px #45e0ff66; }
+.retro-digital-america-instrument[data-mode="race"] .rda-gear-window strong { color:#eef4fa; font-size:max(24px,9.2cqw); text-shadow:0 0 8px #45e0ff,0 0 26px #45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] .rda-speed-number strong { color:#45e0ff; font-size:max(24px,10.8cqw); text-shadow:0 0 6px #45e0ff,0 0 26px #45e0ff,0 0 57px #45e0ffaa; }
+.retro-digital-america-instrument[data-mode="race"] .rda-rpm-heading strong { color:#eef4fa; text-shadow:0 0 6px #45e0ff,0 0 20px #45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] :is(.rda-mode-plate,.rda-lower-cell) { background:#14171b; border-color:#45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] .rda-mode-plate strong { color:#45e0ff; text-shadow:0 0 14px #45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] .rda-mode-plate i { background:#45e0ff; box-shadow:0 0 13px #45e0ff; }
+.retro-digital-america-instrument[data-mode="race"] .rda-lower-cell strong { color:#45e0ff; text-shadow:0 0 11px #45e0ffaa; }
 .retro-digital-america-instrument[data-mode="race"] .rda-mode-plate { width:24%; }
 .retro-digital-america-instrument[data-mode="freeRoam"] .rda-main-row { grid-template-columns:14% 1fr; }
 .retro-digital-america-instrument[data-mode="freeRoam"] .rda-gear-window strong { font-size:max(24px,6.7cqw); }
@@ -120,18 +120,18 @@
 .retro-digital-america-instrument[data-mode="freeRoam"] .rda-speed-number strong { font-size:max(24px,13cqw); }
 .retro-digital-america-instrument[data-powertrain="ev"] .rda-main-row { grid-template-columns:1fr; }
 
-#cluster[data-theme-id="y1986_1994.america"][data-drive-mode="race"] :is(.wordmark,.connection) { color:#d6a273; text-shadow:0 0 14px #f5885277; }
-#cluster[data-theme-id="y1986_1994.america"][data-drive-mode="race"] .mode-seg-btn.seg-active { color:#ffe0b8; background:#633017; box-shadow:inset 0 0 0 1px #ffa766,0 0 14px #ff703b88; }
+#cluster[data-theme-id="y1986_1994.america"][data-drive-mode="race"] :is(.wordmark,.connection) { color:#45e0ff; text-shadow:0 0 14px #45e0ff77; }
+#cluster[data-theme-id="y1986_1994.america"][data-drive-mode="race"] .mode-seg-btn.seg-active { color:#eef4fa; background:#393c40; box-shadow:inset 0 0 0 1px #45e0ff,0 0 14px #45e0ff88; }
 
 /* Identification begins only after the outgoing display has gone dark. */
-#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity { color:#ffca8c; text-shadow:0 0 18px #ff7b37; background:radial-gradient(ellipse,#1d0b04 38%,#1d0b04e8 65%,transparent 80%); }
-#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity :is(span,small) { color:#cd956e; }
-#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity::before,#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity::after { background:linear-gradient(90deg,transparent,#ff9b51,transparent); box-shadow:0 0 12px #ff743a; }
+#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity { color:#45e0ff; text-shadow:0 0 18px #45e0ff; background:radial-gradient(ellipse,#0f1216 38%,#0f1216e8 65%,transparent 80%); }
+#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity :is(span,small) { color:#45e0ff; }
+#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity::before,#cluster[data-theme-id="y1986_1994.america"][data-target-mode="race"] .rda-mode-identity::after { background:linear-gradient(90deg,transparent,#45e0ff,transparent); box-shadow:0 0 12px #45e0ff; }
 .rda-identity-progress { width:74%; display:grid; grid-template-columns:repeat(12,1fr); gap:.35cqw; margin-top:.8cqw; }
 .rda-identity-progress i { height:.52cqw; background:#19362d; box-shadow:inset 0 0 0 1px #467765; opacity:.23; }
 #cluster[data-ignition-kind="mode"][data-ignition-phase="center"] .rda-identity-progress i { animation:rda-program-lock .2s steps(1,end) both; animation-delay:calc(var(--step,0) * 29ms); }
 .rda-identity-progress i:nth-child(1){--step:0}.rda-identity-progress i:nth-child(2){--step:1}.rda-identity-progress i:nth-child(3){--step:2}.rda-identity-progress i:nth-child(4){--step:3}.rda-identity-progress i:nth-child(5){--step:4}.rda-identity-progress i:nth-child(6){--step:5}.rda-identity-progress i:nth-child(7){--step:6}.rda-identity-progress i:nth-child(8){--step:7}.rda-identity-progress i:nth-child(9){--step:8}.rda-identity-progress i:nth-child(10){--step:9}.rda-identity-progress i:nth-child(11){--step:10}.rda-identity-progress i:nth-child(12){--step:11}
-#cluster[data-target-mode="race"] .rda-identity-progress i { --lock-color:#ffad5c; --lock-glow:#ff7b37; }
+#cluster[data-target-mode="race"] .rda-identity-progress i { --lock-color:#45e0ff; --lock-glow:#45e0ff; }
 #cluster[data-target-mode="freeRoam"] .rda-identity-progress i { --lock-color:#8dffcf; --lock-glow:#56e5aa; }
 #cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument :is(.rda-rpm-zone,.rda-gear-window,.rda-speed-window,.rda-mode-plate,.rda-race-data,.rda-free-data) { animation:rda-bank-relight .72s steps(6,end) both; }
 #cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rda-rpm-zone { animation-delay:0ms; }
@@ -145,3 +145,44 @@
 #cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .rda-identity-progress i { opacity:1; background:var(--lock-color); box-shadow:0 0 7px var(--lock-glow); }
 @keyframes rda-bank-relight { 0%,17% { opacity:0; filter:brightness(0); } 18%,35% { opacity:.65; filter:brightness(.5); } 36%,48% { opacity:.08; filter:brightness(.08); } 49%,100% { opacity:1; filter:brightness(1); } }
 @media(prefers-reduced-motion:reduce) { .retro-digital-america-instrument,.retro-digital-america-instrument * { animation:none!important; transition:none!important; } }
+
+/* Combat: electric-cyan VFD banks, white speed, red terminal RPM warning. */
+#cluster .retro-digital-america-instrument[data-mode="race"]{--rda-glow:var(--race-accent-light);--rda-dim:#235a65;--rda-amber:var(--race-accent)}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-cabinet{background:linear-gradient(145deg,#242e34,#080e12 10%,#04090c 85%,#303d43);border-color:#81969b99}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-cabinet::before,#cluster .retro-digital-america-instrument[data-mode="race"] .rda-cabinet::after{background:linear-gradient(#0a1218,#5b707c 12%,#263a44 40%,#657984 88%,#0a1218)}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-bezel{background:radial-gradient(ellipse 75% 50% at 48% 38%,#09212a,#030a0e 82%);border-color:#3b6572}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-rpm-zone{border-top-color:#3d6e7b;background:linear-gradient(180deg,#173c4d66,transparent)}
+#cluster .retro-digital-america-instrument[data-mode="race"] :is(.rda-system,.rda-era,.rda-rpm-heading,.rda-rpm-heading small,.rda-rpm-scale,.rda-speed-label,.rda-speed-footer,.rda-mode-plate span,.rda-lower-cell span,.rda-bottom-legend){color:#9ebfc9}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-header-rule{background:linear-gradient(90deg,var(--race-accent),#173a46)}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-segment-track{background:#07151c;border-color:#3a8da4}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i{background:#123a48;border-color:#307b9477}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-lit="true"]{background:var(--race-accent);border-color:#bdedff;box-shadow:0 0 5px #45e0ff,0 0 12px #45e0ff66,inset 0 0 4px #d8f7ff}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i:nth-child(n+28)[data-lit="true"]{background:#ff3045;border-color:#ff9ca8;box-shadow:0 0 10px #ff304577}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i[data-scan-head="true"]{background:#f4fcff;box-shadow:0 0 8px #fff,0 0 20px #45e0ff}
+#cluster .retro-digital-america-instrument[data-mode="race"] :is(.rda-gear-window,.rda-speed-window){background:radial-gradient(ellipse at center,#0e252e,#070f16 76%);border-color:#4f899b;box-shadow:inset 0 0 0 3px #050c12,inset 0 0 0 4px #45e0ff55,inset 0 0 35px #000a,0 0 12px #45e0ff22}
+#cluster .retro-digital-america-instrument[data-mode="race"] :is(.rda-gear-window strong,.rda-rpm-heading strong){color:var(--race-accent-light);text-shadow:0 0 8px #45e0ff88}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-speed-number strong{color:var(--race-ink);text-shadow:0 0 8px #45e0ff55}
+#cluster .retro-digital-america-instrument[data-mode="race"] :is(.rda-mode-plate,.rda-lower-cell){background:#0a1a23;border-color:#3a6577}
+#cluster .retro-digital-america-instrument[data-mode="race"] :is(.rda-mode-plate strong,.rda-lower-cell strong){color:var(--race-accent-light);text-shadow:0 0 8px #45e0ff55}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-mode-plate i{background:var(--race-accent);box-shadow:0 0 10px #45e0ff88}
+#cluster .retro-digital-america-instrument[data-mode="race"][data-signal="absent"] :is(.rda-speed-number strong,.rda-rpm-heading strong){text-shadow:0 0 8px #45e0ff33}
+#cluster[data-theme-id="y1986_1994.america"][data-ignition-phase="scan"] .retro-digital-america-instrument[data-mode="race"][data-scan="true"] .rda-speed-number strong{color:#f4fcff;text-shadow:0 0 10px #fff,0 0 26px #45e0ff}
+/* Circuit propagation lives inside the existing cabinet relight. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument[data-mode="race"] .rda-header-rule{animation:rda-combat-circuit .58s steps(6,end)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i{animation:rda-combat-bank .25s steps(2,end) backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i:nth-child(n+9){animation-delay:.1s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i:nth-child(n+17){animation-delay:.2s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument[data-mode="race"] .rda-segment-track i:nth-child(n+25){animation-delay:.3s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument[data-mode="freeRoam"] .rda-speed-number{animation:rda-cruise-phosphor .65s ease-out}
+@keyframes rda-combat-circuit{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@keyframes rda-combat-bank{from{opacity:0;filter:brightness(.1)}60%{opacity:.6;filter:brightness(.7)}to{opacity:1;filter:brightness(1)}}
+@keyframes rda-cruise-phosphor{from{opacity:0;filter:brightness(.2)}45%{opacity:.65;filter:brightness(.7)}to{opacity:1;filter:brightness(1)}}
+
+/* Existing electronic-bank relight now finishes inside the frames window. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument :is(.rda-rpm-zone,.rda-gear-window,.rda-speed-window,.rda-mode-plate,.rda-race-data,.rda-free-data){animation-duration:.34s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument .rda-rpm-zone{animation-delay:0ms}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument .rda-gear-window{animation-delay:90ms}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument .rda-speed-window{animation-delay:180ms}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument .rda-mode-plate{animation-delay:250ms}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .retro-digital-america-instrument :is(.rda-race-data,.rda-free-data){animation-delay:320ms}
+@media(prefers-reduced-motion:reduce){.retro-digital-america-instrument,.retro-digital-america-instrument *{animation:none!important;transition:none!important}}

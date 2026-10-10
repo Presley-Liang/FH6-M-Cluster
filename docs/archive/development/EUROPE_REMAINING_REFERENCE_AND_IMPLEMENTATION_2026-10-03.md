@@ -50,9 +50,9 @@ C4 的温度竖条使用 20–140 °C 显示范围，数字显示真实胎温；
 ## 核对与尚未完成项
 
 - 完整 `npm test`：200/200，通过新增 14 项欧系回归和 HTTP／UDP 集成检查。
-- 三套 × 375／469／1440 × Race／Free × 燃油／EV，共 36 组模拟长读数检查；对文字内容使用浏览器 Range 进行外框和相互重叠检查。发现的问题修复后重跑，最终无越界／文字重叠；[结果](previews/europe-remaining/layout-checks.json)。这不能保证任意长度、任意设备字体均无问题。
-- 27 组 CSS 阶段检查确认关机读数与指针／分段隐藏、live 恢复；[结果](previews/europe-remaining/css-phase-checks.json)。此项在减少动态效果设置下隔离核对终态，不代表运动轨迹逐帧验收。
-- 实际服务页面（非减少动态效果）通过页面按钮选择三套主题，并分别切到 Free／Race；六次模式切换均回到 live，只有一个活动仪表，无脚本错误或失败资源响应。记录包含退场、黑屏、车型卡、构建、扫表与接管的实际阶段；[记录](previews/europe-remaining/live-animation-checks.json)。输入来自无游戏的测试服务，没有将此称为真实驾驶验收。
+- 三套 × 375／469／1440 × Race／Free × 燃油／EV，共 36 组模拟长读数检查；对文字内容使用浏览器 Range 进行外框和相互重叠检查。发现的问题修复后重跑，最终无越界／文字重叠；[结果](../previews/europe-remaining/layout-checks.json)。这不能保证任意长度、任意设备字体均无问题。
+- 27 组 CSS 阶段检查确认关机读数与指针／分段隐藏、live 恢复；[结果](../previews/europe-remaining/css-phase-checks.json)。此项在减少动态效果设置下隔离核对终态，不代表运动轨迹逐帧验收。
+- 实际服务页面（非减少动态效果）通过页面按钮选择三套主题，并分别切到 Free／Race；六次模式切换均回到 live，只有一个活动仪表，无脚本错误或失败资源响应。记录包含退场、黑屏、车型卡、构建、扫表与接管的实际阶段；[记录](../previews/europe-remaining/live-animation-checks.json)。输入来自无游戏的测试服务，没有将此称为真实驾驶验收。
 - 还未完成：Kadett／Multipla 原厂实物参照、C4 完整座舱与车型变体核对、用户最终排版与动画观感、真实 FH6／EV 数据和持续帧率。
 
 检查脚本可复跑（需要环境已有 Python Playwright 与 Chromium，不会自动安装依赖）：
@@ -69,6 +69,6 @@ python scripts/verify-europe-instruments.py --output-dir /tmp/europe-preview
 
 | 主题 | Race／1440 | Free／375 |
 |---|---|---|
-| Kadett 候选 | ![Kadett 宽屏模拟预览](previews/europe-remaining/simulated-kadett-race-1440.png) | ![Kadett 窄屏模拟预览](previews/europe-remaining/simulated-kadett-freeRoam-375.png) |
-| Multipla 候选 | ![Multipla 宽屏模拟预览](previews/europe-remaining/simulated-multipla-race-1440.png) | ![Multipla 窄屏模拟预览](previews/europe-remaining/simulated-multipla-freeRoam-375.png) |
-| C4 年代 | ![C4 宽屏模拟预览](previews/europe-remaining/simulated-c4-race-1440.png) | ![C4 窄屏模拟预览](previews/europe-remaining/simulated-c4-freeRoam-375.png) |
+| Kadett 候选 | ![Kadett 宽屏模拟预览](../previews/europe-remaining/simulated-kadett-race-1440.png) | ![Kadett 窄屏模拟预览](../previews/europe-remaining/simulated-kadett-freeRoam-375.png) |
+| Multipla 候选 | ![Multipla 宽屏模拟预览](../previews/europe-remaining/simulated-multipla-race-1440.png) | ![Multipla 窄屏模拟预览](../previews/europe-remaining/simulated-multipla-freeRoam-375.png) |
+| C4 年代 | ![C4 宽屏模拟预览](../previews/europe-remaining/simulated-c4-race-1440.png) | ![C4 窄屏模拟预览](../previews/europe-remaining/simulated-c4-freeRoam-375.png) |

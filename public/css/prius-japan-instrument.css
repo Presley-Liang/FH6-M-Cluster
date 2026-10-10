@@ -14,3 +14,31 @@
 .pri-information{border-top:1px solid #345360;display:grid;grid-template-rows:1fr 1fr;gap:.4cqw;padding-top:.5cqw;min-height:0}.pri-information>div{display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 .8cqw;min-width:0}.pri-information span{font-size:clamp(8px,.72cqw,12px);color:#a3bac7}.pri-information strong,.pri-information b{font-size:clamp(16px,2.2cqw,32px);letter-spacing:-.025em}.pri-information small{grid-column:2;font-size:clamp(8px,.6cqw,10px);text-align:right;color:#8da6b4}
 .pri-dash-edge{position:absolute;left:-5%;right:-5%;top:78%;height:15%;border-top:1px solid #57717e88;border-radius:50% 50% 0 0;box-shadow:0 -.6cqw 1.5cqw #0008;background:linear-gradient(#202c32,#0c1419)}.pri-dashboard>footer{position:absolute;bottom:12%;left:0;right:0;text-align:center;color:#6e818c;font-size:clamp(8px,.7cqw,12px);letter-spacing:.15em}
 @media(max-width:759px){.pri-hood{inset:15% 2% 25%;padding:3cqw 2cqw 4cqw;border-radius:4cqw}.pri-screens{gap:2cqw;padding:1cqw;grid-template-columns:46% 54%}.pri-left,.pri-right{padding:2cqw}.pri-screens header{font-size:8px;letter-spacing:0;flex-wrap:wrap;gap:0}.pri-speed{align-items:center;flex-wrap:wrap;gap:0}.pri-speed strong{font-size:clamp(40px,11cqw,62px)}.pri-speed small{font-size:9px}.pri-left-bottom{align-items:flex-start;flex-direction:column;justify-content:center;gap:2px}.pri-left-bottom span{font-size:8px}.pri-gear b{font-size:18px}.pri-output b{font-size:14px}.pri-information>div{grid-template-columns:1fr;gap:0}.pri-information span{font-size:8px}.pri-information strong,.pri-information b{font-size:17px}.pri-information small{grid-column:1;display:none}.pri-meter-number b{font-size:14px}.pri-meter-number small{font-size:8px}.pri-dash-edge{top:82%}}
+
+/* Race: twin black screens under a charcoal visor with red driving accents. */
+#cluster .pri-instrument[data-mode="race"]{--pri-accent:var(--race-red);color:var(--race-ink)}
+#cluster .pri-instrument[data-mode="race"] .pri-dashboard{background:radial-gradient(ellipse at 50% 5%,#282828,#141414 48%,#080808 100%)}
+#cluster .pri-instrument[data-mode="race"] .pri-hood{background:linear-gradient(160deg,#595959 0,#2a2a2a 6%,#0e0e0e 19%,#080808 86%,#484848 94%,#868686 95%,#1f1f1f 98%)}
+#cluster .pri-instrument[data-mode="race"] .pri-screens{background:#070707;border-color:#525252}
+#cluster .pri-instrument[data-mode="race"] :is(.pri-left,.pri-right){background:linear-gradient(180deg,#1c1c1c,#0e0e0e);border-color:#454545}
+#cluster .pri-instrument[data-mode="race"] :is(.pri-left-bottom,.pri-information){border-color:#5c5c5c}
+#cluster .pri-instrument[data-mode="race"] .pri-meter-track{background:#343434;border-color:#6c6c6c}
+#cluster .pri-instrument[data-mode="race"] :is(.pri-scale,.pri-meter-number small,.pri-information span,.pri-information small,.pri-left-bottom span,.pri-left-bottom small,.pri-speed small){color:#acacac}
+#cluster .pri-instrument[data-mode="race"] .pri-speed strong{color:var(--race-ink);text-shadow:0 0 .5cqw #ff33442e}
+#cluster .pri-instrument[data-mode="race"] .pri-dash-edge{background:linear-gradient(#2a2a2a,#101010);border-top-color:#84848488}
+
+/* Combat transition: two physical displays connect in sequence, without resizing. */
+#cluster .pri-instrument[data-mode="race"]{--pri-accent:var(--race-accent,#7aff35)}
+#cluster .pri-instrument[data-mode="race"] .pri-speed strong{text-shadow:0 0 .5cqw color-mix(in srgb,var(--pri-accent) 12%,transparent)}
+#cluster .pri-instrument[data-mode="race"] .pri-gear b{color:var(--pri-accent)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-right{animation:pri-combat-connect .43s ease-out both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-left{animation:pri-combat-connect .43s ease-out .23s both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-left{animation-delay:0s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-right{animation-delay:.23s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-information>div{animation:pri-combat-row .32s ease-out .19s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-information>div+div{animation-delay:.3s}
+@keyframes pri-combat-connect{0%{opacity:0;clip-path:inset(0 50%)}100%{opacity:1;clip-path:inset(0)}}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-information>div{animation-name:pri-combat-row-back}
+@keyframes pri-combat-row-back{from{opacity:0;clip-path:inset(0 0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@keyframes pri-combat-row{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .pri-instrument :is(.pri-left,.pri-right,.pri-information>div){animation:none!important}}

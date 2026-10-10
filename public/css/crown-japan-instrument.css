@@ -11,3 +11,39 @@
 @media(max-width:759px){.crown-hood{inset:16% 3% 30%}.crown-hood header{top:13%;left:10%;right:10%}.crown-hood .heritage-speed strong{font-size:32px}.crown-tray{inset:75% 3% 5%;grid-template-columns:26% 1fr;padding:2cqw;gap:3cqw}.crown-tray .heritage-drive-values b{font-size:16px}.crown-hood .heritage-gear b{font-size:20px}}
 /* Keep both endpoint labels and the needle above the separate digit window. */
 .crown-dial{top:23%;bottom:39%;left:12%;right:12%}.crown-dial svg{overflow:visible}.crown-dial .heritage-face{stroke-width:2}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .crown-instrument[data-mode="race"]{--heritage-ink:#f4f8ff;--heritage-muted:#a9b7cb;--heritage-accent:var(--race-accent)}
+#cluster .crown-instrument[data-mode="race"] .crown-dashboard{background:linear-gradient(#1c2837,#324255 48%,#101b2c)}
+#cluster .crown-instrument[data-mode="race"] .crown-hood{background:linear-gradient(135deg,#b7c8df,#455b77 4%,#132239 9%,#1a2b42 91%,#a5bcd7);border-bottom-color:#b7c8df;box-shadow:0 1cqw 2cqw #050e1dcc}
+#cluster .crown-instrument[data-mode="race"] .crown-dial .heritage-face{fill:#eef4fc;stroke:#718aa9}
+#cluster .crown-instrument[data-mode="race"] .crown-dial .heritage-ticks{stroke:#243b58}
+#cluster .crown-instrument[data-mode="race"] .crown-dial .heritage-ticks text{fill:#243b58}
+#cluster .crown-instrument[data-mode="race"] .crown-dial .heritage-needle path{fill:var(--race-accent)}
+#cluster .crown-instrument[data-mode="race"] .crown-hood .heritage-speed{background:#102039}
+#cluster .crown-instrument[data-mode="race"] .heritage-speed strong{color:#f5f9ff}
+#cluster .crown-instrument[data-mode="race"] .heritage-gear b{color:#f5f9ff}
+#cluster .crown-instrument[data-mode="race"] .crown-tray{background:#102139;border-color:#829cbf;box-shadow:inset 3px 0 var(--race-accent)}
+#cluster .crown-instrument[data-mode="race"] .crown-tray .heritage-info{border-left-color:#7894ba}
+#cluster .crown-instrument[data-mode="race"] .crown-tray .heritage-info b{color:#f2f7ff}
+#cluster .crown-instrument[data-mode="race"] .heritage-track{background:#43597a33;border-color:#8ca8d055}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1950_1959.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .crown-instrument .crown-hood::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;border-radius:inherit;border-top:3px solid var(--race-accent);background:linear-gradient(180deg,#e1efff45,transparent 62%);}
+#cluster[data-theme-id="y1950_1959.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .crown-instrument[data-mode="race"] .crown-hood::after{animation:crown_japan_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1950_1959.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .crown-instrument[data-mode="freeRoam"] .crown-hood::after{animation:crown_japan_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes crown_japan_combat_in{0%{clip-path:inset(0 0 100%);opacity:0}25%{opacity:.85}85%{clip-path:inset(0);opacity:.45}100%{opacity:0}}
+@keyframes crown_japan_combat_out{0%{clip-path:inset(0);opacity:0}25%{opacity:.65}85%{clip-path:inset(0 0 100%);opacity:.3}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1950_1959.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .crown-instrument .crown-hood::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1950_1959.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .crown-instrument .crown-tray .heritage-drive-values{animation:crown_combat_power .46s ease-out .12s;animation-fill-mode:backwards}
+#cluster[data-theme-id="y1950_1959.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .crown-instrument[data-mode="freeRoam"] .crown-tray .heritage-drive-values{animation-name:crown_combat_free}
+@keyframes crown_combat_power{from{opacity:0;clip-path:inset(100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes crown_combat_free{from{opacity:0;clip-path:inset(0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1950_1959.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .crown-instrument[data-mode="race"] .heritage-needle circle{fill:#59708f;stroke:#b0c5df}

@@ -37,7 +37,7 @@ XT 的 Free 下方显示燃油车输出或 EV 制动输入，以及横向 G，�
 ## 验证记录
 
 - `npm test`：193/193 通过，覆盖实际序列化工厂、有效零值、带符号输出、陈旧数据、实时接管、退场标签、圈速门控、动态量程、EV 适配与数据去重，并包含 HTTP／UDP 集成检查。
-- 模拟预览：375／469／1440 宽度 × Race／Free × 燃油／EV，共 24 组长读数外框检查，无越界或脚本异常。采用 350 km/h、11980 RPM、10 档、长圈时等合成输入；[检查记录](previews/japan-xt-prius/layout-checks.json)。外框检查不等于逐个文本之间无重叠或真实游戏验收。
+- 模拟预览：375／469／1440 宽度 × Race／Free × 燃油／EV，共 24 组长读数外框检查，无越界或脚本异常。采用 350 km/h、11980 RPM、10 档、长圈时等合成输入；[检查记录](../previews/japan-xt-prius/layout-checks.json)。外框检查不等于逐个文本之间无重叠或真实游戏验收。
 - 实际服务页面：HTTP 200，通过页面按钮选择两套主题，均进入 custom／live，始终只有一个仪表可见；资源无失败响应，浏览器无脚本异常。宿主缓存此前选择的隐藏仪表属于已有设计。
 - 真实 FH6、真实 EV、持续帧率和用户视觉验收：待完成。
 
@@ -47,16 +47,16 @@ XT 的 Free 下方显示燃油车输出或 EV 制动输入，以及横向 G，�
 
 XT／Race／1440：
 
-![XT 模拟 Race 预览](previews/japan-xt-prius/simulated-xt-race-1440.png)
+![XT 模拟 Race 预览](../previews/japan-xt-prius/simulated-xt-race-1440.png)
 
 XT／Free／375：
 
-![XT 模拟 Free 窄窗预览](previews/japan-xt-prius/simulated-xt-freeRoam-375.png)
+![XT 模拟 Free 窄窗预览](../previews/japan-xt-prius/simulated-xt-freeRoam-375.png)
 
 Prius／Race／1440：
 
-![Prius 模拟 Race 预览](previews/japan-xt-prius/simulated-prius-race-1440.png)
+![Prius 模拟 Race 预览](../previews/japan-xt-prius/simulated-prius-race-1440.png)
 
 Prius／Free／375：
 
-![Prius 模拟 Free 窄窗预览](previews/japan-xt-prius/simulated-prius-freeRoam-375.png)
+![Prius 模拟 Free 窄窗预览](../previews/japan-xt-prius/simulated-prius-freeRoam-375.png)

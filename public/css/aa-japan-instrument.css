@@ -34,3 +34,38 @@
  .aa-cylinder .heritage-speed strong{font-size:19px}
  .aa-slots{left:5%;right:5%;top:82%}
 }
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .aa-instrument[data-mode="race"]{--heritage-ink:#f4f7fc;--heritage-muted:#aab6c8;--heritage-accent:var(--race-accent)}
+#cluster .aa-instrument[data-mode="race"] .aa-dashboard{background:repeating-linear-gradient(3deg,#131b26 0 2px,#101824 3px 5px,#1c2634 6px 8px);box-shadow:inset 0 5cqw 8cqw #0008,inset 0 -4cqw 5cqw #0009}
+#cluster .aa-instrument[data-mode="race"] .aa-plaque{border-color:#7f91ab}
+#cluster .aa-instrument[data-mode="race"] .aa-cylinder{background:radial-gradient(circle,#111c2a 66%,#d9e1ed 68%,#546980 71%,#080f19 74%)}
+#cluster .aa-instrument[data-mode="race"] .aa-dial .heritage-face{fill:#edf3fb;stroke:#7188a5}
+#cluster .aa-instrument[data-mode="race"] .aa-dial .heritage-ticks{stroke:#24374f}
+#cluster .aa-instrument[data-mode="race"] .aa-dial .heritage-ticks text{fill:#24374f}
+#cluster .aa-instrument[data-mode="race"] .aa-dial .heritage-needle path{fill:var(--race-accent)}
+#cluster .aa-instrument[data-mode="race"] .aa-cylinder .heritage-speed{background:#15253b;border-color:#8095b2}
+#cluster .aa-instrument[data-mode="race"] .heritage-speed strong{color:#f1f7ff}
+#cluster .aa-instrument[data-mode="race"] .aa-aux :is(.heritage-drive,.heritage-gear){background:radial-gradient(circle,#101b2b 66%,#8194ae 70%,#09111e 73%);border-color:#9aacc5}
+#cluster .aa-instrument[data-mode="race"] .heritage-gear b{color:#f8fbff}
+#cluster .aa-instrument[data-mode="race"] .aa-slots{background:#142032;border-color:#7c92b0}
+#cluster .aa-instrument[data-mode="race"] .aa-slots .heritage-info b{color:#e9f2ff}
+#cluster .aa-instrument[data-mode="race"] .heritage-track{background:#43567333;border-color:#8fa5c555}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="pre1949.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .aa-instrument .aa-cylinder::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;border-radius:50%;background:linear-gradient(120deg,transparent 35%,#dcecff85 46%,#fff 50%,#dcecff85 54%,transparent 65%);background-size:250% 100%;}
+#cluster[data-theme-id="pre1949.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .aa-instrument[data-mode="race"] .aa-cylinder::after{animation:aa_japan_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="pre1949.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .aa-instrument[data-mode="freeRoam"] .aa-cylinder::after{animation:aa_japan_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes aa_japan_combat_in{0%{background-position:100% 0;opacity:0}40%{opacity:.7}100%{background-position:0 0;opacity:0}}
+@keyframes aa_japan_combat_out{0%{transform:translateX(35%);opacity:0}40%{opacity:.5}100%{transform:translateX(-35%);opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="pre1949.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .aa-instrument .aa-cylinder::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="pre1949.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .aa-instrument .aa-aux :is(.heritage-drive-values,.heritage-gear b){animation:aa_combat_text .42s ease-out .12s;animation-fill-mode:backwards}
+@keyframes aa_combat_text{from{opacity:0;filter:blur(2px)}to{opacity:1;filter:blur(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="pre1949.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .aa-instrument[data-mode="race"] .heritage-needle circle{fill:#59708f;stroke:#b0c5df}
