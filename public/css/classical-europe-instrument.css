@@ -107,3 +107,55 @@
 @keyframes ce-mode-name { from{opacity:0;transform:translateY(.8cqw) scale(.88);letter-spacing:.35em} to{opacity:1;transform:translateY(0) scale(1);letter-spacing:.12em} }
 @keyframes ce-mode-identity-exit { 0%,55%{opacity:1} 100%{opacity:0} }
 @media(prefers-reduced-motion:reduce) { .classical-europe-instrument,.classical-europe-instrument * { animation:none!important; transition:none!important; } }
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .classical-europe-instrument[data-mode="race"]{--ce-accent:var(--race-accent);--ce-needle:var(--race-accent);--ce-readout:#f4f7fc;--ce-card:#eef2f8;--ce-brass:#aeb8c7;background:radial-gradient(ellipse at 50% 44%,#20252d,#10141b 51%,#060a10)}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-leather{border-color:#495465;background:repeating-linear-gradient(89deg,#ffffff03 0 1px,transparent 1px 3px),radial-gradient(ellipse at 50% 40%,#292f39,#131923 70%,#090d13);box-shadow:inset 0 0 0 4px #121822,inset 0 0 0 5px #a4b0c159,inset 0 0 0 8px #0b1119,inset 0 20px 28px #0008,0 7px 30px #000c}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-leather::before{border-color:#a1afc05c}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-bezel{background:radial-gradient(circle,#e9eef5 0 75%,#202832 76%,#bac4d3 78%,#465161 81%,#9ca9ba 83%,#111923 86%,transparent 87%)}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-dial-face{fill:#eef2f8;stroke:#91a0b3}
+#cluster .classical-europe-instrument[data-mode="race"] :is(.ce-tick-major,.ce-tick-minor){stroke:#253245}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-tick-number{fill:#172437}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-dial-title{color:#223148;text-shadow:none}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-dial-value{color:#132338;background:#f7f9fc;border-color:#8998ac;box-shadow:inset 0 1px #fff8}
+#cluster .classical-europe-instrument[data-mode="race"] :is(.ce-dial-value span,.ce-maker-mark){color:#526378}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-bridge{background:linear-gradient(90deg,#101620,#2b3544 21%,#222c3b 75%,#0e1520);border-color:#9babbe;box-shadow:inset 0 0 0 2px #101620,inset 0 0 0 3px #c3cfdd55,0 6px 14px #000b}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-bridge strong{color:#f6f9ff;background:#101a28;border-color:var(--race-accent);box-shadow:inset 0 2px 5px #0008}
+#cluster .classical-europe-instrument[data-mode="race"] :is(.ce-needle-hub,.ce-needle-pin){fill:#a5b3c5;stroke:#516174}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-lower-rail{background:linear-gradient(#1e2836e8,#0b121de8);border-color:#8b9bb777}
+#cluster .classical-europe-instrument[data-mode="race"] :is(.ce-info span,.ce-info small,.ce-top-rail,.ce-status,.ce-bridge>span,.ce-bridge small){color:#aab9cc}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-top-rail i{background:linear-gradient(90deg,transparent,#9aabc0,transparent)}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-info{border-right-color:#788aa55e}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-bridge-crown{color:var(--race-accent-light);text-shadow:none}
+#cluster .classical-europe-instrument[data-mode="race"][data-signal="live"] .ce-status-lamp{background:var(--race-accent);box-shadow:0 0 7px color-mix(in srgb,var(--race-accent) 55%,transparent)}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-drive-gauge .ce-bezel{transform:scale(1.035)}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-speed-gauge .ce-bezel{transform:scale(.965)}
+.classical-europe-instrument .ce-bezel{transition:transform .5s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="pre1949.europe"][data-drive-mode="race"]:not([data-ignition-phase="vehicle-blackout"]):not([data-ignition-phase="vehicle-card"]) .cluster-stage{background:#080d15!important;border-color:#65758a}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ce-bridge strong{position:relative;overflow:hidden}
+#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .classical-europe-instrument .ce-bridge strong::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;background:linear-gradient(135deg,#4d5e77,#111b29);border:1px solid #bac7d6;}
+#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .classical-europe-instrument[data-mode="race"] .ce-bridge strong::after{animation:classical_europe_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .classical-europe-instrument[data-mode="freeRoam"] .ce-bridge strong::after{animation:classical_europe_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes classical_europe_combat_in{0%{clip-path:inset(0);opacity:1}100%{clip-path:inset(0 0 100%);opacity:0}}
+@keyframes classical_europe_combat_out{0%{clip-path:inset(100% 0 0);opacity:1}55%{clip-path:inset(0);opacity:1}100%{clip-path:inset(0 0 100%);opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .classical-europe-instrument .ce-bridge strong::after{animation:none!important;display:none;} .classical-europe-instrument .ce-bezel{transition:none!important}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .classical-europe-instrument .ce-info strong{animation:ce_combat_rail .46s ease-out .1s;animation-fill-mode:backwards}
+@keyframes ce_combat_rail{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="pre1949.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .classical-europe-instrument[data-mode="race"] .ce-leather::after{background:radial-gradient(circle at 1% 1%,#c6d3e5 0 .18cqw,transparent .21cqw),radial-gradient(circle at 99% 1%,#c6d3e5 0 .18cqw,transparent .21cqw),radial-gradient(circle at 1% 99%,#c6d3e5 0 .18cqw,transparent .21cqw),radial-gradient(circle at 99% 99%,#c6d3e5 0 .18cqw,transparent .21cqw)}
+#cluster .classical-europe-instrument[data-mode="race"] :is(.ce-speed-needle,.ce-drive-needle){stroke:#577495}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-bridge i{background:#9eb4d0}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-status-lamp{border-color:#9eb4d0}
+#cluster .classical-europe-instrument[data-mode="race"][data-signal="absent"] .ce-status-lamp{background:#152338;box-shadow:none}
+
+/* The retiring Free scan keeps its historical warm reflection. Race uses its own performance illumination. */
+#cluster[data-theme-id="pre1949.europe"][data-ignition-phase="scan"] .classical-europe-instrument[data-mode="race"] :is(.ce-speed-needle,.ce-drive-needle){filter:drop-shadow(0 1px 2px #000a) drop-shadow(0 0 5px color-mix(in srgb,var(--race-accent) 45%,transparent))}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-bezel{box-shadow:0 1px 0 #d5e2f5,0 6px 10px #000e,0 17px 23px #000b,inset 0 0 8px #0008}
+#cluster .classical-europe-instrument[data-mode="race"] .ce-bezel::after{background:linear-gradient(132deg,#ffffff63 1%,#ffffff1a 21%,transparent 42%,transparent 76%,#10243e23 96%);box-shadow:inset 0 8px 13px #0003,inset 0 -10px 17px #09182b3a}

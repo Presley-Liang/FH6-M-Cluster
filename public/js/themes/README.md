@@ -56,7 +56,7 @@ PR #3's XT/Prius batch is included in the consolidated PR #4. The final eight
 layouts share data projection and phase semantics via
 `heritage-instrument-binding.js`, but each factory and stylesheet owns its
 geometry. Missing OEM references remain explicit candidates; see
-`docs/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md`.
+`docs/archive/development/ALL_INSTRUMENTS_COMPLETION_2026-10-03.md`.
 
 The Multipla linear speed dial and the Portal, Corvette84, and Three-Well
 linear 0–260 speed meters map both the coordinator sweep fraction and live

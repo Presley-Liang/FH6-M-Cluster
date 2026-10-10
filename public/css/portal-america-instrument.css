@@ -12,3 +12,30 @@
 @media(max-width:759px){.portal-casing{inset:17% 2% 11%;padding:2cqw}.portal-speed-window{left:4%;right:28%;top:26%;bottom:30%}.portal-speed-scale{font-size:8px;left:5%;right:5%}.portal-speed-window .heritage-speed strong{font-size:38px}.portal-tower{left:75%;right:4%;padding:2cqw 1cqw}.portal-tower .heritage-drive-values b{font-size:16px}.portal-tower .heritage-drive>span{font-size:8px}.portal-tower .heritage-track{height:7cqw}.portal-speed-window .heritage-gear b{font-size:22px}.portal-speed-window .heritage-gear span{font-size:8px}}
 /* Linear bar labels follow their real 0–260 positions. */
 .portal-speed-scale{display:block;height:1.3em}.portal-speed-scale>span{position:absolute;top:0;transform:translateX(-50%)}.portal-speed-scale>span:nth-child(1){left:0;transform:none}.portal-speed-scale>span:nth-child(2){left:23.0769%}.portal-speed-scale>span:nth-child(3){left:53.8462%}.portal-speed-scale>span:nth-child(4){left:100%;transform:translateX(-100%)}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .portal-instrument[data-mode="race"]{--heritage-ink:#f4f8ff;--heritage-muted:#a1b7d3;--heritage-accent:var(--race-accent)}
+#cluster .portal-instrument[data-mode="race"] .portal-dashboard{background:repeating-linear-gradient(3deg,#101b2b 0 3px,#1b2b40 4px 7px)}
+#cluster .portal-instrument[data-mode="race"] .portal-casing{background:linear-gradient(#60728a,#1d3049 8%,#0e1c2f 86%,#8c9fb9);border-color:#b8c8dd}
+#cluster .portal-instrument[data-mode="race"] .portal-speed-window{background:linear-gradient(#071526,#203b5c 35%,#0b1e35);border-color:#668ab7}
+#cluster .portal-instrument[data-mode="race"] .portal-ribbon{background:linear-gradient(90deg,#e9f5ff,var(--race-accent))}
+#cluster .portal-instrument[data-mode="race"] .heritage-speed strong{color:#f4f8ff}
+#cluster .portal-instrument[data-mode="race"] .portal-tower{background:#0b1e35;border-color:#88abd5;box-shadow:inset .4cqw .5cqw 1cqw #000,inset 0 -2px var(--race-accent)}
+#cluster .portal-instrument[data-mode="race"] .portal-tower .heritage-track{background:repeating-linear-gradient(90deg,#789eca77 0 1px,transparent 1px 12%);border-color:#7097c355}
+#cluster .portal-instrument[data-mode="race"] .heritage-info b{color:#edf5ff}
+#cluster .portal-instrument[data-mode="race"] .heritage-track{background:#45658c33;border-color:#97b8de55}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1960_1975.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .portal-instrument .portal-tower::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;background:repeating-linear-gradient(0deg,#9dcfff60 0 1px,transparent 1px 12%),linear-gradient(0deg,#2f8fff25,transparent);}
+#cluster[data-theme-id="y1960_1975.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .portal-instrument[data-mode="race"] .portal-tower::after{animation:portal_america_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1960_1975.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .portal-instrument[data-mode="freeRoam"] .portal-tower::after{animation:portal_america_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes portal_america_combat_in{0%{clip-path:inset(100% 0 0);opacity:0}35%{opacity:.9}85%{clip-path:inset(0);opacity:.45}100%{opacity:0}}
+@keyframes portal_america_combat_out{0%{clip-path:inset(0);opacity:0}35%{opacity:.5}85%{clip-path:inset(100% 0 0);opacity:.3}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1960_1975.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .portal-instrument .portal-tower::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1960_1975.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .portal-instrument .portal-speed-window .heritage-speed{animation:portal_combat_speed .44s ease-out .12s;animation-fill-mode:backwards}
+@keyframes portal_combat_speed{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1960_1975.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}

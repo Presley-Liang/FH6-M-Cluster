@@ -11,3 +11,41 @@
 .shield-left,.shield-right{position:absolute;top:37%;width:22%;padding:1.8cqw;background:linear-gradient(#62664d,#2c3326 10%,#222b20 85%,#92927a);border:1px solid #938d6b;border-radius:1cqw}.shield-left{left:6%}.shield-right{right:6%}
 .shield-tray{position:absolute;inset:81% 16% 5%;padding:1cqw 3cqw;background:#23281f;border:2px solid #827c61;border-radius:1cqw}.shield-tray .heritage-info b{font-size:max(18px,2.6cqw)}
 @media(max-width:759px){.shield-casing{left:28%;right:28%;top:12%}.shield-left,.shield-right{top:38%;width:23%;padding:1.4cqw}.shield-left{left:2%}.shield-right{right:2%}.shield-tray{left:5%;right:5%;top:82%;bottom:4%}.shield-casing header{font-size:8px}.shield-casing .heritage-speed strong{font-size:23px}.shield-casing .heritage-speed small{font-size:8px}.shield-casing .heritage-gear{left:25%;right:25%}.shield-casing .heritage-gear b{font-size:18px}.shield-casing .heritage-gear span{font-size:8px}.shield-tray .heritage-info b{font-size:16px}}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .shield-instrument[data-mode="race"]{--heritage-ink:#f4f7fc;--heritage-muted:#a3b1c4;--heritage-accent:var(--race-accent)}
+#cluster .shield-instrument[data-mode="race"] .shield-dashboard{background:repeating-linear-gradient(92deg,#101722 0 2px,#182130 3px 6px)}
+#cluster .shield-instrument[data-mode="race"] .shield-casing{background:linear-gradient(135deg,#c4cedb,#536275 6%,#111923 12%,#202d3c 88%,#9aabbe);border-top-color:#c5cfdd}
+#cluster .shield-instrument[data-mode="race"] .shield-dial .heritage-face{fill:#f0f4fa;stroke:#788ca7}
+#cluster .shield-instrument[data-mode="race"] .shield-dial .heritage-ticks{stroke:#1b2a3e}
+#cluster .shield-instrument[data-mode="race"] .shield-dial .heritage-ticks text{fill:#1b2a3e}
+#cluster .shield-instrument[data-mode="race"] .shield-dial .heritage-needle path{fill:var(--race-accent)}
+#cluster .shield-instrument[data-mode="race"] .shield-casing .heritage-speed{background:#101c2c;border-color:#8c9eb5}
+#cluster .shield-instrument[data-mode="race"] .heritage-speed strong{color:var(--race-ink)}
+#cluster .shield-instrument[data-mode="race"] :is(.shield-left,.shield-right){background:linear-gradient(#5d6a7d,#202d3d 10%,#111d2d 85%,#8d9eb6);border-color:#899cb7}
+#cluster .shield-instrument[data-mode="race"] .shield-left{box-shadow:inset 3px 0 var(--race-accent),inset 0 0 1.5cqw #0007}
+#cluster .shield-instrument[data-mode="race"] .shield-left .heritage-drive-values b{font-size:max(20px,3.2cqw)}
+#cluster .shield-instrument[data-mode="race"] .shield-right .heritage-temp b{color:#edf3fc}
+#cluster .shield-instrument[data-mode="race"] .shield-tray{background:#121e2e;border-color:#8397b1}
+#cluster .shield-instrument[data-mode="race"] .shield-tray .heritage-info b{color:#f1f6ff}
+#cluster .shield-instrument[data-mode="race"] .heritage-track{background:#43557033;border-color:#859bbb55}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="pre1949.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .shield-instrument .shield-casing::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;border:3px solid var(--race-accent);clip-path:polygon(9% 0,91% 0,100% 13%,92% 78%,50% 100%,8% 78%,0 13%);box-shadow:inset 0 0 1cqw color-mix(in srgb,var(--race-accent) 35%,transparent);}
+#cluster[data-theme-id="pre1949.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .shield-instrument[data-mode="race"] .shield-casing::after{animation:shield_america_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="pre1949.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .shield-instrument[data-mode="freeRoam"] .shield-casing::after{animation:shield_america_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes shield_america_combat_in{0%{clip-path:inset(0 0 100%);opacity:0}35%{opacity:1}85%{clip-path:inset(0);opacity:1}100%{clip-path:inset(0);opacity:0}}
+@keyframes shield_america_combat_out{0%{clip-path:inset(0);opacity:0}30%{opacity:.7}85%{clip-path:inset(0 0 100%);opacity:.7}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="pre1949.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .shield-instrument .shield-casing::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="pre1949.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .shield-instrument .shield-left{animation:shield_combat_power .55s ease-out}
+#cluster[data-theme-id="pre1949.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .shield-instrument .shield-tray .heritage-info>div{animation:shield_combat_page .45s ease-out .1s;animation-fill-mode:backwards}
+@keyframes shield_combat_power{from{box-shadow:inset 3px 0 transparent}to{box-shadow:inset 3px 0 var(--race-accent)}}
+@keyframes shield_combat_page{from{opacity:0;clip-path:inset(0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="pre1949.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .shield-instrument[data-mode="race"] .heritage-needle circle{fill:#59708f;stroke:#b0c5df}

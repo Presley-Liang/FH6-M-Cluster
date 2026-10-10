@@ -111,8 +111,8 @@
 .jdm90-instrument[data-mode="freeRoam"] .jdm90-gear-box :is(small,b) { color:#b7ede4; text-shadow:0 0 12px #80d2c766; }
 .jdm90-instrument[data-mode="freeRoam"] .jdm90-needle { fill:#cbf2e8; filter:drop-shadow(0 0 5px #7bd2c4aa); }
 .jdm90-instrument[data-mode="freeRoam"] .jdm90-redline-mark { opacity:.35; }
-.jdm90-instrument[data-mode="race"] .jdm90-mode-flag { color:#ffbb65; text-shadow:0 0 11px #f0804180; }
-.jdm90-instrument[data-mode="race"] .jdm90-gear-box { box-shadow:inset 0 0 0 2px #180b07,0 0 22px #f0644055; }
+.jdm90-instrument[data-mode="race"] .jdm90-mode-flag { color:#ff3045; text-shadow:0 0 11px #ff304580; }
+.jdm90-instrument[data-mode="race"] .jdm90-gear-box { box-shadow:inset 0 0 0 2px #0e1115,0 0 22px #ff304555; }
 .jdm90-speed-window,.jdm90-speed-window strong,.jdm90-gear-box,.jdm90-mode-flag,.jdm90-redline-mark { transition:background .5s ease,border-color .5s ease,box-shadow .5s ease,color .5s ease,fill .5s ease,opacity .5s ease,font-size .5s ease,transform .5s ease; }
 .jdm90-instrument[data-mode="freeRoam"] .jdm90-shift-lamps { opacity:.18; }
 .jdm90-instrument[data-mode="freeRoam"] .jdm90-shift-end { opacity:.2; }
@@ -155,3 +155,42 @@
 @keyframes jdm90-build { 0%{opacity:0;filter:brightness(0);clip-path:inset(50% 0)} 36%{opacity:.45;filter:brightness(.38);clip-path:inset(21% 0)} 68%{opacity:1;filter:brightness(.72);clip-path:inset(4% 0)} 100%{opacity:1;filter:brightness(1);clip-path:inset(0)} }
 @keyframes jdm90-relight { from{filter:brightness(.025)} to{filter:brightness(1)} }
 @media(prefers-reduced-motion:reduce) { .jdm90-instrument,.jdm90-instrument * { animation:none!important; transition:none!important; } }
+
+/* Combat: carbon-black tach, neutral white markings and performance red. */
+#cluster .jdm90-instrument[data-mode="race"]{--jdm-phosphor:var(--race-ink);--jdm-amber:var(--race-accent-light);--jdm-red:var(--race-accent);background:radial-gradient(ellipse 36% 64% at 50% 49%,#151d23 0%,#070b10 57%,transparent 94%),repeating-linear-gradient(0deg,#ffffff03 0 1px,transparent 1px 4px),linear-gradient(98deg,#05090e,#101820 50%,#05090e)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-dial-face{fill:#090f15;stroke:#626f79}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-tach-case{background:radial-gradient(circle at 50% 50%,#080d13 0 60%,#26323c 70%,#070b10 74%,#626f79 75%,#05080c 78%,transparent 79%)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-speed-window{background:linear-gradient(130deg,#15212b,#080c12 70%);border-color:#798c9992}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-gear-box{background:#111c25;border-color:#ff30458c;box-shadow:inset 0 0 0 2px #070d13,0 0 16px #ff30452c}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-gear-box :is(small,b){color:var(--race-accent-light);text-shadow:0 0 10px #ff304555}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-mode-flag{color:var(--race-accent-light);text-shadow:0 0 9px #ff304533}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-mode-flag i{background:var(--race-accent);box-shadow:0 0 8px #ff304555}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-speed-stripe{background:linear-gradient(90deg,#f1f5f9 0 70%,var(--race-accent) 70%);box-shadow:0 0 8px #ff304533}
+#cluster .jdm90-instrument[data-mode="race"] :is(.jdm90-tick-label,.jdm90-speed-window strong){fill:var(--race-ink);color:var(--race-ink)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-tick-major{stroke:var(--race-ink)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-speed-window small{color:var(--race-muted)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-readout-primary strong{text-shadow:0 0 9px #ff304533}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-shift-lamps i{background:#151c24;border-color:#52606b}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-shift-lamps i[data-lit="true"]{background:var(--race-ink);border-color:#e9eef4;box-shadow:0 0 7px #ffffff66,inset 0 0 3px #fff}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-shift-lamps i:nth-child(n+8)[data-lit="true"]{background:var(--race-accent);border-color:#ffa4af;box-shadow:0 0 9px #ff304588}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-shift-end{color:var(--race-accent-light)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-needle{fill:var(--race-accent);filter:drop-shadow(0 0 4px #ff304566)}
+#cluster .jdm90-instrument[data-mode="race"][data-signal="live"] .jdm90-status-lamp{background:#9bb6a6;box-shadow:0 0 6px #9bb6a644}
+#cluster[data-ignition-phase="scan"] .jdm90-instrument[data-mode="race"] .jdm90-needle{filter:drop-shadow(0 0 6px #fff) drop-shadow(0 0 12px #ff304566)}
+/* Only the internal gear plate stamps in; tach SVG and needle pivots stay fixed. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .jdm90-instrument[data-mode="race"] .jdm90-gear-box{animation:jdm-combat-stamp .46s cubic-bezier(.2,.9,.3,1)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .jdm90-instrument[data-mode="race"] .jdm90-shift-lamps{animation:jdm-combat-lamps .56s steps(8,end)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .jdm90-instrument[data-mode="freeRoam"] .jdm90-speed-window strong{animation:jdm-cruise-velocity .58s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .jdm90-instrument[data-mode="freeRoam"] .jdm90-free-data{animation:jdm-cruise-details .5s .12s ease-out backwards}
+@keyframes jdm-combat-stamp{from{opacity:0;transform:scale(1.12) translateY(-.35cqw)}65%{opacity:1;transform:scale(.98)}to{opacity:1;transform:none}}
+@keyframes jdm-combat-lamps{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@keyframes jdm-cruise-velocity{from{opacity:.1;filter:brightness(.2)}to{opacity:1;filter:brightness(1)}}
+@keyframes jdm-cruise-details{from{opacity:0;transform:translateY(.4cqw)}to{opacity:1;transform:none}}
+
+/* Neutralize inherited warm hardware details in Race only. */
+#cluster .jdm90-instrument[data-mode="race"] :is(.jdm90-readout strong,.jdm90-right-details strong,.jdm90-center-readout>strong){color:var(--race-ink)}
+#cluster .jdm90-instrument[data-mode="race"] :is(.jdm90-right-details small,.jdm90-status i:not(.jdm90-status-lamp)){color:var(--race-muted)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-readout-primary strong{color:var(--race-accent-light)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-redline-mark{stroke:var(--race-accent);filter:drop-shadow(0 0 5px #ff304544)}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-needle-cap{fill:#25323d;stroke:#a4b1bb}
+#cluster .jdm90-instrument[data-mode="race"] .jdm90-needle-pin{fill:#cbd5de}

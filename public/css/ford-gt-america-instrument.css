@@ -54,3 +54,34 @@
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-phase="scan"] .fgt-tach-fill{filter:drop-shadow(0 0 12px var(--fgt-accent))}
 @media(max-width:1000px){.fgt-data-strip span{font-size:8px}.fgt-data-strip{gap:1%}.fgt-main-primary strong{font-size:max(24px,8.3cqw)}.fgt-main-secondary strong{font-size:max(24px,4.6cqw)}}
 @media(prefers-reduced-motion:reduce){.fgt-instrument,.fgt-instrument *,.fgt-mode-identity,.fgt-mode-identity *{animation:none!important;transition:none!important}}
+
+/* Race: black LCD and neutral carbon surround with red performance lighting. */
+#cluster .fgt-instrument[data-mode="race"]{--fgt-accent:var(--race-red);--fgt-soft:var(--race-red-light)}
+#cluster .fgt-instrument[data-mode="race"] .fgt-surround{background:repeating-linear-gradient(135deg,#232323 0 2px,#191919 2px 5px,#272727 5px 7px),linear-gradient(#2b2b2b,#101010)}
+#cluster .fgt-instrument[data-mode="race"] .fgt-display{background:radial-gradient(ellipse at 52% 50%,#1e1e1e 0,#0e0e0e 51%,#080808 100%);border-color:#7b7b7b}
+#cluster .fgt-instrument[data-mode="race"] .fgt-surround:before,#cluster .fgt-instrument[data-mode="race"] .fgt-surround:after{background:linear-gradient(#6f6f6f,var(--fgt-accent) 50%,#424242)}
+#cluster .fgt-instrument[data-mode="race"] .fgt-tach-bed{stroke:#3b3b3b}
+#cluster .fgt-instrument[data-mode="race"] :is(.fgt-main,.fgt-main-left,.fgt-main-secondary,.fgt-data-strip,.fgt-data-strip>div){border-color:#63636369}
+#cluster .fgt-instrument[data-mode="race"] :is(.fgt-header,.fgt-footer,.fgt-main span,.fgt-data-strip span,.fgt-tach-caption){color:#adadad}
+#cluster[data-theme-id="y2015_2019.america"][data-target-mode="race"] .fgt-mode-identity{background:radial-gradient(ellipse,#0f0f0ffc 12%,#0f0f0fed 55%,transparent 80%)}
+#cluster[data-theme-id="y2015_2019.america"][data-target-mode="race"] .fgt-mode-identity strong{color:var(--race-red)}
+#cluster[data-theme-id="y2015_2019.america"][data-target-mode="race"] .fgt-mode-identity span i{background:var(--race-red)}
+
+/* Combat transition: a second, decorative path traces the GT's bent tach rail. */
+#cluster .fgt-instrument[data-mode="race"]{--fgt-accent:var(--race-accent,#2f8fff);--fgt-soft:var(--race-accent-light,#8abaff)}
+.fgt-combat-rail{fill:none;stroke:var(--fgt-accent);stroke-width:2;stroke-dasharray:100;stroke-dashoffset:100;opacity:0;pointer-events:none}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-combat-rail{animation:fgt-combat-rail .65s ease-out both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-combat-rail{animation-name:fgt-combat-rail-back}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-main-primary{animation:fgt-combat-primary .45s cubic-bezier(.2,.8,.25,1) .12s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-data-strip>div{animation:fgt-combat-strip .36s ease-out .18s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-data-strip>div:nth-child(2){animation-delay:.24s}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-data-strip>div:nth-child(3){animation-delay:.3s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-data-strip>div:first-child{animation-delay:.3s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-data-strip>div:last-child{animation-delay:.18s}
+@keyframes fgt-combat-rail{0%{opacity:0;stroke-dashoffset:100}12%{opacity:.9}80%{opacity:.9;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+@keyframes fgt-combat-rail-back{0%{opacity:0;stroke-dashoffset:-100}12%{opacity:.9}80%{opacity:.9;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-main-primary{animation-name:fgt-combat-primary-back}
+@keyframes fgt-combat-primary-back{from{opacity:0;clip-path:inset(0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@keyframes fgt-combat-primary{from{opacity:0;clip-path:inset(100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes fgt-combat-strip{from{opacity:0;transform:translateY(.55cqw)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-instrument :is(.fgt-combat-rail,.fgt-main-primary,.fgt-data-strip>div){animation:none!important}}

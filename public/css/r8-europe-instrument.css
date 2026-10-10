@@ -47,3 +47,32 @@
 #cluster[data-theme-id="y2009_2014.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .r8-instrument :is(.r8-dial,.r8-screen-border) { filter:brightness(.1); }
 #cluster[data-theme-id="y2009_2014.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .r8-instrument :is(.r8-dial,.r8-screen-border) { animation:r8-relight .62s cubic-bezier(.22,.61,.36,1) both; }
 @keyframes r8-relight { from { filter:brightness(.07); } to { filter:brightness(1); } }
+
+/* Combat: cold-black faces, neutral silver rings and performance red. */
+#cluster .r8-instrument[data-mode="race"]{--r8-accent:var(--race-accent);background:linear-gradient(180deg,#17222d 0%,#050c13 36%,#0b131b 100%)}
+#cluster .r8-instrument[data-mode="race"] .r8-shroud{background:radial-gradient(ellipse 75% 65% at 50% 18%,#2f414f,#13212c 60%,#060d14 100%)}
+#cluster .r8-instrument[data-mode="race"] .r8-dial{background:radial-gradient(circle,#101c26 0 68%,#526778 69%,#c8d3dc 70%,#364b5d 72%,#070d14 75%,transparent 78%)}
+#cluster .r8-instrument[data-mode="race"] .r8-face{fill:#0a141e;stroke:#405362}
+#cluster .r8-instrument[data-mode="race"] .r8-rim{fill:#15232e}
+#cluster .r8-instrument[data-mode="race"] .r8-needle{fill:var(--race-accent)}
+#cluster .r8-instrument[data-mode="race"] .r8-major{stroke:var(--race-ink)}
+#cluster .r8-instrument[data-mode="race"] .r8-tick-label{fill:var(--race-ink)}
+#cluster .r8-instrument[data-mode="race"] :is(.r8-speed-readout,.r8-rpm-readout){background:#142330;border-color:#5a7183;color:var(--race-ink)}
+#cluster .r8-instrument[data-mode="race"] .r8-screen{background:linear-gradient(#132432,#070f18 70%,#11202e);border-color:#050b12}
+#cluster .r8-instrument[data-mode="race"] :is(.r8-columns,.r8-screen-footer){border-color:#536d83}
+#cluster .r8-instrument[data-mode="race"] .r8-primary strong{color:var(--race-accent-light)}
+#cluster .r8-instrument[data-mode="race"] .r8-lamps i[data-lit="true"]{background:var(--race-ink);box-shadow:0 0 .5cqw #ffffff66}
+#cluster .r8-instrument[data-mode="race"] .r8-lamps i:nth-child(n+5)[data-lit="true"]{background:var(--race-accent);box-shadow:0 0 .5cqw #ff304566}
+#cluster[data-theme-id="y2009_2014.europe"][data-target-mode="race"] .r8-mode-identity{background:radial-gradient(ellipse,#091522 20%,#091522f5 58%,transparent 78%);color:var(--race-accent-light)}
+/* Replace only the narrow screen plate; both analog dials stay fixed. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .r8-instrument[data-mode="race"] .r8-primary{animation:r8-combat-plate .55s cubic-bezier(.2,.75,.3,1);transform-origin:50% 30%}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .r8-instrument[data-mode="race"] .r8-columns{animation:r8-combat-columns .42s .18s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .r8-instrument[data-mode="freeRoam"] .r8-primary{animation:r8-cruise-plate .55s ease-out;transform-origin:50% 70%}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .r8-instrument[data-mode="freeRoam"] .r8-columns{animation:r8-cruise-columns .42s .18s ease-out backwards}
+@keyframes r8-combat-plate{from{opacity:0;transform:perspective(280px) rotateX(-32deg) translateY(-.5cqw)}to{opacity:1;transform:none}}
+@keyframes r8-combat-columns{from{opacity:0;transform:translateY(.5cqw)}to{opacity:1;transform:none}}
+@keyframes r8-cruise-plate{from{opacity:0;transform:perspective(280px) rotateX(28deg) translateY(.4cqw)}to{opacity:1;transform:none}}
+@keyframes r8-cruise-columns{from{opacity:0;transform:translateY(-.4cqw)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.r8-instrument,.r8-instrument *,.r8-mode-identity,.r8-mode-identity *{animation:none!important;transition:none!important}}
+
+#cluster .r8-instrument[data-mode="race"] .r8-red{stroke:var(--race-accent)}

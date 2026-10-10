@@ -41,3 +41,39 @@
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"]:is([data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="center"]) .ds-instrument :is(.ds-window,.ds-lower){filter:brightness(.09)}
 #cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument :is(.ds-window,.ds-lower){animation:ds-relight .65s cubic-bezier(.22,.61,.36,1) both}
 @keyframes ds-relight{from{filter:brightness(.08)}to{filter:brightness(1)}}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .ds-instrument[data-mode="race"]{--ds-accent:var(--race-accent);background:linear-gradient(170deg,#142330,#08121d 50%,#0b1824);color:#eef5ff}
+#cluster .ds-instrument[data-mode="race"] .ds-dashboard{background:radial-gradient(ellipse at 50% 12%,#243849,#101f2c 68%,#081420);border-color:#a3b5c9;box-shadow:inset 0 0 0 .45cqw #344a5e,inset 0 1cqw 2cqw #040d16,0 1cqw 2cqw #000a}
+#cluster .ds-instrument[data-mode="race"] :is(.ds-top,.ds-footer){color:#a7bcd2}
+#cluster .ds-instrument[data-mode="race"] .ds-top i{background:#94aac577}
+#cluster .ds-instrument[data-mode="race"] .ds-window{border-color:#c9d6e6;background:linear-gradient(#e3edf8,#8fa4bb 9%,#273d50 16%,#0a1826 85%,#8298b0);box-shadow:0 1cqw 1.5cqw #000b,inset 0 0 0 .35cqw #254058}
+#cluster .ds-instrument[data-mode="race"] .ds-window-inner{border-color:#9dabc0;background:linear-gradient(180deg,#f5f8fd,#dce6f3 35%,#b8c9dd);box-shadow:inset 0 .5cqw 1cqw #31496550}
+#cluster .ds-instrument[data-mode="race"] :is(.ds-scale-mark,.ds-speed-unit,.ds-speed-number){color:#192e48}
+#cluster .ds-instrument[data-mode="race"] .ds-scale-mark i{background:#667e9d}
+#cluster .ds-instrument[data-mode="race"] .ds-scale-major i{background:#1d3554}
+#cluster .ds-instrument[data-mode="race"] .ds-speed-track{background:#7084a399}
+#cluster .ds-instrument[data-mode="race"] .ds-speed-needle{background:var(--race-accent);box-shadow:1px 1px 2px #192e4850}
+#cluster .ds-instrument[data-mode="race"] .ds-speed-needle:after{background:var(--race-accent-light)}
+#cluster .ds-instrument[data-mode="race"] :is(.ds-lower-panel,.ds-center){border-color:#718aa9;background:linear-gradient(180deg,#24394e,#0d1b2a);box-shadow:inset 0 0 0 .25cqw #3a536f,0 .5cqw .9cqw #0008;color:#f4f8ff}
+#cluster .ds-instrument[data-mode="race"] .ds-center-inner{border-color:var(--race-accent)}
+#cluster .ds-instrument[data-mode="race"] .ds-center strong{color:#f4f8ff;font-size:max(22px,3.5cqw)}
+#cluster .ds-instrument[data-mode="race"] .ds-left strong{color:var(--race-accent-light)}
+#cluster[data-theme-id="y1950_1959.europe"][data-drive-mode="race"]:not([data-ignition-phase="vehicle-blackout"]):not([data-ignition-phase="vehicle-card"]) .cluster-stage{background:#08121d!important;border-color:#9eb2cb;box-shadow:0 0 0 5px #16293b,0 25px 75px #000d}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument .ds-window-inner::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;background:linear-gradient(90deg,transparent,#f7fbff80,transparent);}
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument[data-mode="race"] .ds-window-inner::after{animation:ds_europe_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument[data-mode="freeRoam"] .ds-window-inner::after{animation:ds_europe_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes ds_europe_combat_in{0%{clip-path:inset(0 100% 0 0);opacity:0}30%{opacity:.8}85%{clip-path:inset(0);opacity:.5}100%{clip-path:inset(0);opacity:0}}
+@keyframes ds_europe_combat_out{0%{clip-path:inset(0 0 0 100%);opacity:0}30%{opacity:.6}85%{clip-path:inset(0);opacity:.4}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument .ds-window-inner::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument :is(.ds-left strong,.ds-center strong,.ds-right strong){animation:ds_combat_readout .42s ease-out;animation-fill-mode:backwards}
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument .ds-center strong{animation-delay:.06s}
+#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument[data-mode="race"] .ds-right strong,#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ds-instrument[data-mode="freeRoam"] .ds-left strong{animation-delay:.12s}
+@keyframes ds_combat_readout{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1950_1959.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}

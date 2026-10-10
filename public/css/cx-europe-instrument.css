@@ -53,3 +53,37 @@
 .cx-bottom{font-size:max(8px,.72cqw)}
 @media(max-width:1000px){.cx-aux span{font-size:max(8px,.5cqw)}.cx-drum-reading strong{font-size:max(24px,4.05cqw)}}
 @media(prefers-reduced-motion:reduce){.cx-instrument,.cx-drum-housing,.cx-drum-track,.cx-drum-reading,.cx-mode-identity{transition:none!important;animation:none!important}}
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .cx-instrument[data-mode="race"]{--cx-accent:var(--race-accent);color:#f1f7ff;background:radial-gradient(ellipse at 50% 70%,#26374a 0%,#111e2d 53%,#06101c 100%)}
+#cluster .cx-instrument[data-mode="race"] .cx-lunule{border-color:#a4b7d0;background:radial-gradient(ellipse at 50% -22%,#3c516b 0%,#1b2d44 36%,#081726 82%)}
+#cluster .cx-instrument[data-mode="race"] .cx-lunule:before{border-color:#7896b7}
+#cluster .cx-instrument[data-mode="race"] .cx-drum-housing{background:linear-gradient(95deg,#33475f,#0d1e30 17%,#223954 50%,#0b1d30 84%,#647e9d);border-color:#abc1dc}
+#cluster .cx-instrument[data-mode="race"] .cx-drum-slot{background:linear-gradient(100deg,#4e7693 0%,#9ec6db 19%,#e4f7ff 48%,#90bdd4 80%,#3e6986);border-color:#a9d8ea}
+#cluster .cx-instrument[data-mode="race"] .cx-drum-track{color:#102b42}
+#cluster .cx-instrument[data-mode="race"] .cx-drum-reading{background:linear-gradient(90deg,#6fa8c290,#d5f2ffc9 28% 72%,#6fa8c290);border-top-color:#c7edff;border-bottom-color:#699ab8;box-shadow:0 .4cqw .8cqw #0007,inset 0 0 .8cqw #d5f3ff6b;color:#10283e}
+#cluster .cx-instrument[data-mode="race"] .cx-aux{background:linear-gradient(150deg,#1f354f,#0b1d32 70%);border-color:#7e9bbd;color:#e4f0ff}
+#cluster .cx-instrument[data-mode="race"] .cx-drum-rpm{border-color:var(--race-accent);box-shadow:inset 0 0 0 .3cqw #10243a,0 .65cqw 1.3cqw #000c,0 0 1.1cqw color-mix(in srgb,var(--race-accent) 18%,transparent)}
+#cluster .cx-instrument[data-mode="race"] :is(.cx-drum-cap,.cx-drum-base,.cx-aux small,.cx-aux span,.cx-bottom,.cx-crest,.cx-crest b){color:#adc4df}
+#cluster .cx-instrument[data-mode="race"] .cx-aux strong{color:#eff8ff}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .cx-instrument .cx-drum-rpm .cx-drum-slot::after{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;background:linear-gradient(90deg,#1d3649,#58768b,#193347);border-top:1px solid #b3d2e9;border-bottom:1px solid #b3d2e9;}
+#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .cx-instrument[data-mode="race"] .cx-drum-rpm .cx-drum-slot::after{animation:cx_europe_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .cx-instrument[data-mode="freeRoam"] .cx-drum-rpm .cx-drum-slot::after{animation:cx_europe_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes cx_europe_combat_in{0%{clip-path:inset(0);opacity:1}100%{clip-path:inset(50% 0);opacity:0}}
+@keyframes cx_europe_combat_out{0%{clip-path:inset(50% 0);opacity:1}45%{clip-path:inset(0);opacity:1}100%{clip-path:inset(50% 0);opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .cx-instrument .cx-drum-rpm .cx-drum-slot::after{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .cx-instrument :is(.cx-aux-left strong,.cx-aux-right strong){animation:cx_combat_aux .44s ease-out .12s;animation-fill-mode:backwards}
+@keyframes cx_combat_aux{from{opacity:0;clip-path:inset(50% 0)}to{opacity:1;clip-path:inset(0)}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1976_1985.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .cx-instrument[data-mode="race"] .cx-drum-reading small{color:#193149}
+#cluster .cx-instrument[data-mode="race"] .cx-drum-lens{background:linear-gradient(90deg,#101e2e88 0%,transparent 24% 66%,#10223699 100%),linear-gradient(180deg,#0b1929b8 0%,transparent 32% 67%,#0b1929b8 100%)}
+#cluster .cx-instrument[data-mode="race"] .cx-crest i{background:#658db5}
+#cluster .cx-instrument[data-mode="race"] .cx-aux-rule{background:#7fa4ca}

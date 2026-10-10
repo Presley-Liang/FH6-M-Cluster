@@ -1619,6 +1619,7 @@ export function getDefaultHTML() {
   instrumentHost.activate(document.getElementById('cluster').dataset.themeId || DEFAULT_THEME_ID);
   var clusterBindings = createClusterBindings(document, selectTelemetry, {
     vehicleModelLookup: lookupVehicleModel,
+    neutralHoldMs: 600,
     vehicleStateController: createVehicleStateController(),
     rpmGaugeController: createRpmGaugeController(),
     shiftLightController: createShiftLightController(),
@@ -1828,5 +1829,6 @@ export function getDefaultHTML() {
     .replace('</head>', '<link rel="stylesheet" href="/styles/camaro-america-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/modern-instrument-common.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/civic-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/escalade-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/gx-japan-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/instrument-responsive.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/race-combat-palette.css?v=' + themeCssVersion + '"></head>')
     .replace('<script>', '<script src="/vendor/leaflet/leaflet.js"></script><script>');
 }

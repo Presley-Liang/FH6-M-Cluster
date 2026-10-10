@@ -27,3 +27,34 @@
   .esc-drive-scale{font-size:46px}
   .esc-drive-scale :is(text,line):not([data-esc-narrow]){visibility:hidden}
 }
+
+/* Race: black mirror glass, white speed readout, silver edging and red drive accents. */
+#cluster .esc-instrument[data-mode="race"]{--esc-accent:var(--race-red)}
+#cluster .esc-instrument[data-mode="race"] .esc-dashboard{background:linear-gradient(#1f1f1f,#090909)}
+#cluster .esc-instrument[data-mode="race"] .esc-black-glass{background:linear-gradient(110deg,#131313,#1c1c1c 75%,#0f0f0f)}
+#cluster .esc-instrument[data-mode="race"] .esc-black-glass:after{background:linear-gradient(100deg,#d4d4d40a,transparent 25%,#d4d4d404 60%,transparent 77%)}
+#cluster .esc-instrument[data-mode="race"] .esc-left-panel{background:linear-gradient(145deg,#45454533,transparent 70%);border-right-color:#8c8c8c2f}
+#cluster .esc-instrument[data-mode="race"] .esc-right-panel{background:linear-gradient(110deg,#1c1c1cbb,#40404050);border-left-color:#8c8c8c2f}
+#cluster .esc-instrument[data-mode="race"] .esc-speed strong{color:var(--race-ink)}
+#cluster .esc-instrument[data-mode="race"] .esc-drive-track path{stroke:#434343}
+#cluster .esc-instrument[data-mode="race"] .esc-drive-track .esc-drive-fill{stroke:var(--esc-accent)}
+#cluster .esc-instrument[data-mode="race"] :is(.esc-left-data span,.esc-left-data small,.esc-right-panel span,.esc-right-panel header,.esc-driver-line span,.esc-speed small,.esc-scale-label){color:#acacac}
+#cluster .esc-instrument[data-mode="race"] .esc-road-lines{background:repeating-linear-gradient(0deg,transparent 0 24%,#8e8e8e 25%,transparent 26%)}
+#cluster .esc-instrument[data-mode="race"] .esc-road-lines i{background:#acacac}
+#cluster .esc-instrument[data-mode="race"] .esc-lower-dash{background:linear-gradient(#1d1d1d,#090909)}
+
+/* Combat transition: a continuous guide light connects all three glass regions. */
+#cluster .esc-instrument[data-mode="race"]{--esc-accent:var(--race-accent,#2f8fff)}
+#cluster .esc-instrument[data-mode="race"] .esc-driver-line b{color:var(--esc-accent)}
+.esc-black-glass:before{content:'';position:absolute;left:0;top:3%;width:16%;height:2px;background:linear-gradient(90deg,transparent,var(--esc-accent),transparent);opacity:0;z-index:3;pointer-events:none}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-black-glass:before{animation:esc-combat-guide .7s ease-in-out both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-black-glass:before{animation-name:esc-combat-guide-back}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-left-data{animation:esc-combat-page .4s ease-out .02s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-driver-line{animation:esc-combat-page .4s ease-out .14s both}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-right-panel>div{animation:esc-combat-page .4s ease-out .28s both}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-left-data{animation-delay:.28s}
+#cluster[data-target-mode="freeRoam"][data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-right-panel>div{animation-delay:.02s}
+@keyframes esc-combat-guide{0%{opacity:0;transform:translateX(-100%)}15%,75%{opacity:1}100%{opacity:0;transform:translateX(625%)}}
+@keyframes esc-combat-guide-back{0%{opacity:0;transform:translateX(625%)}15%,75%{opacity:1}100%{opacity:0;transform:translateX(-100%)}}
+@keyframes esc-combat-page{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-instrument *,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-instrument *::before,#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .esc-instrument *::after{animation:none!important}}

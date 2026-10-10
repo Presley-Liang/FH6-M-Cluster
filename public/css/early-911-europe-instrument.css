@@ -106,3 +106,40 @@
 @keyframes e911-tube-build { 0% { opacity:0; filter:brightness(0); transform:translateY(2cqw) scale(.84); } 55% { opacity:1; filter:brightness(.55); } 100% { opacity:1; filter:brightness(1); transform:translateY(0) scale(1); } }
 @keyframes e911-relight { from { filter:brightness(.05); } to { filter:brightness(1); } }
 @media (prefers-reduced-motion:reduce) { .early911-instrument,.early911-instrument *,.e911-mode-identity { animation:none!important; transition:none!important; } }
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .early911-instrument[data-mode="race"]{--e911-accent:var(--race-accent);background:radial-gradient(ellipse 70% 75% at 50% 35%,#18202b 0,#0a111b 48%,#030812 82%),repeating-linear-gradient(92deg,#ffffff03 0 1px,transparent 1px 5px)}
+#cluster .early911-instrument[data-mode="race"] .e911-cowl{background:radial-gradient(ellipse at 50% 14%,#273142 0,#121c29 44%,#070e18 76%);border-color:#72859e70}
+#cluster .early911-instrument[data-mode="race"] .e911-tube{background:radial-gradient(circle,#080f1b 0 65%,#242e3b 67%,#7889a0 69%,#182536 71%,#a4b5cc 72%,#101d2e 75%,#040b16 79%,transparent 80%)}
+#cluster .early911-instrument[data-mode="race"] .e911-face{background:radial-gradient(circle at 50% 44%,#121d2c 0,#07101d 62%,#030913 91%);border-color:#607794}
+#cluster .early911-instrument[data-mode="race"] .e911-gear{background:#111e31;border-color:#7690b2}
+#cluster .early911-instrument[data-mode="race"] .e911-tube-three{box-shadow:0 1.2cqw 1.6cqw #000c,0 0 1.2cqw color-mix(in srgb,var(--race-accent) 15%,transparent)}
+#cluster .early911-instrument[data-mode="race"] .e911-needle{fill:var(--race-accent);filter:drop-shadow(0 1px 2px #000)}
+#cluster .early911-instrument[data-mode="race"] :is(.e911-tick-major,.e911-tick-minor){stroke:#eef4ff}
+#cluster .early911-instrument[data-mode="race"] .e911-tick-label{fill:#f1f6ff}
+#cluster .early911-instrument[data-mode="race"] .e911-tick-red{stroke:#ff3045}
+#cluster .early911-instrument[data-mode="race"] :is(.e911-dial-title,.e911-dial-unit,.e911-face-title,.e911-bottomline,.e911-topline){color:#9eafc8}
+#cluster .early911-instrument[data-mode="race"] :is(.e911-dial-value,.e911-drive-value,.e911-small-value,.e911-ev-power strong){color:#f5f9ff;text-shadow:none}
+#cluster .early911-instrument[data-mode="race"] .e911-hub{fill:#53667f;stroke:#b9cce4}
+#cluster[data-ignition-phase="scan"] .early911-instrument[data-mode="race"] .e911-needle{filter:drop-shadow(0 0 4px color-mix(in srgb,var(--race-accent) 45%,transparent))}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument .e911-face::before{content:'';pointer-events:none;z-index:7;opacity:0;position:absolute;inset:0;border-radius:50%;z-index:2;background:radial-gradient(circle,transparent 55%,#d9e9ff60 70%,transparent 82%);}
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument[data-mode="race"] .e911-face::before{animation:early_911_europe_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument[data-mode="freeRoam"] .e911-face::before{animation:early_911_europe_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes early_911_europe_combat_in{0%{opacity:0}45%{opacity:.8}100%{opacity:0}}
+@keyframes early_911_europe_combat_out{0%{opacity:0}35%{opacity:.5}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument .e911-face::before{animation:none!important;display:none;}}
+
+/* Actual readout handoff without synthetic values or persistent motion. */
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument[data-mode="race"] :is(.e911-tube-two,.e911-tube-four) .e911-face::before{animation-delay:.06s}
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument[data-mode="race"] :is(.e911-tube-one,.e911-tube-five) .e911-face::before{animation-delay:.12s}
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument[data-mode="freeRoam"] :is(.e911-tube-one,.e911-tube-three) .e911-face::before{animation-delay:.06s}
+#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] .early911-instrument[data-mode="freeRoam"] :is(.e911-tube-four,.e911-tube-five) .e911-face::before{animation-delay:.12s}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1960_1975.europe"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .early911-instrument[data-mode="race"] .e911-topline i{background:linear-gradient(90deg,transparent,#7f96b4,transparent)}
+#cluster .early911-instrument[data-mode="race"] .e911-face-notch{background:#748eaf;box-shadow:0 2.9cqw #748eaf}

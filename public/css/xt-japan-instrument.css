@@ -3,7 +3,7 @@
 #cluster[data-theme-id="y1986_1994.japan"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
 #cluster[data-theme-id="y1986_1994.japan"] .cluster-stage{background:#0d1113!important;overflow:hidden;border-color:#475157}
 .xt-instrument{--xt-lit:#e8b956;--xt-dim:#483b20;color:var(--xt-lit);font-family:'Bahnschrift','Arial Narrow',sans-serif}
-.xt-instrument[data-mode="race"]{--xt-lit:#f0b860;--xt-dim:#48351e}.xt-instrument[data-mode="freeRoam"]{--xt-lit:#79ccc3;--xt-dim:#243f3e}
+.xt-instrument[data-mode="race"]{--xt-lit:#7aff35;--xt-dim:#34373b}.xt-instrument[data-mode="freeRoam"]{--xt-lit:#79ccc3;--xt-dim:#243f3e}
 .xt-hood{position:absolute;inset:9% 5% 8%;padding:1.4cqw;clip-path:polygon(3% 0,97% 0,100% 8%,100% 94%,96% 100%,4% 100%,0 94%,0 8%);background:linear-gradient(165deg,#444b50,#20262b 13%,#090d10 45%,#2d3539 93%,#535d61);box-shadow:0 1cqw 3cqw #000}
 .xt-face{height:100%;display:grid;grid-template-rows:9% 30% 44% 17%;padding:1.5cqw 2.3cqw;background:#060b0b;border:1px solid #4c5a57;box-shadow:inset 0 .8cqw 1.5cqw #000;overflow:hidden}
 .xt-header{display:flex;justify-content:space-between;align-items:center;gap:1cqw;border-bottom:1px solid var(--xt-dim);font-size:clamp(8px,.82cqw,13px);letter-spacing:.1em}.xt-header small{font-size:inherit;color:#89928d}
@@ -17,3 +17,23 @@
 #cluster:not([data-ignition-phase="live"]) .xt-graphic{transition:none}
 #cluster:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .xt-graphic{opacity:0}
 @media(max-width:759px){.xt-hood{inset:12% 2% 9%;padding:2cqw}.xt-face{padding:3cqw;grid-template-rows:10% 29% 43% 18%}.xt-numbers{grid-template-columns:45% 13% 42%}.xt-road{padding-bottom:16px}.xt-road-caption{flex-direction:column;align-items:center;gap:0;font-size:8px}.xt-drive{padding-left:2cqw}.xt-drive span{width:100%;text-align:right}.xt-speed strong{font-size:clamp(38px,10cqw,62px)}.xt-footer div{display:flex;flex-wrap:wrap;gap:2px 5px}.xt-footer span{width:100%;font-size:8px}.xt-footer b{font-size:16px}.xt-footer small{font-size:8px}}
+
+/* Combat: phosphor-green perspective and clear driver readouts. */
+#cluster .xt-instrument[data-mode="race"]{--xt-lit:var(--race-accent);--xt-dim:#254023;color:var(--race-accent-light)}
+#cluster .xt-instrument[data-mode="race"] .xt-hood{background:linear-gradient(165deg,#3e464e,#1a232b 13%,#080e13 45%,#273039 93%,#515d65)}
+#cluster .xt-instrument[data-mode="race"] .xt-face{background:radial-gradient(ellipse at 50% 55%,#102316,#040908 80%);border-color:#617d65}
+#cluster .xt-instrument[data-mode="race"] .xt-tower-well{background:repeating-linear-gradient(0deg,#284334 0 1px,transparent 1px 12%);border-color:#43663b}
+#cluster .xt-instrument[data-mode="race"] .xt-road polygon[data-lit="true"]{filter:drop-shadow(0 0 2px var(--race-accent))}
+#cluster .xt-instrument[data-mode="race"] :is(.xt-header small,.xt-gear,.xt-road-caption b,.xt-footer small){color:var(--race-muted)}
+#cluster .xt-instrument[data-mode="race"] .xt-speed strong{color:var(--race-ink)}
+#cluster .xt-instrument[data-mode="race"] .xt-gear b{color:var(--race-accent-light);text-shadow:0 0 .5cqw #7aff3533}
+#cluster .xt-instrument[data-mode="race"] .xt-drive strong{color:var(--race-accent-light)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .xt-instrument[data-mode="race"] .xt-road svg{animation:xt-combat-perspective .64s cubic-bezier(.2,.7,.3,1)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .xt-instrument[data-mode="race"] .xt-gear b{animation:xt-combat-lock .34s .26s ease-out backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .xt-instrument[data-mode="freeRoam"] .xt-road svg{animation:xt-cruise-perspective .62s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .xt-instrument[data-mode="freeRoam"] .xt-speed{animation:xt-cruise-speed .5s ease-out}
+@keyframes xt-combat-perspective{from{clip-path:inset(100% 0 0)}to{clip-path:inset(0)}}
+@keyframes xt-combat-lock{from{opacity:0;letter-spacing:.14em}to{opacity:1;letter-spacing:normal}}
+@keyframes xt-cruise-perspective{from{clip-path:inset(0 0 100%)}to{clip-path:inset(0)}}
+@keyframes xt-cruise-speed{from{opacity:.1;filter:brightness(.3)}to{opacity:1;filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.xt-instrument,.xt-instrument *{animation:none!important;transition:none!important}}

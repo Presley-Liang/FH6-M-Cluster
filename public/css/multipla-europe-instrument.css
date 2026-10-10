@@ -2,7 +2,7 @@
 #cluster:not([data-theme-id="y1995_2002.europe"]) :is(.mul-instrument,.mul-identity){display:none!important}
 #cluster[data-theme-id="y1995_2002.europe"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
 #cluster[data-theme-id="y1995_2002.europe"] .cluster-stage{background:#22282a!important;overflow:hidden}
-.mul-instrument{--mul-accent:#bcceab;color:#d5ddd1;font-family:'Bahnschrift','Arial',sans-serif}.mul-instrument[data-mode="race"]{--mul-accent:#e0bb84}
+.mul-instrument{--mul-accent:#bcceab;color:#d5ddd1;font-family:'Bahnschrift','Arial',sans-serif}.mul-instrument[data-mode="race"]{--mul-accent:#ff3045}
 .mul-dashboard{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 10%,#505859,#252d2d 53%,#121919)}
 .mul-pod{position:absolute;inset:9% 10% 12%;padding:2cqw;background:linear-gradient(150deg,#60686a,#242e30 12%,#101c1e 60%,#323d3d 88%,#667170);border-radius:10cqw 10cqw 4cqw 5cqw;box-shadow:0 1.4cqw 2.4cqw #0008}
 .mul-pod header{position:absolute;left:12%;right:10%;top:6%;display:flex;justify-content:space-between;font-size:clamp(8px,.8cqw,12px);letter-spacing:.05em;color:var(--mul-accent)}.mul-pod header small{font-size:inherit;color:#aab4af}
@@ -14,3 +14,29 @@
 .mul-dash-line{position:absolute;left:0;right:0;bottom:5%;height:1px;background:#7c898066}
 #cluster:is([data-ignition-phase="off-needles"],[data-ignition-phase="off-frames"],[data-ignition-phase="off-center"],[data-ignition-phase="vehicle-blackout"],[data-ignition-phase="vehicle-card"]) .mul-needle{opacity:0}
 @media(max-width:759px){.mul-pod{inset:11% 2% 13%;padding:3cqw;border-radius:12cqw 13cqw 5cqw 7cqw}.mul-pod header{left:8%;right:8%;font-size:8px}.mul-speed-dial{left:17%;top:13%;width:66%;height:58%}.mul-info{left:6%;right:6%;top:77%;height:16%;gap:2cqw}.mul-info span{font-size:8px}.mul-info b{font-size:16px}.mul-info small{font-size:8px}.mul-drive{left:78%;right:4%;top:34%;bottom:auto;font-size:8px}.mul-drive-values b{font-size:14px}.mul-speed{left:35%;right:35%;top:68%;bottom:12%;gap:2px;padding:1cqw}.mul-speed strong{font-size:clamp(23px,6cqw,30px)}.mul-speed small{font-size:8px}.mul-gear span{font-size:8px}.mul-gear b{font-size:24px}}
+
+/* Combat: graphite single pod, silver markings and performance-red driver cues. */
+#cluster .mul-instrument[data-mode="race"]{--mul-accent:var(--race-accent-light);color:var(--race-ink)}
+#cluster .mul-instrument[data-mode="race"] .mul-dashboard{background:radial-gradient(ellipse at 50% 10%,#343d46,#18212a 53%,#0b1118)}
+#cluster .mul-instrument[data-mode="race"] .mul-pod{background:linear-gradient(150deg,#515d67,#202b34 12%,#0e171e 60%,#2c3842 88%,#5c6971)}
+#cluster .mul-instrument[data-mode="race"] .mul-dial-face{fill:#0a1219;stroke:#87969e}
+#cluster .mul-instrument[data-mode="race"] .mul-ticks{stroke:#edf2f6}
+#cluster .mul-instrument[data-mode="race"] .mul-ticks text{fill:#edf2f6}
+#cluster .mul-instrument[data-mode="race"] .mul-needle path{fill:var(--race-accent)}
+#cluster .mul-instrument[data-mode="race"] .mul-needle circle{fill:#202d38;stroke:#95a5b0}
+#cluster .mul-instrument[data-mode="race"] .mul-speed{background:#101b25;border-color:#647582}
+#cluster .mul-instrument[data-mode="race"] .mul-speed strong{color:var(--race-ink)}
+#cluster .mul-instrument[data-mode="race"] .mul-gear{border-left:2px solid var(--race-accent);background:linear-gradient(90deg,#ff304514,transparent);padding:.5cqw 0}
+#cluster .mul-instrument[data-mode="race"] .mul-info>div{border-bottom-color:#657582}
+#cluster .mul-instrument[data-mode="race"] :is(.mul-pod header small,.mul-info span,.mul-drive){color:var(--race-muted)}
+#cluster .mul-instrument[data-mode="race"] .mul-drive-track{background:#242f3a;border-color:#71808a}
+/* The speed dial stays fixed while the two unequal text wings enter the pod. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .mul-instrument[data-mode="race"] .mul-gear{animation:mul-combat-left .58s cubic-bezier(.2,.85,.3,1)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .mul-instrument[data-mode="race"] .mul-drive{animation:mul-combat-right .6s .06s cubic-bezier(.2,.85,.3,1) backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .mul-instrument[data-mode="freeRoam"] .mul-info{animation:mul-cruise-footer .6s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .mul-instrument[data-mode="freeRoam"] .mul-speed{animation:mul-cruise-window .5s ease-out}
+@keyframes mul-combat-left{from{opacity:0;transform:translateX(-1cqw)}to{opacity:1;transform:none}}
+@keyframes mul-combat-right{from{opacity:0;transform:translateX(1.3cqw)}to{opacity:1;transform:none}}
+@keyframes mul-cruise-footer{from{opacity:0;transform:translateY(.5cqw)}to{opacity:1;transform:none}}
+@keyframes mul-cruise-window{from{opacity:.1;filter:brightness(.25)}to{opacity:1;filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.mul-instrument,.mul-instrument *{animation:none!important;transition:none!important}}

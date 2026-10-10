@@ -108,3 +108,44 @@
 @keyframes ae86-relight { from { filter:brightness(.04); } to { filter:brightness(1); } }
 .ae86-hood { transition:filter .38s ease; }
 @media (prefers-reduced-motion:reduce) { .ae86-instrument,.ae86-instrument *,.ae86-mode-identity { animation:none !important; transition:none !important; } }
+
+/* Race combat presentation: cold materials, theme-specific performance emphasis. */
+#cluster .ae86-instrument[data-mode="race"]{color:#f2f7ff;background:radial-gradient(ellipse 72% 110% at 50% 53%,#152031 0%,#081320 59%,#030a13 100%)}
+#cluster .ae86-instrument[data-mode="race"]::before{border-color:#8da5c355;background:linear-gradient(180deg,#b9cceb24 0%,transparent 8%,transparent 90%,#00000099 100%)}
+#cluster .ae86-instrument[data-mode="race"] .ae86-bezel{background:radial-gradient(circle,#0c1c2e 0 68%,#21364e 70%,#0b1829 73%,#7891b3 76%,#263d5c 77%,#071222 79%)}
+#cluster .ae86-instrument[data-mode="race"] .ae86-dial-face{fill:#081727;stroke:#45658a}
+#cluster .ae86-instrument[data-mode="race"] .ae86-track{stroke:#6382a7}
+#cluster .ae86-instrument[data-mode="race"] .ae86-tick-major{stroke:#f1f7ff}
+#cluster .ae86-instrument[data-mode="race"] .ae86-tick-minor{stroke:#a0b9d9}
+#cluster .ae86-instrument[data-mode="race"] .ae86-dial-number{fill:#f1f7ff}
+#cluster .ae86-instrument[data-mode="race"] .ae86-dial-word{background:#0c2038e8;border-color:#7599c567}
+#cluster .ae86-instrument[data-mode="race"] .ae86-gear strong{color:#f5f9ff;background:#101f34;border-color:#9eb5d38d;box-shadow:inset 0 0 0 2px #030c19,0 0 14px color-mix(in srgb,var(--race-accent) 12%,transparent)}
+#cluster .ae86-instrument[data-mode="race"] :is(.ae86-mode-title,.ae86-rpm-unit .ae86-dial-foot b){color:var(--race-accent-light)}
+#cluster .ae86-instrument[data-mode="race"] .ae86-central-data strong{color:#f6f9ff}
+#cluster .ae86-instrument[data-mode="race"] .ae86-mode-title{text-shadow:none}
+#cluster .ae86-instrument[data-mode="race"] .ae86-needle{fill:var(--race-accent);filter:drop-shadow(0 1px 2px #000)}
+#cluster .ae86-instrument[data-mode="race"] .ae86-rpm-unit .ae86-needle{fill:var(--race-accent);filter:drop-shadow(0 1px 2px #000)}
+#cluster .ae86-instrument[data-mode="race"] .ae86-hub-pin{fill:#c1d0e3}
+#cluster .ae86-instrument[data-mode="race"] .ae86-hub{fill:#324969;stroke:#aec1dc}
+#cluster .ae86-instrument[data-mode="race"] .ae86-divider i{background:#bdd0ea}
+#cluster .ae86-instrument[data-mode="race"] :is(.ae86-shift,.ae86-top-rail,.ae86-bottom-rail,.ae86-central-data small,.ae86-dial-foot span,.ae86-dial-foot small,.ae86-dial-word span,.ae86-dial-word small){color:#a2bada}
+#cluster .ae86-instrument[data-mode="race"] .ae86-shift-lamps i{background:#0d1d32;border-color:#7f9cc26b}
+#cluster .ae86-instrument[data-mode="race"] .ae86-shift-lamps i[data-lit="true"]{background:#f0f7ff;box-shadow:0 0 6px #daeaff75}
+#cluster .ae86-instrument[data-mode="race"] .ae86-shift-lamps i:nth-child(n+6)[data-lit="true"]{background:#ff3045;box-shadow:0 0 8px #ff304590}
+#cluster[data-ignition-phase="scan"] .ae86-instrument[data-mode="race"] .ae86-needle{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--race-accent) 45%,transparent))}
+
+/* Theme-specific mode handoff; finishes inside the existing 940ms frame phase. */
+
+#cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ae86-instrument[data-mode="race"] .ae86-central-data{animation:ae86_japan_combat_in .58s cubic-bezier(.22,.8,.28,1)}
+#cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ae86-instrument[data-mode="freeRoam"] .ae86-central-data{animation:ae86_japan_combat_out .58s cubic-bezier(.22,.8,.28,1)}
+@keyframes ae86_japan_combat_in{0%{opacity:0;transform:perspective(400px) rotateX(-65deg)}100%{opacity:1;transform:perspective(400px) rotateX(0)}}
+@keyframes ae86_japan_combat_out{0%{opacity:0;transform:perspective(400px) rotateX(65deg)}100%{opacity:1;transform:perspective(400px) rotateX(0)}}
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] .ae86-instrument .ae86-central-data{animation:none!important;}}
+
+@media(prefers-reduced-motion:reduce){#cluster[data-theme-id="y1976_1985.japan"][data-ignition-kind="mode"][data-ignition-phase="frames"] :is(.heritage-info>div,.heritage-drive-values,.heritage-speed,.heritage-gear b,.ce-info strong,.ds-lower strong,.ba-mode-data>div,.cx-aux strong,.v84-speed-panel,.v84-status-panel){animation:none!important}}
+
+/* Cold material details; no Free selectors are altered. */
+#cluster .ae86-instrument[data-mode="race"] .ae86-dial-word strong{color:#f6f9ff}
+#cluster .ae86-instrument[data-mode="race"] :is(.ae86-dial-foot b,.ae86-bottom-rail b,.ae86-central-data small b){color:#d3e4fc}
+#cluster .ae86-instrument[data-mode="race"] .ae86-gear{color:#a1b7d2}
+#cluster .ae86-instrument[data-mode="race"] .ae86-bezel-line{stroke:#a7bfdf}

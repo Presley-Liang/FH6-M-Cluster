@@ -1,0 +1,145 @@
+/* Race roles belong to the current instrument. State, geometry and timing stay shared. */
+#cluster {
+  --race-accent:#FF3045;
+  --race-accent-light:color-mix(in srgb,var(--race-accent) 70%,white);
+  --race-accent-dim:color-mix(in srgb,var(--race-accent) 35%,#101820);
+  --race-ink:#F4F7FA;
+  --race-muted:#A1ADB9;
+  --race-surface:#070A0E;
+  --race-panel:#151B23;
+  /* Compatibility aliases for existing instrument-local color vocabulary. */
+  --race-red:var(--race-accent);
+  --race-red-light:var(--race-accent-light);
+  --race-red-dim:var(--race-accent-dim);
+}
+#cluster[data-theme-id="pre1949.europe"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="pre1949.america"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="pre1949.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y1950_1959.europe"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y1950_1959.america"] { --race-accent:#2F8FFF; }
+#cluster[data-theme-id="y1950_1959.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y1960_1975.europe"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y1960_1975.america"] { --race-accent:#2F8FFF; }
+#cluster[data-theme-id="y1960_1975.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y1976_1985.europe"] { --race-accent:#45E0FF; }
+#cluster[data-theme-id="y1976_1985.america"] { --race-accent:#7AFF35; }
+#cluster[data-theme-id="y1976_1985.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y1986_1994.europe"] { --race-accent:#7AFF35; }
+#cluster[data-theme-id="y1986_1994.america"] { --race-accent:#45E0FF; }
+#cluster[data-theme-id="y1986_1994.japan"] { --race-accent:#7AFF35; }
+#cluster[data-theme-id="y1995_2002.europe"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y1995_2002.america"] { --race-accent:#7AFF35; }
+#cluster[data-theme-id="y1995_2002.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2003_2008.europe"] { --race-accent:#2F8FFF; }
+#cluster[data-theme-id="y2003_2008.america"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2003_2008.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2009_2014.europe"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2009_2014.america"] { --race-accent:#2F8FFF; }
+#cluster[data-theme-id="y2009_2014.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2015_2019.europe"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2015_2019.america"] { --race-accent:#2F8FFF; }
+#cluster[data-theme-id="y2015_2019.japan"] { --race-accent:#7AFF35; }
+#cluster[data-theme-id="y2020_2024.europe"] { --race-accent:#2F8FFF; }
+#cluster[data-theme-id="y2020_2024.america"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2020_2024.japan"] { --race-accent:#FF3045; }
+#cluster[data-theme-id="y2025plus.europe"] { --race-accent:#45E0FF; }
+#cluster[data-theme-id="y2025plus.america"] { --race-accent:#2F8FFF; }
+#cluster[data-theme-id="y2025plus.japan"] { --race-accent:#7AFF35; }
+
+/* Target theme colors only take over at the existing coordinator handoff. */
+#cluster[data-theme-id][data-drive-mode="race"] {
+  --theme-mode-accent:var(--race-accent)!important;
+  --theme-mode-accent-strong:var(--race-accent-light)!important;
+  --theme-display-accent:var(--race-accent)!important;
+}
+#cluster[data-theme-id][data-drive-mode="race"] .cluster-control-cluster :is(.mode-seg-btn.seg-active,.control-policy-btn.is-active) {
+  color:var(--race-ink);
+  background:linear-gradient(180deg,#252D37,#10151C);
+  border-color:var(--race-accent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--race-accent) 25%,transparent);
+  text-shadow:none;
+}
+#cluster[data-theme-id][data-drive-mode="race"] .cluster-control-cluster :is(.mode-seg,.control-policy) { background:#10151C; border-color:#454F5B; }
+#cluster[data-theme-id][data-drive-mode="race"] .mode-slider { background:linear-gradient(180deg,#252D37,#10151C); border-color:var(--race-accent); }
+/* The target title can use its new light while the retiring instrument keeps its old mode. */
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) {
+  color:var(--race-ink);
+  background:radial-gradient(ellipse,#10151CF5 20%,#070A0EEA 60%,transparent 82%);
+  text-shadow:0 0 14px color-mix(in srgb,var(--race-accent) 22%,transparent);
+}
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) strong {
+  color:var(--race-accent-light)!important;
+  text-shadow:0 0 14px color-mix(in srgb,var(--race-accent) 30%,transparent);
+}
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) :is(span,small) { color:var(--race-muted); }
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) span i {
+  background:var(--race-accent)!important;
+}
+#cluster[data-theme-id][data-target-mode="race"] :is(.rda-mode-identity,.jdm90-mode-identity,.ae86-mode-identity,.ce-mode-identity,.e911-mode-identity,.s30-mode-identity)::before,
+#cluster[data-theme-id][data-target-mode="race"] :is(.rda-mode-identity,.jdm90-mode-identity,.ae86-mode-identity,.ce-mode-identity,.e911-mode-identity,.s30-mode-identity)::after {
+  background:linear-gradient(90deg,transparent,var(--race-accent-light),transparent);
+  box-shadow:0 0 10px color-mix(in srgb,var(--race-accent) 35%,transparent);
+}
+#cluster[data-target-mode="race"] .rda-identity-progress i {
+  --lock-color:var(--race-accent-light); --lock-glow:var(--race-accent);
+  background:#202833!important; box-shadow:inset 0 0 0 1px #556170;
+}
+#cluster .retro-digital-america-instrument[data-mode="race"] .rda-gear-window::before { color:var(--race-muted); }
+#cluster[data-drive-mode="race"] .ev-startup-scan>i { background:linear-gradient(90deg,#67CFB0,transparent 48%,transparent 52%,var(--race-accent)); }
+#cluster [data-theme-instrument][data-mode="race"] { --next-ev:var(--race-accent); }
+#cluster[data-drive-mode="race"] .race-feedback[data-tone="accent"] { border-color:var(--race-accent); color:var(--race-accent-light); }
+#cluster[data-drive-mode="race"] .race-feedback[data-tone="accent"] strong { color:var(--race-ink); }
+/* The approved European anchor keeps its geometry and complete mode animation. */
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] {
+  --accent:var(--race-accent); --ice:var(--race-accent-light); --rim-dark:#271217; --rim-base:#40161C;
+}
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] .gauge-needle { fill:var(--race-ink); }
+/* The approved scan phase owns its dynamic two-layer glow. */
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"]:not([data-ignition-phase="scan"]) .gauge-needle { filter:drop-shadow(0 0 3px #F4F7FA55); }
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] .gauge-ticks text { fill:#E3EAF0; }
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] :is(.readout-line,.shell-foot) { stroke:#E3EAF0; }
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] .mode-dial-label { fill:#E3EAF0; }
+
+/* During the car card the retiring theme id still exists. Use the incoming metadata. */
+#cluster[data-target-mode="race"][data-startup-theme-era="pre1949"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="pre1949"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="pre1949"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1950_1959"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1950_1959"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#2F8FFF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1950_1959"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1960_1975"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1960_1975"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#2F8FFF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1960_1975"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1976_1985"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#45E0FF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1976_1985"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#7AFF35!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1976_1985"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1986_1994"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#7AFF35!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1986_1994"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#45E0FF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1986_1994"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#7AFF35!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1995_2002"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1995_2002"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#7AFF35!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y1995_2002"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2003_2008"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#2F8FFF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2003_2008"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2003_2008"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2009_2014"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2009_2014"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#2F8FFF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2009_2014"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2015_2019"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2015_2019"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#2F8FFF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2015_2019"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#7AFF35!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2020_2024"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#2F8FFF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2020_2024"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2020_2024"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#FF3045!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2025plus"][data-startup-theme-region="europe"] .vehicle-info-card { --card-accent:#45E0FF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2025plus"][data-startup-theme-region="america"] .vehicle-info-card { --card-accent:#2F8FFF!important; }
+#cluster[data-target-mode="race"][data-startup-theme-era="y2025plus"][data-startup-theme-region="japan"] .vehicle-info-card { --card-accent:#7AFF35!important; }
+#cluster[data-target-mode="race"] .vehicle-info-card {
+  --card-ink:var(--race-ink); --card-muted:var(--race-muted);
+  --card-surface:linear-gradient(145deg,#202B36,#070A0E 75%);
+  --card-border:color-mix(in srgb,var(--card-accent) 40%,#647180);
+  color:var(--race-ink);
+  background:var(--card-surface);
+  border-color:var(--card-border);
+  box-shadow:0 24px 72px #000D,inset 0 0 0 1px #8595A333;
+}

@@ -2,7 +2,7 @@
 #cluster:not([data-theme-id="y2003_2008.europe"]) :is(.c4-instrument,.c4-identity){display:none!important}
 #cluster[data-theme-id="y2003_2008.europe"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
 #cluster[data-theme-id="y2003_2008.europe"] .cluster-stage{background:#182125!important;overflow:hidden}
-.c4-instrument{--c4-glass:#b7bc98;--c4-ink:#263320;color:var(--c4-ink);font-family:'Bahnschrift','Arial',sans-serif}.c4-instrument[data-mode="race"]{--c4-glass:#c6ba94;--c4-ink:#352e1d}
+.c4-instrument{--c4-glass:#b7bc98;--c4-ink:#263320;color:var(--c4-ink);font-family:'Bahnschrift','Arial',sans-serif}.c4-instrument[data-mode="race"]{--c4-glass:#eef4fa;--c4-ink:#2b2e32}
 .c4-dashboard{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 5%,#4d5959,#242e30 50%,#10191d)}
 .c4-visor{position:absolute;inset:17% 8% 18%;padding:2.4cqw 2cqw 1.7cqw;border-radius:3cqw 3cqw .7cqw .7cqw;background:linear-gradient(175deg,#646f6e,#111c20 14%,#080e12 73%,#435354 94%,#172326 98%);box-shadow:0 1.8cqw 2cqw #0009}
 .c4-glass{height:100%;padding:1cqw 2cqw;border:2px solid #4a5541;border-radius:.3cqw;display:grid;grid-template-rows:10% 22% 50% 18%;background:linear-gradient(165deg,var(--c4-glass),#969979);box-shadow:inset 0 .6cqw 1cqw #4b543955;overflow:hidden}
@@ -17,3 +17,25 @@
 #cluster[data-ignition-kind="mode"][data-ignition-phase="center"] .c4-instrument :is([data-c4-temperature],[data-c4-input]){opacity:0}
 .c4-instrument :is([data-c4-temperature],[data-c4-input]){transition:opacity .28s ease}
 @media(max-width:759px){.c4-visor{inset:16% 2% 19%;padding:4cqw 2cqw 3cqw}.c4-glass{padding:2cqw;grid-template-rows:10% 24% 48% 18%}.c4-primary{grid-template-columns:17% 66% 17%}.c4-scale-panel{padding-left:12%;padding-right:12%;font-size:8px}.c4-scale-values b{font-size:16px}.c4-speed{padding:0;gap:0 1cqw}.c4-speed strong{font-size:clamp(32px,9cqw,48px)}.c4-speed>small{align-self:center;font-size:9px}.c4-side>span{font-size:8px}.c4-tower{width:40%}.c4-side b{font-size:16px}.c4-side small{font-size:8px}.c4-gear span{font-size:8px}.c4-gear b{font-size:18px}.c4-information span{width:100%;font-size:8px}.c4-information b{font-size:17px}.c4-information small{font-size:8px}.c4-dashboard-ridge{bottom:8%}}
+
+/* Combat: cold-white positive LCD, black ink, electric-blue drive trace. */
+#cluster .c4-instrument[data-mode="race"]{--c4-glass:#d6e0e6;--c4-ink:#17212c}
+#cluster .c4-instrument[data-mode="race"] .c4-dashboard{background:radial-gradient(ellipse at 50% 5%,#36434e,#17222d 50%,#080e15)}
+#cluster .c4-instrument[data-mode="race"] .c4-visor{background:linear-gradient(175deg,#657784,#152331 14%,#080e15 73%,#3c5264 94%,#142333 98%)}
+#cluster .c4-instrument[data-mode="race"] .c4-glass{background:linear-gradient(165deg,var(--c4-glass),#a9bac8);border-color:#5e7588;box-shadow:inset 0 .6cqw 1cqw #293d4b44}
+#cluster .c4-instrument[data-mode="race"] :is(.c4-glass header,.c4-information){border-color:#536d8088}
+#cluster .c4-instrument[data-mode="race"] .c4-scale-track{border-color:#536d80;background:#647e9733}
+#cluster .c4-instrument[data-mode="race"] .c4-scale-track i{background:var(--race-accent)}
+#cluster .c4-instrument[data-mode="race"] .c4-tower{border-color:#536d80;background:repeating-linear-gradient(0deg,#647e9744 0 1px,transparent 1px 16%)}
+#cluster .c4-instrument[data-mode="race"] .c4-gear b{color:#152d4d}
+#cluster .c4-instrument[data-mode="race"] .c4-dashboard-ridge{border-top-color:#7a91a466;background:linear-gradient(#2d4255,#101d2b)}
+/* The LCD information plane wipes in; no opaque overlay can outlive frames. */
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c4-instrument[data-mode="race"] .c4-scale-panel{animation:c4-combat-lcd .62s cubic-bezier(.2,.65,.3,1)}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c4-instrument[data-mode="race"] .c4-gear{animation:c4-combat-digit .38s .18s steps(3,end) backwards}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c4-instrument[data-mode="freeRoam"] .c4-information{animation:c4-cruise-lcd .62s ease-out}
+#cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .c4-instrument[data-mode="freeRoam"] .c4-speed strong{animation:c4-cruise-speed .5s ease-out}
+@keyframes c4-combat-lcd{from{opacity:.2;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes c4-combat-digit{from{opacity:0}to{opacity:1}}
+@keyframes c4-cruise-lcd{from{opacity:.2;clip-path:inset(0 0 0 100%)}to{opacity:1;clip-path:inset(0)}}
+@keyframes c4-cruise-speed{from{opacity:.1;filter:contrast(.2)}to{opacity:1;filter:contrast(1)}}
+@media(prefers-reduced-motion:reduce){.c4-instrument,.c4-instrument *{animation:none!important;transition:none!important}}
