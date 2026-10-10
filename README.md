@@ -37,10 +37,10 @@ npm start
 
 `src/`为接收、会话与页面入口；`public/js/`为共享数据、动画和主题组件；`public/css/`为样式。驾驶记录在`sessions/`，日志在`logs/`，构建产物在`dist/`，这些目录保持原位置。
 
-本轮Race改版、短暂N缓冲与文档归档一起提交到独立PR审阅。既有修复[PR #6](https://github.com/Presley-Liang/FH6-M-Cluster/pull/6)已合并；本轮实际游戏与桌面EXE仍分别验收，不以本地检查代替云端审核。
+本轮Race改版、短暂N缓冲与文档归档已随[PR #7](https://github.com/Presley-Liang/FH6-M-Cluster/pull/7)通过最新提交的Codex复审并合并（`f44ef1e`）。既有修复PR #6也已合并；本轮实际游戏与桌面EXE仍分别验收。
 
 检查入口为`npm test`。自动检查、模拟预览和真实驾驶分别记录。
 
 2026-10-10本轮：298项回归、198组Free基线对照、66次实际时间动画及打断／车型卡／针影检查通过；[验证汇总](docs/previews/race-combat-2026-10-10/verification-summary.json)。本轮读取诊断时实际游戏包数0，真实驾驶观感仍待验收。
 
-PR #7复审的3项P2已返修：欧系scan辉光、车型卡身份样式、Civic竞技描线。新增回归后301/301通过，8组欧系阶段、132组车型卡和8组Civic浏览器检查通过；[返修证据](docs/previews/race-combat-2026-10-10/pr7-review-fixes.json)。新提交重新申请云端审核，暂不合并，真实游戏与桌面EXE仍待验收。
+PR #7复审的3项P2已返修：欧系scan辉光、车型卡身份样式、Civic竞技描线。新增回归后301/301通过，8组欧系阶段、132组车型卡和8组Civic浏览器检查通过；[返修证据](docs/previews/race-combat-2026-10-10/pr7-review-fixes.json)。最新代码提交`2662ecb`获云端复审“未发现重大问题”，按用户授权合并；真实游戏与桌面EXE仍待验收。

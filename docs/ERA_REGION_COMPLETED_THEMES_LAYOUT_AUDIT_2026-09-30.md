@@ -2,7 +2,7 @@
 
 ## 2026-10-10 · PR #7 复审返修
 
-当前基线包含已合并的PR #6。PR #7云端复审针对`c38b62a`提出以下3项P2，源码已修复；新提交重新审核，暂不合并。
+当前基线包含已合并的PR #6。PR #7云端复审针对`c38b62a`提出以下3项P2，源码已修复；最新提交`2662ecb`于2026-10-10 18:05（北京时间）获云端复审“未发现重大问题”，按用户授权于18:21合并，合并提交`f44ef1e`。
 
 | 问题 | 修复模块 | 浏览器验证 |
 |---|---|---|
@@ -10,7 +10,7 @@
 | [车型卡误用模式身份层](https://github.com/Presley-Liang/FH6-M-Cluster/pull/7#discussion_r4236956276) | `race-combat-palette.css`：仅匹配模式身份类 | 33主题×2模式×375／1440px共132组；车型／品牌样式与移除标题规则的参考一致 |
 | [Civic竞技描线被底轨颜色覆盖](https://github.com/Presley-Liang/FH6-M-Cluster/pull/7#discussion_r4236956277) | `civic-japan-instrument.css`：Race专用描线强调色 | 8组模式／燃油EV／窗口：竞技描线红色可见，scan无残留；Free保留原色 |
 
-3处修改前问题均在隔离Chrome重现；修改后对应检查无问题、无页面错误。新增3项回归后301/301通过，打包和差异检查通过。[浏览器证据](previews/race-combat-2026-10-10/pr7-review-fixes.json)。使用模拟显示值，不写入接收器或UDP；不视为实机验收或云端复审通过。
+3处修改前问题均在隔离Chrome重现；修改后对应检查无问题、无页面错误。新增3项回归后301/301通过，打包和差异检查通过。[浏览器证据](previews/race-combat-2026-10-10/pr7-review-fixes.json)。使用模拟显示值，不写入接收器或UDP，不视为实机验收；云端结果独立见[最新复审回报](https://github.com/Presley-Liang/FH6-M-Cluster/pull/7#issuecomment-6096394055)。
 
 ## 2026-10-09 · 集中返修状态
 
