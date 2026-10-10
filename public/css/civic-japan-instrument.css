@@ -40,6 +40,7 @@
 /* Combat transition: trace the sloping rail, lock the central gear notch. */
 #cluster .ctr-instrument[data-mode="race"]{--ctr-accent:var(--race-accent,#ff3045)}
 .ctr-tach-track .ctr-combat-rail{fill:none;stroke:var(--ctr-accent);stroke-width:1.5;stroke-dasharray:100;stroke-dashoffset:100;opacity:0;pointer-events:none}
+#cluster .ctr-instrument[data-mode="race"] .ctr-tach-track .ctr-combat-rail{stroke:var(--ctr-accent)}
 #cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-gear-notch{position:relative}
 .ctr-gear-notch:after{content:'';position:absolute;inset:1%;border:1px solid var(--ctr-accent);opacity:0;pointer-events:none}
 #cluster[data-ignition-kind="mode"][data-ignition-phase="frames"] .ctr-combat-rail{animation:ctr-combat-rail .64s ease-out both}

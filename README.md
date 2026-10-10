@@ -42,3 +42,5 @@ npm start
 检查入口为`npm test`。自动检查、模拟预览和真实驾驶分别记录。
 
 2026-10-10本轮：298项回归、198组Free基线对照、66次实际时间动画及打断／车型卡／针影检查通过；[验证汇总](docs/previews/race-combat-2026-10-10/verification-summary.json)。本轮读取诊断时实际游戏包数0，真实驾驶观感仍待验收。
+
+PR #7复审的3项P2已返修：欧系scan辉光、车型卡身份样式、Civic竞技描线。新增回归后301/301通过，8组欧系阶段、132组车型卡和8组Civic浏览器检查通过；[返修证据](docs/previews/race-combat-2026-10-10/pr7-review-fixes.json)。新提交重新申请云端审核，暂不合并，真实游戏与桌面EXE仍待验收。

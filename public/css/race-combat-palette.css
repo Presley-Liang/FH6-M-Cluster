@@ -62,17 +62,17 @@
 #cluster[data-theme-id][data-drive-mode="race"] .cluster-control-cluster :is(.mode-seg,.control-policy) { background:#10151C; border-color:#454F5B; }
 #cluster[data-theme-id][data-drive-mode="race"] .mode-slider { background:linear-gradient(180deg,#252D37,#10151C); border-color:var(--race-accent); }
 /* The target title can use its new light while the retiring instrument keeps its old mode. */
-#cluster[data-theme-id][data-target-mode="race"] :is(.next-mode-identity,.heritage-identity,[class*="-mode-identity"],[class$="-identity"]) {
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) {
   color:var(--race-ink);
   background:radial-gradient(ellipse,#10151CF5 20%,#070A0EEA 60%,transparent 82%);
   text-shadow:0 0 14px color-mix(in srgb,var(--race-accent) 22%,transparent);
 }
-#cluster[data-theme-id][data-target-mode="race"] :is(.next-mode-identity,.heritage-identity,[class*="-mode-identity"],[class$="-identity"]) strong {
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) strong {
   color:var(--race-accent-light)!important;
   text-shadow:0 0 14px color-mix(in srgb,var(--race-accent) 30%,transparent);
 }
-#cluster[data-theme-id][data-target-mode="race"] :is(.next-mode-identity,.heritage-identity,[class*="-mode-identity"],[class$="-identity"]) :is(span,small) { color:var(--race-muted); }
-#cluster[data-theme-id][data-target-mode="race"] :is(.next-mode-identity,.heritage-identity,[class*="-mode-identity"],[class$="-identity"]) span i {
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) :is(span,small) { color:var(--race-muted); }
+#cluster[data-theme-id][data-target-mode="race"] :is(.mode-identity,.next-mode-identity,.heritage-identity,[class*="-mode-identity"]) span i {
   background:var(--race-accent)!important;
 }
 #cluster[data-theme-id][data-target-mode="race"] :is(.rda-mode-identity,.jdm90-mode-identity,.ae86-mode-identity,.ce-mode-identity,.e911-mode-identity,.s30-mode-identity)::before,
@@ -93,7 +93,9 @@
 #cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] {
   --accent:var(--race-accent); --ice:var(--race-accent-light); --rim-dark:#271217; --rim-base:#40161C;
 }
-#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] .gauge-needle { fill:var(--race-ink); filter:drop-shadow(0 0 3px #F4F7FA55); }
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] .gauge-needle { fill:var(--race-ink); }
+/* The approved scan phase owns its dynamic two-layer glow. */
+#cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"]:not([data-ignition-phase="scan"]) .gauge-needle { filter:drop-shadow(0 0 3px #F4F7FA55); }
 #cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] .gauge-ticks text { fill:#E3EAF0; }
 #cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] :is(.readout-line,.shell-foot) { stroke:#E3EAF0; }
 #cluster[data-theme-id="y2015_2019.europe"][data-drive-mode="race"] .mode-dial-label { fill:#E3EAF0; }

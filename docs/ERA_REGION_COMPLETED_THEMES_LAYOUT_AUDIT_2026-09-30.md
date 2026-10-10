@@ -1,5 +1,17 @@
 # 已接入主题的位置与换车卡复核（2026-09-30）
 
+## 2026-10-10 · PR #7 复审返修
+
+当前基线包含已合并的PR #6。PR #7云端复审针对`c38b62a`提出以下3项P2，源码已修复；新提交重新审核，暂不合并。
+
+| 问题 | 修复模块 | 浏览器验证 |
+|---|---|---|
+| [欧系scan指针辉光被覆盖](https://github.com/Presley-Liang/FH6-M-Cluster/pull/7#discussion_r4236956271) | `race-combat-palette.css`：静态filter排除scan | 8组Free／Race及live／frames／scan／return；scan恢复组件原双层filter |
+| [车型卡误用模式身份层](https://github.com/Presley-Liang/FH6-M-Cluster/pull/7#discussion_r4236956276) | `race-combat-palette.css`：仅匹配模式身份类 | 33主题×2模式×375／1440px共132组；车型／品牌样式与移除标题规则的参考一致 |
+| [Civic竞技描线被底轨颜色覆盖](https://github.com/Presley-Liang/FH6-M-Cluster/pull/7#discussion_r4236956277) | `civic-japan-instrument.css`：Race专用描线强调色 | 8组模式／燃油EV／窗口：竞技描线红色可见，scan无残留；Free保留原色 |
+
+3处修改前问题均在隔离Chrome重现；修改后对应检查无问题、无页面错误。新增3项回归后301/301通过，打包和差异检查通过。[浏览器证据](previews/race-combat-2026-10-10/pr7-review-fixes.json)。使用模拟显示值，不写入接收器或UDP；不视为实机验收或云端复审通过。
+
 ## 2026-10-09 · 集中返修状态
 
 L03重复读数现已集中精简；32套自定义主题384组可见读数／框体及128组陈旧数据检查见[本轮证据](archive/previews/all-instruments/readout-dedup-2026-10-09.json)。原厂精细拟真按用户最新要求取消，真实驾驶仍待游戏数据。
