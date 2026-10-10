@@ -1,6 +1,38 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createLeafletAdapter } from '../public/js/map/leaflet-adapter.js';
+import { createTrackBuffer } from '../public/js/map/track-buffer.js';
+
+test('mode switch clears the actual track buffer before a skipped sample and TRACE toggle', () => {
+  const drawn = [], removed = [];
+  const map = { setView() { return this; }, removeLayer(layer) { removed.push(layer); } };
+  const L = {
+    CRS: { Simple: {} }, extend: Object.assign, Transformation: function() {},
+    latLngBounds: () => ({ pad() { return this; } }), map: () => map, tileLayer: () => ({ addTo() {} }),
+    divIcon: value => value,
+    marker: () => ({ addTo() { return this; }, setLatLng() {}, getElement() { return null; } }),
+    polyline(points, options) {
+      const layer = { points: [...points], options, addTo() { return this; }, addLatLng(p) { this.points.push(p); } };
+      drawn.push(layer); return layer;
+    },
+  };
+  let track;
+  const adapter = createLeafletAdapter({}, L, (x, z) => ({ latLng: { lat: z, lng: x } }), {
+    createTrackBuffer: options => (track = createTrackBuffer(options)),
+  });
+  adapter.update({ positionX: 10, positionZ: 20, receivedAt: 0, lapNumber: 1 }, { mode: 'race', sessionId: 7 });
+  adapter.update({ positionX: 30, positionZ: 40, receivedAt: 17, lapNumber: 1 }, { mode: 'race', sessionId: 7 });
+  assert.equal(track.getState().pointCount, 2);
+  const before = drawn.length;
+  adapter.setMode('freeRoam');
+  assert.equal(track.getState().pointCount, 0);
+  adapter.update({ positionX: 0, positionZ: 0, routeSampleAvailable: false }, { mode: 'freeRoam' });
+  adapter.setTrailVisible(false); adapter.setTrailVisible(true);
+  assert.equal(drawn.length, before, 'old Race trail cannot reappear as Free trail');
+  adapter.update({ positionX: 50, positionZ: 60, receivedAt: 33 }, { mode: 'freeRoam' });
+  assert.equal(track.getState().pointCount, 1);
+  assert.equal(drawn.at(-1).options.color, '#43c7ef');
+});
 
 test('Leaflet adapter creates one persistent map and rotates a heading marker', async () => {
   const arrow = { values: {}, style: { setProperty(k, v) { arrow.values[k] = v; } } };
@@ -98,7 +130,7 @@ test('Leaflet adapter clears route overlays on session or mode boundary without 
     ownerDocument: { createElementNS() { return makeNode(); } },
     appendChild(child) { children.push(child); },
   };
-  const calls = { maps: 0, removed: [] };
+  const calls = { maps: 0, removed: [], trackSamples: 0, cameraUpdates: 0, raceResets: 0, markerPoint: null };
   const map = { setView() { return this; }, removeLayer(layer) { calls.removed.push(layer); }, remove() {} };
   const L = {
     CRS: { Simple: {} }, extend: Object.assign,
@@ -106,17 +138,37 @@ test('Leaflet adapter clears route overlays on session or mode boundary without 
     map: () => { calls.maps++; return map; }, tileLayer: () => ({ addTo() {} }),
     polyline(points) { return { points, addTo() { return this; } }; },
     divIcon: value => value,
-    marker() { return { addTo() { return this; }, setLatLng() {}, getElement() { return null; } }; },
+    marker(point) {
+      calls.markerPoint = point;
+      return { addTo() { return this; }, setLatLng(value) { calls.markerPoint = value; }, getElement() { return null; } };
+    },
   };
-  const adapter = createLeafletAdapter(element, L, (x, z) => ({ latLng: { lat: z, lng: x } }));
+  const adapter = createLeafletAdapter(element, L, (x, z) => ({ latLng: { lat: z, lng: x } }), {
+    createTrackBuffer: () => ({ push() { calls.trackSamples++; return { delta: { type: 'noop' } }; } }),
+    createCamera: () => ({
+      update() { calls.cameraUpdates++; }, resetRaceBounds() { calls.raceResets++; }, setMode() {},
+    }),
+  });
   adapter.update({ positionX: 1, positionZ: 1 }, { sessionId: 'session-a' });
   adapter.setRouteOverlay({ outline: [0, 0, 1000, 1000], ghostPoints: [[1, 1], [2, 2]] });
   assert.equal(children.length, 1);
   adapter.update({ positionX: 2, positionZ: 2 }, { sessionId: 'session-a' });
   assert.equal(children.length, 1);
+  assert.equal(adapter.update({ positionX: 0, positionZ: 0, routeSampleAvailable: false, timelineBreak: 'unknown-vehicle' },
+    { sessionId: 'session-a' }), false);
+  assert.equal(children.length, 1, 'unknown identity retains route and Ghost');
+  assert.equal(calls.removed.length, 0);
+  assert.deepEqual(calls.markerPoint, { lat: 2, lng: 2 });
+  assert.equal(calls.trackSamples, 2);
+  assert.equal(calls.cameraUpdates, 2);
+  assert.equal(calls.raceResets, 1);
   adapter.update({ positionX: 3, positionZ: 3 }, { sessionId: 'session-b' });
   assert.equal(children.length, 0);
   assert.equal(calls.removed.length, 1);
+  adapter.setRouteOverlay({ outline: [0, 0, 1000, 1000] });
+  assert.equal(children.length, 1);
+  adapter.update({ positionX: NaN, positionZ: NaN, routeSampleAvailable: false }, { sessionId: null });
+  assert.equal(children.length, 0, 'a real session end clears overlays even without valid coordinates');
   adapter.setRouteOverlay({ outline: [0, 0, 1000, 1000] });
   assert.equal(children.length, 1);
   adapter.setMode('freeRoam');

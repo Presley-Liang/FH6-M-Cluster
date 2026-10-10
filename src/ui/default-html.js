@@ -1,4 +1,6 @@
 import { createTelemetryStore } from '../../public/js/telemetry-store.js';
+import { buildElapsedTimeline } from '../../public/js/timeline-clock.js';
+import { mapInstrumentLiveFractions } from '../../public/js/instrument-live-fractions.js';
 import { effectiveTimeline } from '../session/runtime.js';
 import { clusterShell, clusterCSS } from './cluster-shell.js';
 import { selectTelemetry } from '../../public/js/telemetry-selectors.js';
@@ -671,6 +673,8 @@ export function getDefaultHTML() {
 
 <script>
   var createTelemetryStore = ${createTelemetryStore.toString()};
+  var buildElapsedTimeline = ${buildElapsedTimeline.toString()};
+  var mapInstrumentLiveFractions = ${mapInstrumentLiveFractions.toString()};
   var effectiveTimeline = ${effectiveTimeline.toString()};
   var selectTelemetry = ${selectTelemetry.toString()};
   var createPageController = ${createPageController.toString()};
@@ -903,6 +907,7 @@ export function getDefaultHTML() {
   }
 
   function updateMapTrail(d) {
+    if (d.routeSampleAvailable === false) return;
     if (clientDriveMode === 'freeRoam') return;
     if (!mapCtx || (!d.positionX && !d.positionZ)) return;
     if (d.isRaceOn && !prevRaceOn) { liveTrail = []; frameCount = 0; }
@@ -911,6 +916,9 @@ export function getDefaultHTML() {
     frameCount++;
     if (frameCount % 3 !== 0 && liveTrail.length > 0) return;
     liveTrail.push({ x: d.positionX, z: d.positionZ, yaw: d.yaw || 0, lap: d.lapNumber });
+    if (liveTrail.length > 2048) liveTrail.splice(0, liveTrail.length - 2048);
+    // Maintain the bounded display trail without drawing an invisible canvas.
+    if (!mapCtx.canvas.getClientRects().length || getComputedStyle(mapCtx.canvas).display === 'none') return;
 
     _drawMapBg();
     var ctx = mapCtx;
@@ -948,6 +956,8 @@ export function getDefaultHTML() {
     document.getElementById('sessions-overlay').classList.add('hidden');
   });
   document.getElementById('close-viewer').addEventListener('click', function() {
+    stopReplay();
+    viewerRequestGeneration++;
     document.getElementById('viewer-overlay').classList.add('hidden');
   });
 
@@ -956,9 +966,10 @@ export function getDefaultHTML() {
       document.querySelectorAll('.vtab').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       var tab = btn.dataset.tab;
+      if (tab !== 'replay-map') stopReplay();
       document.getElementById('v-charts').classList.toggle('hidden', tab !== 'charts');
       document.getElementById('v-map').classList.toggle('hidden', tab !== 'replay-map');
-      if (tab === 'replay-map' && currentViewerPackets) drawReplayMap(currentViewerPackets, 0);
+      if (tab === 'replay-map' && currentViewerPackets) drawReplayMap(currentViewerPackets, replayIdx);
     });
   });
 
@@ -968,7 +979,7 @@ export function getDefaultHTML() {
       var el = document.getElementById('sessions-list');
       if (!list.length) { el.innerHTML = '<div style="color:#555;text-align:center;padding:40px;">No sessions recorded yet.</div>'; return; }
       el.innerHTML = list.map(function(s) {
-        var bl = s.bestLap && s.bestLap > 0 ? (s.bestLap/1000).toFixed(3) : null;
+        var bl = s.bestLap && s.bestLap > 0 ? s.bestLap.toFixed(3) : null;
         return '<div class="session-row" data-id="'+s.id+'">'
           + '<div class="s-left"><span class="s-id">Session #'+s.id+'</span><span class="s-date">'+new Date(s.startedAt).toLocaleString()+'</span></div>'
           + '<div class="s-right"><div class="s-meta">'+s.packetCount+' pkts &middot; '+s.lapCount+' laps</div>'
@@ -982,19 +993,32 @@ export function getDefaultHTML() {
   }
 
   var currentViewerPackets = null;
+  var currentViewerTimeline = [];
   var replayTimer = null;
+  var viewerRequestGeneration = 0;
 
   function openSessionViewer(id) {
+    stopReplay();
+    var requestGeneration = ++viewerRequestGeneration;
+    currentViewerPackets = null;
+    currentViewerTimeline = [];
+    document.getElementById('replay-play').disabled = true;
+    replayIdx = 0;
     document.getElementById('sessions-overlay').classList.add('hidden');
     document.getElementById('viewer-overlay').classList.remove('hidden');
     document.getElementById('viewer-title').textContent = 'Session #' + id;
     fetch('/session?id=' + id).then(function(r) { return r.json(); }).then(function(data) {
+      if (requestGeneration !== viewerRequestGeneration || document.getElementById('viewer-overlay').classList.contains('hidden')) return;
       data.packets = effectiveTimeline(data.packets || []);
       currentViewerPackets = data.packets;
-      document.getElementById('replay-slider').max = data.packets.length - 1;
+      currentViewerTimeline = buildElapsedTimeline(data.packets);
+      document.getElementById('replay-slider').max = Math.max(0, data.packets.length - 1);
+      document.getElementById('replay-slider').value = 0;
+      document.getElementById('replay-time').textContent = formatReplayTime(0);
+      document.getElementById('replay-play').disabled = !(currentViewerTimeline.at(-1)?.elapsedMs > 0);
       drawCharts(data);
       document.querySelector('.vtab[data-tab="charts"]').click();
-    });
+    }).catch(function(error) { if (requestGeneration === viewerRequestGeneration) console.error('Session load failed:', error); });
   }
 
   function drawCharts(data) {
@@ -1099,35 +1123,48 @@ export function getDefaultHTML() {
   // Replay controls
   var replayPlaying = false, replayIdx = 0;
   document.getElementById('replay-play').addEventListener('click', function() {
-    replayPlaying = !replayPlaying;
-    this.textContent = replayPlaying ? '⏸' : '▶';
-    if (replayPlaying) runReplay();
-    else clearInterval(replayTimer);
+    if (replayPlaying) { stopReplay(); return; }
+    if (!currentViewerTimeline.length || !(currentViewerTimeline.at(-1).elapsedMs > 0)) return;
+    if (replayIdx >= currentViewerPackets.length - 1) replayIdx = 0;
+    replayPlaying = true;
+    this.textContent = '⏸';
+    runReplay();
   });
   document.getElementById('replay-slider').addEventListener('input', function() {
     replayIdx = parseInt(this.value);
     if (currentViewerPackets) {
       drawReplayMap(currentViewerPackets, replayIdx);
       document.getElementById('replay-time').textContent = formatReplayTime(replayIdx);
+      if (replayPlaying) runReplay();
     }
   });
 
   function formatReplayTime(idx) {
-    var s = (idx / 60).toFixed(0);
+    var ms = currentViewerTimeline[idx]?.elapsedMs;
+    if (!Number.isFinite(ms)) return '—';
+    var s = Math.floor(ms / 1000);
     return Math.floor(s/60) + ':' + String(s % 60).padStart(2, '0');
   }
 
   function runReplay() {
     clearInterval(replayTimer);
+    var started = performance.now();
+    var from = currentViewerTimeline[replayIdx]?.elapsedMs || 0;
     replayTimer = setInterval(function() {
-      if (!currentViewerPackets) return;
-      if (replayIdx >= currentViewerPackets.length - 1) { replayIdx = 0; }
-      replayIdx += 3;
-      if (replayIdx >= currentViewerPackets.length) replayIdx = currentViewerPackets.length - 1;
+      if (!currentViewerPackets || document.getElementById('viewer-overlay').classList.contains('hidden') || document.getElementById('v-map').classList.contains('hidden')) { stopReplay(); return; }
+      var target = from + performance.now() - started;
+      var lo = 0, hi = currentViewerTimeline.length - 1;
+      while (lo < hi) { var mid = Math.ceil((lo + hi) / 2); if (currentViewerTimeline[mid].elapsedMs <= target) lo = mid; else hi = mid - 1; }
+      replayIdx = lo;
       document.getElementById('replay-slider').value = replayIdx;
       document.getElementById('replay-time').textContent = formatReplayTime(replayIdx);
       drawReplayMap(currentViewerPackets, replayIdx);
+      if (replayIdx >= currentViewerPackets.length - 1) stopReplay();
     }, 100);
+  }
+  function stopReplay() {
+    clearInterval(replayTimer); replayTimer = null; replayPlaying = false;
+    document.getElementById('replay-play').textContent = '▶';
   }
 
   // ── SSE connection with error handling and watchdog ──────────────
@@ -1138,10 +1175,12 @@ export function getDefaultHTML() {
 
   function connectSSE() {
     if (window._es) { try { window._es.close(); } catch(e) {} }
+    var connectionGeneration = ++serverConnectionGeneration;
     var es = new EventSource('/events');
     window._es = es;
 
     es.onerror = function() {
+      if (connectionGeneration !== serverConnectionGeneration) return;
       var st = document.getElementById('status');
       st.className = 'sse-error';
       st.innerHTML = '<span class="dot error" id="status-dot"></span>SSE Disconnected';
@@ -1150,7 +1189,8 @@ export function getDefaultHTML() {
     };
 
     es.onopen = function() {
-      fetch('/mode').then(function(r) { return r.json(); }).then(applyServerState).catch(console.error);
+      if (connectionGeneration !== serverConnectionGeneration) return;
+      fetchModeState().catch(console.error);
       var st = document.getElementById('status');
       if (st.classList.contains('sse-error')) {
         st.className = '';
@@ -1158,8 +1198,9 @@ export function getDefaultHTML() {
       }
     };
 
-    es.onmessage = handleSSEMessage;
+    es.onmessage = function(e) { if (connectionGeneration === serverConnectionGeneration) handleSSEMessage(e); };
     es.addEventListener('state', function(e) {
+      if (connectionGeneration !== serverConnectionGeneration) return;
       try { applyServerState(JSON.parse(e.data)); } catch (error) { console.error(error); }
     });
     return es;
@@ -1180,6 +1221,11 @@ export function getDefaultHTML() {
   var clientDriveMode = 'race';
   var clientFreeRoamRecording = false;
   var serverVersion = -1;
+  var serverInstanceId = null;
+  var retiredServerInstances = new Set();
+  var serverInstanceEpoch = 0;
+  var serverConnectionGeneration = 0;
+  var policyAuthorityRevision = 0;
   var animationCoordinator = null;
   var instrumentHost = null;
   var desiredDriveMode = clientDriveMode;
@@ -1188,6 +1234,7 @@ export function getDefaultHTML() {
   var latestVehicleState = null;
   var clientModeControl = 'auto';
   var policyRequestInFlight = false;
+  var queuedControlMode = null;
   var manualThemeChosen = false;
   var manualThemeId = DEFAULT_THEME_ID;
   try {
@@ -1203,7 +1250,7 @@ export function getDefaultHTML() {
     var cluster = document.querySelector('.cluster-control-cluster');
     if (!cluster) return;
     cluster.dataset.controlMode = clientModeControl;
-    cluster.dataset.pending = String(policyRequestInFlight);
+    cluster.dataset.pending = String(policyRequestInFlight || queuedControlMode !== null);
     var auto = clientModeControl === 'auto';
     var autoButton = document.getElementById('control-auto-btn');
     var manualButton = document.getElementById('control-manual-btn');
@@ -1213,9 +1260,11 @@ export function getDefaultHTML() {
     manualButton.setAttribute('aria-pressed', String(!auto));
     autoButton.disabled = policyRequestInFlight;
     manualButton.disabled = policyRequestInFlight;
+    var themeMount = document.getElementById('manual-theme-button-set-mount');
+    if (themeMount) { themeMount.inert = policyRequestInFlight || queuedControlMode !== null; themeMount.setAttribute('aria-busy', String(themeMount.inert)); }
     document.querySelectorAll('.mode-seg-btn').forEach(function(button) {
-      button.disabled = auto || policyRequestInFlight;
-      button.setAttribute('aria-disabled', String(auto || policyRequestInFlight));
+      button.disabled = auto || policyRequestInFlight || queuedControlMode !== null;
+      button.setAttribute('aria-disabled', String(button.disabled));
     });
   }
 
@@ -1224,6 +1273,7 @@ export function getDefaultHTML() {
     options: MANUAL_THEME_OPTIONS,
     selectedId: manualThemeId,
     onChange: function(themeId) {
+      if (policyRequestInFlight || queuedControlMode !== null) { themeButtonSet.update({ selectedId: manualThemeId }); return; }
       if (clientModeControl !== 'manual' || !MANUAL_THEME_OPTIONS.some(function(theme) { return theme.id === themeId; })) return;
       manualThemeId = themeId;
       manualThemeChosen = true;
@@ -1297,8 +1347,17 @@ export function getDefaultHTML() {
   }
 
   function applyServerState(data) {
+    if (!data || typeof data !== 'object') return;
+    if (data.receiverInstanceId && data.receiverInstanceId !== serverInstanceId) {
+      if (retiredServerInstances.has(data.receiverInstanceId)) return;
+      if (serverInstanceId) retiredServerInstances.add(serverInstanceId);
+      serverInstanceId = data.receiverInstanceId;
+      serverInstanceEpoch++;
+      serverVersion = -1;
+    }
     if (data.version != null && data.version < serverVersion) return;
     serverVersion = data.version == null ? serverVersion : data.version;
+    if (data.modeControl === 'auto' || data.modeControl === 'manual') policyAuthorityRevision++;
     if ((data.modeControl === 'auto' || data.modeControl === 'manual') && data.modeControl !== clientModeControl) {
       clientModeControl = data.modeControl;
       desiredDriveMode = data.driveMode || clientDriveMode;
@@ -1312,6 +1371,19 @@ export function getDefaultHTML() {
     if (data.driveMode) {
       if (clientModeControl === 'auto') desiredDriveMode = data.driveMode;
       applyMode(data.driveMode);
+    }
+    // State broadcasts can close/restart a session without another UDP packet.
+    // Missing sessionId is a partial control response, not a close boundary.
+    if (Object.prototype.hasOwnProperty.call(data, 'sessionId')) {
+      var nextStateSessionId = data.sessionId == null ? null : data.sessionId;
+      if (nextStateSessionId !== mapSessionId) {
+        mapSessionId = nextStateSessionId;
+        liveTrail = []; frameCount = 0; prevRaceOn = false;
+        if (mapCtx && mapCtx.canvas.getClientRects().length && getComputedStyle(mapCtx.canvas).display !== 'none') _drawMapBg();
+      }
+      var boundarySample = { driveMode: clientDriveMode, sessionId: nextStateSessionId, routeSampleAvailable: false };
+      if (routeUI) routeUI.update(boundarySample);
+      if (leafletMap) leafletMap.update(boundarySample, { mode: clientDriveMode, sessionId: nextStateSessionId });
     }
     if (typeof data.freeRoamRecording === 'boolean') applyRecordingState(data.freeRoamRecording);
     var info = document.getElementById('session-info');
@@ -1385,8 +1457,9 @@ export function getDefaultHTML() {
   }
   function pumpModeRequest() {
     updateModePending();
-    if (clientModeControl !== 'manual' || modeRequestInFlight || desiredDriveMode === clientDriveMode) return;
+    if (clientModeControl !== 'manual' || policyRequestInFlight || queuedControlMode !== null || modeRequestInFlight || desiredDriveMode === clientDriveMode) return;
     var requestedMode = desiredDriveMode;
+    var requestedEpoch = serverInstanceEpoch;
     modeRequestInFlight = true;
     updateModePending();
     fetch('/mode', {
@@ -1394,9 +1467,11 @@ export function getDefaultHTML() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ driveMode: requestedMode })
       }).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(data) {
+        if (requestedEpoch !== serverInstanceEpoch) return;
         if (data.driveMode !== 'race' && data.driveMode !== 'freeRoam') throw new Error('Invalid mode response');
         applyServerState(data);
       }).catch(function(err) {
+        if (requestedEpoch !== serverInstanceEpoch || clientDriveMode === requestedMode || desiredDriveMode !== requestedMode) return;
         desiredDriveMode = clientDriveMode;
         var control = document.querySelector('.mode-seg');
         control.dataset.error = 'true';
@@ -1404,21 +1479,27 @@ export function getDefaultHTML() {
         console.error('Mode switch failed:', err);
       }).finally(function() {
         modeRequestInFlight = false;
-        pumpModeRequest();
+        if (queuedControlMode !== null) { var nextControl = queuedControlMode; queuedControlMode = null; setControlMode(nextControl, true); }
+        else pumpModeRequest();
       });
   }
   document.querySelectorAll('.mode-seg-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      if (clientModeControl !== 'manual') return;
+      if (clientModeControl !== 'manual' || policyRequestInFlight || queuedControlMode !== null) return;
       desiredDriveMode = btn.dataset.mode;
       pumpModeRequest();
     });
   });
 
   function setControlMode(nextMode, forceSync) {
-    if ((nextMode !== 'auto' && nextMode !== 'manual') || (!forceSync && nextMode === clientModeControl) || policyRequestInFlight) return;
+    if ((nextMode !== 'auto' && nextMode !== 'manual') || policyRequestInFlight) return;
+    if (modeRequestInFlight) { queuedControlMode = nextMode; syncControlModeUI(); return; }
+    if (!forceSync && nextMode === clientModeControl) return;
     var previousMode = clientModeControl;
     var previousThemeId = document.getElementById('cluster').dataset.themeId;
+    var requestedEpoch = serverInstanceEpoch;
+    var requestedAuthorityRevision = policyAuthorityRevision;
+    policyRequestInFlight = true;
     clientModeControl = nextMode;
     if (nextMode === 'manual') {
       if (!manualThemeChosen && latestVehicleMetadata) {
@@ -1436,19 +1517,20 @@ export function getDefaultHTML() {
     if (animationCoordinator && (nextThemeId !== previousThemeId || vehicleTransitionActive)) {
       animationCoordinator.wake(vehicleProfileFromState(latestVehicleState || { vehicle: {} }), clientDriveMode, applyThemeOverlay);
     } else applyVehicleTheme(clientDriveMode);
-    policyRequestInFlight = true;
     syncControlModeUI();
     fetch('/mode-control', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ modeControl: nextMode })
     }).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(data) {
+      if (requestedEpoch !== serverInstanceEpoch) return;
       if (data.modeControl !== nextMode) throw new Error('Invalid mode control response');
       try { localStorage.setItem('fh6.clusterControlMode', nextMode); } catch (_) {}
       applyServerState(data);
     }).catch(function(error) {
+      if (requestedEpoch !== serverInstanceEpoch || requestedAuthorityRevision !== policyAuthorityRevision) return;
       clientModeControl = previousMode;
-      if (animationCoordinator && (previousThemeId !== nextThemeId || vehicleTransitionActive)) {
+      if (animationCoordinator) {
         animationCoordinator.wake(vehicleProfileFromState(latestVehicleState || { vehicle: {} }), clientDriveMode, applyThemeOverlay);
       }
       var cluster = document.querySelector('.cluster-control-cluster');
@@ -1477,12 +1559,18 @@ export function getDefaultHTML() {
   document.getElementById('free-roam-rec-btn').addEventListener('click', toggleFreeRoamRecording);
   document.getElementById('map-rec-btn').addEventListener('click', toggleFreeRoamRecording);
 
-  fetch('/mode').then(function(r) { return r.json(); }).then(function(data) {
-    applyServerState(data);
-  }).catch(function() { applyMode('race'); });
-
+  function fetchModeState() {
+    var connectionGeneration = serverConnectionGeneration;
+    var instanceEpoch = serverInstanceEpoch;
+    return fetch('/mode').then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(data) {
+      if (connectionGeneration === serverConnectionGeneration && instanceEpoch === serverInstanceEpoch) applyServerState(data);
+    });
+  }
   // ── Hook minimap into SSE ─────────────────────────────────────────
   connectSSE();
+  // Capture the active connection generation even if SSE never opens. The
+  // independent HTTP sync must remain usable when the event stream is blocked.
+  fetchModeState().catch(function(error) { console.error('Initial mode sync failed:', error); });
 
   function handleSSEMessage(e) {
     try { telemetryStore.publish(JSON.parse(e.data)); }
@@ -1535,6 +1623,7 @@ export function getDefaultHTML() {
     rpmGaugeController: createRpmGaugeController(),
     shiftLightController: createShiftLightController(),
     raceFeedbackController: createRaceFeedbackController(),
+    onVehicleState: function(state) { if (state?.status === 'locked' && state.vehicle) latestVehicleState = state; },
     onVehicleChange: function(state) {
       latestVehicleState = state;
       if (animationCoordinator) animationCoordinator.wake(vehicleProfileFromState(state), clientDriveMode, applyThemeOverlay);
@@ -1553,15 +1642,13 @@ export function getDefaultHTML() {
     getLiveFractions: function() {
       var live = clusterBindings.getLiveFractions();
       var themeId = document.getElementById('cluster').dataset.themeId;
-      if (themeId === 'y1995_2002.europe') return mapMultiplaLiveFractions(live);
-      if (themeId === 'y1960_1975.america' || themeId === 'y1976_1985.america' || themeId === 'y2003_2008.america') {
-        return mapHeritageLinearLiveFractions(live);
-      }
-      return live;
+      return mapInstrumentLiveFractions(themeId, live);
     },
     infoCard: document.getElementById('vehicle-info-card'),
     feedbackElement: document.getElementById('race-feedback'),
   });
+  var motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  motionPreference.addEventListener('change', function() { animationCoordinator.refreshMotionPreference(); });
   var leafletMap = null;
   var mapTrailVisible = true;
   try {
@@ -1607,7 +1694,10 @@ export function getDefaultHTML() {
     previewCaption.dataset.preview = 'true';
     previewCaption.firstElementChild.textContent = 'SYNTHETIC PREVIEW · NOT GAME DATA';
   }
+  var feedbackSession = null;
   telemetryStore.subscribe(function(d) {
+    var nextFeedbackSession = d.sessionId == null ? null : String(d.sessionId) + ':' + d.carOrdinal;
+    if (nextFeedbackSession !== feedbackSession) { animationCoordinator.clearFeedback(); feedbackSession = nextFeedbackSession; }
     lastSseDataMs = Date.now();
     document.getElementById('no-data-warn').style.display = 'none';
     clusterBindings.update(d);
@@ -1620,8 +1710,9 @@ export function getDefaultHTML() {
   });
   var mapSessionId = null;
   telemetryStore.subscribe(function(d) {
-    if (d.sessionId && d.sessionId !== mapSessionId) {
-      mapSessionId = d.sessionId;
+    var nextMapSessionId = d.sessionId == null ? null : d.sessionId;
+    if (nextMapSessionId !== mapSessionId) {
+      mapSessionId = nextMapSessionId;
       liveTrail = []; frameCount = 0; prevRaceOn = false;
     }
     updateMapTrail(d);
@@ -1736,5 +1827,6 @@ export function getDefaultHTML() {
     .replace('</head>', '<link rel="stylesheet" href="/styles/three-well-america-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/camaro-america-instrument.css?v=' + themeCssVersion + '"></head>')
     .replace('</head>', '<link rel="stylesheet" href="/styles/modern-instrument-common.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/civic-japan-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/escalade-america-instrument.css?v=' + themeCssVersion + '"><link rel="stylesheet" href="/styles/gx-japan-instrument.css?v=' + themeCssVersion + '"></head>')
+    .replace('</head>', '<link rel="stylesheet" href="/styles/instrument-responsive.css?v=' + themeCssVersion + '"></head>')
     .replace('<script>', '<script src="/vendor/leaflet/leaflet.js"></script><script>');
 }

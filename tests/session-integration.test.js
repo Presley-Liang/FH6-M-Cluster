@@ -153,7 +153,10 @@ test('P2: Race first packet belongs to session, pause/rewind preserve identity a
   assert.equal(list.length, 2);
   const old = await app.api('/session?id=' + initial.sessionId);
   assert.equal(old.packets[0].carOrdinal, 1234);
-  assert.ok(old.packets.some(packet => packet.carOrdinal === 4567), 'candidate evidence remains in raw arrival history until change is confirmed');
+  assert.ok(old.packets.every(packet => packet.carOrdinal === 1234), 'presentation debounce cannot mix candidate packets into the original vehicle archive');
+  const next = await app.api('/session?id=' + changed.sessionId);
+  assert.deepEqual(next.packets.map(packet => packet.timestampMs), [1051, 1068, 1085, 1102]);
+  assert.ok(next.packets.every(packet => packet.carOrdinal === 4567));
 });
 
 test('P2: Race end grace uses wall time and saves even when UDP stops afterwards', { timeout: 10000 }, async t => {

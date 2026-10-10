@@ -1,0 +1,1207 @@
+{
+  "generatedAt": "2026-10-08T13:03:10.500924+00:00",
+  "scope": "Four existing themes with synthetic long lap times, no game telemetry. Font threshold is a review heuristic, not a pass/fail accessibility standard.",
+  "checks": [
+    {
+      "theme": "s30",
+      "mode": "race",
+      "width": 375,
+      "containerWidth": 353,
+      "below7px": 26,
+      "smallest": [
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 1.6944
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 1.6944
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 1.6944
+        },
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 1.9062
+        },
+        {
+          "text": "CURRENT LAP",
+          "class": "",
+          "fontPx": 1.9062
+        },
+        {
+          "text": "BEST LAP",
+          "class": "",
+          "fontPx": 1.9062
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 1.9415
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 1.9415
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "s30",
+      "mode": "freeRoam",
+      "width": 375,
+      "containerWidth": 353,
+      "below7px": 26,
+      "smallest": [
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 1.6944
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 1.6944
+        },
+        {
+          "text": "RAW",
+          "class": "",
+          "fontPx": 1.6944
+        },
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 1.9062
+        },
+        {
+          "text": "THROTTLE",
+          "class": "",
+          "fontPx": 1.9062
+        },
+        {
+          "text": "FUEL",
+          "class": "",
+          "fontPx": 1.9062
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 1.9415
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 1.9415
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "cx",
+      "mode": "race",
+      "width": 375,
+      "containerWidth": 351,
+      "below7px": 47,
+      "smallest": [
+        {
+          "text": "RAPPORT 10",
+          "class": "",
+          "fontPx": 1.755
+        },
+        {
+          "text": "MEILLEUR 59:50.32",
+          "class": "",
+          "fontPx": 1.755
+        },
+        {
+          "text": "STOP",
+          "class": "",
+          "fontPx": 2.106
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.2815
+        },
+        {
+          "text": "tr/min",
+          "class": "",
+          "fontPx": 2.2815
+        },
+        {
+          "text": "VITESSE",
+          "class": "",
+          "fontPx": 2.5272
+        },
+        {
+          "text": "COURSE",
+          "class": "",
+          "fontPx": 2.5272
+        },
+        {
+          "text": "INSTRUMENTS  /  SERIE I",
+          "class": "",
+          "fontPx": 2.5272
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "cx",
+      "mode": "freeRoam",
+      "width": 375,
+      "containerWidth": 351,
+      "below7px": 47,
+      "smallest": [
+        {
+          "text": "VITESSE 100",
+          "class": "",
+          "fontPx": 1.755
+        },
+        {
+          "text": "MOTEUR EN SERVICE",
+          "class": "",
+          "fontPx": 1.755
+        },
+        {
+          "text": "STOP",
+          "class": "",
+          "fontPx": 2.106
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.2815
+        },
+        {
+          "text": "tr/min",
+          "class": "",
+          "fontPx": 2.2815
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 2.5272
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 2.5272
+        },
+        {
+          "text": "INSTRUMENTS  /  SERIE I",
+          "class": "",
+          "fontPx": 2.5272
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "r8",
+      "mode": "race",
+      "width": 375,
+      "containerWidth": 353,
+      "below7px": 16,
+      "smallest": [
+        {
+          "text": "CURRENT LAP",
+          "class": "",
+          "fontPx": 1.8709
+        },
+        {
+          "text": "BEST LAP",
+          "class": "",
+          "fontPx": 1.8709
+        },
+        {
+          "text": "TELEMETRY LIVE",
+          "class": "",
+          "fontPx": 1.9415
+        },
+        {
+          "text": "10",
+          "class": "",
+          "fontPx": 1.9415
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.0474
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 2.0474
+        },
+        {
+          "text": "PERFORMANCE",
+          "class": "r8-screen-heading",
+          "fontPx": 2.471
+        },
+        {
+          "text": "INSTRUMENT / 2012",
+          "class": "",
+          "fontPx": 2.5416
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "r8",
+      "mode": "freeRoam",
+      "width": 375,
+      "containerWidth": 353,
+      "below7px": 16,
+      "smallest": [
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 1.8709
+        },
+        {
+          "text": "THROTTLE",
+          "class": "",
+          "fontPx": 1.8709
+        },
+        {
+          "text": "TELEMETRY LIVE",
+          "class": "",
+          "fontPx": 1.9415
+        },
+        {
+          "text": "10",
+          "class": "",
+          "fontPx": 1.9415
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.0474
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 2.0474
+        },
+        {
+          "text": "DRIVE INFORMATION",
+          "class": "r8-screen-heading",
+          "fontPx": 2.471
+        },
+        {
+          "text": "INSTRUMENT / 2012",
+          "class": "",
+          "fontPx": 2.5416
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "lfa",
+      "mode": "race",
+      "width": 375,
+      "containerWidth": 351,
+      "below7px": 15,
+      "smallest": [
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 1.9656
+        },
+        {
+          "text": "DRIVER DISPLAY // 2012",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "SPORT",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "JAPANESE SUPERCAR / TFT",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "POSITION 12",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 2.457
+        },
+        {
+          "text": "g",
+          "class": "",
+          "fontPx": 2.457
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 2.457
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "lfa",
+      "mode": "freeRoam",
+      "width": 375,
+      "containerWidth": 351,
+      "below7px": 15,
+      "smallest": [
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 1.9656
+        },
+        {
+          "text": "DRIVER DISPLAY // 2012",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "CRUISE",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "JAPANESE SUPERCAR / TFT",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "SPEED 100",
+          "class": "",
+          "fontPx": 2.3166
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 2.457
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 2.457
+        },
+        {
+          "text": "LIVE",
+          "class": "",
+          "fontPx": 2.457
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "s30",
+      "mode": "race",
+      "width": 469,
+      "containerWidth": 447,
+      "below7px": 26,
+      "smallest": [
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 2.1456
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 2.1456
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 2.1456
+        },
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 2.4138
+        },
+        {
+          "text": "CURRENT LAP",
+          "class": "",
+          "fontPx": 2.4138
+        },
+        {
+          "text": "BEST LAP",
+          "class": "",
+          "fontPx": 2.4138
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.4585
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 2.4585
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "s30",
+      "mode": "freeRoam",
+      "width": 469,
+      "containerWidth": 447,
+      "below7px": 26,
+      "smallest": [
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 2.1456
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 2.1456
+        },
+        {
+          "text": "RAW",
+          "class": "",
+          "fontPx": 2.1456
+        },
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 2.4138
+        },
+        {
+          "text": "THROTTLE",
+          "class": "",
+          "fontPx": 2.4138
+        },
+        {
+          "text": "FUEL",
+          "class": "",
+          "fontPx": 2.4138
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.4585
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 2.4585
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "cx",
+      "mode": "race",
+      "width": 469,
+      "containerWidth": 445,
+      "below7px": 21,
+      "smallest": [
+        {
+          "text": "RAPPORT 10",
+          "class": "",
+          "fontPx": 2.225
+        },
+        {
+          "text": "MEILLEUR 59:50.32",
+          "class": "",
+          "fontPx": 2.225
+        },
+        {
+          "text": "STOP",
+          "class": "",
+          "fontPx": 2.67
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.8925
+        },
+        {
+          "text": "tr/min",
+          "class": "",
+          "fontPx": 2.8925
+        },
+        {
+          "text": "VITESSE",
+          "class": "",
+          "fontPx": 3.204
+        },
+        {
+          "text": "COURSE",
+          "class": "",
+          "fontPx": 3.204
+        },
+        {
+          "text": "INSTRUMENTS  /  SERIE I",
+          "class": "",
+          "fontPx": 3.204
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "cx",
+      "mode": "freeRoam",
+      "width": 469,
+      "containerWidth": 445,
+      "below7px": 21,
+      "smallest": [
+        {
+          "text": "VITESSE 100",
+          "class": "",
+          "fontPx": 2.225
+        },
+        {
+          "text": "MOTEUR EN SERVICE",
+          "class": "",
+          "fontPx": 2.225
+        },
+        {
+          "text": "STOP",
+          "class": "",
+          "fontPx": 2.67
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.8925
+        },
+        {
+          "text": "tr/min",
+          "class": "",
+          "fontPx": 2.8925
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 3.204
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 3.204
+        },
+        {
+          "text": "INSTRUMENTS  /  SERIE I",
+          "class": "",
+          "fontPx": 3.204
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "r8",
+      "mode": "race",
+      "width": 469,
+      "containerWidth": 447,
+      "below7px": 14,
+      "smallest": [
+        {
+          "text": "CURRENT LAP",
+          "class": "",
+          "fontPx": 2.3691
+        },
+        {
+          "text": "BEST LAP",
+          "class": "",
+          "fontPx": 2.3691
+        },
+        {
+          "text": "TELEMETRY LIVE",
+          "class": "",
+          "fontPx": 2.4585
+        },
+        {
+          "text": "10",
+          "class": "",
+          "fontPx": 2.4585
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.5926
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 2.5926
+        },
+        {
+          "text": "PERFORMANCE",
+          "class": "r8-screen-heading",
+          "fontPx": 3.129
+        },
+        {
+          "text": "INSTRUMENT / 2012",
+          "class": "",
+          "fontPx": 3.2184
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "r8",
+      "mode": "freeRoam",
+      "width": 469,
+      "containerWidth": 447,
+      "below7px": 14,
+      "smallest": [
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 2.3691
+        },
+        {
+          "text": "THROTTLE",
+          "class": "",
+          "fontPx": 2.3691
+        },
+        {
+          "text": "TELEMETRY LIVE",
+          "class": "",
+          "fontPx": 2.4585
+        },
+        {
+          "text": "10",
+          "class": "",
+          "fontPx": 2.4585
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.5926
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 2.5926
+        },
+        {
+          "text": "DRIVE INFORMATION",
+          "class": "r8-screen-heading",
+          "fontPx": 3.129
+        },
+        {
+          "text": "INSTRUMENT / 2012",
+          "class": "",
+          "fontPx": 3.2184
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "lfa",
+      "mode": "race",
+      "width": 469,
+      "containerWidth": 445,
+      "below7px": 15,
+      "smallest": [
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.492
+        },
+        {
+          "text": "DRIVER DISPLAY // 2012",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "SPORT",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "JAPANESE SUPERCAR / TFT",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "POSITION 12",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 3.115
+        },
+        {
+          "text": "g",
+          "class": "",
+          "fontPx": 3.115
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 3.115
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "lfa",
+      "mode": "freeRoam",
+      "width": 469,
+      "containerWidth": 445,
+      "below7px": 15,
+      "smallest": [
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 2.492
+        },
+        {
+          "text": "DRIVER DISPLAY // 2012",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "CRUISE",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "JAPANESE SUPERCAR / TFT",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "SPEED 100",
+          "class": "",
+          "fontPx": 2.937
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 3.115
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 3.115
+        },
+        {
+          "text": "LIVE",
+          "class": "",
+          "fontPx": 3.115
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "s30",
+      "mode": "race",
+      "width": 1440,
+      "containerWidth": 1388,
+      "below7px": 3,
+      "smallest": [
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 6.6624
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 6.6624
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 6.6624
+        },
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 7.4952
+        },
+        {
+          "text": "CURRENT LAP",
+          "class": "",
+          "fontPx": 7.4952
+        },
+        {
+          "text": "BEST LAP",
+          "class": "",
+          "fontPx": 7.4952
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 7.634
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 7.634
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "s30",
+      "mode": "freeRoam",
+      "width": 1440,
+      "containerWidth": 1388,
+      "below7px": 3,
+      "smallest": [
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 6.6624
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 6.6624
+        },
+        {
+          "text": "RAW",
+          "class": "",
+          "fontPx": 6.6624
+        },
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 7.4952
+        },
+        {
+          "text": "THROTTLE",
+          "class": "",
+          "fontPx": 7.4952
+        },
+        {
+          "text": "FUEL",
+          "class": "",
+          "fontPx": 7.4952
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 7.634
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 7.634
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "cx",
+      "mode": "race",
+      "width": 1440,
+      "containerWidth": 1386,
+      "below7px": 0,
+      "smallest": [
+        {
+          "text": "STOP",
+          "class": "",
+          "fontPx": 8.316
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 9.009
+        },
+        {
+          "text": "tr/min",
+          "class": "",
+          "fontPx": 9.009
+        },
+        {
+          "text": "RAPPORT 10",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "MEILLEUR 59:50.32",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "VITESSE",
+          "class": "",
+          "fontPx": 9.9792
+        },
+        {
+          "text": "COURSE",
+          "class": "",
+          "fontPx": 9.9792
+        },
+        {
+          "text": "INSTRUMENTS  /  SERIE I",
+          "class": "",
+          "fontPx": 9.9792
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "cx",
+      "mode": "freeRoam",
+      "width": 1440,
+      "containerWidth": 1386,
+      "below7px": 0,
+      "smallest": [
+        {
+          "text": "STOP",
+          "class": "",
+          "fontPx": 8.316
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 9.009
+        },
+        {
+          "text": "tr/min",
+          "class": "",
+          "fontPx": 9.009
+        },
+        {
+          "text": "VITESSE 100",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "MOTEUR EN SERVICE",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 9.9792
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 9.9792
+        },
+        {
+          "text": "INSTRUMENTS  /  SERIE I",
+          "class": "",
+          "fontPx": 9.9792
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "r8",
+      "mode": "race",
+      "width": 1440,
+      "containerWidth": 1388,
+      "below7px": 0,
+      "smallest": [
+        {
+          "text": "CURRENT LAP",
+          "class": "",
+          "fontPx": 7.3564
+        },
+        {
+          "text": "BEST LAP",
+          "class": "",
+          "fontPx": 7.3564
+        },
+        {
+          "text": "TELEMETRY LIVE",
+          "class": "",
+          "fontPx": 7.634
+        },
+        {
+          "text": "10",
+          "class": "",
+          "fontPx": 7.634
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 8.0504
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 8.0504
+        },
+        {
+          "text": "PERFORMANCE",
+          "class": "r8-screen-heading",
+          "fontPx": 9.716
+        },
+        {
+          "text": "INSTRUMENT / 2012",
+          "class": "",
+          "fontPx": 9.9936
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "r8",
+      "mode": "freeRoam",
+      "width": 1440,
+      "containerWidth": 1388,
+      "below7px": 0,
+      "smallest": [
+        {
+          "text": "POWER",
+          "class": "",
+          "fontPx": 7.3564
+        },
+        {
+          "text": "THROTTLE",
+          "class": "",
+          "fontPx": 7.3564
+        },
+        {
+          "text": "TELEMETRY LIVE",
+          "class": "",
+          "fontPx": 7.634
+        },
+        {
+          "text": "10",
+          "class": "",
+          "fontPx": 7.634
+        },
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 8.0504
+        },
+        {
+          "text": "rpm",
+          "class": "",
+          "fontPx": 8.0504
+        },
+        {
+          "text": "DRIVE INFORMATION",
+          "class": "r8-screen-heading",
+          "fontPx": 9.716
+        },
+        {
+          "text": "INSTRUMENT / 2012",
+          "class": "",
+          "fontPx": 9.9936
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "lfa",
+      "mode": "race",
+      "width": 1440,
+      "containerWidth": 1386,
+      "below7px": 0,
+      "smallest": [
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 7.7616
+        },
+        {
+          "text": "DRIVER DISPLAY // 2012",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "SPORT",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "JAPANESE SUPERCAR / TFT",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "POSITION 12",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "g",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "TIME",
+          "class": "",
+          "fontPx": 9.702
+        }
+      ],
+      "clipped": []
+    },
+    {
+      "theme": "lfa",
+      "mode": "freeRoam",
+      "width": 1440,
+      "containerWidth": 1386,
+      "below7px": 0,
+      "smallest": [
+        {
+          "text": "km/h",
+          "class": "",
+          "fontPx": 7.7616
+        },
+        {
+          "text": "DRIVER DISPLAY // 2012",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "CRUISE",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "JAPANESE SUPERCAR / TFT",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "SPEED 100",
+          "class": "",
+          "fontPx": 9.1476
+        },
+        {
+          "text": "kW",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "%",
+          "class": "",
+          "fontPx": 9.702
+        },
+        {
+          "text": "LIVE",
+          "class": "",
+          "fontPx": 9.702
+        }
+      ],
+      "clipped": []
+    }
+  ],
+  "errors": []
+}

@@ -113,7 +113,7 @@ test('Kadett lamps and Multipla needle share the numeric scale and darken on mis
   const map = vm.runInNewContext(html.slice(begin, end) + '\nmapMultiplaLiveFractions;');
   assert.equal(map({ speed: (4 + .75) / 7, rpm: .25 }).speed, .5);
   assert.equal(map({ speed: 1, rpm: .25 }).rpm, .25);
-  assert.ok(html.includes("if (themeId === 'y1995_2002.europe') return mapMultiplaLiveFractions(live);"));
+  assert.ok(html.includes('return mapInstrumentLiveFractions(themeId, live);'));
   mul.update({ speedKmh: 350 }); assert.equal(needle.attributes.transform, 'rotate(130 180 180)'); assert.equal(mul.value('speed'), '350');
   mul.update({}, { stale: true }); assert.equal(needle.style.visibility, 'hidden');
 });
@@ -132,7 +132,7 @@ test('linear heritage meters use direct sweep fractions and matching live return
   const map = vm.runInNewContext(html.slice(begin, end) + '\nmapHeritageLinearLiveFractions;');
   assert.equal(map({ speed: (4 + .75) / 7, rpm: .25 }).speed, .5);
   for (const id of ['y1960_1975.america', 'y1976_1985.america', 'y2003_2008.america']) {
-    assert.ok(html.includes(`themeId === '${id}'`));
+    assert.ok(html.includes(`'${id}': 260`));
   }
 });
 

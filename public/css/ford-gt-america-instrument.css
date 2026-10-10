@@ -52,5 +52,5 @@
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-kind="mode"][data-ignition-phase="frames"] .fgt-display{animation:fgt-relight .72s cubic-bezier(.22,.61,.36,1) both}
 @keyframes fgt-relight{from{filter:brightness(.06)}to{filter:brightness(1)}}
 #cluster[data-theme-id="y2015_2019.america"][data-ignition-phase="scan"] .fgt-tach-fill{filter:drop-shadow(0 0 12px var(--fgt-accent))}
-@media(max-width:1000px){.fgt-data-strip span{font-size:8px}.fgt-data-strip{gap:1%}.fgt-main-primary strong{font-size:8.3cqw}.fgt-main-secondary strong{font-size:4.6cqw}}
+@media(max-width:1000px){.fgt-data-strip span{font-size:8px}.fgt-data-strip{gap:1%}.fgt-main-primary strong{font-size:max(24px,8.3cqw)}.fgt-main-secondary strong{font-size:max(24px,4.6cqw)}}
 @media(prefers-reduced-motion:reduce){.fgt-instrument,.fgt-instrument *,.fgt-mode-identity,.fgt-mode-identity *{animation:none!important;transition:none!important}}

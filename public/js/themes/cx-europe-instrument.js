@@ -11,12 +11,12 @@ export function createCxEuropeInstrument({ document, mount }) {
     <div class="cx-crest"><span>LUNULE</span><i></i><b>CONTROLE DE ROUTE</b><i></i><span>1976—85</span></div>
     <div class="cx-warning-bank" aria-hidden="true"><span>◀</span><span>●</span><span>◉</span><strong>STOP</strong><span>◉</span><span>●</span><span>▶</span></div>
     <div class="cx-dashboard">
-      <div class="cx-aux cx-aux-left"><small data-cx-label="left">RAPPORT</small><strong data-cx-value="left">—</strong><em data-cx-label="leftUnit">VITESSE</em><div class="cx-aux-rule"></div><span data-cx-value="leftFoot">—</span></div>
+      <div class="cx-aux cx-aux-left"><small data-cx-label="left">RAPPORT</small><strong data-cx-value="left">—</strong><em data-cx-label="leftUnit">VITESSE</em></div>
       <div class="cx-drum-housing cx-drum-speed"><div class="cx-drum-cap">VITESSE</div><div class="cx-drum-slot"><div class="cx-drum-track" data-cx-track="speed"></div><div class="cx-drum-lens"></div><div class="cx-drum-reading"><strong data-cx-value="speed">—</strong><small>km/h</small></div></div><div class="cx-drum-base">ROUTE</div></div>
       <div class="cx-drum-housing cx-drum-rpm"><div class="cx-drum-cap" data-cx-label="drum">TOURS MOTEUR</div><div class="cx-drum-slot"><div class="cx-drum-track" data-cx-track="rpm"></div><div class="cx-drum-lens"></div><div class="cx-drum-reading"><strong data-cx-value="rpm">—</strong><small data-cx-label="rpmUnit">tr/min</small></div></div><div class="cx-drum-base" data-cx-label="rpmBase">MOTEUR</div></div>
       <div class="cx-aux cx-aux-right"><small data-cx-label="right">TEMPS AU TOUR</small><strong data-cx-value="right">—</strong><em data-cx-label="rightUnit">COURSE</em><div class="cx-aux-rule"></div><span data-cx-value="rightFoot">—</span></div>
     </div>
-    <div class="cx-bottom"><span>INSTRUMENTS  /  SERIE I</span><b data-cx-label="program">CONDUITE SPORT</b><span data-cx-value="status">NO SIGNAL</span></div>
+    <div class="cx-bottom"><span>INSTRUMENTS  /  SERIE I</span><b data-cx-label="program">CONDUITE SPORT</b><span data-cx-value="status">—</span></div>
   </div>`;
   const identity = document.createElement('div');
   identity.className = 'cx-mode-identity';
@@ -55,7 +55,8 @@ export function createCxEuropeInstrument({ document, mount }) {
     const transform = `translateY(-${offset}cqw)`;
     if (tracks[key].style.transform !== transform) tracks[key].style.transform = transform;
   };
-  let lastMode = null, wasSweep = false, sweepValues = null, handoff = null;
+  const rpmMarks = Array.from(tracks.rpm.querySelectorAll('span'));
+  let lastMode = null, lastScale, sweepValues = null;
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live', kind = root?.dataset.ignitionKind || '';
@@ -66,44 +67,39 @@ export function createCxEuropeInstrument({ document, mount }) {
     const override = context.displayOverride;
     const sweeping = Boolean(override && finite(override.speed) !== null && finite(override.rpm) !== null);
     const rpmMax = finite(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : finite(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
+    if (lastScale !== rpmMax) {
+      lastScale = rpmMax;
+      // Each drum step and its printed thousand-RPM value share one axis.
+      rpmMarks.forEach((node, index) => { node.textContent = rpmMax === null ? '—' : String(Number((index * rpmMax / 10000).toFixed(3))); });
+    }
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available && !ev ? finite(model.rpm) : null;
     element.dataset.mode = mode;
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     lastMode = mode;
     label('program', mode === 'race' ? 'CONDUITE SPORT' : 'GRAND TOURISME');
-    label('left', mode === 'race' ? (ev ? 'PUISSANCE' : 'RAPPORT') : 'PUISSANCE');
-    label('leftUnit', mode === 'race' && !ev ? 'VITESSE' : 'kW');
+    label('left', ev ? 'COUPLE' : mode === 'race' ? 'RAPPORT' : 'PUISSANCE');
+    label('leftUnit', ev ? 'Nm' : mode === 'race' ? 'VITESSE' : 'kW');
     label('right', mode === 'race' ? 'TEMPS AU TOUR' : 'ACCÉLÉRATEUR');
     label('rightUnit', mode === 'race' ? 'COURSE' : '%');
     label('drum', ev ? 'PUISSANCE' : 'TOURS MOTEUR');
     label('rpmUnit', ev ? 'kW' : 'tr/min');
-    label('rpmBase', ev ? 'E-DRIVE' : 'MOTEUR');
+    label('rpmBase', ev ? 'E-DRIVE' : rpmMax === null ? sweeping ? 'DISPLAY SCAN' : 'RPM RANGE UNKNOWN' : 'MOTEUR · ×1000');
     if (sweeping) {
-      sweepValues = { speed: speedFromFraction(override.speed), rpm: clamp(override.rpm) * (rpmMax ?? 8000) };
-      wasSweep = true;
-      handoff = null;
-    } else if (wasSweep) {
-      handoff = { at: Date.now(), speed: sweepValues?.speed ?? 0, rpm: sweepValues?.rpm ?? 0 };
-      wasSweep = false;
+      sweepValues = { speed: speedFromFraction(override.speed), rpm: rpmMax === null ? null : clamp(override.rpm) * rpmMax };
     }
     let speed = sweeping ? sweepValues.speed : speedTarget;
     let rpm = sweeping ? sweepValues.rpm : rpmTarget;
-    if (!sweeping && handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - (1 - t) ** 3;
-      speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      rpm = handoff.rpm + ((rpmTarget ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     move('speed', speed === null ? 0 : speed / 280);
-    move('rpm', ev ? 0 : rpm === null ? 0 : rpm / (rpmMax ?? 8000));
+    move('rpm', ev ? 0 : sweeping ? clamp(override.rpm) : rpm === null || rpmMax === null ? 0 : rpm / rpmMax);
     write('speed', sweeping || available ? whole(speed) : '—');
     write('rpm', ev ? available ? whole(model.powerKw) : '—' : sweeping || available ? whole(rpm) : '—');
-    write('left', mode === 'race' && !ev ? available ? String(model.gearLabel ?? '—') : '—' : available ? whole(model.powerKw) : '—');
-    write('leftFoot', mode === 'race' ? available ? 'RAPPORT ' + String(model.gearLabel ?? '—') : '—' : available ? 'VITESSE ' + whole(speedTarget) : '—');
+    write('left', ev ? available ? whole(model.torque) : '—' : mode === 'race' ? available ? String(model.gearLabel ?? '—') : '—' : available ? whole(model.powerKw) : '—');
     write('right', mode === 'race' ? Boolean(context.racing) && available ? lap(model.currentLap) : '—' : available ? whole(model.throttlePercent) : '—');
-    write('rightFoot', mode === 'race' ? Boolean(context.racing) && available ? 'MEILLEUR ' + lap(model.bestLap) : '—' : available ? (ev ? 'MOTEUR ÉLECTRIQUE' : 'MOTEUR EN SERVICE') : '—');
-    write('status', available ? ev ? 'E-DRIVE' : 'MOTEUR ' + String(model.gearLabel ?? '—') : 'NO SIGNAL');
+    values.rightFoot.hidden = mode !== 'race';
+    write('rightFoot', mode === 'race' && Boolean(context.racing) && available ? 'MEILLEUR ' + lap(model.bestLap) : '—');
+    values.status.hidden = mode !== 'freeRoam' || ev;
+    write('status', mode === 'freeRoam' && !ev && available ? 'RAPPORT ' + String(model.gearLabel ?? '—') : '');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

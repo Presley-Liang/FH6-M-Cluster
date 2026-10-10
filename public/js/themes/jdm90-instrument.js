@@ -23,7 +23,7 @@ export function createJdm90Instrument({ document, mount }) {
           <div class="jdm90-readout jdm90-thermal"><span>TYRE / MAX</span><strong data-jdm-value="tyre">—</strong><small>°C</small></div>
         </div>
         <div class="jdm90-free-data">
-          <div class="jdm90-readout jdm90-readout-primary"><span>POWER OUTPUT</span><strong data-jdm-value="freePower">—</strong><small>kW</small></div>
+          <div class="jdm90-readout jdm90-readout-primary"><span data-jdm-label="freeOutput">POWER OUTPUT</span><strong data-jdm-value="freePower">—</strong><small data-jdm-label="freeOutputUnit">kW</small></div>
           <div class="jdm90-readout jdm90-fuel"><span>FUEL RAW</span><strong data-jdm-value="fuel">—</strong><small>raw</small></div>
           <div class="jdm90-free-track"><span data-jdm-label="response">ENGINE RESPONSE</span><i data-jdm-bar="throttle"></i></div>
         </div>
@@ -49,8 +49,8 @@ export function createJdm90Instrument({ document, mount }) {
       <div class="jdm90-right">
         <div class="jdm90-mode-flag"><i></i><span data-jdm-label="mode">RACE SPEC</span><small>1995—2002</small></div>
         <div class="jdm90-speed-window"><span>VELOCITY</span><strong data-jdm-value="speed">—</strong><small>km/h</small><i class="jdm90-speed-stripe"></i></div>
-        <div class="jdm90-right-details jdm90-race-data"><div><span>POWER</span><strong data-jdm-value="racePower">—</strong><small>kW</small></div><div class="jdm90-boost"><span>BOOST</span><strong data-jdm-value="boost">—</strong><small>RAW</small></div></div>
-        <div class="jdm90-right-details jdm90-free-data"><div><span>THROTTLE</span><strong data-jdm-value="throttle">—</strong><small>%</small></div><div><span>DRIVE</span><strong data-jdm-value="drive">—</strong></div></div>
+        <div class="jdm90-right-details jdm90-race-data"><div><span data-jdm-label="raceOutput">POWER</span><strong data-jdm-value="racePower">—</strong><small data-jdm-label="raceOutputUnit">kW</small></div><div class="jdm90-boost"><span>BOOST</span><strong data-jdm-value="boost">—</strong><small>RAW</small></div></div>
+        <div class="jdm90-right-details jdm90-free-data"><div><span>THROTTLE</span><strong data-jdm-value="throttle">—</strong><small>%</small></div><div><span>BRAKE</span><strong data-jdm-value="drive">—</strong><small>%</small></div></div>
       </div>
       <div class="jdm90-status"><span><i class="jdm90-status-lamp"></i><b data-jdm-label="signal">NO SIGNAL</b></span><span>TYPE 02 <i>///</i> FUNCTION FIRST</span></div>
     </div>`;
@@ -78,7 +78,6 @@ export function createJdm90Instrument({ document, mount }) {
     lamps.append(lamp);
     return lamp;
   });
-  const tickLabels = [];
   const polar = (radius, degree) => {
     const radians = degree * Math.PI / 180;
     return [360 + Math.sin(radians) * radius, 360 - Math.cos(radians) * radius];
@@ -94,28 +93,9 @@ export function createJdm90Instrument({ document, mount }) {
     node.setAttribute('class', className);
     parent.append(node);
   };
-  for (let index = 0; index <= 40; index += 1) {
-    const degree = -120 + index * 6;
-    const major = index % 5 === 0;
-    line(ticks, degree, major ? 243 : 255, 273, major ? 'jdm90-tick-major' : 'jdm90-tick-minor');
-    if (major) {
-      const [x, y] = polar(212, degree);
-      const label = document.createElementNS(svgNS, 'text');
-      label.setAttribute('x', x.toFixed(2));
-      label.setAttribute('y', y.toFixed(2));
-      label.setAttribute('class', 'jdm90-tick-label');
-      label.setAttribute('text-anchor', 'middle');
-      label.setAttribute('dominant-baseline', 'middle');
-      ticks.append(label);
-      tickLabels.push(label);
-    }
-  }
-  for (let index = 0; index <= 6; index += 1) line(redline, 84 + index * 6, 251, 277, 'jdm90-redline-mark');
 
-  let lastScale;
+
   let lastMode = null;
-  let wasSweep = false;
-  let handoff = null;
   let sweepSpeed = 0;
   let sweepRpm = 0;
   const finite = value => typeof value === 'number' && Number.isFinite(value) ? value : null;
@@ -128,6 +108,59 @@ export function createJdm90Instrument({ document, mount }) {
   const decimal = (value, places) => finite(value) === null ? '—' : value.toFixed(places);
   const lapTime = seconds => finite(seconds) === null || seconds < 0 ? '—' : String(Math.floor(seconds / 60)) + ':' + (seconds % 60).toFixed(3).padStart(6, '0');
   const normalizeMode = mode => mode === 'freeRoam' || mode === 'free' ? 'freeRoam' : 'race';
+
+  const redlineLayer = redline;
+  let priorRedline = '';
+  function updateRedline(model, context, scale, ev) {
+    const engineMax = finite(context.rpmGauge?.engineMaxRpm) ?? finite(model.engineMaxRpm);
+    const start = ev || !scale ? null : finite(context.rpmGauge?.redlineStartFraction) ?? (engineMax > 0 ? .9 * engineMax / scale : null);
+    const end = ev || !scale ? null : finite(context.rpmGauge?.redlineEndFraction) ?? (engineMax > 0 ? engineMax / scale : null);
+    const valid = start !== null && end !== null && start >= 0 && end >= start && end > 0;
+    const key = valid ? clamp(start) + ':' + clamp(end) : 'unknown';
+    if (key === priorRedline) return;
+    priorRedline = key;
+    redlineLayer.innerHTML = '';
+    redlineLayer.setAttribute('data-redline-start', valid ? String(clamp(start)) : '');
+    redlineLayer.setAttribute('data-redline-end', valid ? String(clamp(end)) : '');
+    if (!valid) return;
+    for (let index = 0; index <= 6; index += 1) {
+      const angle = -120 + (clamp(start) + (clamp(end) - clamp(start)) * index / 6) * 240;
+      line(redlineLayer, angle, 251, 277, 'jdm90-redline-mark');
+    }
+  }
+
+  let priorRpmAxis = '';
+  function drawRpmScale(max, ev) {
+    const key = ev ? 'ev' : String(max);
+    if (key === priorRpmAxis) return;
+    priorRpmAxis = key;
+    ticks.innerHTML = '';
+    // Whole-thousand major ticks and an exact partial endpoint use the same
+    // physical fractions as the pointer. Minor marks interpolate each interval.
+    const axisMax = max ?? 8000;
+    const step = axisMax <= 9000 ? 1000 : 2000;
+    const stops = [];
+    for (let value = 0; value <= axisMax; value += step) stops.push(value);
+    if (stops.at(-1) !== axisMax) stops.push(axisMax);
+    const markAt = (value, major) => {
+      const angle = -120 + value / axisMax * 240;
+      const caption = ev || max === null ? '' : String(Number((value / 1000).toFixed(2)));
+      line(ticks, angle, major ? 243 : 255, 273, major ? 'jdm90-tick-major' : 'jdm90-tick-minor');
+      if (major) {
+        const [x, y] = polar(212, angle), label = document.createElementNS(svgNS, 'text');
+        label.setAttribute('x', x.toFixed(2)); label.setAttribute('y', y.toFixed(2));
+        label.setAttribute('class', 'jdm90-tick-label'); label.setAttribute('text-anchor', 'middle'); label.setAttribute('dominant-baseline', 'middle');
+        label.textContent = caption; ticks.append(label);
+      }
+    };
+    for (let index = 0; index < stops.length; index += 1) {
+      markAt(stops[index], true);
+      if (index === stops.length - 1) continue;
+      for (let minor = 1; minor < 5; minor += 1) markAt(stops[index] + (stops[index + 1] - stops[index]) * minor / 5, false);
+    }
+    ticks.setAttribute('data-rpm-axis-max', ev || max === null ? '' : String(max));
+
+  }
 
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
@@ -151,11 +184,12 @@ export function createJdm90Instrument({ document, mount }) {
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.rpm.textContent = ev ? 'POWER / kW' : 'ENGINE / r/min';
     labels.response.textContent = ev ? 'DRIVE RESPONSE' : 'ENGINE RESPONSE';
+    labels.raceOutput.textContent = ev ? 'TORQUE' : 'POWER';
+    labels.raceOutputUnit.textContent = ev ? 'Nm' : 'kW';
+    labels.freeOutput.textContent = ev ? 'DRIVE TORQUE' : 'POWER OUTPUT';
+    labels.freeOutputUnit.textContent = ev ? 'Nm' : 'kW';
     dial.setAttribute('aria-label', ev ? 'Electric power readout' : 'Engine revolutions');
-    if (lastScale !== rpmMax) {
-      lastScale = rpmMax;
-      tickLabels.forEach((node, index) => { node.textContent = rpmMax === null ? '—' : String(Math.round(index * rpmMax / 8000)); });
-    }
+    drawRpmScale(rpmMax, ev);
 
     const rpmFraction = finite(context.gaugeFraction) ?? finite(model.rpmRatio) ?? 0;
     const needleFraction = ev ? 0 : clamp(rpmFraction);
@@ -167,29 +201,19 @@ export function createJdm90Instrument({ document, mount }) {
       ? Math.max(0, Math.min(10, Math.ceil((model.rpmRatio - 0.72) / 0.028))) : 0;
     shiftLamps.forEach((lamp, index) => { lamp.dataset.lit = String(index < lit); });
 
+    updateRedline(model, context, rpmMax, ev);
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available ? finite(model.rpm) : null;
     if (sweep) {
       sweepSpeed = Math.round(clamp(context.displayOverride.speed ?? 0) * 280);
       sweepRpm = rpmMax === null ? 0 : Math.round(clamp(context.displayOverride.rpm) * rpmMax);
-      wasSweep = true;
-      handoff = null;
-    } else if (wasSweep) {
-      handoff = { start: Date.now(), speed: sweepSpeed, rpm: sweepRpm };
-      wasSweep = false;
     }
     let speed = speedTarget;
     let rpm = rpmTarget;
     if (sweep) {
       speed = sweepSpeed;
       rpm = sweepRpm;
-    } else if (handoff && available) {
-      const t = clamp((Date.now() - handoff.start) / 480);
-      const eased = 1 - Math.pow(1 - t, 3);
-      if (speedTarget !== null) speed = handoff.speed + (speedTarget - handoff.speed) * eased;
-      if (rpmTarget !== null) rpm = handoff.rpm + (rpmTarget - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    } else if (!available) handoff = null;
+    }
     write('speed', whole(speed));
     write('gear', available ? String(model.gearLabel ?? '—') : '—');
     write('rpm', ev ? available ? decimal(model.powerKw, 0) : '—'
@@ -201,14 +225,14 @@ export function createJdm90Instrument({ document, mount }) {
     write('rank', race && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
     const temperatures = Array.isArray(model.wheels) ? model.wheels.map(wheel => finite(wheel?.tempC)).filter(value => value !== null) : [];
     write('tyre', available && temperatures.length ? whole(Math.max(...temperatures)) : '—');
-    write('racePower', available ? decimal(model.powerKw, 0) : '—');
+    write('racePower', available ? decimal(ev ? model.torque : model.powerKw, 0) : '—');
     write('boost', available ? decimal(model.boostRaw, 2) : '—');
-    write('freePower', available ? decimal(model.powerKw, 0) : '—');
+    write('freePower', available ? decimal(ev ? model.torque : model.powerKw, 0) : '—');
     const fuel = finite(model.fuelRaw);
     write('fuel', available && fuel !== null ? decimal(fuel, 2) : '—');
     const throttle = available ? finite(model.throttlePercent) : null;
     write('throttle', whole(throttle));
-    write('drive', available ? String(model.gearLabel ?? '—') : '—');
+    write('drive', available ? whole(model.brakePercent) : '—');
     bar.style.transform = 'scaleX(' + (throttle === null ? 0 : clamp(throttle / 100)).toFixed(3) + ')';
   }
 

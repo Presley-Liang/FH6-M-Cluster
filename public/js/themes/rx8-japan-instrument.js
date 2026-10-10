@@ -25,7 +25,7 @@ export function createRx8JapanInstrument({ document, mount }) {
             <div class="rx8-side-caption"><span>FUEL / RAW</span><strong data-rx8-value="fuel">—</strong></div>
           </div>
           <div class="rx8-side-foot rx8-race-data"><span>BEST LAP</span><strong data-rx8-value="best">—</strong></div>
-          <div class="rx8-side-foot rx8-free-data"><span>POWER OUTPUT</span><strong data-rx8-value="power">—</strong><small>kW</small></div>
+          <div class="rx8-side-foot rx8-free-data"><span data-rx8-label="freeOutput">POWER OUTPUT</span><strong data-rx8-value="power">—</strong><small data-rx8-label="freeOutputUnit">kW</small></div>
         </div>
         <div class="rx8-center">
           <div class="rx8-shift" aria-hidden="true"><span>SHIFT</span><div class="rx8-shift-lamps"></div></div>
@@ -44,7 +44,6 @@ export function createRx8JapanInstrument({ document, mount }) {
             <div class="rx8-speed-window"><span>DIGITAL SPEED</span><div><strong data-rx8-value="speed">—</strong><small>km/h</small></div></div>
           </div>
           <div class="rx8-center-foot rx8-race-data"><span>CURRENT LAP</span><strong data-rx8-value="lap">—</strong><small data-rx8-value="rank">—</small></div>
-          <div class="rx8-center-foot rx8-free-data"><span>ROAD SPEED</span><strong data-rx8-value="freeSpeed">—</strong><small>km/h</small></div>
         </div>
         <div class="rx8-side rx8-side-right">
           <div class="rx8-side-bezel">
@@ -56,7 +55,7 @@ export function createRx8JapanInstrument({ document, mount }) {
             <div class="rx8-side-caption"><span>THROTTLE</span><strong data-rx8-value="throttle">—</strong><small>%</small></div>
           </div>
           <div class="rx8-side-foot rx8-race-data"><span>BOOST / RAW</span><strong data-rx8-value="boost">—</strong></div>
-          <div class="rx8-side-foot rx8-free-data"><span>DRIVE</span><strong data-rx8-value="drive">—</strong></div>
+          <div class="rx8-side-foot rx8-free-data"><span>BRAKE INPUT</span><strong data-rx8-value="brake">—</strong><small>%</small></div>
         </div>
       </div>
       <div class="rx8-status"><span><i></i><b data-rx8-label="signal">NO SIGNAL</b></span><span>INSTRUMENT SYSTEM / 2003</span></div>
@@ -97,22 +96,7 @@ export function createRx8JapanInstrument({ document, mount }) {
     node.setAttribute('class', className);
     parent.append(node);
   };
-  const tachLabels = [];
-  for (let index = 0; index <= 40; index += 1) {
-    const angle = -125 + index * 6.25;
-    const major = index % 5 === 0;
-    tick(tachTicks, 300, 300, angle, major ? 211 : 224, 242, major ? 'rx8-tach-major' : 'rx8-tach-minor');
-    if (major) {
-      const [x, y] = point(300, 300, 183, angle);
-      const node = document.createElementNS(ns, 'text');
-      node.setAttribute('x', x.toFixed(2)); node.setAttribute('y', y.toFixed(2));
-      node.setAttribute('text-anchor', 'middle'); node.setAttribute('dominant-baseline', 'middle');
-      node.setAttribute('class', 'rx8-tach-number');
-      tachTicks.append(node);
-      tachLabels.push(node);
-    }
-  }
-  for (let index = 0; index <= 6; index += 1) tick(redline, 300, 300, 87 + index * 6.25, 215, 247, 'rx8-redline-tick');
+
   for (const name of ['fuel', 'throttle']) {
     const layer = element.querySelector('[data-rx8-ticks="' + name + '"]');
     for (let index = 0; index <= 10; index += 1) {
@@ -120,15 +104,12 @@ export function createRx8JapanInstrument({ document, mount }) {
     }
   }
 
-  let lastScale;
   let lastMode;
   let lastNeedle = '';
   let lastFuel = '';
   let lastThrottle = '';
-  let wasSweep = false;
   let sweepSpeed = null;
   let sweepRpm = null;
-  let handoff = null;
   const write = (key, content) => {
     const node = values[key];
     if (node && node.textContent !== content) node.textContent = content;
@@ -141,6 +122,59 @@ export function createRx8JapanInstrument({ document, mount }) {
     if (previous !== transform) node.setAttribute('transform', transform);
     return transform;
   };
+
+  const redlineLayer = redline;
+  let priorRedline = '';
+  function updateRedline(model, context, scale, ev) {
+    const engineMax = finite(context.rpmGauge?.engineMaxRpm) ?? finite(model.engineMaxRpm);
+    const start = ev || !scale ? null : finite(context.rpmGauge?.redlineStartFraction) ?? (engineMax > 0 ? .9 * engineMax / scale : null);
+    const end = ev || !scale ? null : finite(context.rpmGauge?.redlineEndFraction) ?? (engineMax > 0 ? engineMax / scale : null);
+    const valid = start !== null && end !== null && start >= 0 && end >= start && end > 0;
+    const key = valid ? clamp(start) + ':' + clamp(end) : 'unknown';
+    if (key === priorRedline) return;
+    priorRedline = key;
+    redlineLayer.innerHTML = '';
+    redlineLayer.setAttribute('data-redline-start', valid ? String(clamp(start)) : '');
+    redlineLayer.setAttribute('data-redline-end', valid ? String(clamp(end)) : '');
+    if (!valid) return;
+    for (let index = 0; index <= 6; index += 1) {
+      const angle = -125 + (clamp(start) + (clamp(end) - clamp(start)) * index / 6) * 250;
+      tick(redlineLayer, 300, 300, angle, 215, 247, 'rx8-redline-tick');
+    }
+  }
+
+  let priorRpmAxis = '';
+  function drawRpmScale(max, ev) {
+    const key = ev ? 'ev' : String(max);
+    if (key === priorRpmAxis) return;
+    priorRpmAxis = key;
+    tachTicks.innerHTML = '';
+    // Whole-thousand major ticks and an exact partial endpoint use the same
+    // physical fractions as the pointer. Minor marks interpolate each interval.
+    const axisMax = max ?? 8000;
+    const step = axisMax <= 9000 ? 1000 : 2000;
+    const stops = [];
+    for (let value = 0; value <= axisMax; value += step) stops.push(value);
+    if (stops.at(-1) !== axisMax) stops.push(axisMax);
+    const markAt = (value, major) => {
+      const angle = -125 + value / axisMax * 250;
+      const caption = ev || max === null ? '' : String(Number((value / 1000).toFixed(2)));
+      tick(tachTicks, 300, 300, angle, major ? 211 : 224, 242, major ? 'rx8-tach-major' : 'rx8-tach-minor');
+      if (major) {
+        const [x, y] = point(300, 300, 183, angle), label = document.createElementNS(ns, 'text');
+        label.setAttribute('x', x.toFixed(2)); label.setAttribute('y', y.toFixed(2));
+        label.setAttribute('class', 'rx8-tach-number'); label.setAttribute('text-anchor', 'middle'); label.setAttribute('dominant-baseline', 'middle');
+        label.textContent = caption; tachTicks.append(label);
+      }
+    };
+    for (let index = 0; index < stops.length; index += 1) {
+      markAt(stops[index], true);
+      if (index === stops.length - 1) continue;
+      for (let minor = 1; minor < 5; minor += 1) markAt(stops[index] + (stops[index + 1] - stops[index]) * minor / 5, false);
+    }
+    tachTicks.setAttribute('data-rpm-axis-max', ev || max === null ? '' : String(max));
+
+  }
 
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
@@ -168,34 +202,21 @@ export function createRx8JapanInstrument({ document, mount }) {
     }
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.drive.textContent = ev ? 'POWER / kW' : '×1000 r/min';
-    fuelCaption.textContent = ev ? 'POWER / kW' : 'FUEL / RAW';
+    fuelCaption.textContent = ev ? 'TORQUE / Nm' : 'FUEL / RAW';
     tachSvg.setAttribute('aria-label', ev ? 'Electric power readout' : 'Engine revolutions');
-    if (lastScale !== scale) {
-      lastScale = scale;
-      tachLabels.forEach((node, index) => { node.textContent = scale === null ? '' : String(Math.round(index * scale / 8000)); });
-    }
+    drawRpmScale(scale, ev);
+    updateRedline(model, context, scale, ev);
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available ? finite(model.rpm) : null;
     if (sweep) {
       sweepSpeed = clamp(override.speed) * 280;
       sweepRpm = scale === null ? null : clamp(override.rpm) * scale;
-      wasSweep = true;
-      handoff = null;
-    } else if (wasSweep) {
-      handoff = { start: Date.now(), speed: sweepSpeed, rpm: sweepRpm };
-      wasSweep = false;
     }
     let speed = speedTarget, rpm = rpmTarget;
     if (sweep) {
       speed = sweepSpeed;
       rpm = sweepRpm;
-    } else if (handoff && available) {
-      const t = clamp((Date.now() - handoff.start) / 480);
-      const eased = 1 - Math.pow(1 - t, 3);
-      if (speedTarget !== null && handoff.speed !== null) speed = handoff.speed + (speedTarget - handoff.speed) * eased;
-      if (rpmTarget !== null && handoff.rpm !== null) rpm = handoff.rpm + (rpmTarget - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    } else if (!available) handoff = null;
+    }
 
     const rpmFraction = sweep ? clamp(override.rpm) : finite(context.gaugeFraction) ?? (scale && rpm !== null ? rpm / scale : 0);
     const angle = -125 + clamp(rpmFraction) * 250;
@@ -221,18 +242,19 @@ export function createRx8JapanInstrument({ document, mount }) {
     lamps.forEach((lamp, index) => { lamp.dataset.lit = String(index < lit); });
 
     write('speed', sweep || available ? whole(speed) : '—');
-    write('freeSpeed', available ? whole(speed) : '—');
     write('rpm', ev ? (available ? whole(model.powerKw) : '—') : sweep || available ? whole(rpm) : '—');
     write('gear', available && !ev ? String(model.gearLabel ?? '—') : '—');
-    write('fuel', ev ? available ? whole(model.powerKw) : '—' : fuelRaw === null ? '—' : decimal(fuelRaw, 2));
+    write('fuel', ev ? available ? whole(model.torque) : '—' : fuelRaw === null ? '—' : decimal(fuelRaw, 2));
     write('throttle', whole(throttle));
     const racing = mode === 'race' && Boolean(context.racing) && available;
     write('lap', racing ? time(model.currentLap) : '—');
     write('best', racing ? time(model.bestLap) : '—');
     write('rank', racing && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
     write('boost', available ? decimal(model.boostRaw, 2) : '—');
-    write('power', available ? whole(model.powerKw) : '—');
-    write('drive', ev ? 'E-DRIVE' : available ? String(model.gearLabel ?? '—') : '—');
+    labels.freeOutput.textContent = ev ? 'LATERAL G' : 'POWER OUTPUT';
+    labels.freeOutputUnit.textContent = ev ? 'g' : 'kW';
+    write('power', available ? ev ? decimal(model.gX, 2) : whole(model.powerKw) : '—');
+    write('brake', available ? whole(model.brakePercent) : '—');
   }
 
   return { element, update, destroy() { element.remove(); modeIdentity.remove(); } };

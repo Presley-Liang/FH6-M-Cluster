@@ -39,7 +39,7 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     const lower = Math.min(speedStops.length - 2, Math.floor(index));
     return speedStops[lower] + (speedStops[lower + 1] - speedStops[lower]) * (index - lower);
   };
-  let priorMode = 'race', lastSweep = null, handoff = null, shownDrive = -1;
+  let priorMode = 'race', lastSweep = null, shownDrive = -1;
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live';
@@ -55,43 +55,33 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available && !ev ? finite(model.rpm) : null;
     if (sweeping) {
-      lastSweep = { speed: speedFromFraction(override.speed), rpm: clamp(override.rpm) * (rpmMax ?? 8000) };
-      handoff = null;
-    } else if (lastSweep) {
-      handoff = { ...lastSweep, at: Date.now() };
-      lastSweep = null;
+      lastSweep = { speed: speedFromFraction(override.speed), rpm: rpmMax === null ? null : clamp(override.rpm) * rpmMax };
     }
     let speed = sweeping ? lastSweep.speed : speedTarget;
     let rpm = sweeping ? lastSweep.rpm : rpmTarget;
-    if (!sweeping && handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - (1 - t) ** 3;
-      speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      rpm = handoff.rpm + ((rpmTarget ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     element.dataset.mode = mode;
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = available ? 'live' : 'absent';
     label('mode', mode === 'race' ? 'RACE' : 'FREE');
-    label('drive', ev ? 'DRIVE INPUT' : 'ENGINE SPEED');
-    label('driveUnit', ev ? '%' : 'RPM');
-    label('driveNote', ev ? 'ELECTRIC DRIVE' : 'POWERTRAIN');
+    label('drive', ev ? 'DRIVE INPUT' : sweeping && rpmMax === null ? 'DISPLAY SCAN' : 'ENGINE SPEED');
+    label('driveUnit', ev ? '%' : sweeping && rpmMax === null ? '' : 'RPM');
+    label('driveNote', ev ? 'ELECTRIC DRIVE' : rpmMax === null ? 'RPM RANGE UNKNOWN' : 'POWERTRAIN');
     label('speedHeading', mode === 'race' ? 'VELOCITY / TRACK' : 'ROAD SPEED');
     label('centerFoot', mode === 'race' ? 'PERFORMANCE / RACE' : 'DRIVE / FREE');
     label('sideMain', ev ? 'DRIVE OUTPUT' : 'SELECTED GEAR');
     label('sideUnit', ev ? 'kW' : 'DRIVE');
-    label('sideSecond', mode === 'race' ? 'CURRENT LAP' : ev ? 'DRIVE INPUT' : 'ENGINE OUTPUT');
-    label('sideSecondUnit', mode === 'race' ? 'TIME' : ev ? '%' : 'kW');
-    label('foot1', mode === 'race' ? 'LATERAL G' : 'THROTTLE INPUT');
+    label('sideSecond', mode === 'race' ? 'CURRENT LAP' : ev ? 'SELECTED GEAR' : 'ENGINE OUTPUT');
+    label('sideSecondUnit', mode === 'race' ? 'TIME' : ev ? '' : 'kW');
+    label('foot1', mode === 'race' ? 'LATERAL G' : ev ? 'BRAKE INPUT' : 'THROTTLE INPUT');
     label('foot1Unit', mode === 'race' ? 'g' : '%');
-    label('foot2', mode === 'race' ? 'BEST LAP' : ev ? 'DRIVE OUTPUT' : 'ENGINE OUTPUT');
-    label('foot2Unit', mode === 'race' ? 'TIME' : 'kW');
-    label('foot3', mode === 'race' ? ev ? 'THROTTLE INPUT' : 'ENGINE OUTPUT' : 'DRIVE STATE');
-    label('foot3Unit', mode === 'race' ? ev ? '%' : 'kW' : '');
+    label('foot2', mode === 'race' ? 'BEST LAP' : ev ? 'LATERAL G' : 'BRAKE INPUT');
+    label('foot2Unit', mode === 'race' ? 'TIME' : ev ? 'g' : '%');
+    label('foot3', mode === 'race' ? ev ? 'BRAKE INPUT' : 'ENGINE OUTPUT' : ev ? 'LONG. G' : 'LATERAL G');
+    label('foot3Unit', mode === 'race' ? ev ? '%' : 'kW' : 'g');
     label('bottom', mode === 'race' ? 'TRACK INFORMATION' : 'DRIVE INFORMATION');
     write('status', available ? 'TELEMETRY LIVE' : 'NO SIGNAL');
     write('speed', sweeping || available ? whole(speed) : '—');
-    const driveFraction = ev ? sweeping ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0 : rpm === null ? 0 : clamp(rpm / (rpmMax ?? 8000));
+    const driveFraction = ev ? sweeping ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0 : sweeping ? clamp(override.rpm) : rpm === null || rpmMax === null ? 0 : clamp(rpm / rpmMax);
     if (Math.abs(driveFraction - shownDrive) > .002) {
       shownDrive = driveFraction;
       meter.style.height = (driveFraction * 100).toFixed(2) + '%';
@@ -99,10 +89,10 @@ export function createTaycanEuropeInstrument({ document, mount }) {
     write('drive', ev ? sweeping ? whole(clamp(override.rpm) * 100) : available ? whole(model.throttlePercent) : '—' : sweeping || available ? whole(rpm) : '—');
     write('sideMain', available ? ev ? whole(model.powerKw) : String(model.gearLabel ?? '—') : '—');
     const racing = mode === 'race' && Boolean(context.racing) && available;
-    write('sideSecond', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? ev ? whole(model.throttlePercent) : whole(model.powerKw) : '—');
-    write('foot1', mode === 'race' ? available ? decimal(model.gX) : '—' : available ? whole(model.throttlePercent) : '—');
-    write('foot2', mode === 'race' ? racing ? lap(model.bestLap) : '—' : available ? whole(model.powerKw) : '—');
-    write('foot3', mode === 'race' ? available ? whole(ev ? model.throttlePercent : model.powerKw) : '—' : available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : '—');
+    write('sideSecond', mode === 'race' ? racing ? lap(model.currentLap) : '—' : available ? ev ? String(model.gearLabel ?? '—') : whole(model.powerKw) : '—');
+    write('foot1', mode === 'race' ? available ? decimal(model.gX) : '—' : available ? whole(ev ? model.brakePercent : model.throttlePercent) : '—');
+    write('foot2', mode === 'race' ? racing ? lap(model.bestLap) : '—' : available ? ev ? decimal(model.gX) : whole(model.brakePercent) : '—');
+    write('foot3', mode === 'race' ? available ? whole(ev ? model.brakePercent : model.powerKw) : '—' : available ? decimal(ev ? model.gZ : model.gX) : '—');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

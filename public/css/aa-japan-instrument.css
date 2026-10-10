@@ -1,12 +1,36 @@
 #cluster:not([data-theme-id="pre1949.japan"]) :is(.aa-instrument,.aa-identity){display:none!important}
 #cluster[data-theme-id="pre1949.japan"] :is(.instrument-shell,.center-window,.fixed-info,.shift-light,.cluster-pagination,.cluster-caption,.mode-identity){display:none!important}
 #cluster[data-theme-id="pre1949.japan"] .cluster-stage{overflow:hidden;background:#111!important}
-/* A modest detached speed cylinder and separate rectangular signal plates. */
+/* Toyota UK's AA description: dark wood with small chrome-rimmed central dials.
+   RPM, gear and lap fields below are game adaptations, not original AA equipment. */
 .aa-dashboard{position:absolute;inset:0;background:linear-gradient(#473b2c,#635441 30%,#3f3428 70%,#241f1a)}
 .aa-plaque{position:absolute;inset:8% 9% 80%;padding:1.6cqw 2cqw;border-bottom:1px solid #978168}.aa-instrument{--heritage-ink:#ded2b6;--heritage-muted:#bbae91}
 .aa-cylinder{position:absolute;inset:21% 16% 23% 43%;border-radius:50%;background:linear-gradient(150deg,#c0ac87,#66563f 12%,#3b3327 85%,#b19e79);box-shadow:0 1cqw 2cqw #0008}
 .aa-dial{position:absolute;inset:4% 8%}.aa-dial .heritage-face{fill:#c7b99a;stroke:#443b2c}.aa-dial .heritage-ticks{stroke:#3c392b}.aa-dial .heritage-ticks text{fill:#3c392b}.aa-dial .heritage-needle path{fill:#853926}
-.aa-cylinder .heritage-speed{position:absolute;left:27%;right:27%;top:63%;bottom:17%;background:#313024;border:1px solid #776d52;border-radius:.5cqw}.aa-cylinder .heritage-speed strong{font-size:3.5cqw}.aa-cylinder .heritage-speed small{font-size:.7cqw}
+.aa-cylinder .heritage-speed{position:absolute;left:27%;right:27%;top:63%;bottom:17%;background:#313024;border:1px solid #776d52;border-radius:.5cqw}.aa-cylinder .heritage-speed strong{font-size:max(18px,3.5cqw)}.aa-cylinder .heritage-speed small{font-size:max(8px,.7cqw)}
 .aa-aux{position:absolute;inset:30% 61% 27% 13%;display:flex;flex-direction:column;justify-content:space-around;padding:2cqw;border:1px solid #a28c69;background:linear-gradient(#3a3529,#27271f);box-shadow:inset 0 .4cqw 1cqw #0008}
 .aa-aux .heritage-gear{border-top:1px solid #8d7b5b;padding-top:1cqw}.aa-slots{position:absolute;inset:80% 13% 6%;padding:1cqw 2cqw;background:#302b22;border:1px solid #887354;box-shadow:inset 0 .3cqw .6cqw #0009}
-@media(max-width:759px){.aa-plaque{inset:10% 5% 77%;padding:1cqw}.aa-cylinder{inset:26% 6% 23% 43%;border-radius:50%}.aa-aux{inset:29% 63% 26% 5%;padding:2cqw}.aa-cylinder .heritage-speed strong{font-size:25px}.aa-cylinder .heritage-speed small{font-size:7px}.aa-slots{left:5%;right:5%;top:82%}}
+@media(max-width:759px){.aa-plaque{inset:10% 5% 77%;padding:1cqw}.aa-cylinder{inset:26% 6% 23% 43%;border-radius:50%}.aa-aux{inset:29% 63% 26% 5%;padding:2cqw}.aa-cylinder .heritage-speed strong{font-size:25px}.aa-cylinder .heritage-speed small{font-size:8px}.aa-slots{left:5%;right:5%;top:82%}}
+/* Keep circular housings circular rather than stretching their SVG with the panel. */
+.aa-dashboard{background:repeating-linear-gradient(3deg,#493627 0 2px,#473325 3px 5px,#513c2b 6px 8px);box-shadow:inset 0 5cqw 8cqw #0008,inset 0 -4cqw 5cqw #0009}
+.aa-cylinder{inset:24% auto auto 37.5%;width:25%;aspect-ratio:1;max-height:none;background:radial-gradient(circle,#29271f 66%,#d5d0b9 68%,#6b695e 71%,#171813 74%)}
+.aa-dial{inset:5%}
+.aa-aux{display:contents}
+.aa-aux .heritage-drive,.aa-aux .heritage-gear{position:absolute;top:34%;box-sizing:border-box;width:19%;aspect-ratio:1;border:2px solid #b0b09b;border-radius:50%;background:radial-gradient(circle,#181d16 66%,#686956 70%,#13150f 73%);box-shadow:0 .6cqw 1cqw #0009;padding:2cqw 1.5cqw;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.4cqw;text-align:center}
+.aa-aux .heritage-drive{left:14%}.aa-aux .heritage-gear{right:14%}
+.aa-aux .heritage-drive-values b{font-size:max(14px,2cqw)}
+.aa-aux .heritage-drive>small,.aa-aux .heritage-track{display:none}
+.aa-aux .heritage-gear b{font-size:max(24px,4cqw)}
+.aa-cylinder .heritage-speed{left:34%;right:34%;top:67%;bottom:14%}
+.aa-cylinder .heritage-speed small{display:none}
+.aa-slots{left:20%;right:20%;top:82%;padding:.7cqw 1cqw;border-radius:.5cqw}
+@media(max-width:759px){
+ .aa-cylinder{left:33%;width:34%;top:32%;max-height:none}
+ .aa-aux .heritage-drive,.aa-aux .heritage-gear{top:39%;width:24%;padding:5px 3px}
+ .aa-aux .heritage-drive{left:6%}.aa-aux .heritage-gear{right:6%}
+ .aa-aux .heritage-drive>span{font-size:8px}
+ .aa-aux .heritage-drive-values b{font-size:14px}
+ .aa-aux .heritage-gear b{font-size:23px}
+ .aa-cylinder .heritage-speed strong{font-size:19px}
+ .aa-slots{left:5%;right:5%;top:82%}
+}

@@ -16,7 +16,7 @@ export function createC8AmericaInstrument({ document, mount }) {
         <div class="c8-side c8-side-left">
           <div class="c8-tile c8-race"><small>POSITION</small><strong data-c8-value="rank">—</strong><span>RACE ORDER</span></div>
           <div class="c8-tile c8-race"><small>CURRENT LAP</small><strong data-c8-value="lap">—</strong><span>SESSION TIME</span></div>
-          <div class="c8-tile c8-free"><small>POWER</small><strong data-c8-value="power">—</strong><span>kW · LIVE OUTPUT</span></div>
+          <div class="c8-tile c8-free"><small data-c8-label="output">POWER</small><strong data-c8-value="power">—</strong><span data-c8-label="outputUnit">kW · LIVE OUTPUT</span></div>
           <div class="c8-tile c8-free"><small>THROTTLE</small><strong data-c8-value="throttle">—</strong><span>PERCENT INPUT</span></div>
         </div>
         <div class="c8-core">
@@ -32,7 +32,7 @@ export function createC8AmericaInstrument({ document, mount }) {
           <div class="c8-tile c8-race"><small>BEST LAP</small><strong data-c8-value="best">—</strong><span>SESSION BEST</span></div>
           <div class="c8-tile c8-race"><small>G · X AXIS</small><strong data-c8-value="g">—</strong><span>LIVE ACCELERATION</span></div>
           <div class="c8-tile c8-free"><small>TOP SPEED</small><strong data-c8-value="top">—</strong><span>KM/H · SESSION</span></div>
-          <div class="c8-tile c8-free"><small>DRIVE STATE</small><strong data-c8-value="state">—</strong><span>CURRENT GEAR</span></div>
+          <div class="c8-tile c8-free"><small>BRAKE</small><strong data-c8-value="state">—</strong><span>PERCENT INPUT</span></div>
         </div>
       </div>
       <div class="c8-footer"><span>DRIVER INFORMATION CENTER</span><span class="c8-footer-bars"><i></i><i></i><i></i></span><span>AMERICAN PERFORMANCE / 2020—24</span></div>
@@ -75,7 +75,6 @@ export function createC8AmericaInstrument({ document, mount }) {
   const write = (key, value) => { if (refs[key] && refs[key].textContent !== value) refs[key].textContent = value; };
   let lastMode = 'race';
   let lastSweep = null;
-  let handoff = null;
   let arcShown = -1;
 
   function update(model = {}, context = {}) {
@@ -97,7 +96,7 @@ export function createC8AmericaInstrument({ document, mount }) {
     const fraction = mode === 'freeRoam'
       ? clamp(scanning ? override.speed : available && finite(model.speedKmh) !== null ? model.speedKmh / 260 : 0)
       : ev ? (scanning ? clamp(override.rpm) : available && finite(model.throttlePercent) !== null ? clamp(model.throttlePercent / 100) : 0)
-        : clamp(finite(context.gaugeFraction) ?? finite(model.rpmRatio) ?? 0);
+        : scanning ? clamp(override.rpm) : max === null ? 0 : clamp(finite(context.gaugeFraction) ?? (available && finite(model.rpm) !== null ? model.rpm / max : 0));
     element.dataset.mode = mode;
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = available ? 'live' : 'absent';
@@ -105,9 +104,11 @@ export function createC8AmericaInstrument({ document, mount }) {
     labels.mode.textContent = mode === 'race' ? 'TRACK' : 'TOUR';
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.primary.textContent = mode === 'freeRoam' ? 'VELOCITY / KM/H' : ev ? 'POWER / kW' : 'ENGINE / RPM';
-    labels.arc.textContent = mode === 'freeRoam' ? 'VEHICLE SPEED · KM/H' : ev ? 'DRIVE INPUT · %' : 'ENGINE SPEED · r/min';
+    labels.arc.textContent = mode === 'freeRoam' ? 'VEHICLE SPEED · KM/H' : ev ? 'DRIVE INPUT · %' : scanning && max === null ? 'DISPLAY SCAN' : 'ENGINE SPEED · r/min';
     labels.gear.textContent = ev ? 'DRIVE' : 'GEAR';
     labels.secondaryUnit.textContent = mode === 'race' ? 'KM/H' : ev ? 'kW' : 'RPM';
+    labels.output.textContent = ev ? 'TORQUE' : 'POWER';
+    labels.outputUnit.textContent = ev ? 'Nm · LIVE OUTPUT' : 'kW · LIVE OUTPUT';
     write('max', mode === 'freeRoam' ? '260' : ev ? '100%' : max === null ? '—' : whole(max));
     if (Math.abs(arcShown - fraction) > .002) {
       arcShown = fraction;
@@ -117,24 +118,14 @@ export function createC8AmericaInstrument({ document, mount }) {
     const speedTarget = available ? finite(model.speedKmh) : null;
     const rpmTarget = available ? finite(model.rpm) : null;
     if (scanning) {
-      lastSweep = { speed: clamp(override.speed) * 260, rpm: clamp(override.rpm) * (max ?? 8000) };
-      handoff = null;
-    } else if (lastSweep) {
-      handoff = { ...lastSweep, started: Date.now() };
-      lastSweep = null;
+      lastSweep = { speed: clamp(override.speed) * 260, rpm: max === null ? null : clamp(override.rpm) * max };
     }
     let speed = speedTarget;
     let rpm = rpmTarget;
     if (scanning) {
       speed = lastSweep.speed;
       rpm = lastSweep.rpm;
-    } else if (handoff && available) {
-      const t = clamp((Date.now() - handoff.started) / 480);
-      const ease = t * t * (3 - 2 * t);
-      if (speedTarget !== null) speed = handoff.speed + (speedTarget - handoff.speed) * ease;
-      if (rpmTarget !== null) rpm = handoff.rpm + (rpmTarget - handoff.rpm) * ease;
-      if (t >= 1) handoff = null;
-    } else if (!available) handoff = null;
+    }
     const speedDisplay = (available || scanning) && speed !== null ? whole(speed) : '—';
     const driveDisplay = ev ? available ? whole(model.powerKw) : '—' : (available || scanning) && rpm !== null ? whole(rpm) : '—';
     write('rpm', mode === 'freeRoam' ? speedDisplay : driveDisplay);
@@ -145,10 +136,10 @@ export function createC8AmericaInstrument({ document, mount }) {
     write('best', racing ? lap(model.bestLap) : '—');
     write('rank', racing && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
     write('g', available && finite(model.gX) !== null ? Math.abs(model.gX).toFixed(2) + ' G' : '—');
-    write('power', available ? whole(model.powerKw) : '—');
+    write('power', available ? whole(ev ? model.torque : model.powerKw) : '—');
     write('throttle', available ? whole(model.throttlePercent) : '—');
     write('top', available ? whole(context.topSpeed) : '—');
-    write('state', ev ? 'E-DRIVE' : available ? String(model.gearLabel ?? '—') : '—');
+    write('state', available ? whole(model.brakePercent) : '—');
   }
 
   return { element, update, destroy() { element.remove(); modeIdentity.remove(); } };

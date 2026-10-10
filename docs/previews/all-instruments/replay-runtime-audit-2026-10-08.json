@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-10-08T15:19:08.073094+00:00",
+  "scope": "Production receiver page on3020; synthetic601 packets at20Hz injected only in /session response. No real FH6 telemetry. Playback map draw counts are actual browser calls; not a game FPS measurement.",
+  "replayTimeMapping": {
+    "packetIndex": 600,
+    "firstTimestampMs": 100000,
+    "lastTimestampMs": 130000,
+    "actualDurationSeconds": 30,
+    "shown": "0:10"
+  },
+  "playback": {
+    "start": {
+      "index": 0,
+      "time": 1772.800000011921,
+      "draws": 1
+    },
+    "after1100ms": {
+      "index": 33,
+      "time": 2880.800000011921,
+      "draws": 12,
+      "shown": "0:01",
+      "recordedElapsedMs": 1650
+    },
+    "sourcePacketsPer100ms": 3
+  },
+  "hiddenViewerWork": {
+    "atClose": {
+      "index": 33,
+      "draws": 12
+    },
+    "after1050ms": {
+      "index": 66,
+      "draws": 23,
+      "overlayHidden": true,
+      "playing": true,
+      "timerActive": true
+    }
+  },
+  "errors": [],
+  "source": [
+    "src/ui/default-html.js:948-952",
+    "src/ui/default-html.js:1115-1129"
+  ]
+}

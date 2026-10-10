@@ -1,0 +1,1639 @@
+{
+  "generatedAt": "2026-10-09T08:15:34.261295+00:00",
+  "scope": "Production factories and CSS with synthetic telemetry; structure and steady-state browser geometry, not original photograph equivalence or real game acceptance.",
+  "sourceHashes": {
+    "public/css/aa-japan-instrument.css": "c3e384d2a2f9096079ee813ead3d05889328f0c0a8e92440d4a1c5bcd172017f",
+    "public/css/lfa-japan-instrument.css": "01c3eb2dfb52bf217ba9768dbe217b10c47c7413c626064a4f431b0291964f71",
+    "public/css/s30-japan-instrument.css": "0fb75ae358aa652efd4d899a7af8e5991dd42a66c109e7d8b665fd2282d29f60",
+    "public/css/deville-america-instrument.css": "60bd6e6008545b5942c235f17acb652155b3c98d975ddcfc206ca8e49b6e37e8",
+    "public/css/instrument-responsive.css": "cb5b82dd2a8bd81757f3a5009514e7b5affad4cd71bb9e99b01f36b6cc11e3b1",
+    "public/js/themes/deville-america-instrument.js": "9795bace3239eca6d0a0ff9785e41e1f38b31937440de77bf1e7e076ca068782"
+  },
+  "summary": {
+    "caseCount": 32,
+    "clippingCases": 0,
+    "tickCollisionCases": 0,
+    "housingOutsideStage": 0,
+    "maximumCircularHousingAspectError": 0,
+    "browserErrors": []
+  },
+  "images": [
+    "docs/previews/all-instruments/pr6-oem-pre1949.japan-375-race.png",
+    "docs/previews/all-instruments/pr6-oem-pre1949.japan-1440-race.png",
+    "docs/previews/all-instruments/pr6-oem-y2009_2014.japan-375-race.png",
+    "docs/previews/all-instruments/pr6-oem-y2009_2014.japan-1440-race.png",
+    "docs/previews/all-instruments/pr6-oem-y1960_1975.japan-375-race.png",
+    "docs/previews/all-instruments/pr6-oem-y1960_1975.japan-1440-race.png",
+    "docs/previews/all-instruments/pr6-oem-y1995_2002.america-375-race.png",
+    "docs/previews/all-instruments/pr6-oem-y1995_2002.america-1440-race.png"
+  ],
+  "rows": [
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "race",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 111.44149780273438,
+            "y": 185.65625,
+            "width": 144.828125,
+            "height": 144.828125,
+            "top": 185.65625,
+            "right": 256.2696228027344,
+            "bottom": 330.484375,
+            "left": 111.44149780273438
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 36.625,
+            "y": 165.296875,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 165.296875,
+            "right": 106.015625,
+            "bottom": 234.6875,
+            "left": 36.625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 36.625,
+            "y": 281.4375,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 281.4375,
+            "right": 106.015625,
+            "bottom": 350.828125,
+            "left": 36.625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 268.9375,
+            "y": 165.296875,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 165.296875,
+            "right": 338.328125,
+            "bottom": 234.6875,
+            "left": 268.9375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 268.9375,
+            "y": 281.4375,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 281.4375,
+            "right": 338.328125,
+            "bottom": 350.828125,
+            "left": 268.9375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "freeRoam",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 118.68350219726562,
+            "y": 185.65625,
+            "width": 144.828125,
+            "height": 144.828125,
+            "top": 185.65625,
+            "right": 263.5116271972656,
+            "bottom": 330.484375,
+            "left": 118.68350219726562
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 36.625,
+            "y": 165.296875,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 165.296875,
+            "right": 106.015625,
+            "bottom": 234.6875,
+            "left": 36.625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 36.625,
+            "y": 281.4375,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 281.4375,
+            "right": 106.015625,
+            "bottom": 350.828125,
+            "left": 36.625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 268.9375,
+            "y": 165.296875,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 165.296875,
+            "right": 338.328125,
+            "bottom": 234.6875,
+            "left": 268.9375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 268.9375,
+            "y": 281.4375,
+            "width": 69.390625,
+            "height": 69.390625,
+            "top": 281.4375,
+            "right": 338.328125,
+            "bottom": 350.828125,
+            "left": 268.9375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "race",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 34.15625,
+            "y": 201.265625,
+            "width": 150.28125,
+            "height": 150.28125,
+            "top": 201.265625,
+            "right": 184.4375,
+            "bottom": 351.546875,
+            "left": 34.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 190.5625,
+            "y": 201.265625,
+            "width": 150.28125,
+            "height": 150.28125,
+            "top": 201.265625,
+            "right": 340.84375,
+            "bottom": 351.546875,
+            "left": 190.5625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 79.796875,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 147.515625,
+            "bottom": 206.484375,
+            "left": 79.796875
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 153.640625,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 221.359375,
+            "bottom": 206.484375,
+            "left": 153.640625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 227.484375,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 295.203125,
+            "bottom": 206.484375,
+            "left": 227.484375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "freeRoam",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 34.15625,
+            "y": 201.265625,
+            "width": 150.28125,
+            "height": 150.28125,
+            "top": 201.265625,
+            "right": 184.4375,
+            "bottom": 351.546875,
+            "left": 34.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 190.5625,
+            "y": 201.265625,
+            "width": 150.28125,
+            "height": 150.28125,
+            "top": 201.265625,
+            "right": 340.84375,
+            "bottom": 351.546875,
+            "left": 190.5625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 79.796875,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 147.515625,
+            "bottom": 206.484375,
+            "left": 79.796875
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 153.640625,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 221.359375,
+            "bottom": 206.484375,
+            "left": 153.640625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 227.484375,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 295.203125,
+            "bottom": 206.484375,
+            "left": 227.484375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 127.140625,
+            "y": 193.796875,
+            "width": 120.6875,
+            "height": 120.6875,
+            "top": 193.796875,
+            "right": 247.828125,
+            "bottom": 314.484375,
+            "left": 127.140625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "width": 375,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 127.140625,
+            "y": 193.796875,
+            "width": 120.6875,
+            "height": 120.6875,
+            "top": 193.796875,
+            "right": 247.828125,
+            "bottom": 314.484375,
+            "left": 127.140625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "race",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 137.96612548828125,
+            "y": 166.140625,
+            "width": 183.84375,
+            "height": 183.84375,
+            "top": 166.140625,
+            "right": 321.80987548828125,
+            "bottom": 349.984375,
+            "left": 137.96612548828125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 42.984375,
+            "y": 155.9375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 155.9375,
+            "right": 131.078125,
+            "bottom": 244.03125,
+            "left": 42.984375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 42.984375,
+            "y": 272.09375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 272.09375,
+            "right": 131.078125,
+            "bottom": 360.1875,
+            "left": 42.984375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 337.890625,
+            "y": 155.9375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 155.9375,
+            "right": 425.984375,
+            "bottom": 244.03125,
+            "left": 337.890625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 337.890625,
+            "y": 272.09375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 272.09375,
+            "right": 425.984375,
+            "bottom": 360.1875,
+            "left": 337.890625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "freeRoam",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 147.15887451171875,
+            "y": 166.140625,
+            "width": 183.84375,
+            "height": 183.84375,
+            "top": 166.140625,
+            "right": 331.00262451171875,
+            "bottom": 349.984375,
+            "left": 147.15887451171875
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 42.984375,
+            "y": 155.9375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 155.9375,
+            "right": 131.078125,
+            "bottom": 244.03125,
+            "left": 42.984375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 42.984375,
+            "y": 272.09375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 272.09375,
+            "right": 131.078125,
+            "bottom": 360.1875,
+            "left": 42.984375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 337.890625,
+            "y": 155.9375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 155.9375,
+            "right": 425.984375,
+            "bottom": 244.03125,
+            "left": 337.890625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 337.890625,
+            "y": 272.09375,
+            "width": 88.09375,
+            "height": 88.09375,
+            "top": 272.09375,
+            "right": 425.984375,
+            "bottom": 360.1875,
+            "left": 337.890625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "race",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 40.078125,
+            "y": 181.140625,
+            "width": 190.53125,
+            "height": 190.53125,
+            "top": 181.140625,
+            "right": 230.609375,
+            "bottom": 371.671875,
+            "left": 40.078125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 238.375,
+            "y": 181.140625,
+            "width": 190.53125,
+            "height": 190.53125,
+            "top": 181.140625,
+            "right": 428.90625,
+            "bottom": 371.671875,
+            "left": 238.375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 125.15625,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 192.875,
+            "bottom": 206.484375,
+            "left": 125.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 200.640625,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 268.359375,
+            "bottom": 206.484375,
+            "left": 200.640625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 276.125,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 343.84375,
+            "bottom": 206.484375,
+            "left": 276.125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "freeRoam",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 40.078125,
+            "y": 181.140625,
+            "width": 190.53125,
+            "height": 190.53125,
+            "top": 181.140625,
+            "right": 230.609375,
+            "bottom": 371.671875,
+            "left": 40.078125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 238.375,
+            "y": 181.140625,
+            "width": 190.53125,
+            "height": 190.53125,
+            "top": 181.140625,
+            "right": 428.90625,
+            "bottom": 371.671875,
+            "left": 238.375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 125.15625,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 192.875,
+            "bottom": 206.484375,
+            "left": 125.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 200.640625,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 268.359375,
+            "bottom": 206.484375,
+            "left": 200.640625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 276.125,
+            "y": 138.765625,
+            "width": 67.71875,
+            "height": 67.71875,
+            "top": 138.765625,
+            "right": 343.84375,
+            "bottom": 206.484375,
+            "left": 276.125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 158.15625,
+            "y": 193.796875,
+            "width": 152.65625,
+            "height": 152.65625,
+            "top": 193.796875,
+            "right": 310.8125,
+            "bottom": 346.453125,
+            "left": 158.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "width": 469,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 158.15625,
+            "y": 193.796875,
+            "width": 152.65625,
+            "height": 152.65625,
+            "top": 193.796875,
+            "right": 310.8125,
+            "bottom": 346.453125,
+            "left": 158.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "race",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 269.4102478027344,
+            "y": 372.171875,
+            "width": 213.734375,
+            "height": 213.734375,
+            "top": 372.171875,
+            "right": 483.1446228027344,
+            "bottom": 585.90625,
+            "left": 269.4102478027344
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 77.859375,
+            "y": 371.6875,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 371.6875,
+            "right": 176.84375,
+            "bottom": 470.671875,
+            "left": 77.859375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 77.859375,
+            "y": 487.390625,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 487.390625,
+            "right": 176.84375,
+            "bottom": 586.375,
+            "left": 77.859375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 591.09375,
+            "y": 371.6875,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 371.6875,
+            "right": 690.078125,
+            "bottom": 470.671875,
+            "left": 591.09375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 591.09375,
+            "y": 487.390625,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 487.390625,
+            "right": 690.078125,
+            "bottom": 586.375,
+            "left": 591.09375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "freeRoam",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 284.8085021972656,
+            "y": 372.171875,
+            "width": 213.734375,
+            "height": 213.734375,
+            "top": 372.171875,
+            "right": 498.5428771972656,
+            "bottom": 585.90625,
+            "left": 284.8085021972656
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 77.859375,
+            "y": 371.6875,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 371.6875,
+            "right": 176.84375,
+            "bottom": 470.671875,
+            "left": 77.859375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 77.859375,
+            "y": 487.390625,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 487.390625,
+            "right": 176.84375,
+            "bottom": 586.375,
+            "left": 77.859375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 591.09375,
+            "y": 371.6875,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 371.6875,
+            "right": 690.078125,
+            "bottom": 470.671875,
+            "left": 591.09375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 591.09375,
+            "y": 487.390625,
+            "width": 98.984375,
+            "height": 98.984375,
+            "top": 487.390625,
+            "right": 690.078125,
+            "bottom": 586.375,
+            "left": 591.09375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "race",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 59.34375,
+            "y": 352.625,
+            "width": 203.890625,
+            "height": 203.890625,
+            "top": 352.625,
+            "right": 263.234375,
+            "bottom": 556.515625,
+            "left": 59.34375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 270.6875,
+            "y": 352.625,
+            "width": 203.890625,
+            "height": 203.890625,
+            "top": 352.625,
+            "right": 474.578125,
+            "bottom": 556.515625,
+            "left": 270.6875
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 491.734375,
+            "y": 389.1875,
+            "width": 68.890625,
+            "height": 68.890625,
+            "top": 389.1875,
+            "right": 560.625,
+            "bottom": 458.078125,
+            "left": 491.734375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 563.59375,
+            "y": 389.1875,
+            "width": 68.890625,
+            "height": 68.890625,
+            "top": 389.1875,
+            "right": 632.484375,
+            "bottom": 458.078125,
+            "left": 563.59375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 635.453125,
+            "y": 389.1875,
+            "width": 68.90625,
+            "height": 68.90625,
+            "top": 389.1875,
+            "right": 704.359375,
+            "bottom": 458.09375,
+            "left": 635.453125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "freeRoam",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 59.34375,
+            "y": 352.625,
+            "width": 203.890625,
+            "height": 203.890625,
+            "top": 352.625,
+            "right": 263.234375,
+            "bottom": 556.515625,
+            "left": 59.34375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 270.6875,
+            "y": 352.625,
+            "width": 203.890625,
+            "height": 203.890625,
+            "top": 352.625,
+            "right": 474.578125,
+            "bottom": 556.515625,
+            "left": 270.6875
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 491.734375,
+            "y": 389.1875,
+            "width": 68.890625,
+            "height": 68.890625,
+            "top": 389.1875,
+            "right": 560.625,
+            "bottom": 458.078125,
+            "left": 491.734375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 563.59375,
+            "y": 389.1875,
+            "width": 68.890625,
+            "height": 68.890625,
+            "top": 389.1875,
+            "right": 632.484375,
+            "bottom": 458.078125,
+            "left": 563.59375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 635.453125,
+            "y": 389.1875,
+            "width": 68.90625,
+            "height": 68.90625,
+            "top": 389.1875,
+            "right": 704.359375,
+            "bottom": 458.09375,
+            "left": 635.453125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 290.5,
+            "y": 388.484375,
+            "width": 187,
+            "height": 187,
+            "top": 388.484375,
+            "right": 477.5,
+            "bottom": 575.484375,
+            "left": 290.5
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "width": 768,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 290.5,
+            "y": 388.484375,
+            "width": 187,
+            "height": 187,
+            "top": 388.484375,
+            "right": 477.5,
+            "bottom": 575.484375,
+            "left": 290.5
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "race",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 505.32611083984375,
+            "y": 283.921875,
+            "width": 400.5625,
+            "height": 400.5625,
+            "top": 283.921875,
+            "right": 905.8886108398438,
+            "bottom": 684.484375,
+            "left": 505.32611083984375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 148.515625,
+            "y": 283.03125,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 283.03125,
+            "right": 334.03125,
+            "bottom": 468.546875,
+            "left": 148.515625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 148.515625,
+            "y": 499.84375,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 499.84375,
+            "right": 334.03125,
+            "bottom": 685.359375,
+            "left": 148.515625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 1105.90625,
+            "y": 283.03125,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 283.03125,
+            "right": 1291.421875,
+            "bottom": 468.546875,
+            "left": 1105.90625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 1105.90625,
+            "y": 499.84375,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 499.84375,
+            "right": 1291.421875,
+            "bottom": 685.359375,
+            "left": 1105.90625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y2009_2014.japan",
+      "mode": "freeRoam",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".lfa-ring",
+          "rect": {
+            "x": 534.0488891601562,
+            "y": 283.921875,
+            "width": 400.5625,
+            "height": 400.5625,
+            "top": 283.921875,
+            "right": 934.6113891601562,
+            "bottom": 684.484375,
+            "left": 534.0488891601562
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 148.515625,
+            "y": 283.03125,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 283.03125,
+            "right": 334.03125,
+            "bottom": 468.546875,
+            "left": 148.515625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 148.515625,
+            "y": 499.84375,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 499.84375,
+            "right": 334.03125,
+            "bottom": 685.359375,
+            "left": 148.515625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 1105.90625,
+            "y": 283.03125,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 283.03125,
+            "right": 1291.421875,
+            "bottom": 468.546875,
+            "left": 1105.90625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".lfa-metric",
+          "rect": {
+            "x": 1105.90625,
+            "y": 499.84375,
+            "width": 185.515625,
+            "height": 185.515625,
+            "top": 499.84375,
+            "right": 1291.421875,
+            "bottom": 685.359375,
+            "left": 1105.90625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "race",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 115.15625,
+            "y": 248.53125,
+            "width": 379.859375,
+            "height": 379.859375,
+            "top": 248.53125,
+            "right": 495.015625,
+            "bottom": 628.390625,
+            "left": 115.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 508.890625,
+            "y": 248.53125,
+            "width": 379.859375,
+            "height": 379.859375,
+            "top": 248.53125,
+            "right": 888.75,
+            "bottom": 628.390625,
+            "left": 508.890625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 920.734375,
+            "y": 307.453125,
+            "width": 128.625,
+            "height": 128.625,
+            "top": 307.453125,
+            "right": 1049.359375,
+            "bottom": 436.078125,
+            "left": 920.734375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 1054.90625,
+            "y": 307.453125,
+            "width": 128.625,
+            "height": 128.625,
+            "top": 307.453125,
+            "right": 1183.53125,
+            "bottom": 436.078125,
+            "left": 1054.90625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 1189.078125,
+            "y": 307.453125,
+            "width": 128.625,
+            "height": 128.625,
+            "top": 307.453125,
+            "right": 1317.703125,
+            "bottom": 436.078125,
+            "left": 1189.078125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1960_1975.japan",
+      "mode": "freeRoam",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 115.15625,
+            "y": 248.53125,
+            "width": 379.859375,
+            "height": 379.859375,
+            "top": 248.53125,
+            "right": 495.015625,
+            "bottom": 628.390625,
+            "left": 115.15625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-main",
+          "rect": {
+            "x": 508.890625,
+            "y": 248.53125,
+            "width": 379.859375,
+            "height": 379.859375,
+            "top": 248.53125,
+            "right": 888.75,
+            "bottom": 628.390625,
+            "left": 508.890625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 920.734375,
+            "y": 307.453125,
+            "width": 128.625,
+            "height": 128.625,
+            "top": 307.453125,
+            "right": 1049.359375,
+            "bottom": 436.078125,
+            "left": 920.734375
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 1054.90625,
+            "y": 307.453125,
+            "width": 128.625,
+            "height": 128.625,
+            "top": 307.453125,
+            "right": 1183.53125,
+            "bottom": 436.078125,
+            "left": 1054.90625
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        },
+        {
+          "selector": ".s30-aux-pod",
+          "rect": {
+            "x": 1189.078125,
+            "y": 307.453125,
+            "width": 128.625,
+            "height": 128.625,
+            "top": 307.453125,
+            "right": 1317.703125,
+            "bottom": 436.078125,
+            "left": 1189.078125
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "race",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "y1995_2002.america",
+      "mode": "freeRoam",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": []
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "race",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 546.25,
+            "y": 315.859375,
+            "width": 347.5,
+            "height": 347.5,
+            "top": 315.859375,
+            "right": 893.75,
+            "bottom": 663.359375,
+            "left": 546.25
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    },
+    {
+      "theme": "pre1949.japan",
+      "mode": "freeRoam",
+      "width": 1440,
+      "clipped": [],
+      "collisions": [],
+      "housingGeometry": [
+        {
+          "selector": ".aa-cylinder",
+          "rect": {
+            "x": 546.25,
+            "y": 315.859375,
+            "width": 347.5,
+            "height": 347.5,
+            "top": 315.859375,
+            "right": 893.75,
+            "bottom": 663.359375,
+            "left": 546.25
+          },
+          "aspectError": 0,
+          "outsideStage": false
+        }
+      ]
+    }
+  ],
+  "referenceStatus": {
+    "LFA": "Official text supports central movable ring and four side gauges; game fields adapted. Original-photo visual equivalence is not certified.",
+    "S30": "Official Nissan text supports top-center triple gauges; narrow reflow and data fields are game adaptations.",
+    "AA": "Official Toyota UK text supports dark wood and centrally mounted small chrome-rimmed dials; RPM/gear/lap fields are adaptations.",
+    "DeVille": "Official GM 1999 owner manual printed2-64 indexed diagram supports central speed and lower gear; side fields are game-backed adaptations.",
+    "Crown": "1955 museum photo search result and official restoration series located; image pixels not successfully inspected. Candidate remains pending exact-year geometry."
+  }
+}

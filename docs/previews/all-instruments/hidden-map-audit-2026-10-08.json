@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-08T15:22:51.861117+00:00",
+  "scope": "Production page3020/Civic Race with synthetic direct calls to production updateMapTrail; measurements show canvas work and growing trail, not real-game FPS. Main Store/Session not used by this isolated map-path check.",
+  "hiddenLegacyMap": {
+    "theme": "y2020_2024.japan",
+    "canvasBox": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "hiddenAncestors": [
+      {
+        "tag": "CANVAS",
+        "id": "minimap-canvas",
+        "class": "legacy-map-canvas",
+        "display": "none",
+        "visibility": "visible"
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "class": "center-window",
+        "display": "none",
+        "visibility": "visible"
+      }
+    ],
+    "chunks": [
+      {
+        "processedPackets": 1200,
+        "trailPoints": 401,
+        "draws": 401,
+        "lineCalls": 81403,
+        "elapsedMs": 16.200000002980232
+      },
+      {
+        "processedPackets": 2400,
+        "trailPoints": 801,
+        "draws": 801,
+        "lineCalls": 322803,
+        "elapsedMs": 23.899999991059303
+      },
+      {
+        "processedPackets": 3600,
+        "trailPoints": 1201,
+        "draws": 1201,
+        "lineCalls": 724203,
+        "elapsedMs": 23.600000008940697
+      }
+    ]
+  },
+  "errors": [],
+  "source": [
+    "src/ui/default-html.js:902-936",
+    "src/ui/default-html.js:1627-1628"
+  ]
+}

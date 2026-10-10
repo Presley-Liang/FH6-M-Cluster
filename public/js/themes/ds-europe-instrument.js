@@ -10,7 +10,7 @@ export function createDsEuropeInstrument({ document, mount }) {
   element.innerHTML = `<div class="ds-dashboard"><div class="ds-top"><span>INSTRUMENTS DE BORD</span><i></i><span data-ds-label="program">SPORT</span></div>
     <div class="ds-window"><div class="ds-window-inner"><div class="ds-window-scale" data-ds-scale></div><div class="ds-speed-needle" data-ds-needle="speed"></div><div class="ds-speed-track"></div><div class="ds-speed-unit">km/h</div><div class="ds-speed-number"><strong data-ds-value="speed">—</strong><small>VITESSE</small></div></div></div>
     <div class="ds-lower"><div class="ds-lower-panel ds-left"><span data-ds-label="left">TOUR MOTEUR</span><strong data-ds-value="left">—</strong><small data-ds-label="leftUnit">tr/min</small></div>
-      <div class="ds-center"><div class="ds-center-inner"><small data-ds-label="center">RAPPORT</small><strong data-ds-value="center">—</strong><span data-ds-value="status">—</span></div></div>
+      <div class="ds-center"><div class="ds-center-inner"><small data-ds-label="center">RAPPORT</small><strong data-ds-value="center">—</strong></div></div>
       <div class="ds-lower-panel ds-right"><span data-ds-label="right">TEMPS AU TOUR</span><strong data-ds-value="right">—</strong><small data-ds-label="rightUnit">COURSE</small></div></div>
     <div class="ds-footer"><span>GRAND TOURISME · 1955—59</span><span data-ds-value="footer">—</span></div></div>`;
   const identity = document.createElement('div');
@@ -35,7 +35,7 @@ export function createDsEuropeInstrument({ document, mount }) {
   const lap = n => finite(n) === null || n <= 0 ? '—' : Math.floor(n / 60) + ':' + (n % 60).toFixed(2).padStart(5, '0');
   const write = (key, value) => { if (values[key] && values[key].textContent !== value) values[key].textContent = value; };
   const label = (key, value) => { if (labels[key] && labels[key].textContent !== value) labels[key].textContent = value; };
-  let lastMode = null, lastNeedle = '', wasSweep = false, sweepSpeed = null, handoff = null;
+  let lastMode = null, lastNeedle = '', sweepSpeed = null;
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
     const phase = root?.dataset.ignitionPhase || 'live', kind = root?.dataset.ignitionKind || '';
@@ -48,29 +48,24 @@ export function createDsEuropeInstrument({ document, mount }) {
     element.dataset.mode = mode; element.dataset.powertrain = ev ? 'ev' : 'combustion';
     lastMode = mode;
     label('program', mode === 'race' ? 'SPORT' : 'TOURISME');
-    label('center', mode === 'race' ? (ev ? 'PUISSANCE' : 'RAPPORT') : 'VITESSE');
-    label('left', mode === 'race' && !ev ? 'TOUR MOTEUR' : 'PUISSANCE');
-    label('leftUnit', ev || mode === 'freeRoam' ? 'kW' : 'tr/min');
+    label('center', ev ? 'PUISSANCE' : 'RAPPORT');
+    label('left', ev ? 'COUPLE' : mode === 'race' ? 'TOUR MOTEUR' : 'PUISSANCE');
+    label('leftUnit', ev ? 'Nm' : mode === 'freeRoam' ? 'kW' : 'tr/min');
     label('right', mode === 'race' ? 'TEMPS AU TOUR' : 'ACCÉLÉRATEUR');
     label('rightUnit', mode === 'race' ? 'COURSE' : '%');
     const speedTarget = available ? finite(model.speedKmh) : null;
-    if (sweep) { sweepSpeed = clamp(override.speed) * 280; wasSweep = true; handoff = null; }
-    else if (wasSweep) { handoff = { at: Date.now(), speed: sweepSpeed }; wasSweep = false; }
+    if (sweep) { sweepSpeed = clamp(override.speed) * 280; }
     let speed = sweep ? sweepSpeed : speedTarget;
-    if (!sweep && handoff) {
-      const t = clamp((Date.now() - handoff.at) / 480), eased = 1 - (1 - t) ** 3;
-      speed = handoff.speed + ((speedTarget ?? 0) - handoff.speed) * eased;
-      if (t >= 1) handoff = null;
-    }
     const fraction = sweep ? clamp(override.speed) : speed === null ? 0 : clamp(speed / 280);
     const nextNeedle = (8 + fraction * 84).toFixed(2) + '%';
     if (lastNeedle !== nextNeedle) { speedNeedle.style.left = nextNeedle; lastNeedle = nextNeedle; }
     write('speed', sweep || available ? whole(speed) : '—');
-    write('center', mode === 'race' ? ev ? (available ? whole(model.powerKw) : '—') : available ? String(model.gearLabel ?? '—') : '—' : sweep || available ? whole(speed) : '—');
-    write('left', mode === 'race' && !ev ? sweep ? finite(context.rpmGauge?.gaugeMax) > 0 ? whole(clamp(override.rpm) * context.rpmGauge.gaugeMax) : '—' : available ? whole(model.rpm) : '—' : available ? whole(model.powerKw) : '—');
+    write('center', ev ? available ? whole(model.powerKw) : '—' : available ? String(model.gearLabel ?? '—') : '—');
+    write('left', ev ? available ? whole(model.torque) : '—' : mode === 'race' ? sweep ? finite(context.rpmGauge?.gaugeMax) > 0 ? whole(clamp(override.rpm) * context.rpmGauge.gaugeMax) : '—' : available ? whole(model.rpm) : '—' : available ? whole(model.powerKw) : '—');
     write('right', mode === 'race' ? Boolean(context.racing) && available ? lap(model.currentLap) : '—' : available && finite(model.throttlePercent) !== null ? whole(model.throttlePercent) : '—');
-    write('status', available ? ev ? 'E-DRIVE' : String(model.gearLabel ?? '—') : 'NO SIGNAL');
-    write('footer', mode === 'race' && Boolean(context.racing) && finite(model.rank) > 0 ? 'POSITION ' + whole(model.rank) : available ? 'VITESSE ' + whole(speed) : 'NO SIGNAL');
+    const ranked = mode === 'race' && Boolean(context.racing) && available && finite(model.rank) > 0;
+    values.footer.hidden = !ranked;
+    write('footer', ranked ? 'POSITION ' + whole(model.rank) : '');
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };
 }

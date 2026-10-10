@@ -23,7 +23,15 @@ export function createXtJapanInstrument({ document, mount }) {
   identity.setAttribute('aria-hidden', 'true');
   identity.innerHTML = '<small>DISPLAY MODE</small><strong data-next-mode="race">RACE</strong><strong data-next-mode="freeRoam">FREE</strong>';
   mount.append(element, identity);
-  const bind = createModernInstrumentBinding({ element, mount });
+  const bind = createModernInstrumentBinding({ element, mount, project(values, labels, state) {
+    if (state.mode !== 'freeRoam') return;
+    labels.b = 'LATERAL G'; labels.bUnit = 'g';
+    values.b = state.live && Number.isFinite(state.model.gX) ? state.model.gX.toFixed(2) : '—';
+    if (state.ev) {
+      labels.a = 'BRAKE'; labels.aUnit = '%';
+      values.a = state.live && Number.isFinite(state.model.brakePercent) ? String(Math.round(state.model.brakePercent)) : '—';
+    }
+  } });
   const segmentsNodes = Array.from(element.querySelectorAll('[data-xt-segment]'));
   const temp = element.querySelector('[data-xt-temperature]');
   const throttle = element.querySelector('[data-xt-throttle]');
@@ -46,20 +54,8 @@ export function createXtJapanInstrument({ document, mount }) {
     temp.style.height = (hottest === null ? 0 : clamp((hottest - 20) / 120) * 100) + '%';
     throttle.style.height = (input * 100) + '%';
     tempValue.textContent = hottest === null ? '—' : String(Math.round(hottest));
-    caption.textContent = ev ? 'DRIVE INPUT' : 'ENGINE SPEED';
-    scale.textContent = ev ? '0—100%' : max ? '0—' + Math.round(max) + ' RPM' : '— RPM';
-    if (element.dataset.mode === 'freeRoam') {
-      // The side tower already shows throttle; avoid a duplicate footer value.
-      element.querySelector('[data-next-label="b"]').textContent = 'LATERAL G';
-      element.querySelector('[data-next-value="b"]').textContent = live && finite(model.gX) ? model.gX.toFixed(2) : '—';
-      element.querySelector('[data-next-label="bUnit"]').textContent = 'g';
-      if (ev) {
-        // Signed output is already in the top-right EV drive readout.
-        element.querySelector('[data-next-label="a"]').textContent = 'BRAKE';
-        element.querySelector('[data-next-value="a"]').textContent = live && finite(model.brakePercent) ? String(Math.round(model.brakePercent)) : '—';
-        element.querySelector('[data-next-label="aUnit"]').textContent = '%';
-      }
-    }
+    caption.textContent = ev ? 'DRIVE INPUT' : sweep && max === null ? 'DISPLAY SCAN' : 'ENGINE SPEED';
+    scale.textContent = ev ? '0—100%' : max ? '0—' + Math.round(max) + ' RPM' : sweep ? 'DISPLAY SCAN' : '— RPM';
     element.dataset.sweep = String(sweep);
   }
   return { element, update, destroy() { element.remove(); identity.remove(); } };

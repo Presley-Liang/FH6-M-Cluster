@@ -1,0 +1,2 @@
+# Keep generated browser evidence available while focusing PR diffs on source.
+docs/previews/all-instruments/*.json linguist-generated=true

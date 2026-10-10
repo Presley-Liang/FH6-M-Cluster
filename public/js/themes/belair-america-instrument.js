@@ -38,7 +38,7 @@ export function createBelairAmericaInstrument({ document, mount }) {
           <div><span>POSITION</span><strong data-ba-value="rank">—</strong></div>
         </div>
         <div class="ba-mode-data ba-free-data">
-          <div><span>POWER</span><strong data-ba-value="power">—</strong><small>kW</small></div>
+          <div><span data-ba-label="output">POWER</span><strong data-ba-value="power">—</strong><small data-ba-label="outputUnit">kW</small></div>
           <div><span>THROTTLE</span><strong data-ba-value="throttle">—</strong><small>%</small></div>
         </div>
       </div>
@@ -99,7 +99,7 @@ export function createBelairAmericaInstrument({ document, mount }) {
   const write = (key, value) => { if (refs[key] && refs[key].textContent !== value) refs[key].textContent = value; };
   let lastMode = 'race';
   let lastFraction = -1;
-  let wasSweep = false, sweepMph = 0, sweepRpm = null, handoff = null;
+  let sweepMph = 0, sweepRpm = null;
 
   function update(model = {}, context = {}) {
     const root = mount.closest?.('#cluster');
@@ -119,20 +119,9 @@ export function createBelairAmericaInstrument({ document, mount }) {
     if (sweeping) {
       sweepMph = clamp(override.speed) * 160;
       sweepRpm = rpmScale === null ? null : clamp(override.rpm) * rpmScale;
-      wasSweep = true;
-      handoff = null;
-    } else if (wasSweep) {
-      handoff = { start: Date.now(), mph: sweepMph, rpm: sweepRpm };
-      wasSweep = false;
     }
     let shownMph = speedMph, shownRpm = available ? finite(model.rpm) : null;
     if (sweeping) { shownMph = sweepMph; shownRpm = sweepRpm; }
-    else if (handoff) {
-      const t = clamp((Date.now() - handoff.start) / 480), eased = 1 - Math.pow(1 - t, 3);
-      shownMph = handoff.mph + ((speedMph ?? 0) - handoff.mph) * eased;
-      if (handoff.rpm !== null) shownRpm = handoff.rpm + ((shownRpm ?? 0) - handoff.rpm) * eased;
-      if (t >= 1) handoff = null;
-    }
     const fraction = sweeping ? clamp(override.speed) : clamp((shownMph ?? 0) / 160);
     if (Math.abs(fraction - lastFraction) > .001) { placeNeedle(fraction); lastFraction = fraction; }
     element.dataset.mode = mode;
@@ -143,22 +132,24 @@ export function createBelairAmericaInstrument({ document, mount }) {
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.left.textContent = ev ? 'POWER' : 'ENGINE';
     labels.leftUnit.textContent = ev ? 'kW' : 'r/min';
-    labels.right.textContent = mode === 'race' ? 'THROTTLE' : ev ? 'OUTPUT' : 'FUEL';
-    labels.rightUnit.textContent = mode === 'race' ? '%' : ev ? 'kW' : 'RAW';
+    labels.right.textContent = mode === 'race' ? 'THROTTLE' : ev ? 'BRAKE' : 'FUEL';
+    labels.rightUnit.textContent = mode === 'race' || ev ? '%' : 'RAW';
+    labels.output.textContent = ev ? 'TORQUE' : 'POWER';
+    labels.outputUnit.textContent = ev ? 'Nm' : 'kW';
     labels.gear.textContent = ev ? 'DRIVE' : 'GEAR';
     write('speed', sweeping || available ? whole(shownMph) : '—');
     write('left', ev ? available ? whole(model.powerKw) : '—'
       : sweeping || available ? whole(shownRpm) : '—');
     const fuel = finite(model.fuelRaw);
     write('right', mode === 'race' ? available ? whole(model.throttlePercent) : '—'
-      : ev ? available ? whole(model.powerKw) : '—'
+      : ev ? available ? whole(model.brakePercent) : '—'
         : available && fuel !== null ? fuel.toFixed(3) : '—');
     write('gear', ev ? 'EV' : available ? String(model.gearLabel ?? '—') : '—');
     const racing = mode === 'race' && available && Boolean(context.racing);
     write('lap', racing ? lap(model.currentLap) : '—');
     write('best', racing ? lap(model.bestLap) : '—');
     write('rank', racing && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
-    write('power', available ? whole(model.powerKw) : '—');
+    write('power', available ? whole(ev ? model.torque : model.powerKw) : '—');
     write('throttle', available ? whole(model.throttlePercent) : '—');
   }
 

@@ -1,7 +1,8 @@
 import { formatTime } from './export.js';
-import { EventDetector } from './event-detector.js';
+import { EventDetector, EVENT_DETECTOR_DEFAULTS } from './event-detector.js';
 import { createVehicleStateController } from '../../public/js/vehicle-state-controller.js';
 import { BoostStateTracker } from '../telemetry/boost-state.js';
+import { randomUUID } from 'node:crypto';
 
 // Shared by future replay/map consumers: raw arrival order is immutable;
 // a rewind supersedes earlier samples at or beyond its race-time boundary.
@@ -17,7 +18,7 @@ export function effectiveTimeline(packets) {
 }
 
 export class SessionRuntime {
-  constructor(store, { graceMs = 2500, onState = () => {}, eventDetector = new EventDetector(), liveRouteIdentifier = null, resolveRoute = () => null, vehicleStateController = createVehicleStateController(), boostStateTracker = new BoostStateTracker(), autoDriveMode = false } = {}) {
+  constructor(store, { graceMs = 2500, onState = () => {}, eventDetector = new EventDetector(), liveRouteIdentifier = null, resolveRoute = () => null, vehicleStateController = createVehicleStateController(), boostStateTracker = new BoostStateTracker(), autoDriveMode = false, receiverInstanceId = randomUUID() } = {}) {
     this.store = store;
     this.graceMs = graceMs;
     this.onState = onState;
@@ -26,10 +27,12 @@ export class SessionRuntime {
     this.modeControl = this.autoDriveMode ? 'auto' : 'manual';
     this.autoModeInitialized = false;
     this.awaitingInitialRaceConfirmation = false;
+    this.initialFreeEvidenceSince = null;
     this.appliedEventVersion = 0;
     this.modeSource = 'startup';
     this.freeRoamRecording = false;
     this.version = 0;
+    this.receiverInstanceId = receiverInstanceId;
     this.active = null;
     this.lastId = null;
     this.pendingSince = null;
@@ -39,6 +42,7 @@ export class SessionRuntime {
     this.failed = new Map();
     this.recordingError = null;
     this.droppedPackets = 0;
+    this.unattributedPackets = 0;
     this.eventDetector = eventDetector;
     this.detected = eventDetector.state();
     this.liveRouteIdentifier = liveRouteIdentifier;
@@ -53,14 +57,14 @@ export class SessionRuntime {
     return {
       driveMode: this.driveMode, freeRoamRecording: this.freeRoamRecording,
       autoDriveMode: this.autoDriveMode, modeControl: this.modeControl, modeSource: this.modeSource,
-      version: this.version, modeVersion: this.version,
+      version: this.version, modeVersion: this.version, receiverInstanceId: this.receiverInstanceId,
       sessionActive: !!this.active, sessionId: this.active?.id ?? null,
       packetsRecorded: this.active?.packetCount ?? 0,
       lapsRecorded: this.active?.laps.length ?? 0,
       sessionState: this.active ? (this.pendingSince === null ? 'recording' : 'pendingClose') : this.saves.size ? 'saving' : 'idle',
       storageError: this.recordingError || this.store.error,
       storageWarning: this.store.warning,
-      failedSaves: [...this.failed.keys()], droppedPackets: this.droppedPackets,
+      failedSaves: [...this.failed.keys()], droppedPackets: this.droppedPackets, unattributedPackets: this.unattributedPackets,
       detectedActivity: this.detected.activity,
       detectionEvidence: this.detected.evidence,
       pendingActivity: this.detected.pendingActivity,
@@ -78,6 +82,7 @@ export class SessionRuntime {
       driveMode: this.driveMode, recordingType: this.driveMode === 'race' ? 'automatic' : 'manual',
       bestLap: -1, packetCount: 0, laps: [], segments: [], schemaVersion: 2,
       timelinePolicy: 'raw-arrival-order; rewind supersedes prior raceTime >= boundary',
+      vehiclePolicy: 'one valid raw carOrdinal per session; presentation identity is independently debounced',
     };
     this.previousRecorded = null;
     this.pendingSince = null;
@@ -91,6 +96,8 @@ export class SessionRuntime {
     this.pendingSince = null;
     this.previousRecorded = null;
     this.lastId = snapshot.id;
+    this.liveRouteIdentifier?.reset();
+    this.activeRoute = null;
     const save = this.store.finalize(snapshot).catch(error => {
       this.failed.set(snapshot.id, snapshot);
       this.recordingError = error.message;
@@ -141,6 +148,7 @@ export class SessionRuntime {
       this.autoDriveMode = true;
       this.autoModeInitialized = true;
       this.awaitingInitialRaceConfirmation = false;
+      this.initialFreeEvidenceSince = null;
       this.appliedEventVersion = this.detected.eventVersion;
       await this.transitionMode(this.detected.activity, 'auto');
     } else {
@@ -172,6 +180,7 @@ export class SessionRuntime {
         if (this.detected.pendingActivity === 'race') {
           this.autoModeInitialized = true;
           this.awaitingInitialRaceConfirmation = true;
+          this.initialFreeEvidenceSince = null;
         }
         else if (this.detected.pendingActivity === null) {
           this.autoModeInitialized = true;
@@ -182,7 +191,22 @@ export class SessionRuntime {
         // frame between the first Race packets reconcile back to that default.
         if (this.detected.activity === 'race') {
           this.awaitingInitialRaceConfirmation = false;
+          this.initialFreeEvidenceSince = null;
           this.appliedEventVersion = this.detected.eventVersion;
+        } else if (this.detected.evidence?.freeRoamEvidence && this.detected.evidence?.vehicleTelemetryReady) {
+          // Startup Race evidence may be cancelled before the detector ever
+          // confirms Race. Only a sustained, real vehicle stream can release
+          // this protection; neutral/unknown pause frames cannot do so.
+          if (this.initialFreeEvidenceSince === null) this.initialFreeEvidenceSince = now;
+          const exitMs = this.eventDetector.config?.exitMs ?? EVENT_DETECTOR_DEFAULTS.exitMs;
+          if (now - this.initialFreeEvidenceSince >= exitMs) {
+            this.awaitingInitialRaceConfirmation = false;
+            this.initialFreeEvidenceSince = null;
+            this.appliedEventVersion = this.detected.eventVersion;
+            autoTarget = 'freeRoam';
+          }
+        } else {
+          this.initialFreeEvidenceSince = null;
         }
       } else if (this.detected.pendingActivity === null) {
         // Reconcile the settled detector state on every packet. Event versions
@@ -203,11 +227,32 @@ export class SessionRuntime {
       : { state: 'UNKNOWN', pendingState: null, raw: Number.isFinite(packet.boost) ? packet.boost : null, rawUnit: null, observedPeakRaw: null, ratio: null, carOrdinal: null, capable: false, sampleCount: 0, version: 0 };
     const eligible = this.driveMode === 'freeRoam' ? this.freeRoamRecording :
       !!packet.isRaceOn && (packet.racePosition > 0 || packet.currentLap > 0);
-    if (this.activeVehicle.changed && this.active && this.active.carOrdinal !== this.activeVehicle.vehicle?.carOrdinal) this.close('car-change').catch(() => {});
-    if (eligible && !this.active && !this.recordingError) this.open(packet, now);
-    if (this.active && !eligible) {
+    const rawOrdinal = Number(packet.carOrdinal);
+    const knownVehicle = Number.isSafeInteger(rawOrdinal) && rawOrdinal > 0;
+    const recordable = eligible && knownVehicle;
+    // Archive the first valid new-car packet in its own session. The UI's
+    // confirmation window must never change the ownership of raw samples.
+    if (this.active && knownVehicle && this.active.carOrdinal !== rawOrdinal &&
+        (recordable || this.activeVehicle.changed)) {
+      this.close('car-change').catch(() => {});
+      this.liveRouteIdentifier?.reset();
+      this.activeRoute = null;
+    }
+    if (eligible && !knownVehicle) {
+      this.unattributedPackets++;
+      packet.recordingBoundary = 'unknown-vehicle';
+      packet.timelineBreak = 'unknown-vehicle';
+      if (this.active) {
+        this.active.unattributedPacketCount = (this.active.unattributedPacketCount ?? 0) + 1;
+        if (this.pendingSince === null) this.active.segments.push({ reason: 'unknown-vehicle', startIndex: this.active.packetCount, raceTime: packet.currentRaceTime });
+      }
+      // Preserve the realtime packet while excluding it from a named vehicle's
+      // archive; the next valid packet receives the existing resume boundary.
+    }
+    if (recordable && !this.active && !this.recordingError) this.open({ ...packet, carOrdinal: rawOrdinal }, now);
+    if (this.active && !recordable) {
       if (this.pendingSince === null) { this.pendingSince = now; this.changed(); }
-    } else if (this.active && eligible) {
+    } else if (this.active && recordable) {
       const prior = this.previousRecorded;
       if (this.pendingSince !== null) { packet.timelineBreak = 'resume'; this.pendingSince = null; this.changed(); }
       packet.sessionId = this.active.id;
@@ -239,16 +284,24 @@ export class SessionRuntime {
         this.close('storage-queue-overflow').catch(() => {});
       }
     }
-    packet.sessionId = this.active?.id ?? null;
+    // sessionId is the live context, not permission to archive this packet.
+    // Unknown identity cannot own a stored sample, but a short dropout must not
+    // erase the current route/ghost. A valid different car still gets its own
+    // session above, or no context if that sample is ineligible.
+    packet.sessionId = this.active && (!knownVehicle || this.active.carOrdinal === rawOrdinal) ? this.active.id : null;
+    // Keep raw telemetry intact. Only spatial/route consumers skip unverified
+    // samples, whose position/lap fields can also be menu placeholders.
+    packet.routeSampleAvailable = knownVehicle;
     packet.driveMode = this.driveMode;
     packet.modeVersion = this.version;
+    packet.receiverInstanceId = this.receiverInstanceId;
     packet.sessionState = this.state().sessionState;
     packet.detectedActivity = this.detected.activity;
     packet.pendingActivity = this.detected.pendingActivity;
     packet.eventVersion = this.detected.eventVersion;
     packet.activeVehicle = this.activeVehicle;
     packet.boostState = this.activeBoost;
-    if (this.liveRouteIdentifier) {
+    if (this.liveRouteIdentifier && knownVehicle) {
       const identified = this.liveRouteIdentifier.update(packet);
       const row = identified.routeCatalogKey ? this.resolveRoute(identified.routeCatalogKey) : null;
       this.activeRoute = {
@@ -260,8 +313,12 @@ export class SessionRuntime {
         confidence: identified.confidence?.score ?? identified.confidence ?? null,
         version: identified.matchedForSession ? 1 : 0,
       };
-      packet.activeRoute = this.activeRoute;
     }
+    if (!knownVehicle && !this.active) {
+      this.liveRouteIdentifier?.reset();
+      this.activeRoute = null;
+    }
+    if (this.liveRouteIdentifier) packet.activeRoute = this.activeRoute;
     return packet;
   }
   tick(now = Date.now()) {

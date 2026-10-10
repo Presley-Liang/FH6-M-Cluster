@@ -8,6 +8,98 @@ import { createClassicalEuropeInstrument } from '../public/js/themes/classical-e
 import { createLfaJapanInstrument } from '../public/js/themes/lfa-japan-instrument.js';
 import { createTaycanEuropeInstrument } from '../public/js/themes/taycan-europe-instrument.js';
 import { createClusterBindings } from '../public/js/cluster-bindings.js';
+import { createRouteUIController } from '../public/js/route-ui-controller.js';
+import { createLiveDeltaTracker } from '../src/routes/live-delta.js';
+
+function sessionStatePage(fetchJson) {
+  const nodes = new Map();
+  const doc = { getElementById(id) {
+    if (!nodes.has(id)) nodes.set(id, { textContent: '', dataset: {}, title: '' });
+    return nodes.get(id);
+  } };
+  const overlays = [], mapUpdates = [];
+  const routeUI = createRouteUIController({ doc, fetchJson, createDeltaTracker: createLiveDeltaTracker,
+    mapAdapter: { setRouteOverlay: data => overlays.push(data), clearRouteOverlay: () => overlays.push(null) } });
+  const context = vm.createContext({
+    serverVersion: -1, serverInstanceId: null, serverInstanceEpoch: 0, retiredServerInstances: new Set(), policyAuthorityRevision: 0,
+    clientModeControl: 'auto', clientDriveMode: 'race', desiredDriveMode: 'race', document: doc,
+    routeUI, leafletMap: { update: (...args) => mapUpdates.push(args) },
+    mapSessionId: 7, liveTrail: [{ x: 1, z: 2 }], frameCount: 9, prevRaceOn: true,
+    mapCtx: { canvas: { getClientRects: () => [1] } }, getComputedStyle: () => ({ display: 'block' }),
+    redraws: 0, _drawMapBg() { context.redraws++; },
+    applyMode(mode) { context.clientDriveMode = mode; routeUI.setMode(mode); }, applyRecordingState() {},
+  });
+  const html = getDefaultHTML(), start = html.indexOf('  function applyServerState(data)'), end = html.indexOf('  function applyMode(mode)', start);
+  vm.runInContext(html.slice(start, end), context);
+  routeUI.update({ driveMode: 'race', sessionId: 7, carOrdinal: 42,
+    activeRoute: { status: 'matched', routeId: 3, name: 'OLD ROUTE' },
+    distanceTraveled: 500, currentLap: 4.5, lapNumber: 1 });
+  return { context, nodes, overlays, mapUpdates, routeUI };
+}
+
+test('accepted session-close state invalidates pending Ghost and maps without a UDP packet', async () => {
+  let resolveGhost;
+  const page = sessionStatePage(async url => url.startsWith('/route?') ? { outline: [0, 0, 1000, 1000] }
+    : new Promise(resolve => { resolveGhost = resolve; }));
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(typeof resolveGhost, 'function');
+  page.context.applyServerState({ version: 2, driveMode: 'race', sessionId: null, sessionActive: false });
+  assert.equal(page.context.mapSessionId, null);
+  assert.equal(page.context.liveTrail.length, 0);
+  assert.equal(page.context.frameCount, 0);
+  assert.equal(page.context.prevRaceOn, false);
+  assert.equal(page.context.redraws, 1);
+  assert.equal(page.mapUpdates.at(-1)[0].routeSampleAvailable, false);
+  assert.equal(page.mapUpdates.at(-1)[1].sessionId, null);
+  resolveGhost({ points: [[1, 2]], timingPoints: [] });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(page.overlays.at(-1), null);
+  assert.equal(page.nodes.get('map-route-name').textContent, 'ROUTE —');
+});
+
+test('same-session or partial state preserves live references, but new session state clears them', async () => {
+  const page = sessionStatePage(async url => url.startsWith('/route?') ? { outline: [0, 0, 1000, 1000] }
+    : { points: [[1, 2]], timingPoints: [{ distanceTraveled: 0, timeSeconds: 0 }, { distanceTraveled: 1000, timeSeconds: 10 }] });
+  await new Promise(resolve => setImmediate(resolve));
+  const count = page.overlays.length;
+  page.context.applyServerState({ version: 4, driveMode: 'race', sessionId: 7, sessionActive: true });
+  page.context.applyServerState({ version: 5, driveMode: 'race' });
+  page.context.applyServerState({ version: 3, sessionId: null, sessionActive: false });
+  assert.equal(page.context.mapSessionId, 7);
+  assert.equal(page.context.liveTrail.length, 1);
+  assert.equal(page.context.redraws, 0);
+  assert.equal(page.overlays.length, count);
+  assert.equal(page.mapUpdates.length, 1, 'partial/old states cannot synthesize a close');
+  page.context.applyServerState({ version: 6, driveMode: 'race', sessionId: 8, sessionActive: true });
+  assert.equal(page.context.mapSessionId, 8);
+  assert.equal(page.context.liveTrail.length, 0);
+  assert.equal(page.overlays.at(-1), null);
+});
+
+test('legacy map ignores unknown route samples without clearing the active trace', () => {
+  const html = getDefaultHTML();
+  const start = html.indexOf('  function updateMapTrail(d)');
+  const end = html.indexOf('  // ── Session List', start);
+  assert.ok(start >= 0 && end > start);
+  const prior = [{ x: 10, z: 20, yaw: 0, lap: 1 }];
+  const context = vm.createContext({
+    liveTrail: prior, frameCount: 3, prevRaceOn: true, clientDriveMode: 'race',
+    mapCtx: { canvas: { getClientRects: () => [] } },
+    _drawMapBg() { throw new Error('Unattributed route sample must not draw'); },
+  });
+  vm.runInContext(html.slice(start, end), context);
+  for (const packet of [
+    { routeSampleAvailable: false, isRaceOn: 0, positionX: 0, positionZ: 0 },
+    { routeSampleAvailable: false, isRaceOn: 0, positionX: 99, positionZ: 88 },
+    { routeSampleAvailable: false, isRaceOn: 1, positionX: 99, positionZ: 88 },
+  ]) context.updateMapTrail(packet);
+  assert.equal(context.liveTrail, prior);
+  assert.equal(context.liveTrail.length, 1);
+  assert.equal(context.frameCount, 3);
+  assert.equal(context.prevRaceOn, true);
+  context.updateMapTrail({ isRaceOn: 1, positionX: 12, positionZ: 23, lapNumber: 1 });
+  assert.equal(context.frameCount, 4); // Legacy packets without the new marker still work.
+});
 
 // Lightweight SVG/DOM surface: run the shipped factories and inspect their
 // actual readouts and geometry without duplicating their calculations.
@@ -93,7 +185,8 @@ test('server control updates reconcile both directions without posting a policy 
   const nodes = { 'session-info': {}, status: {} };
   const saved = [], wakes = [], controls = [];
   const context = vm.createContext({
-    serverVersion: -1, clientModeControl: 'auto', clientDriveMode: 'race', desiredDriveMode: 'race',
+    serverVersion: -1, serverInstanceId: null, serverInstanceEpoch: 0, retiredServerInstances: new Set(), policyAuthorityRevision: 0,
+    clientModeControl: 'auto', clientDriveMode: 'race', desiredDriveMode: 'race',
     manualThemeChosen: false, latestVehicleState: null,
     localStorage: { setItem: (...args) => saved.push(args) },
     document: { getElementById: id => nodes[id] },

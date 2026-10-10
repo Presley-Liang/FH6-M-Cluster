@@ -1,0 +1,18 @@
+{
+  "scope": "Isolated production client state/route boundary checks; synthetic client only; not game acceptance",
+  "checks": [
+    {
+      "label": "same session and partial state preserve references",
+      "passed": true
+    },
+    {
+      "label": "close state clears maps without UDP",
+      "passed": true
+    },
+    {
+      "label": "old Ghost response stays invalid after close",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

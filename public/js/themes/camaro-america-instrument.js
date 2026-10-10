@@ -2,7 +2,7 @@ import { createHeritageInstrument, createHeritageDial } from './heritage-instrum
 
 // Independent era layout. OEM photo verification remains in the reference log.
 export function createCamaroAmericaInstrument({ document, mount }) {
-  return createHeritageInstrument({ document, mount, className: 'camaro', label: 'AMERICA / 09—14 instrument', markup: `<div class="camaro-dashboard">
+  const instrument = createHeritageInstrument({ document, mount, className: 'camaro', label: 'AMERICA / 09—14 instrument', markup: `<div class="camaro-dashboard">
     <div class="camaro-binnacle next-body">
     <header class="heritage-heading">
     <span>AMERICA / 09—14</span>
@@ -46,8 +46,8 @@ export function createCamaroAmericaInstrument({ document, mount }) {
     <small>°C</small>
     </div>
     <div class="heritage-input next-detail">
-    <span>THROTTLE</span>
-    <b data-next-value="input">—</b>
+    <span data-camaro-input-label>THROTTLE</span>
+    <b data-camaro-input>—</b>
     <small>%</small>
     </div>
     <div class="camaro-output">
@@ -58,9 +58,9 @@ export function createCamaroAmericaInstrument({ document, mount }) {
     </div>
     <footer class="heritage-info next-detail">
     <div>
-    <span data-next-label="a">CURRENT LAP</span>
-    <b data-next-value="a">—</b>
-    <small data-next-label="aUnit">TIME</small>
+    <span data-camaro-detail-label>CURRENT LAP</span>
+    <b data-camaro-detail>—</b>
+    <small data-camaro-detail-unit>TIME</small>
     </div>
     <div>
     <span data-next-label="b">BEST LAP</span>
@@ -70,4 +70,20 @@ export function createCamaroAmericaInstrument({ document, mount }) {
     </footer>
     </div>
     </div>` });
+  const refs = Object.fromEntries(['input-label','input','detail-label','detail','detail-unit'].map(key => [key,instrument.element.querySelector('[data-camaro-'+key+']')]));
+  const whole = value => typeof value === 'number' && Number.isFinite(value) ? String(Math.round(value)) : '—';
+  const time = seconds => typeof seconds !== 'number' || !Number.isFinite(seconds) || seconds <= 0 ? '—' : Math.floor(seconds/60)+':'+(seconds%60).toFixed(2).padStart(5,'0');
+  const write = (key,value) => { if(refs[key].textContent!==value)refs[key].textContent=value; };
+  return { ...instrument,update(model={},context={}){
+    instrument.update(model,context);
+    const live=!Boolean(context.stale??model.stale);
+    const ev=instrument.element.dataset.powertrain==='ev';
+    const raced=instrument.element.dataset.mode==='race';
+    // The EV tach already shows drive input; this separate auxiliary cell is brake.
+    write('input-label',ev?'BRAKE':'THROTTLE');
+    write('input',live?whole(ev?model.brakePercent:model.throttlePercent):'—');
+    write('detail-label',raced?'CURRENT LAP':'TORQUE');
+    write('detail-unit',raced?'TIME':'Nm');
+    write('detail',raced?live&&context.racing?time(model.currentLap):'—':live?whole(model.torque):'—');
+  }};
 }

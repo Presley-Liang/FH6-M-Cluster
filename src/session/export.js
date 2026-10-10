@@ -1,3 +1,5 @@
+import { buildElapsedTimeline } from '../../public/js/timeline-clock.js';
+
 export function formatTime(seconds) {
   if (seconds <= 0 || !isFinite(seconds)) return "--:--.---";
   const mins = Math.floor(seconds / 60);
@@ -18,6 +20,7 @@ export function downsample(packets, factor) {
 export function buildCompactExport(sessionPackets, sessionLaps, bestLap, sessionInfo) {
   const pkts = sessionPackets;
   if (pkts.length === 0) return null;
+  const elapsedTimeline = buildElapsedTimeline(pkts);
 
   // ── Summary ──────────────────────────────────────────────────────
   let maxSpeed = 0,
@@ -35,7 +38,7 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
     if (p.currentEngineRpm > maxRpm) maxRpm = p.currentEngineRpm;
     if (p.power > maxPower) maxPower = p.power;
     if (p.torque > maxTorque) maxTorque = p.torque;
-    if (p.boost > maxBoost) maxBoost = p.boost;
+    if (Number.isFinite(p.boost) && p.boost > maxBoost) maxBoost = p.boost;
     if (p.fuel > 0) {
       totalFuel += p.fuel;
       fuelSamples++;
@@ -50,10 +53,7 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
     carOrdinal: sessionInfo.carOrdinal,
     carClass: sessionInfo.carClass,
     carPi: sessionInfo.carPi,
-    durationMs:
-      pkts.length > 0
-        ? pkts[pkts.length - 1].timestampMs - pkts[0].timestampMs
-        : 0,
+    durationMs: elapsedTimeline[elapsedTimeline.length - 1].elapsedMs,
     packetCount: pkts.length,
     lapCount: sessionLaps.length,
     bestLap: bestLap > 0 ? Math.round(bestLap * 1000) / 1000 : null,
@@ -61,7 +61,7 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
     maxRpm: Math.round(maxRpm),
     maxPowerKw: Math.round((maxPower / 1000) * 10) / 10,
     maxTorqueNm: Math.round(maxTorque * 10) / 10,
-    maxBoostPsi: Math.round(maxBoost * 100) / 100,
+    maxRawBoost: Number.isFinite(maxBoost) ? Math.round(maxBoost * 100) / 100 : null,
     avgFuel:
       fuelSamples > 0
         ? Math.round((totalFuel / fuelSamples) * 1000) / 1000
@@ -92,12 +92,12 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
     const start = lapBoundaries[li];
     const end = lapBoundaries[li + 1];
     const lapPkts = pkts.slice(start, end);
-    if (lapPkts.length < 10) continue;
-    const sectorsPerLap = 10;
-    const sectorSize = Math.floor(lapPkts.length / sectorsPerLap);
+    const sectorsPerLap = Math.min(10, lapPkts.length);
 
     for (let s = 0; s < sectorsPerLap; s++) {
-      const seg = lapPkts.slice(s * sectorSize, (s + 1) * sectorSize);
+      const segmentStart = Math.floor(s * lapPkts.length / sectorsPerLap);
+      const segmentEnd = Math.floor((s + 1) * lapPkts.length / sectorsPerLap);
+      const seg = lapPkts.slice(segmentStart, segmentEnd);
       if (seg.length === 0) continue;
 
       let sumSpeed = 0,
@@ -112,7 +112,7 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
         sumTempFr = 0,
         sumTempRl = 0,
         sumTempRr = 0;
-      let sumBoost = 0,
+      let sumBoost = 0, boostSamples = 0,
         sumPower = 0;
 
       for (const p of seg) {
@@ -128,13 +128,18 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
         sumTempFr += p.tireTempFr;
         sumTempRl += p.tireTempRl;
         sumTempRr += p.tireTempRr;
-        sumBoost += p.boost;
+        if (Number.isFinite(p.boost)) { sumBoost += p.boost; boostSamples++; }
         sumPower += p.power;
       }
       const n = seg.length;
       sectors.push({
         lap: li,
+        lapIndex: li,
+        lapNumber: Number.isFinite(lapPkts[0].lapNumber) ? lapPkts[0].lapNumber : null,
         sector: s,
+        sectorKind: 'equal-packet-segment',
+        startPacketIndex: start + segmentStart,
+        endPacketIndexExclusive: start + segmentEnd,
         packetCount: n,
         avgSpeedKmh: Math.round((sumSpeed / n) * 10) / 10,
         maxSpeedKmh: Math.round(segMaxSpeed * 10) / 10,
@@ -148,19 +153,20 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
         avgTireTempFr: Math.round((sumTempFr / n) * 10) / 10,
         avgTireTempRl: Math.round((sumTempRl / n) * 10) / 10,
         avgTireTempRr: Math.round((sumTempRr / n) * 10) / 10,
-        avgBoostPsi: Math.round((sumBoost / n) * 100) / 100,
+        avgRawBoost: boostSamples ? Math.round((sumBoost / boostSamples) * 100) / 100 : null,
         avgPowerKw: Math.round((sumPower / n / 1000) * 10) / 10,
       });
     }
   }
 
-  // ── Downsampled samples (1/sec, ≈30:1 ratio) ─────────────────────
+  // Every 30th packet; elapsedMs conveys actual time rather than assuming Hz.
   const sampleFactor = 30;
   const samples = [];
   for (let i = 0; i < pkts.length; i += sampleFactor) {
     const p = pkts[i];
     samples.push({
       i,
+      elapsedMs: elapsedTimeline[i].elapsedMs,
       speedKmh: Math.round(p.speedKmh * 10) / 10,
       rpm: Math.round(p.currentEngineRpm),
       powerKw: Math.round((p.power / 1000) * 10) / 10,
@@ -174,14 +180,27 @@ export function buildCompactExport(sessionPackets, sessionLaps, bestLap, session
       tireTempFr: Math.round(p.tireTempFr * 10) / 10,
       tireTempRl: Math.round(p.tireTempRl * 10) / 10,
       tireTempRr: Math.round(p.tireTempRr * 10) / 10,
-      boostPsi: Math.round(p.boost * 100) / 100,
+      rawBoost: Number.isFinite(p.boost) ? Math.round(p.boost * 100) / 100 : null,
       fuel: Math.round(p.fuel * 1000) / 1000,
       lapNumber: p.lapNumber,
       racePosition: p.racePosition,
     });
   }
 
-  return { summary, lapStats, sectors, samples };
+  return {
+    schemaVersion: 3,
+    fieldUnits: { durationMs: 'ms', elapsedMs: 'ms', lapTime: 's', bestLap: 's', rawBoost: null, maxRawBoost: null, avgRawBoost: null },
+    boostEncoding: { sourceField: 'boost', kind: 'unconverted-protocol-value', unit: null },
+    compatibility: {
+      previousSchemaVersion: 2,
+      renamedRawFields: { maxBoostPsi: 'maxRawBoost', avgBoostPsi: 'avgRawBoost', boostPsi: 'rawBoost' },
+      note: 'Previous PSI names contained unconverted raw values; no physical pressure unit has been established.',
+      lap: 'zero-based packet-run index; lapNumber is the original telemetry lap identifier',
+    },
+    sectorPolicy: 'up to 10 equal packet segments per contiguous lap; not official game sectors',
+    samplePolicy: { packetStride: sampleFactor, timeField: 'elapsedMs', assumedHz: null },
+    summary, lapStats, sectors, samples,
+  };
 }
 
 export function calculateSessionStats(packets) {
@@ -192,13 +211,14 @@ export function calculateSessionStats(packets) {
   let maxPower = 0;
   let totalFuel = 0;
   let fuelSamples = 0;
-  let maxBoost = 0;
+  let maxBoost = -Infinity;
+  const elapsedTimeline = buildElapsedTimeline(packets);
 
   for (const pkt of packets) {
     if (pkt.speedMs > maxSpeed) maxSpeed = pkt.speedMs;
     if (pkt.currentEngineRpm > maxRpm) maxRpm = pkt.currentEngineRpm;
     if (pkt.power > maxPower) maxPower = pkt.power;
-    if (pkt.boost > maxBoost) maxBoost = pkt.boost;
+    if (Number.isFinite(pkt.boost) && pkt.boost > maxBoost) maxBoost = pkt.boost;
     if (pkt.fuel > 0) {
       totalFuel += pkt.fuel;
       fuelSamples++;
@@ -214,11 +234,10 @@ export function calculateSessionStats(packets) {
       fuelSamples > 0
         ? Math.round((totalFuel / fuelSamples) * 100) / 100
         : null,
-    maxBoost: Math.round(maxBoost * 100) / 100,
-    durationMs:
-      packets.length > 0
-        ? packets[packets.length - 1].timestampMs - packets[0].timestampMs
-        : 0,
+    maxRawBoost: Number.isFinite(maxBoost) ? Math.round(maxBoost * 100) / 100 : null,
+    maxBoost: Number.isFinite(maxBoost) ? Math.round(maxBoost * 100) / 100 : null,
+    boostUnit: null,
+    durationMs: elapsedTimeline[elapsedTimeline.length - 1].elapsedMs,
     packetCount: packets.length,
   };
 }

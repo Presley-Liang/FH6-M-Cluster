@@ -48,3 +48,46 @@ test('P8 route UI clears enhancement layers in Free Roam and fails closed withou
   assert.equal(app.elements['map-route-name'].textContent, 'FREE ROAM');
   assert.equal(app.overlays.at(-1), null);
 });
+
+test('P2 route UI keeps Ghost/Delta across unknown identity and clears on a true session boundary', async () => {
+  const calls = [];
+  const app = setup(async url => {
+    calls.push(url);
+    if (url.startsWith('/route?')) return { outline_json: '[0,0,1000,1000]' };
+    return { points: [[1, 2], [3, 4]], timingPoints: [
+      { distanceTraveled: 0, timeSeconds: 0 }, { distanceTraveled: 1000, timeSeconds: 10 },
+    ] };
+  });
+  const packet = { driveMode: 'race', sessionId: 7, carOrdinal: 42, distanceTraveled: 500, currentLap: 4.5, lapNumber: 1,
+    activeRoute: { status: 'matched', routeId: 3, name: 'ROUTE' }, routeSampleAvailable: true };
+  app.controller.update(packet); await flush(); await flush();
+  app.controller.update(packet);
+  const overlayCount = app.overlays.length;
+  app.controller.update({ ...packet, carOrdinal: 0, routeSampleAvailable: false,
+    currentLap: 0, distanceTraveled: 0, lapNumber: 0, timelineBreak: 'unknown-vehicle' });
+  assert.equal(app.elements['map-delta-value'].textContent, '-0.500');
+  assert.equal(app.overlays.length, overlayCount);
+  app.controller.update({ ...packet, timelineBreak: 'resume' });
+  await flush();
+  assert.equal(calls.length, 2, 'neither route nor Ghost is fetched again');
+  assert.equal(app.elements['map-delta-value'].textContent, '-0.500');
+  app.controller.update({ ...packet, sessionId: null, carOrdinal: 0, activeRoute: null, routeSampleAvailable: false });
+  assert.equal(app.overlays.at(-1), null);
+  assert.equal(app.elements['map-delta-value'].textContent, '—');
+});
+
+test('P2 route UI invalidates in-flight Ghost load when the session ends on an unknown sample', async () => {
+  let resolveGhost;
+  const app = setup(async url => {
+    if (url.startsWith('/route?')) return { outline_json: '[0,0,1000,1000]' };
+    return new Promise(resolve => { resolveGhost = resolve; });
+  });
+  app.controller.update({ driveMode: 'race', sessionId: 7, carOrdinal: 42,
+    activeRoute: { status: 'matched', routeId: 3, name: 'ROUTE' } });
+  await flush();
+  app.controller.update({ driveMode: 'race', sessionId: null, carOrdinal: 0, routeSampleAvailable: false });
+  resolveGhost({ points: [[1, 2], [3, 4]], timingPoints: [] });
+  await flush();
+  assert.equal(app.overlays.at(-1), null);
+  assert.equal(app.elements['map-route-name'].textContent, 'ROUTE —');
+});

@@ -1,0 +1,623 @@
+{
+  "scope": "Read-only targeted production-function audit with synthetic packets and isolated temporary storage. No real UDP/game acceptance; no production changes or full-suite rerun.",
+  "cases": {
+    "bestLapList": {
+      "directory": "C:\\Users\\liang\\AppData\\Local\\Temp\\fh6-storage-audit-lap-bSOCi2",
+      "archivedBestLapSeconds": 60,
+      "archivedLaps": [
+        {
+          "lapNumber": 0,
+          "lapTime": 60,
+          "lapTimeFormatted": "01:00.000",
+          "completedAtRaceTime": 60
+        }
+      ],
+      "listHtml": "<div class=\"session-row\" data-id=\"1791472711674\"><div class=\"s-left\"><span class=\"s-id\">Session #1791472711674</span><span class=\"s-date\">1970/1/1 08:00:01</span></div><div class=\"s-right\"><div class=\"s-meta\">2 pkts &middot; 1 laps</div><div class=\"s-lap\">Best 0.060s</div></div></div>",
+      "listRenderedSeconds": 0.06,
+      "compactBestLapSeconds": 60,
+      "viaActualHttp": {
+        "sessions": [
+          {
+            "id": 1791472711674,
+            "startedAt": "1970-01-01T00:00:01.000Z",
+            "endedAt": "2026-10-08T15:18:31.676Z",
+            "carOrdinal": 3445,
+            "carClass": 5,
+            "carPi": 900,
+            "driveMode": "race",
+            "recordingType": "automatic",
+            "bestLap": 60,
+            "packetCount": 2,
+            "segments": [],
+            "schemaVersion": 2,
+            "timelinePolicy": "raw-arrival-order; rewind supersedes prior raceTime >= boundary",
+            "closeReason": "audit-lap",
+            "stats": {
+              "maxSpeedMs": 20,
+              "maxSpeedKmh": 72,
+              "maxRpm": 4000,
+              "maxPower": 100000,
+              "maxBoost": 1.5,
+              "avgFuel": 0.5,
+              "durationMs": 17,
+              "packetCount": 2
+            },
+            "lapFingerprints": [
+              {
+                "lapNumber": 0,
+                "startX": 10,
+                "startZ": 20,
+                "distanceSignature": 0,
+                "spanX": 0,
+                "spanZ": 0,
+                "sampleCount": 1,
+                "rejectedSamples": 0,
+                "valid": false,
+                "reasons": [
+                  "too-few-samples",
+                  "insufficient-progress"
+                ]
+              },
+              {
+                "lapNumber": 1,
+                "startX": 10,
+                "startZ": 20,
+                "distanceSignature": 0,
+                "spanX": 0,
+                "spanZ": 0,
+                "sampleCount": 1,
+                "rejectedSamples": 0,
+                "valid": false,
+                "reasons": [
+                  "incomplete",
+                  "too-few-samples",
+                  "insufficient-progress"
+                ]
+              }
+            ],
+            "routeFingerprint": null,
+            "routeOutline": null,
+            "filename": "session_1791472711674_3445.json",
+            "lapCount": 1
+          }
+        ],
+        "compact": {
+          "summary": {
+            "carOrdinal": 3445,
+            "carClass": 5,
+            "carPi": 900,
+            "durationMs": 17,
+            "packetCount": 2,
+            "lapCount": 1,
+            "bestLap": 60,
+            "maxSpeedKmh": 72,
+            "maxRpm": 4000,
+            "maxPowerKw": 100,
+            "maxTorqueNm": 400,
+            "maxBoostPsi": 1.5,
+            "avgFuel": 0.5,
+            "maxLatG": 0,
+            "maxLongG": 0
+          },
+          "lapStats": [
+            {
+              "lapNumber": 0,
+              "lapTime": 60
+            }
+          ],
+          "sectors": [],
+          "samples": [
+            {
+              "i": 0,
+              "speedKmh": 72,
+              "rpm": 4000,
+              "powerKw": 100,
+              "torqueNm": 400,
+              "throttlePct": 50,
+              "brakePct": 0,
+              "gear": 3,
+              "latG": 0,
+              "longG": 0,
+              "tireTempFl": 60,
+              "tireTempFr": 61,
+              "tireTempRl": 62,
+              "tireTempRr": 63,
+              "boostPsi": 1.5,
+              "fuel": 0.5,
+              "lapNumber": 0,
+              "racePosition": 2
+            }
+          ],
+          "id": 1791472711674,
+          "startedAt": "1970-01-01T00:00:01.000Z",
+          "endedAt": "2026-10-08T15:18:31.676Z"
+        }
+      }
+    },
+    "boostUnits": {
+      "inputBoostRaw": 1.5,
+      "compactSummaryField": 1.5,
+      "compactSampleField": 1.5,
+      "projectUnitContract": "docs/TELEMETRY_FIELD_MATRIX.md:41 says raw; physical unit unverified."
+    },
+    "timestampWrap": {
+      "directory": "C:\\Users\\liang\\AppData\\Local\\Temp\\fh6-storage-audit-wrap-n1UaWZ",
+      "timestamps": [
+        4294967280,
+        17
+      ],
+      "receivedAt": [
+        1000,
+        1033
+      ],
+      "expectedUnsignedElapsedMs": 33,
+      "archivedDurationMs": -4294967263,
+      "rawExportDurationMs": -4294967263,
+      "compactDurationMs": -4294967263
+    },
+    "timestampReset": {
+      "timestamps": [
+        5000,
+        20
+      ],
+      "statsDurationMs": -4980,
+      "compactDurationMs": -4980
+    },
+    "compactSectors": {
+      "inputPacketCount": 17,
+      "inputLapNumber": 2,
+      "exportedSectorPacketCount": 10,
+      "exportedSectorLapIds": [
+        0
+      ],
+      "summaryMaxSpeedKmh": 324,
+      "largestSectorMaxSpeedKmh": 72,
+      "sectors": [
+        {
+          "lap": 0,
+          "sector": 0,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 1,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 2,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 3,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 4,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 5,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 6,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 7,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 8,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        },
+        {
+          "lap": 0,
+          "sector": 9,
+          "packetCount": 1,
+          "avgSpeedKmh": 72,
+          "maxSpeedKmh": 72,
+          "avgRpm": 4000,
+          "maxRpm": 4000,
+          "avgThrottlePct": 50,
+          "avgBrakePct": 0,
+          "avgLatG": 0,
+          "avgLongG": 0,
+          "avgTireTempFl": 60,
+          "avgTireTempFr": 61,
+          "avgTireTempRl": 62,
+          "avgTireTempRr": 63,
+          "avgBoostPsi": 1.5,
+          "avgPowerKw": 100
+        }
+      ]
+    },
+    "saveFailureRetry": {
+      "directory": "C:\\Users\\liang\\AppData\\Local\\Temp\\fh6-storage-audit-retry-Zs6wPM",
+      "injectedFailure": "Synthetic final metadata ENOSPC",
+      "beforeRetry": {
+        "driveMode": "race",
+        "freeRoamRecording": false,
+        "autoDriveMode": false,
+        "modeControl": "manual",
+        "modeSource": "startup",
+        "version": 2,
+        "modeVersion": 2,
+        "sessionActive": false,
+        "sessionId": null,
+        "packetsRecorded": 0,
+        "lapsRecorded": 0,
+        "sessionState": "saving",
+        "storageError": "Synthetic final metadata ENOSPC",
+        "storageWarning": null,
+        "failedSaves": [
+          1791472711824
+        ],
+        "droppedPackets": 0,
+        "detectedActivity": "freeRoam",
+        "detectionEvidence": {
+          "ranked": true,
+          "clockAdvancing": false,
+          "lapAdvancing": false,
+          "lapIncremented": false,
+          "worldMotion": false,
+          "distanceMotion": false,
+          "raceContextCleared": false,
+          "vehicleTelemetryReady": true,
+          "zeroedVehicleFrame": false,
+          "postRaceBlackout": false,
+          "postRaceVehicleReturn": false,
+          "openWorldReady": false,
+          "freeRoamEvidence": false
+        },
+        "pendingActivity": "race",
+        "eventVersion": 0,
+        "activeRoute": null,
+        "activeVehicle": {
+          "status": "locking",
+          "changed": false,
+          "vehicleVersion": 0,
+          "vehicle": null,
+          "candidateOrdinal": 3445
+        },
+        "activeBoost": {
+          "state": "UNKNOWN",
+          "pendingState": null,
+          "raw": 1.5,
+          "rawUnit": null,
+          "observedPeakRaw": null,
+          "ratio": null,
+          "carOrdinal": null,
+          "capable": false,
+          "sampleCount": 0,
+          "version": 0
+        }
+      },
+      "afterRetry": {
+        "driveMode": "race",
+        "freeRoamRecording": false,
+        "autoDriveMode": false,
+        "modeControl": "manual",
+        "modeSource": "startup",
+        "version": 4,
+        "modeVersion": 4,
+        "sessionActive": false,
+        "sessionId": null,
+        "packetsRecorded": 0,
+        "lapsRecorded": 0,
+        "sessionState": "idle",
+        "storageError": null,
+        "storageWarning": null,
+        "failedSaves": [],
+        "droppedPackets": 0,
+        "detectedActivity": "freeRoam",
+        "detectionEvidence": {
+          "ranked": true,
+          "clockAdvancing": false,
+          "lapAdvancing": false,
+          "lapIncremented": false,
+          "worldMotion": false,
+          "distanceMotion": false,
+          "raceContextCleared": false,
+          "vehicleTelemetryReady": true,
+          "zeroedVehicleFrame": false,
+          "postRaceBlackout": false,
+          "postRaceVehicleReturn": false,
+          "openWorldReady": false,
+          "freeRoamEvidence": false
+        },
+        "pendingActivity": "race",
+        "eventVersion": 0,
+        "activeRoute": null,
+        "activeVehicle": {
+          "status": "locking",
+          "changed": false,
+          "vehicleVersion": 0,
+          "vehicle": null,
+          "candidateOrdinal": 3445
+        },
+        "activeBoost": {
+          "state": "UNKNOWN",
+          "pendingState": null,
+          "raw": 1.5,
+          "rawUnit": null,
+          "observedPeakRaw": null,
+          "ratio": null,
+          "carOrdinal": null,
+          "capable": false,
+          "sampleCount": 0,
+          "version": 0
+        }
+      },
+      "acceptedPackets": 1,
+      "recoveredPackets": 1,
+      "assessed": "Accepted packet preserved exactly once; retry clears the failed save and error."
+    },
+    "queueOverflow": {
+      "directory": "C:\\Users\\liang\\AppData\\Local\\Temp\\fh6-storage-audit-queue-eMRIoK",
+      "rejectedPacketLiveSessionId": null,
+      "archivedMarkers": [
+        "accepted"
+      ],
+      "stateAfterOverflow": {
+        "driveMode": "race",
+        "freeRoamRecording": false,
+        "autoDriveMode": false,
+        "modeControl": "manual",
+        "modeSource": "startup",
+        "version": 3,
+        "modeVersion": 3,
+        "sessionActive": false,
+        "sessionId": null,
+        "packetsRecorded": 0,
+        "lapsRecorded": 0,
+        "sessionState": "idle",
+        "storageError": "Recording queue capacity exceeded; recording stopped. Queued data retained for retry.",
+        "storageWarning": null,
+        "failedSaves": [],
+        "droppedPackets": 1,
+        "detectedActivity": "freeRoam",
+        "detectionEvidence": {
+          "ranked": true,
+          "clockAdvancing": false,
+          "lapAdvancing": false,
+          "lapIncremented": false,
+          "worldMotion": false,
+          "distanceMotion": false,
+          "raceContextCleared": false,
+          "vehicleTelemetryReady": true,
+          "zeroedVehicleFrame": false,
+          "postRaceBlackout": false,
+          "postRaceVehicleReturn": false,
+          "openWorldReady": false,
+          "freeRoamEvidence": false
+        },
+        "pendingActivity": "race",
+        "eventVersion": 0,
+        "activeRoute": null,
+        "activeVehicle": {
+          "status": "locking",
+          "changed": false,
+          "vehicleVersion": 0,
+          "vehicle": null,
+          "candidateOrdinal": 3445
+        },
+        "activeBoost": {
+          "state": "UNKNOWN",
+          "pendingState": null,
+          "raw": 1.5,
+          "rawUnit": null,
+          "observedPeakRaw": null,
+          "ratio": null,
+          "carOrdinal": null,
+          "capable": false,
+          "sampleCount": 0,
+          "version": 0
+        }
+      },
+      "subsequentStillProcessed": "live-after-overflow",
+      "subsequentSessionIdBeforeRetry": null,
+      "resumedSessionIdAfterRetry": 1791472711843,
+      "assessed": "Accepted packet retained; one overflow packet explicitly counted as dropped for recording. Telemetry processing continues, recording stays stopped until retry."
+    },
+    "inactivity": {
+      "directory": "C:\\Users\\liang\\AppData\\Local\\Temp\\fh6-storage-audit-gaps-Kk6aXq",
+      "initialSessionId": 1791472711854,
+      "withinGraceSessionId": 1791472711854,
+      "withinGraceTimelineBreak": "resume",
+      "afterGraceSessionId": 1791472711855,
+      "assessed": "Resume inside grace preserves identity and marks resume; long inactivity saves old Session and opens a new one on eligible telemetry."
+    }
+  },
+  "findings": [
+    {
+      "key": "best-lap-list-unit",
+      "priority": "P2",
+      "confirmed": true,
+      "condition": "Completed 60-second lap in an archived Session, then open Session Library.",
+      "evidence": "Production loadSessions() renders Best 0.060s; archive and compact summary both hold 60 seconds. Viewer uses seconds directly.",
+      "lines": [
+        "src/ui/default-html.js:971",
+        "src/ui/default-html.js:1010",
+        "src/session/runtime.js:226"
+      ],
+      "limitation": "Production HTML function exercised in a minimal DOM VM, not a live user browser."
+    },
+    {
+      "key": "compact-boost-unit",
+      "priority": "P2",
+      "confirmed": true,
+      "condition": "Export Compact of any Session with finite boost raw values.",
+      "evidence": "Raw 1.5 is exported unchanged under maxBoostPsi/boostPsi/avgBoostPsi without conversion or verified unit.",
+      "lines": [
+        "src/session/export.js:64",
+        "src/session/export.js:151",
+        "src/session/export.js:177",
+        "docs/TELEMETRY_FIELD_MATRIX.md:41"
+      ],
+      "limitation": "This confirms the repository contract mismatch, not the actual physical unit of FH6 Boost."
+    },
+    {
+      "key": "duration-timestamp-boundary",
+      "priority": "P2",
+      "confirmed": true,
+      "condition": "A single Session spans a u32 timestamp wrap or a game timestamp reset without a Session close.",
+      "evidence": "4294967280 -> 17 (33 ms unsigned elapsed) exports durationMs -4294967263 in archive, JSON export and Compact; 5000 -> 20 exports -4980.",
+      "lines": [
+        "src/session/store.js:183",
+        "src/session/export.js:53-56",
+        "src/session/export.js:218-221",
+        "docs/TELEMETRY_FIELD_MATRIX.md:18"
+      ],
+      "limitation": "Injected timestamp boundary; no actual game wrap/reset was observed. Wall-clock receivedAt was monotonic."
+    },
+    {
+      "key": "compact-sector-remainder",
+      "priority": "P3",
+      "confirmed": true,
+      "condition": "Lap packet count is >=10 and is not divisible by 10; a Session can also begin at a nonzero lapNumber.",
+      "evidence": "17 packets produce ten sectors covering only the first ten packets; the final seven (including 324 km/h sample) are absent from sector stats. Sector lap is positional 0 while lapStats uses actual lapNumber 2.",
+      "lines": [
+        "src/session/export.js:97-100",
+        "src/session/export.js:136",
+        "src/session/export.js:76"
+      ],
+      "limitation": "Sectors currently divide packets rather than physical distance/time. The defect is discarded remainder/ambiguous lap identity; no claim that these are official game sectors."
+    }
+  ],
+  "generatedAt": "2026-10-08T15:18:31.879Z",
+  "cleanup": "All locally constructed SessionRuntime/SessionStore objects shut down; temporary archive directories retained for evidence. Random-port HTTP servers closed; no UDP receiver launched."
+}

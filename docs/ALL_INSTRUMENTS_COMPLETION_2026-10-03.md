@@ -1,10 +1,24 @@
 # 全部仪表接入与本轮布局／动画交付
 
-2026-10-03。整合 PR 分支共有 **33 套独立主画面，0 个未实现共享壳入口**：32 套自定义主题加原有 2015–2019 欧系基准。PR #3 两套日系、PR #4 三套欧系及最后八套共 13 套集中在 PR #4 审阅；尚未自动合并主分支。
+2026-10-03首次交付，2026-10-09更新。共有 **33 套独立主画面，0 个未实现共享壳入口**：32 套自定义主题加原有 2015–2019 欧系基准。PR #4、PR #5已合并；本轮R01–R36返修与窗口缩放复验已提交[PR #6](https://github.com/Presley-Liang/FH6-M-Cluster/pull/6)，尚未合并，详见[当前进度](../PROGRESS.md)及[逐项返修记录](ERA_REGION_COMPLETED_THEMES_LAYOUT_AUDIT_2026-09-30.md)。
 
 按用户要求，本地重点审查空间和动画，其余完整代码审阅交由 PR。独立画面接入、原厂外观核实、真实游戏和用户验收分别记录。
 
-## 最后八套与来源状态
+## 2026-10-09 参考结构补修
+
+以下为结构依据，未宣称原厂照片的像素、材质与座舱比例已全部验收：
+
+| 主题 | 实际取得的依据 | 本轮改动／边界 |
+|---|---|---|
+| LFA | [Lexus官方INSTRUMENTATION说明](https://media.lexus.co.uk/lexus-lfa/)：中央可移动环、四个侧小表、启动向两侧展开 | 中央移动环与左右四表；模式移动为应用适配；无真实油压／水温时使用游戏字段 |
+| S30 | [日产设计师说明](https://www.nissan-global.com/EN/STORIES/RELEASES/the-essence-of-z-ness-4/)：仪表台上方三表 | 三联改为上方横排；窄窗三联排在主表上方；主指针数学未改 |
+| AA | [Toyota UK实车说明](https://www.toyota.co.uk/discover-toyota/stories-news-events/where-it-all-began-aa)：深木纹、中央小镀铬表组 | 改中央小表组；RPM／挡位／圈时是游戏适配，不当成AA原车配置 |
+| 1999 DeVille | [GM官方手册](https://assets.gm.com/manuals/cadillac/1999_cadillac_deville_owners.pdf)印刷2-64，检索取得数字仪表图的结构转写 | 中央数字速度、下挡位和两侧信息；未下载原厂图作资产 |
+| Crown | [官方修复项目年式说明](https://toyotatimes.jp/en/series/crown_restoration/005_1.html)、[博物馆1955 RS照片报道](https://web.motormagazine.co.jp/_ct/17226421)已定位 | 官方修复车含1955／1957混合件；图片像素未成功查看，候选精细几何保持未验收 |
+
+[四套32组几何检查与八张合成预览](previews/all-instruments/pr6-oem-layout-followup-2026-10-09.json)核对读数、圆表宽高和表框边界；本地生成截图已目视复核，不等于原车图目视对照。远程图片浏览仍受工具超时／显示限制，未绕过拦截或复制第三方图片资产。
+
+## 最后八套与来源状态（2026-10-03历史；以上补修优先）
 
 | 编号 | 独立构图 | 实物核实状态 |
 |---|---|---|
@@ -28,7 +42,7 @@
 | 画面语义 | 数据与降级 |
 |---|---|
 | 速度、挡位 | `speedKmh`、`gearLabel`；数字保留超量程速度，机械刻度止于 260；缺失／陈旧显示 `—` |
-| 发动机速度 | 实际 RPM 与车辆量程；量程不明时不造刻度，动力指针隐藏 |
+| 发动机速度 | 实际 RPM 与车辆量程；量程不明时不造刻度，稳定阶段指针隐藏或停放；启动阶段仅无标值的DISPLAY SCAN装饰，RPM数字为`—` |
 | EV 动力尺 | 实际 `throttlePercent`，标为 `DRIVE INPUT`／`%`；不把 RPM 或正负功率当再生／电量 |
 | 输出 | 实际有符号 `powerKw`，不推测功率分区 |
 | 轮胎与输入 | 最热轮胎 `wheels[].tempC`、实际油门；不冒充水温、油压或燃油量 |
@@ -51,7 +65,7 @@
 - [六套重新点灯记录](previews/all-instruments/mode-relight-checks.json)：古典欧系、AE86、JDM90、RX8、R8、C4，共 **12 次**；**14 组**亮度层均至少出现五个采样值、最终亮度超过 .95、相邻 50ms 采样最大增幅小于 .3。证明所测层连续渐亮，不代表全部视觉细节已由用户认可。
 - [三套修改前后对比](previews/all-instruments/mode-motion-comparison.json)：R8／C4／JDM90 的平均扫表更新间隔由约 **55.5ms** 降至约 **6.9–7.1ms**。本机浏览器出帧约 7ms，全主题记录中仍存在出帧波动；未把浏览器回调频率当成游戏 FPS。
 - 代码回归 **210/210**、核验离线回归 **12/12**、打包通过；13 套复跑 [156 组布局](previews/all-instruments/mode-layout-checks.json)及 [117 组 CSS 阶段](previews/all-instruments/mode-css-phase-checks.json)检查通过。
-- [本轮汇总](previews/all-instruments/mode-motion-summary.json)独立于 PR #4 历史证据。隔离接收器使用独立 HTTP／UDP，检查期间没有操作用户的 3000／3002 接收器模式。真实 FH6 驾驶、持续帧率、用户视觉验收仍待完成；修复在 [codex/fix-mode-transition-motion](https://github.com/Presley-Liang/FH6-M-Cluster/tree/codex/fix-mode-transition-motion) 分支交付，尚未合并主分支或打成新版可执行文件。
+- [本轮汇总](previews/all-instruments/mode-motion-summary.json)独立于 PR #4 历史证据。隔离接收器使用独立 HTTP／UDP，检查期间没有操作用户的 3000／3002 接收器模式。修复通过 [PR #5](https://github.com/Presley-Liang/FH6-M-Cluster/pull/5) 的 Codex 云端审核（最新 head `9b8e10f` 未发现重大问题），已按用户授权合并主分支为 `ad6bc02` 并同步本地源码。真实 FH6 驾驶、持续帧率、用户视觉验收及新版可执行文件仍待完成。
 
 ### 2026-10-08 复审补项与最终证据
 

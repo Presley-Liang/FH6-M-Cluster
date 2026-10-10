@@ -26,7 +26,7 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
         <div class="rda-lower-row">
           <div class="rda-mode-plate"><span data-rda-label="program">RACE PROGRAM</span><strong data-rda-label="mode">RACE</strong><i></i></div>
           <div class="rda-race-data"><div class="rda-lower-cell"><span>CURRENT LAP</span><strong data-rda-value="lap">—</strong></div><div class="rda-lower-cell"><span>POSITION</span><strong data-rda-value="rank">—</strong></div></div>
-          <div class="rda-free-data"><div class="rda-lower-cell"><span>POWER OUTPUT</span><strong data-rda-value="power">—</strong><small>kW</small></div><div class="rda-lower-cell"><span>THROTTLE</span><strong data-rda-value="throttle">—</strong><small>%</small></div><div class="rda-lower-cell"><span>FUEL / RAW</span><strong data-rda-value="fuel">—</strong></div></div>
+          <div class="rda-free-data"><div class="rda-lower-cell"><span data-rda-label="output">POWER OUTPUT</span><strong data-rda-value="power">—</strong><small data-rda-label="output-unit">kW</small></div><div class="rda-lower-cell"><span>THROTTLE</span><strong data-rda-value="throttle">—</strong><small>%</small></div><div class="rda-lower-cell"><span>FUEL / RAW</span><strong data-rda-value="fuel">—</strong></div></div>
         </div>
         <div class="rda-bottom-legend"><span>VFD DIGITAL SYSTEM</span><span>1986 • 1994</span><span>UNIT 03</span></div>
       </div>
@@ -55,10 +55,8 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     return speedStops[index] + (speedStops[index + 1] - speedStops[index]) * (position - index);
   };
 
-  let handoff = null;
   let lastSweepSpeed = 0;
   let lastSweepRpm = 0;
-  let hadOverride = false;
   let shownMode = 'race';
 
   function update(model = {}, context = {}) {
@@ -80,9 +78,6 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     const scan = active && phase === 'scan';
     const override = context.displayOverride || null;
     const gaugeMax = finite(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : finite(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
-    // An unconnected preview has no vehicle RPM limit. Give the startup sweep
-    // a display scale without presenting it as live engine telemetry.
-    const sweepGaugeMax = gaugeMax ?? 8000;
     const rpmFraction = finite(context.gaugeFraction) ?? finite(model.rpmRatio);
 
     element.dataset.mode = mode;
@@ -91,10 +86,12 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     element.dataset.scan = scan ? 'true' : 'false';
     labels.mode.textContent = mode === 'race' ? 'RACE' : 'FREE';
     labels.program.textContent = mode === 'race' ? 'RACE PROGRAM' : 'FREE DRIVE';
-    labels.range.textContent = ev ? 'POWER TRACE' : mode === 'race' ? 'SHIFT RANGE' : 'ENGINE RANGE';
+    labels.range.textContent = ev ? 'POWER TRACE' : override && gaugeMax === null ? 'DISPLAY SCAN' : mode === 'race' ? 'SHIFT RANGE' : 'ENGINE RANGE';
     labels.signal.textContent = available ? 'TELEMETRY LIVE' : 'NO SIGNAL';
     labels.rpm.textContent = ev ? 'POWER OUTPUT' : 'ENGINE RPM';
     labels['rpm-unit'].textContent = ev ? 'kW' : 'r/min';
+    labels.output.textContent = ev ? 'DRIVE TORQUE' : 'POWER OUTPUT';
+    labels['output-unit'].textContent = ev ? 'Nm' : 'kW';
 
     const overrideFraction = finite(override?.rpm);
     const segmentFraction = ev ? null : overrideFraction !== null ? clamp(overrideFraction) : available ? rpmFraction : null;
@@ -109,25 +106,15 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     const hasOverride = override && finite(override.speed) !== null;
     if (hasOverride) {
       lastSweepSpeed = Math.round(speedFromFraction(override.speed));
-      lastSweepRpm = Math.round(clamp(overrideFraction ?? 0) * sweepGaugeMax);
-      handoff = null;
-    } else if (hadOverride) {
-      handoff = { start: Date.now(), speed: lastSweepSpeed, rpm: lastSweepRpm };
+      lastSweepRpm = gaugeMax === null ? null : Math.round(clamp(overrideFraction ?? 0) * gaugeMax);
     }
-    hadOverride = Boolean(hasOverride);
 
     let speed = speedTarget;
     let rpm = rpmTarget;
     if (hasOverride) {
       speed = lastSweepSpeed;
       rpm = lastSweepRpm;
-    } else if (handoff && available) {
-      const t = clamp((Date.now() - handoff.start) / 480);
-      const ease = t * t * (3 - 2 * t);
-      if (speedTarget !== null) speed = handoff.speed + (speedTarget - handoff.speed) * ease;
-      if (rpmTarget !== null) rpm = handoff.rpm + (rpmTarget - handoff.rpm) * ease;
-      if (t >= 1) handoff = null;
-    } else if (!available) handoff = null;
+    }
 
     write('speed', available || override ? whole(speed) : '—');
     write('rpm', ev ? available ? decimal(model.powerKw, 0) : '—' : available || override ? whole(rpm) : '—');
@@ -135,7 +122,7 @@ export function createRetroDigitalAmericaInstrument({ document, mount }) {
     const racing = available && mode === 'race' && Boolean(context.racing);
     write('lap', racing ? lapTime(model.currentLap) : '—');
     write('rank', racing && finite(model.rank) > 0 ? 'P' + whole(model.rank) : '—');
-    write('power', available ? decimal(model.powerKw, 0) : '—');
+    write('power', available ? decimal(ev ? model.torque : model.powerKw, 0) : '—');
     write('throttle', available ? whole(model.throttlePercent) : '—');
     write('fuel', available ? decimal(model.fuelRaw, 2) : '—');
   }

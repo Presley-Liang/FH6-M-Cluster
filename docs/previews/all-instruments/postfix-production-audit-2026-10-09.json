@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-10-09T00:13:31.266087+00:00",
+  "scope": "Actual production HTML/CSS in isolated Chrome. Synthetic packets, route responses, and failures. No real game telemetry or game FPS claim.",
+  "url": "http://127.0.0.1:3030/",
+  "checks": {
+    "R10_R18_R21": {
+      "baselineTickPositionErrors": [
+        {
+          "value": 0,
+          "error": 0
+        },
+        {
+          "value": 1000,
+          "error": 0
+        },
+        {
+          "value": 2000,
+          "error": 0
+        },
+        {
+          "value": 3000,
+          "error": 0
+        },
+        {
+          "value": 4000,
+          "error": 0
+        },
+        {
+          "value": 5000,
+          "error": 0
+        },
+        {
+          "value": 6000,
+          "error": 0
+        },
+        {
+          "value": 6500,
+          "error": 0
+        }
+      ],
+      "redlineBefore": "0, 700.459, 77.8288, 802.996",
+      "redlineAfter": "0, 667.104, 74.1227, 802.996",
+      "freshCardMetadata": {
+        "brand": "BMW",
+        "modelName": "M3 GTS",
+        "year": 2010,
+        "drivetrain": "RWD",
+        "classPi": "S1 900",
+        "powertrainType": "UNKNOWN"
+      }
+    },
+    "R09": {
+      "renders": 41,
+      "browserFrames": 41,
+      "phase": "live"
+    },
+    "R24": {
+      "instance": "audit-new-instance",
+      "version": 0,
+      "mode": "freeRoam",
+      "control": "manual"
+    },
+    "R11": {
+      "themePickerInertWhilePending": true,
+      "rollback": {
+        "mode": "auto",
+        "theme": "y2009_2014.europe",
+        "card": "y2009_2014"
+      }
+    },
+    "R12": {
+      "phase": "live",
+      "evScan": "false"
+    },
+    "R36": {
+      "draws": 0,
+      "trail": 2048,
+      "canvasRects": 0
+    },
+    "R30_R34_R35": {
+      "bestLapSeconds": 60,
+      "fullTime": "0:30",
+      "after1100ms": 1100,
+      "afterSeekMs": 20200,
+      "pausedAndClosedTimer": true,
+      "staleLoadIgnored": true
+    },
+    "R25": {
+      "modeAfterFailedOldGet": "freeRoam"
+    },
+    "R11_R24_followup": {
+      "unseenOldGetCannotRetireCurrentReceiver": true,
+      "confirmedStateSurvivesHttpFailure": true,
+      "lastAutoChoiceSerializedAfterPendingRace": true
+    }
+  },
+  "errors": []
+}

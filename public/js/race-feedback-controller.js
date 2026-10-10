@@ -1,7 +1,7 @@
 export function createRaceFeedbackController({ bestTolerance = 0.005 } = {}) {
   let armed = false, prior = null, lastRewindId = null;
   const finite = Number.isFinite;
-  const context = packet => ({ sessionId:packet.sessionId, raceOn:!!packet.isRaceOn,
+  const context = packet => ({ sessionId:packet.sessionId, carOrdinal:packet.carOrdinal, raceOn:!!packet.isRaceOn,
     lap:Number.isSafeInteger(packet.lapNumber)?packet.lapNumber:null,
     best:finite(packet.bestLap)&&packet.bestLap>0?Number(packet.bestLap):null,
     rank:Number.isSafeInteger(packet.racePosition)&&packet.racePosition>0?packet.racePosition:null });
@@ -10,7 +10,7 @@ export function createRaceFeedbackController({ bestTolerance = 0.005 } = {}) {
     if (!active || stale || packet.sessionId == null) { reset();return []; }
     const next=context(packet);
     const rewindId=packet.timelineBreak==='rewind'?`${packet.sessionId}:${packet.arrivalIndex??packet.currentRaceTime??'rewind'}`:null;
-    if (!armed || !prior || prior.sessionId!==next.sessionId) {armed=true;prior=next;return [];}
+    if (!armed || !prior || prior.sessionId!==next.sessionId || prior.carOrdinal!==next.carOrdinal) {armed=true;prior=next;return [];}
     if (packet.timelineBreak != null) {prior=next;if(rewindId&&rewindId!==lastRewindId){lastRewindId=rewindId;return [{id:`rewind:${rewindId}`,type:'rewind',tone:'caution'}];}return [];}
     const events=[];
     if(!prior.raceOn&&next.raceOn)events.push({id:`${next.sessionId}:start`,type:'race-start',tone:'accent'});

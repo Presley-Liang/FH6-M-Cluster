@@ -5,6 +5,15 @@ import readline from 'node:readline';
 import { once } from 'node:events';
 import { extractLapFingerprints } from '../routes/fingerprint.js';
 import { extractRouteOutline } from '../routes/outline.js';
+import { createElapsedTimeline } from '../../public/js/timeline-clock.js';
+
+function repairLegacyDuration(archive) {
+  if (!(archive.stats?.durationMs < 0) || !Array.isArray(archive.packets)) return archive;
+  const clock = createElapsedTimeline();
+  for (const packet of archive.packets) clock.update(packet);
+  return { ...archive, stats: { ...archive.stats, durationMs: clock.snapshot().elapsedMs,
+    timestampSegments: clock.snapshot().segment + (archive.packets.length ? 1 : 0) } };
+}
 
 // Raw packets are appended in arrival order. Completed JSON is streamed from
 // that journal; continuous driving never keeps an unbounded packet array.
@@ -39,6 +48,10 @@ export class SessionStore {
         let raw;
         try { raw = JSON.parse(await fsp.readFile(metadataPath, 'utf8')); if (!raw.endedAt) throw Error('Unfinished metadata'); }
         catch { const { packets, ...rest } = JSON.parse(await fsp.readFile(path.join(this.directory, filename), 'utf8')); raw = { ...rest, packetCount: packets?.length || 0 }; }
+        if (raw.stats?.durationMs < 0) {
+          const archive = repairLegacyDuration(JSON.parse(await fsp.readFile(path.join(this.directory, filename), 'utf8')));
+          raw = { ...raw, stats: archive.stats };
+        }
         this.index.set(raw.id, { ...raw, filename });
         this.counter = Math.max(this.counter, Number(raw.id) || 0);
       } catch (error) { this.error = `Skipped corrupt archive ${filename}: ${error.message}`; }
@@ -162,13 +175,15 @@ export class SessionStore {
       };
       const header = { ...meta, packetCount: 0 };
       // The final packet count comes from the journal, including crash recovery.
-      let count = 0, maxSpeed = 0, maxRpm = 0, maxPower = 0, maxBoost = 0, fuelTotal = 0, fuelCount = 0, firstTime = null, lastTime = 0;
+      let count = 0, maxSpeed = 0, maxRpm = 0, maxPower = 0, maxBoost = -Infinity, fuelTotal = 0, fuelCount = 0;
+      const elapsedTimeline = createElapsedTimeline();
       const fingerprintPackets = [];
       let lastFingerprintPacket = null;
       for await (const packet of this.packets(entry)) {
-        count++; firstTime ??= packet.timestampMs; lastTime = packet.timestampMs;
+        count++; elapsedTimeline.update(packet);
         maxSpeed = Math.max(maxSpeed, packet.speedMs || 0); maxRpm = Math.max(maxRpm, packet.currentEngineRpm || 0);
-        maxPower = Math.max(maxPower, packet.power || 0); maxBoost = Math.max(maxBoost, packet.boost || 0);
+        maxPower = Math.max(maxPower, packet.power || 0);
+        if (Number.isFinite(packet.boost)) maxBoost = Math.max(maxBoost, packet.boost);
         if (packet.fuel > 0) { fuelTotal += packet.fuel; fuelCount++; }
         const sampleFingerprint = !lastFingerprintPacket || packet.timelineBreak ||
           packet.lapNumber !== lastFingerprintPacket.lapNumber ||
@@ -179,8 +194,13 @@ export class SessionStore {
         }
       }
       header.packetCount = count;
-      header.stats = { maxSpeedMs: maxSpeed, maxSpeedKmh: maxSpeed * 3.6, maxRpm, maxPower, maxBoost,
-        avgFuel: fuelCount ? fuelTotal / fuelCount : null, durationMs: lastTime - (firstTime || 0), packetCount: count };
+      header.stats = { maxSpeedMs: maxSpeed, maxSpeedKmh: maxSpeed * 3.6, maxRpm, maxPower,
+        maxRawBoost: Number.isFinite(maxBoost) ? maxBoost : null,
+        // Existing archive readers use maxBoost. This alias remains raw; it is
+        // neither labelled nor converted to a physical pressure unit.
+        maxBoost: Number.isFinite(maxBoost) ? maxBoost : null, boostUnit: null,
+        avgFuel: fuelCount ? fuelTotal / fuelCount : null, durationMs: elapsedTimeline.snapshot().elapsedMs,
+        timestampSegments: elapsedTimeline.snapshot().segment + (count ? 1 : 0), packetCount: count };
       if (header.driveMode === 'race') {
         header.lapFingerprints = extractLapFingerprints(fingerprintPackets, { completedLaps: header.laps });
         header.routeFingerprint = header.lapFingerprints.find(fingerprint => fingerprint.valid) ?? null;
@@ -214,7 +234,7 @@ export class SessionStore {
     }
     const row = this.index.get(id);
     if (!row) return null;
-    return JSON.parse(await fsp.readFile(path.join(this.directory, row.filename), 'utf8'));
+    return repairLegacyDuration(JSON.parse(await fsp.readFile(path.join(this.directory, row.filename), 'utf8')));
   }
   list() { return [...this.index.values()].sort((a, b) => b.id - a.id).map(({ laps, ...row }) => ({ ...row, lapCount: laps?.length || 0 })); }
   async shutdown() { clearInterval(this.timer); await this.flushAll(); await this.archiveIndex?.shutdown(); }

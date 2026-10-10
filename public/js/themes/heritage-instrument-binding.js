@@ -53,7 +53,7 @@ export function createHeritageInstrument({ document, mount, className, label, ma
     }
     const speed = linearSpeed ? clamp((state.speed ?? 0) / 260) : speedFraction(state.speed ?? 0);
     const finite = value => typeof value === 'number' && Number.isFinite(value);
-    const driveAvailable = state.sweep || state.live && (state.ev ? state.input !== null
+    const driveAvailable = state.sweep || state.live && (state.ev ? state.driveInput !== null
       : finite(model.rpm) && (finite(context.rpmGauge?.gaugeMax) && context.rpmGauge.gaugeMax > 0
         || finite(model.engineMaxRpm) && model.engineMaxRpm > 0));
     for (const needle of needles) {

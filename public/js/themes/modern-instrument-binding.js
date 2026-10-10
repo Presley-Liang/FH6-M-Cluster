@@ -1,6 +1,6 @@
 // Shared data projection only. Each caller owns a separate instrument layout.
 // Serialized into the standalone page; keep all helpers inside the factory.
-export function createModernInstrumentBinding({ element, mount }) {
+export function createModernInstrumentBinding({ element, mount, project }) {
   const values = Object.fromEntries(Array.from(element.querySelectorAll('[data-next-value]')).map(n => [n.dataset.nextValue, n]));
   const labels = Object.fromEntries(Array.from(element.querySelectorAll('[data-next-label]')).map(n => [n.dataset.nextLabel, n]));
   const ticks = Array.from(element.querySelectorAll('[data-next-tick]'));
@@ -27,8 +27,10 @@ export function createModernInstrumentBinding({ element, mount }) {
     const ev = ['ev', 'electric'].includes(String(context.powertrain || '').toLowerCase());
     const override = context.displayOverride;
     const sweep = number(override?.speed) !== null && number(override?.rpm) !== null;
-    const max = number(context.rpmGauge?.gaugeMax) > 0 ? context.rpmGauge.gaugeMax : number(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null;
-    const rpm = sweep ? clamp(override.rpm) * (max ?? 8000) : live ? number(model.rpm) : null;
+    const gauge = context.rpmGauge;
+    const max = gauge == null ? number(model.engineMaxRpm) > 0 ? model.engineMaxRpm : null
+      : gauge.available !== false && number(gauge.gaugeMax) > 0 ? gauge.gaugeMax : null;
+    const rpm = sweep ? max === null ? null : clamp(override.rpm) * max : live ? number(model.rpm) : null;
     const speed = sweep ? speedAt(override.speed) : live ? number(model.speedKmh) : null;
     const power = live ? number(model.powerKw) : null;
     const input = live ? number(model.throttlePercent) : null;
@@ -38,7 +40,7 @@ export function createModernInstrumentBinding({ element, mount }) {
     element.dataset.mode = mode;
     element.dataset.powertrain = ev ? 'ev' : 'combustion';
     element.dataset.signal = live ? 'live' : 'absent';
-    const fraction = ev ? sweep ? clamp(override.rpm) : clamp((input ?? 0) / 100) : rpm === null || max === null && !sweep ? 0 : clamp(rpm / (max ?? 8000));
+    const fraction = ev ? sweep ? clamp(override.rpm) : clamp((input ?? 0) / 100) : sweep ? clamp(override.rpm) : rpm === null || max === null ? 0 : clamp(rpm / max);
     if (Math.abs(fraction - priorFill) > .001) {
       if (fill?.dataset.nextFill === 'arc') fill.style.strokeDasharray = (fraction * 100).toFixed(3) + ' 100';
       else fill?.style.setProperty('--drive-fill', fraction.toFixed(4));
@@ -48,7 +50,7 @@ export function createModernInstrumentBinding({ element, mount }) {
     if (shifting !== priorShift) { element.dataset.shift = String(shifting); priorShift = shifting; }
     const scale = ev ? 'ev' : String(max);
     if (scale !== priorScale) {
-      ticks.forEach((n, i) => { n.textContent = ev ? String(Math.round(i / (ticks.length - 1) * 100)) : max ? String(Math.round(max * i / (ticks.length - 1) / 100) / 10) : ''; });
+      ticks.forEach((n, i) => { n.textContent = ev ? String(Number((i / (ticks.length - 1) * 100).toFixed(3))) : max ? String(Number((max * i / (ticks.length - 1) / 1000).toFixed(4))) : ''; });
       priorScale = scale;
     }
     const raced = mode === 'race';
@@ -64,13 +66,15 @@ export function createModernInstrumentBinding({ element, mount }) {
     };
     const l = {
       mode: raced ? 'RACE' : 'FREE', drive: ev ? 'POWER' : 'ENGINE SPEED', driveUnit: ev ? 'kW' : 'RPM',
-      scale: ev ? 'DRIVE INPUT · %' : '×1000 r/min', primary: raced ? ev ? 'POWER' : 'GEAR' : 'SPEED', primaryUnit: raced ? ev ? 'kW' : '' : 'km/h',
+      scale: ev ? 'DRIVE INPUT · %' : sweep && max === null ? 'DISPLAY SCAN' : '×1000 r/min', primary: raced ? ev ? 'POWER' : 'GEAR' : 'SPEED', primaryUnit: raced ? ev ? 'kW' : '' : 'km/h',
       secondary: raced ? 'SPEED' : ev ? 'POWER' : 'GEAR', secondaryUnit: raced ? 'km/h' : ev ? 'kW' : '',
       a: raced ? 'CURRENT LAP' : 'OUTPUT', aUnit: raced ? 'TIME' : 'kW',
       b: raced ? 'BEST LAP' : 'THROTTLE', bUnit: raced ? 'TIME' : '%',
       c: raced ? 'LATERAL G' : 'TYRE MAX', cUnit: raced ? 'g' : '°C',
       d: raced ? 'TYRE MAX' : 'GEAR', dUnit: raced ? '°C' : '',
     };
+    // Layout-specific substitutions happen before the single DOM commit.
+    project?.(v, l, { model, context, live, ev, mode, raced, temps });
     for (const [key, text] of Object.entries(v)) write(values, key, text);
     for (const [key, text] of Object.entries(l)) write(labels, key, text);
   };
